@@ -25,6 +25,8 @@
     --rule:#D9D2C1;
     --accent:#1B2A4E;
     --accent-ink:#0E1A36;
+    --accent-warm:#C44A2A;
+    --accent-warm-soft:#F0D6CC;
     --max:1180px;
   }
   *{box-sizing:border-box}
@@ -83,7 +85,7 @@
     font-size:5.4em;
     line-height:.85;
     padding:6px 12px 0 0;
-    color:var(--accent);
+    color:var(--accent-warm);
   }
   .portrait{
     position:relative;
@@ -133,7 +135,7 @@
     margin:0 0 28px;
     font-variation-settings:"opsz" 60;
   }
-  .billboard .stat .arrow{color:var(--accent);font-style:italic;padding:0 .15em}
+  .billboard .stat .arrow{color:var(--accent-warm);font-style:italic;padding:0 .15em}
   .billboard .stat em{font-style:italic;color:var(--accent-ink);font-weight:400}
   .billboard .ctx{
     max-width:60ch;font-family:"Source Serif 4",serif;font-size:20px;line-height:1.5;color:var(--ink);
@@ -157,7 +159,7 @@
   }
   .work article:nth-child(odd){padding-right:48px;border-right:1px solid var(--rule)}
   .work article:nth-child(even){padding-left:48px}
-  .work .num{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;color:var(--accent);opacity:.85}
+  .work .num{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;color:var(--accent-warm);opacity:.9}
   .work h3{
     font-family:"Source Serif 4",serif;font-weight:500;
     font-size:clamp(24px,2.6vw,32px);line-height:1.1;letter-spacing:-.015em;margin:0;
@@ -239,10 +241,12 @@
 
   /* ── Lab / In the Wild ────────────────────── */
   .lab-intro{font-family:"Source Serif 4",serif;font-size:20px;line-height:1.55;color:#2C2722;max-width:60ch;margin:0 0 40px}
-  .lab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px}
+  .lab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;justify-items:center}
   .lab-card{
     display:flex;flex-direction:column;border:1px solid var(--rule);background:#fff;
     text-decoration:none;color:inherit;
+    border-top:3px solid var(--accent-warm);
+    width:100%;max-width:560px;
     transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
   .lab-card:hover{transform:translateY(-3px);box-shadow:0 18px 32px -22px rgba(20,20,30,.35);border-color:var(--ink)}
@@ -298,7 +302,7 @@
     font-size:clamp(28px,4.5vw,52px);line-height:1.18;letter-spacing:-.015em;
     max-width:22ch;margin:0 auto;color:var(--ink);
   }
-  .pull .accent-rule{display:block;width:48px;height:2px;background:var(--accent);margin:0 auto 32px}
+  .pull .accent-rule{display:block;width:48px;height:2px;background:var(--accent-warm);margin:0 auto 32px}
 
   /* ── About ────────────────────────────────── */
   .about{display:grid;grid-template-columns:1fr 1fr;gap:64px}
@@ -504,25 +508,13 @@
       <span class="kicker">In the Wild</span>
       <h2 class="serif">Selected work, live.</h2>
     </div>
-    <p class="lab-intro reveal">A small gallery of pitches, landing pages, and tools I built. Scrubbed of client identifiers, otherwise the actual artifacts. Click any card to open the live page.</p>
+    <p class="lab-intro reveal">A small gallery of pitches, landing pages, and tools I built. Scrubbed of client identifiers, otherwise the actual artifacts. More coming online as they get scrubbed.</p>
     <div class="lab-grid">
 
       <a class="lab-card reveal" href="/pitches/sample-01/">
         <div class="browser"><div class="dots"><span></span><span></span><span></span></div><div class="url">williamdelehanty.com/pitches/sample-01</div></div>
         <div class="preview"><img src="lab/sample-01-thumb.jpg" alt="Sample 01 pitch landing"></div>
         <div class="meta"><h4 class="serif">Enterprise GTM pitch · three artifacts</h4><p>Landing page, inbound audit, lifecycle &amp; pipeline console. White-labeled.</p></div>
-      </a>
-
-      <a class="lab-card coming reveal" aria-disabled="true">
-        <div class="browser"><div class="dots"><span></span><span></span><span></span></div><div class="url">williamdelehanty.com/pitch-02</div></div>
-        <div class="preview">Coming online. An audience-intelligence pitch for a major B2B technology brand.</div>
-        <div class="meta"><h4 class="serif">Audience-intelligence partnership</h4><p>Identity-based targeting, behavioral segments, lifecycle handoff.</p></div>
-      </a>
-
-      <a class="lab-card coming reveal" aria-disabled="true">
-        <div class="browser"><div class="dots"><span></span><span></span><span></span></div><div class="url">williamdelehanty.com/lp-toolkit</div></div>
-        <div class="preview">Coming online. The BDM Toolkit landing page that delivered ~2× baseline conversion.</div>
-        <div class="meta"><h4 class="serif">BDM Toolkit landing page</h4><p>Content-led B2B LP, ~2× baseline conversion vs. control.</p></div>
       </a>
 
     </div>
