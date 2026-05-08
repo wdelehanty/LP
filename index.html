@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William Delehanty — B2B Demand Generation & Growth Leader</title>
+<meta name="description" content="William Delehanty built Forbes' B2B demand engine from $0 to eight figures. Systems builder. Hands-on operator. New York Metro.">
+<meta name="author" content="William Delehanty">
+<meta property="og:title" content="William Delehanty — B2B Demand Generation & Growth Leader">
+<meta property="og:description" content="Built Forbes' B2B demand engine from $0 to eight figures. Systems builder. Hands-on operator.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://williamdelehanty.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F6F2E9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,400..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161310;
+    --paper:#F6F2E9;
+    --paper-2:#EFE9DB;
+    --paper-3:#E6DFCE;
+    --muted:#6E665B;
+    --rule:#D9D2C1;
+    --accent:#B12424;
+    --accent-ink:#7A1818;
+    --max:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:17px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule);transition:border-color .2s,color .2s}
+  a:hover{color:var(--accent);border-color:var(--accent)}
+  .serif{font-family:"Source Serif 4","Source Serif Pro",Georgia,serif;font-feature-settings:"liga","kern","onum"}
+  .mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+  /* ── Top masthead ─────────────────────────── */
+  .masthead{
+    border-bottom:1px solid var(--rule);
+    padding:18px 0;
+    position:sticky;top:0;z-index:20;
+    background:rgba(246,242,233,.92);
+    backdrop-filter:saturate(140%) blur(6px);
+  }
+  .masthead .row{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .mark{font-family:"Source Serif 4",serif;font-weight:700;font-size:20px;letter-spacing:-.01em}
+  .mark .dot{color:var(--accent)}
+  .nav{display:flex;gap:28px;font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+  .nav a{border:none;color:var(--muted)}
+  .nav a:hover{color:var(--ink)}
+  .issue{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-family:"JetBrains Mono",monospace}
+  @media (max-width:720px){ .nav{display:none} }
+
+  /* ── Hero ─────────────────────────────────── */
+  .hero{padding:88px 0 56px;border-bottom:1px solid var(--rule)}
+  .hero .meta{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:32px;font-family:"JetBrains Mono",monospace}
+  .hero h1{
+    font-family:"Source Serif 4",serif;
+    font-weight:500;
+    font-size:clamp(48px,9vw,128px);
+    line-height:.95;
+    letter-spacing:-.025em;
+    margin:0 0 24px;
+    font-variation-settings:"opsz" 60;
+  }
+  .hero h1 em{font-style:italic;color:var(--accent-ink);font-weight:400}
+  .hero .role{font-family:"Source Serif 4",serif;font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--muted);margin:0 0 40px;font-weight:400}
+  .hero .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:64px;align-items:start}
+  .lede{font-family:"Source Serif 4",serif;font-size:clamp(20px,2.2vw,26px);line-height:1.45;max-width:38ch}
+  .lede::first-letter{
+    font-family:"Source Serif 4",serif;
+    font-weight:700;
+    float:left;
+    font-size:5.4em;
+    line-height:.85;
+    padding:6px 12px 0 0;
+    color:var(--accent);
+  }
+  .portrait{
+    position:relative;
+    aspect-ratio:4/5;
+    background:var(--paper-3);
+    overflow:hidden;
+    border:1px solid var(--rule);
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.02) saturate(.96)}
+  .portrait .caption{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:12px 14px;background:linear-gradient(transparent,rgba(0,0,0,.55));
+    color:#F6F2E9;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    font-family:"JetBrains Mono",monospace;
+  }
+  .portrait .placeholder{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-family:"Source Serif 4",serif;font-style:italic;font-size:14px;
+    text-align:center;padding:24px;
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);
+    font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+    font-family:"JetBrains Mono",monospace;
+  }
+  .btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.ghost{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .btn .arrow{transition:transform .2s}
+  .btn:hover .arrow{transform:translateX(4px)}
+  @media (max-width:880px){
+    .hero .grid{grid-template-columns:1fr;gap:40px}
+    .portrait{max-width:340px}
+  }
+
+  /* ── Billboard stat ───────────────────────── */
+  .billboard{padding:96px 0;border-bottom:1px solid var(--rule);position:relative;overflow:hidden}
+  .billboard .label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;font-family:"JetBrains Mono",monospace}
+  .billboard .stat{
+    font-family:"Source Serif 4",serif;
+    font-weight:300;
+    font-size:clamp(72px,16vw,220px);
+    line-height:.92;
+    letter-spacing:-.04em;
+    margin:0 0 28px;
+    font-variation-settings:"opsz" 60;
+  }
+  .billboard .stat .arrow{color:var(--accent);font-style:italic;padding:0 .15em}
+  .billboard .stat em{font-style:italic;color:var(--accent-ink);font-weight:400}
+  .billboard .ctx{
+    max-width:60ch;font-family:"Source Serif 4",serif;font-size:20px;line-height:1.5;color:var(--ink);
+  }
+  .billboard .footnote{margin-top:24px;font-size:13px;color:var(--muted);font-style:italic;font-family:"Source Serif 4",serif}
+
+  /* ── Section header ───────────────────────── */
+  .section{padding:88px 0;border-bottom:1px solid var(--rule)}
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:48px}
+  .kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-family:"JetBrains Mono",monospace}
+  .section-head h2{
+    font-family:"Source Serif 4",serif;font-weight:500;
+    font-size:clamp(32px,4.4vw,52px);line-height:1;letter-spacing:-.02em;margin:0;
+  }
+
+  /* ── Selected work ────────────────────────── */
+  .work{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--rule)}
+  .work article{
+    padding:40px 32px 40px 0;border-bottom:1px solid var(--rule);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .work article:nth-child(odd){padding-right:48px;border-right:1px solid var(--rule)}
+  .work article:nth-child(even){padding-left:48px}
+  .work .num{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;color:var(--accent)}
+  .work h3{
+    font-family:"Source Serif 4",serif;font-weight:500;
+    font-size:clamp(24px,2.6vw,32px);line-height:1.1;letter-spacing:-.015em;margin:0;
+  }
+  .work .byline{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-family:"JetBrains Mono",monospace}
+  .work p{margin:0;font-family:"Source Serif 4",serif;font-size:18px;line-height:1.55;color:#2C2722}
+  .work .tag{font-size:12px;color:var(--muted);font-style:italic;font-family:"Source Serif 4",serif}
+  @media (max-width:780px){
+    .work{grid-template-columns:1fr}
+    .work article,
+    .work article:nth-child(odd),
+    .work article:nth-child(even){padding:32px 0;border-right:none}
+  }
+
+  /* ── Career arc ───────────────────────────── */
+  .arc{display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start}
+  .arc .lhs{position:sticky;top:96px}
+  .arc .lhs p{font-family:"Source Serif 4",serif;font-size:20px;line-height:1.5;color:#2C2722;max-width:36ch}
+  .arc .lhs .brand{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .arc .lhs .brand img{height:32px;width:auto;display:block}
+  .arc .lhs .brand .since{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+  .timeline{display:flex;flex-direction:column;gap:0}
+  .stop{display:grid;grid-template-columns:140px 1fr;gap:32px;padding:24px 0;border-top:1px solid var(--rule)}
+  .stop:last-child{border-bottom:1px solid var(--rule)}
+  .stop .when{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.12em;color:var(--muted);padding-top:6px}
+  .stop .what{font-family:"Source Serif 4",serif}
+  .stop .what h4{margin:0 0 4px;font-weight:500;font-size:22px;letter-spacing:-.01em}
+  .stop .what p{margin:0;font-size:16px;color:#2C2722;line-height:1.55}
+  .stop.current .what h4::after{content:"●";color:var(--accent);margin-left:10px;font-size:12px;vertical-align:middle}
+  @media (max-width:880px){
+    .arc{grid-template-columns:1fr;gap:32px}
+    .arc .lhs{position:static}
+    .stop{grid-template-columns:100px 1fr;gap:18px}
+  }
+
+  /* ── Pull quote ───────────────────────────── */
+  .pull{padding:96px 0;border-bottom:1px solid var(--rule);text-align:center}
+  .pull blockquote{
+    font-family:"Source Serif 4",serif;font-style:italic;font-weight:400;
+    font-size:clamp(28px,4.5vw,52px);line-height:1.18;letter-spacing:-.015em;
+    max-width:22ch;margin:0 auto;color:var(--ink);
+  }
+  .pull blockquote::before{content:"\201C";color:var(--accent);font-style:normal;display:block;font-size:1.2em;line-height:.5;margin-bottom:18px}
+  .pull cite{display:block;margin-top:32px;font-style:normal;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+  /* ── About ────────────────────────────────── */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+  .about p{font-family:"Source Serif 4",serif;font-size:19px;line-height:1.6;color:#2C2722;margin:0 0 18px}
+  .about p::first-letter{}
+  .about .col-1 p:first-child::first-letter{
+    font-family:"Source Serif 4",serif;font-weight:700;
+    float:left;font-size:4.6em;line-height:.85;padding:4px 10px 0 0;color:var(--accent);
+  }
+  @media (max-width:780px){.about{grid-template-columns:1fr;gap:24px}}
+
+  /* ── Stack ────────────────────────────────── */
+  .stack{display:grid;grid-template-columns:1fr 2fr;gap:48px}
+  .stack h3{font-family:"Source Serif 4",serif;font-weight:500;font-size:14px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px;color:var(--muted)}
+  .stack .group{margin-bottom:28px}
+  .stack ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+  .stack li{
+    font-family:"JetBrains Mono",monospace;font-size:12px;
+    padding:6px 10px;border:1px solid var(--rule);background:var(--paper-2);color:#2C2722;
+  }
+  .stack .lead{font-family:"Source Serif 4",serif;font-size:20px;line-height:1.5;color:#2C2722;max-width:32ch}
+  @media (max-width:780px){.stack{grid-template-columns:1fr;gap:24px}}
+
+  /* ── Contact ──────────────────────────────── */
+  .contact{padding:120px 0;text-align:center;background:var(--paper-2)}
+  .contact h2{
+    font-family:"Source Serif 4",serif;font-weight:500;
+    font-size:clamp(40px,7vw,96px);line-height:.95;letter-spacing:-.025em;margin:0 0 24px;
+  }
+  .contact h2 em{font-style:italic;color:var(--accent-ink)}
+  .contact p{font-family:"Source Serif 4",serif;font-size:20px;color:var(--muted);max-width:48ch;margin:0 auto 40px}
+  .contact .links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+
+  /* ── Footer ───────────────────────────────── */
+  footer{padding:32px 0 48px;font-size:12px;color:var(--muted);font-family:"JetBrains Mono",monospace}
+  footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px}
+  footer a{border:none;color:var(--muted)}
+  footer a:hover{color:var(--ink)}
+
+  /* ── Reveal ───────────────────────────────── */
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ── Print ────────────────────────────────── */
+  @media print{
+    .masthead,.contact,footer,.cta-row{display:none}
+    body{background:#fff;color:#000}
+    .billboard,.section,.hero{padding:24px 0;break-inside:avoid}
+    a{color:#000}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap row">
+    <div class="mark">William Delehanty<span class="dot">.</span></div>
+    <nav class="nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#career">Career</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="issue">Vol. I &nbsp;·&nbsp; New York</span>
+  </div>
+</header>
+
+<!-- ── HERO ────────────────────────────────────────── -->
+<section class="hero">
+  <div class="wrap">
+    <div class="meta">
+      <span>Demand Generation &nbsp;·&nbsp; Growth &nbsp;·&nbsp; Lifecycle</span>
+      <span>Est. 2015</span>
+    </div>
+
+    <h1 class="serif">William<br>Delehanty<em>.</em></h1>
+    <p class="role">B2B Demand Generation &amp; Growth Leader — Forbes Media</p>
+
+    <div class="grid">
+      <div>
+        <p class="lede">A systems builder who turned Forbes' B2B demand engine from a blank slate into eight figures of marketing-influenced revenue. Hands-on operator, lifecycle architect, and the person who quietly does the work three teams should be doing.</p>
+        <div class="cta-row">
+          <a class="btn" href="#contact">Get in touch <span class="arrow">→</span></a>
+          <a class="btn ghost" href="#work">See the work</a>
+        </div>
+      </div>
+      <figure class="portrait" aria-label="Portrait of William Delehanty">
+        <img src="headshot.jpg" alt="William Delehanty" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none">Portrait — drop headshot.jpg in the project root.</div>
+        <figcaption class="caption">William Delehanty &nbsp;·&nbsp; New York</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ── BILLBOARD STAT ──────────────────────────────── -->
+<section class="billboard">
+  <div class="wrap">
+    <div class="label reveal">The headline number</div>
+    <h2 class="stat reveal">$0<span class="arrow">→</span><em>8 figures</em></h2>
+    <p class="ctx serif reveal">Marketing-influenced revenue, scaled from zero across a decade at Forbes — measured by Salesforce contact-role attribution, conservatively tracked. Conversion rates improved roughly 2.5× over the same period through tighter capture, nurture, and routing.</p>
+    <p class="footnote reveal">— Multi-business-unit portfolio. Lean team of two.</p>
+  </div>
+</section>
+
+<!-- ── SELECTED WORK ───────────────────────────────── -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">§ I &nbsp;·&nbsp; Selected Work</span>
+      <h2 class="serif">What I built.</h2>
+    </div>
+
+    <div class="work">
+      <article class="reveal">
+        <span class="num">No. 01</span>
+        <span class="byline">Forbes Media &nbsp;·&nbsp; 2019 — Present</span>
+        <h3 class="serif">A B2B demand engine, built from zero.</h3>
+        <p>Stood up Forbes' demand generation function from scratch — paid media, email, landing pages, nurture, funnel reporting — then scaled it into eight figures of marketing-influenced revenue across advertising, sponsorships, research, insights, self-service, and Forbes Vetted.</p>
+        <span class="tag">Salesforce · Pardot · Marketo · BlueConic · Looker</span>
+      </article>
+
+      <article class="reveal">
+        <span class="num">No. 02</span>
+        <span class="byline">Forbes Connect &nbsp;·&nbsp; 18M+ profiles</span>
+        <h3 class="serif">An owned-media conversion layer on an 18M-profile CDP.</h3>
+        <p>Operationalized Forbes Connect on BlueConic as the connective tissue between audience and pipeline — behavioral segmentation, on-site dialogues, progressive profiling, and lifecycle routing into Pardot and Salesforce. The shift from pageview-based to identity-based monetization, in production.</p>
+        <span class="tag">BlueConic · Pardot · Salesforce · Identity-based monetization</span>
+      </article>
+
+      <article class="reveal">
+        <span class="num">No. 03</span>
+        <span class="byline">Enterprise partnerships</span>
+        <h3 class="serif">Lead-gen programs for T‑Mobile, ServiceNow, Indeed.</h3>
+        <p>Architected enterprise lead-gen programs for partners including T-Mobile's two-tier Signal product, an integrated ServiceNow content-research-retargeting partnership, and Indeed — with CRM-ready delivery and multi-channel orchestration. Marketing as a revenue-bearing product line.</p>
+        <span class="tag">Multi-channel orchestration · CRM-ready delivery</span>
+      </article>
+
+      <article class="reveal">
+        <span class="num">No. 04</span>
+        <span class="byline">DG Operating Playbook &amp; AI</span>
+        <h3 class="serif">A playbook the team can run on Monday morning.</h3>
+        <p>Authored the strategic framework behind Forbes' demand-gen operating model — lifecycle standards, prompt libraries, QA checklists, governance — and built custom ChatGPT Enterprise GPTs that compress campaign work from days to hours.</p>
+        <span class="tag">Operating model · ChatGPT Enterprise · QA</span>
+      </article>
+
+      <article class="reveal">
+        <span class="num">No. 05</span>
+        <span class="byline">BDM Toolkit &nbsp;·&nbsp; Conversion lift</span>
+        <h3 class="serif">~2× baseline landing-page conversion.</h3>
+        <p>A content-led B2B program built from audience insight, research-backed assets, and multi-channel distribution — delivered roughly twice the baseline conversion rate against control. The content was the product; the funnel was the proof.</p>
+        <span class="tag">Content-led B2B · Audience insight · LP optimization</span>
+      </article>
+
+      <article class="reveal">
+        <span class="num">No. 06</span>
+        <span class="byline">Under 30 Summit &nbsp;·&nbsp; 2018</span>
+        <h3 class="serif">10,000+ in-person, an audience built from scratch.</h3>
+        <p>Before demand-gen, the audience side: scaled the Under 30 Summit to 10,000-plus attendees, launched a startup hub from zero, and ran a ~$500K budget across paid media, events, and international expansion — including out-of-home buys in Nigeria and Ghana.</p>
+        <span class="tag">Audience development · Event marketing · Global</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── PULL QUOTE ─────────────────────────────────── -->
+<section class="pull">
+  <div class="wrap">
+    <blockquote class="reveal">
+      Hands-on operator. Known for doing more, with less.
+    </blockquote>
+    <cite>— Self-description, professionally accurate</cite>
+  </div>
+</section>
+
+<!-- ── CAREER ARC ──────────────────────────────────── -->
+<section class="section" id="career">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">§ II &nbsp;·&nbsp; The Forbes Decade</span>
+      <h2 class="serif">Sales Planner to Executive Director.</h2>
+    </div>
+
+    <div class="arc">
+      <div class="lhs">
+        <div class="brand">
+          <img src="forbes-logo-black-transparent.png" alt="Forbes">
+          <span class="since">Since 2015</span>
+        </div>
+        <p>One company. Five titles. Promoted from media planner to the executive who runs B2B demand for the entire portfolio — by learning every floor of the building before owning the strategy on top of it.</p>
+      </div>
+      <div class="timeline">
+        <div class="stop current reveal">
+          <div class="when">Jul 2023 — Now</div>
+          <div class="what"><h4>Executive Director, Demand Generation</h4>
+            <p>Own B2B demand across advertising, sponsorships, research, insights, self-service, and Forbes Vetted. Multi-BU portfolio, lean team of two. Authored the centralized top-of-funnel strategy that shifted the business from pageview-based to identity-based monetization.</p></div>
+        </div>
+        <div class="stop reveal">
+          <div class="when">Oct 2021 — Jul 2023</div>
+          <div class="what"><h4>Director, Demand Generation</h4>
+            <p>Launched Forbes Connect on the 18M+ profile BlueConic CDP. Built the DG Operating Playbook and AI processes. Architected enterprise programs for T-Mobile, ServiceNow, and Indeed.</p></div>
+        </div>
+        <div class="stop reveal">
+          <div class="when">Jan 2019 — Oct 2021</div>
+          <div class="what"><h4>Senior Manager, Demand Generation</h4>
+            <p>Established Forbes' demand-gen foundation: paid media, email, landing pages, nurture, funnel reporting. Owned Forbes8 B2C lifecycle. Self-taught HTML/CSS to ship when design and engineering bandwidth wasn't there.</p></div>
+        </div>
+        <div class="stop reveal">
+          <div class="when">May 2018 — Dec 2018</div>
+          <div class="what"><h4>Manager, Audience Development</h4>
+            <p>Scaled the Under 30 Summit audience to 10,000+. Launched a startup hub from scratch. Ran a ~$500K budget across paid, events, and international.</p></div>
+        </div>
+        <div class="stop reveal">
+          <div class="when">Feb 2015 — May 2018</div>
+          <div class="what"><h4>Sales Planner</h4>
+            <p>Started by learning how media is actually sold — how opportunities move, how marketing enables the close. The foundation everything since has been built on.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────── -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">§ III &nbsp;·&nbsp; About</span>
+      <h2 class="serif">A note from William.</h2>
+    </div>
+    <div class="about">
+      <div class="col-1">
+        <p>I'm a hands-on growth leader who would rather build the system than write the deck about the system. A decade at Forbes turning audience into pipeline taught me that the operators who quietly ship — the lifecycle, the CDP wiring, the actual email that goes out on Tuesday — are the ones the strategy ends up depending on.</p>
+        <p>I'm a BBA and MBA out of Ithaca College. I taught myself HTML and CSS when design bandwidth ran out, and now I'm an early adopter of AI tooling for the same reason — because the work needs to ship.</p>
+      </div>
+      <div class="col-2">
+        <p>Off the clock you'll find me skiing, hiking, or snowmobiling. I work on cars, build things with my hands, and run a small hobby farm — a useful counterweight to a job spent staring at funnels.</p>
+        <p>The pattern, end to end: more leverage from less surface area. Smaller teams, sharper systems, work that reads cleanly on a Monday-morning report and a quarterly board deck alike.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STACK ──────────────────────────────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">§ IV &nbsp;·&nbsp; The Stack</span>
+      <h2 class="serif">What I work in.</h2>
+    </div>
+    <div class="stack">
+      <p class="lead">Tooling is a means, not a religion. Here's the kit I reach for — and the disciplines underneath it.</p>
+      <div>
+        <div class="group">
+          <h3>CRM &amp; Marketing Automation</h3>
+          <ul><li>Salesforce</li><li>Pardot</li><li>Marketo</li><li>BlueConic CDP</li></ul>
+        </div>
+        <div class="group">
+          <h3>Analytics &amp; Data</h3>
+          <ul><li>Looker</li><li>GA4</li><li>BigQuery</li><li>Bombora</li><li>MediaRadar</li><li>Gong</li></ul>
+        </div>
+        <div class="group">
+          <h3>Paid &amp; Conversion</h3>
+          <ul><li>LinkedIn Ads</li><li>Google Ads</li><li>Meta Ads</li><li>Google Optimize</li><li>Jebbit</li><li>Zephr</li></ul>
+        </div>
+        <div class="group">
+          <h3>Build &amp; Production</h3>
+          <ul><li>HTML / CSS</li><li>Knak</li><li>Stripo</li><li>WordPress</li><li>Photoshop</li><li>Premiere Pro</li><li>Canva</li><li>Smartsheet</li><li>Bizzabo</li></ul>
+        </div>
+        <div class="group">
+          <h3>AI &amp; Workflow</h3>
+          <ul><li>ChatGPT Enterprise (custom GPTs)</li><li>Bertie</li><li>Jira</li><li>DocSend</li><li>Brandfolder</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────── -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <span class="kicker" style="display:block;margin-bottom:18px">§ V &nbsp;·&nbsp; Get in touch</span>
+    <h2 class="serif">Hire me, or just say <em>hello</em>.</h2>
+    <p>I'm based in the New York metro and open to senior demand-gen, growth, and lifecycle leadership conversations. The shorter the email, the more likely I'll write back today.</p>
+    <div class="links">
+      <a class="btn" href="mailto:wdelehanty@gmail.com">wdelehanty@gmail.com <span class="arrow">→</span></a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/william-delehanty-18a01661" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn ghost" href="tel:+18455444338">845.544.4338</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap row">
+    <span>© <span id="yr"></span> William Delehanty &nbsp;·&nbsp; New York Metro</span>
+    <span>Set in Source Serif 4 &amp; Inter &nbsp;·&nbsp; Built by hand</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{rootMargin:"-40px 0px",threshold:0.05});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
