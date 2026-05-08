@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" width="240" height="56" role="img" aria-label="Acme">
+  <text x="0" y="40"
+        font-family="'DM Sans', Inter, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif"
+        font-size="36" font-weight="600" letter-spacing="-1.6"
+        fill="#FFFFFF">Acme</text>
+  <path d="M 4 50 Q 20 44, 36 50 T 68 50 T 100 50" stroke="#2C7CF6" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
