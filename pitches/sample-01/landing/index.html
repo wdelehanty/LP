@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>The Pulse Council | Sample 01</title>
+<meta name="description" content="A closed working group for VPs of Customer Experience deploying agentic AI in production at enterprise scale. Quarterly briefings, peer benchmarks, and a 60-day pilot pathway built around your call volume." />
+<meta name="robots" content="noindex" />
+
+<!--
+  Pulse Council, Landing Page
+  Single static HTML file, designed to drop into any marketing automation
+  platform (HubSpot, Salesforce, custom) by porting the form into
+  their template. The form is static here (no live POST). See the
+  FORM HANDLER block below for the swap-in point.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ---------- TOKENS ---------- */
+  :root {
+    --black: #0a0a0a;
+    --ink: #111111;
+    --ink-2: #2a2a2a;
+    --paper: #f8f6f2;
+    --paper-2: #efeae0;
+    --white: #ffffff;
+    --muted: #6b6863;
+    --line: #e5e1da;
+    --line-strong: #c9c4b6;
+    --line-dark: #1f1f1f;
+    --accent: #2c7cf6;
+    --accent-soft: #dbeafe;
+    --signal: #6366f1;
+    --serif: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+    --sans:  'DM Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    --radius: 4px;
+    --max: 1280px;
+    --pad: clamp(20px, 4vw, 48px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.5;
+    padding-bottom: 0;
+  }
+  @media (max-width: 980px) {
+    body { padding-bottom: 76px; }
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+  input, textarea, select { font-family: inherit; font-size: inherit; color: inherit; }
+
+  /* ---------- TYPOGRAPHY ---------- */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .eyebrow.on-dark { color: rgba(255,255,255,0.6); }
+  .eyebrow.no-rule::before { display: none; }
+
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+  }
+  h1 { font-size: clamp(44px, 6vw, 84px); }
+  h2 { font-size: clamp(36px, 4.4vw, 60px); line-height: 1.04; }
+  h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.15; letter-spacing: -0.01em; }
+  .lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 1.6vw, 24px);
+    line-height: 1.4;
+    color: var(--ink-2);
+    font-weight: 300;
+    font-style: italic;
+  }
+  .body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .body.on-dark { color: rgba(255,255,255,0.78); }
+
+  /* ---------- LAYOUT ---------- */
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+  section { position: relative; }
+  .section-pad { padding: clamp(80px, 10vw, 140px) 0; }
+
+  /* ---------- NAV ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: padding 0.25s ease;
+  }
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 18px var(--pad);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-logo img,
+  .nav-logo object { height: 28px; width: auto; }
+  .nav-logo .text-fallback {
+    font-family: var(--sans);
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo .text-fallback span { color: var(--accent); }
+  .nav-links {
+    display: flex; gap: 28px; flex: 1; justify-content: center;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    font-size: 13.5px;
+    font-weight: 400;
+    transition: color 0.2s ease;
+    position: relative;
+    padding: 4px 0;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; right: 100%; bottom: 0;
+    height: 1px; background: #fff; transition: right 0.25s ease;
+  }
+  .nav-links a:hover::after { right: 0; }
+  .nav-cta {
+    color: var(--black);
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: transform 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--paper); transform: translateY(-1px); }
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: var(--black);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: clamp(60px, 8vw, 100px) 0 clamp(80px, 10vw, 140px);
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(44,124,246,0.08), transparent 60%),
+      radial-gradient(ellipse 60% 80% at 10% 90%, rgba(99,102,241,0.05), transparent 60%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; }
+  }
+  .hero-eyebrow {
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    color: #fff;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #bfdbfe;
+  }
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.78);
+    max-width: 52ch;
+    margin-bottom: 24px;
+  }
+  .hero-body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.62);
+    max-width: 56ch;
+    margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .hero-meta div span:first-child {
+    display: block;
+    font-family: var(--serif);
+    font-size: 36px;
+    line-height: 1;
+    margin-bottom: 6px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .hero-meta div span:last-child {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ---------- FORM CARD ---------- */
+  .form-card {
+    background: var(--paper);
+    color: var(--ink);
+    padding: 36px 32px;
+    border-radius: 6px;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    position: relative;
+  }
+  .form-card-eyebrow {
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .form-card h2 {
+    font-size: clamp(24px, 2.2vw, 30px);
+    margin-bottom: 8px;
+    letter-spacing: -0.015em;
+  }
+  .form-card-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 26px;
+    line-height: 1.5;
+  }
+
+  /* ---------- STATIC FORM ---------- */
+  .form-card form { width: 100%; }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .field { margin-bottom: 14px; }
+  .field label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 14.5px;
+    font-family: var(--sans);
+    color: var(--ink);
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px rgba(44,124,246,0.12);
+  }
+  .field textarea { min-height: 80px; resize: vertical; font-family: var(--sans); }
+  .field input:invalid:not(:placeholder-shown),
+  .field input.is-invalid {
+    border-color: var(--accent);
+  }
+  .form-submit {
+    width: 100%;
+    padding: 14px 20px;
+    background: var(--black);
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    border-radius: var(--radius);
+    margin-top: 8px;
+    border: 0;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: background 0.2s ease, transform 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .form-submit:hover:not(:disabled) {
+    background: var(--ink-2);
+    transform: translateY(-1px);
+  }
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .form-submit svg { transition: transform 0.2s ease; }
+  .form-submit:hover:not(:disabled) svg { transform: translateX(3px); }
+  .form-fineprint {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+  .form-fineprint a { text-decoration: underline; text-underline-offset: 2px; }
+
+  .honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-state-success { display: none; }
+  .form-card.is-submitted .form-state-default { display: none; }
+  .form-card.is-submitted .form-state-success { display: block; }
+
+  .form-success-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--black);
+    color: var(--paper);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .form-success-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+  }
+  .form-success h3 {
+    font-family: var(--serif);
+    font-size: clamp(24px, 2.2vw, 30px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 12px;
+  }
+  .form-success h3 em {
+    font-style: italic;
+    color: #6b6863;
+  }
+  .form-success p {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .form-success .btn-success {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    background: var(--black);
+    color: #fff;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .form-success .btn-success:hover { background: var(--ink-2); }
+
+  /* ---------- STATS / IMPACT ---------- */
+  .reach { background: var(--paper); }
+  .reach-head { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: end; margin-bottom: clamp(48px, 6vw, 80px); }
+  .reach-head h2 { max-width: 18ch; }
+  .reach-head .body { padding-top: 0; }
+  @media (max-width: 880px) { .reach-head { grid-template-columns: 1fr; } }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .stat {
+    padding: 48px 32px 40px;
+    border-right: 1px solid var(--line-strong);
+    position: relative;
+  }
+  .stat:last-child { border-right: 0; }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: clamp(64px, 7.5vw, 110px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .stat-number sup {
+    font-size: 0.4em;
+    vertical-align: super;
+    color: var(--accent);
+    margin-left: 4px;
+  }
+  .stat-label {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 32ch;
+  }
+  .stat-tag {
+    position: absolute; top: 32px; right: 32px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 880px) {
+    .stats { grid-template-columns: 1fr; }
+    .stat { border-right: 0; border-bottom: 1px solid var(--line-strong); }
+    .stat:last-child { border-bottom: 0; }
+  }
+  .reach-source {
+    margin-top: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ---------- BRIEF / PLAYBOOK ---------- */
+  .playbook { background: #fff; }
+  .playbook-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  @media (max-width: 880px) { .playbook-grid { grid-template-columns: 1fr; } }
+  .playbook-text h2 { margin-bottom: 24px; }
+  .playbook-text .body { margin-bottom: 32px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    background: var(--black);
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: 500;
+    border-radius: var(--radius);
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover { background: var(--ink-2); transform: translateY(-1px); }
+  .btn-primary svg { transition: transform 0.2s ease; }
+  .btn-primary:hover svg { transform: translateX(3px); }
+
+  .playbook-visual {
+    position: relative;
+    aspect-ratio: 1 / 1.05;
+    perspective: 1600px;
+  }
+  .pb-cover {
+    position: absolute;
+    inset: 8% 12% 8% 8%;
+    background: var(--black);
+    color: #fff;
+    border-radius: 2px;
+    box-shadow:
+      0 40px 80px -30px rgba(0,0,0,0.5),
+      0 20px 40px -20px rgba(0,0,0,0.3),
+      inset -1px 0 0 rgba(255,255,255,0.04);
+    transform: rotate3d(0,1,0,-12deg);
+    transform-origin: left center;
+    padding: 36px 32px 32px;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .pb-cover::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 8px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.08), transparent);
+  }
+  .pb-cover-logo { display: flex; align-items: center; gap: 8px; }
+  .pb-cover-logo .pb-mark {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: #fff;
+  }
+  .pb-cover-logo .pb-mark span { color: var(--accent); }
+  .pb-cover-eyebrow {
+    margin-top: auto;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 16px;
+  }
+  .pb-cover-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .pb-cover-title em {
+    font-style: italic;
+    color: #bfdbfe;
+  }
+  .pb-cover-meta {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .pb-cover-rule {
+    width: 40px; height: 2px; background: var(--accent);
+    margin: 18px 0 14px;
+  }
+  .pb-pages {
+    position: absolute;
+    inset: 12% 8% 4% 14%;
+    background: linear-gradient(180deg, #fafaf7, #ebe4d4);
+    border-radius: 2px;
+    transform: rotate3d(0,1,0,-8deg);
+    transform-origin: left center;
+    z-index: -1;
+    box-shadow: 0 30px 60px -25px rgba(0,0,0,0.25);
+  }
+
+  /* ---------- MINDSET ---------- */
+  .mindset { background: var(--black); color: #fff; }
+  .mindset .eyebrow { color: rgba(255,255,255,0.55); }
+  .mindset-head { max-width: 800px; margin-bottom: clamp(48px, 6vw, 72px); }
+  .mindset-head h2 { color: #fff; margin: 16px 0 20px; }
+  .mindset-head h2 em { font-style: italic; color: #bfdbfe; }
+  .mindset-head p { color: rgba(255,255,255,0.72); font-size: 17px; line-height: 1.6; max-width: 60ch; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  @media (max-width: 880px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--black);
+    padding: 40px 32px 36px;
+    display: flex; flex-direction: column;
+    transition: background 0.3s ease;
+    position: relative;
+  }
+  .card:hover { background: #141414; }
+  .card-num {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+  }
+  .card-num span { color: var(--accent); }
+  .card h3 { color: #fff; margin-bottom: 20px; max-width: 14ch; }
+  .card p {
+    color: rgba(255,255,255,0.72);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .card-stat {
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .card-stat-num {
+    font-family: var(--serif);
+    font-size: 38px;
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .card-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- PARTNERSHIP / PROGRAM ---------- */
+  .partnership { background: var(--paper); }
+  .partnership-head { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: end; margin-bottom: clamp(48px, 6vw, 72px); }
+  @media (max-width: 880px) { .partnership-head { grid-template-columns: 1fr; } }
+  .partnership-head h2 em { font-style: italic; color: var(--accent); }
+
+  .modules { display: grid; gap: 24px; }
+  .module {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 4vw, 56px);
+    align-items: center;
+    padding: clamp(40px, 5vw, 60px) 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .module:last-child { border-bottom: 1px solid var(--line-strong); }
+  .module:nth-child(even) .module-visual { order: -1; }
+  @media (max-width: 880px) {
+    .module { grid-template-columns: 1fr; }
+    .module:nth-child(even) .module-visual { order: 0; }
+  }
+  .module-num {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+  .module-num span { color: var(--accent); }
+  .module-text h3 { margin-bottom: 16px; max-width: 22ch; }
+  .module-text p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 50ch;
+  }
+  .module-visual {
+    aspect-ratio: 5 / 4;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .module-visual svg { display: block; width: 100%; height: 100%; }
+  .module-visual .visual-tag {
+    position: absolute; top: 20px; left: 20px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    border-radius: 2px;
+  }
+
+  /* ---------- BRANDS / MEMBERS ---------- */
+  .brands { background: #fff; }
+  .brands-head { text-align: center; max-width: 720px; margin: 0 auto clamp(48px, 6vw, 72px); }
+  .brands-head .eyebrow { justify-content: center; }
+  .brands-head .eyebrow::after {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .brands-head h2 { margin: 18px 0 18px; }
+  .brands-head h2 em { font-style: italic; color: var(--accent); }
+  .brands-head p { color: var(--ink-2); font-size: 16px; max-width: 56ch; margin: 0 auto; }
+
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--line-strong);
+    border-left: 1px solid var(--line-strong);
+  }
+  .brand-cell {
+    padding: 40px 24px;
+    border-right: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+    display: flex; align-items: center; justify-content: center;
+    min-height: 130px;
+    color: var(--ink);
+    transition: background 0.25s ease;
+  }
+  .brand-cell:hover { background: var(--paper); }
+  .brand-cell .logo-text {
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    text-align: center;
+    opacity: 0.85;
+  }
+  .b-serif { font-family: var(--serif); }
+  .b-sans { font-family: var(--sans); font-weight: 500; }
+  .b-thin { font-weight: 300; letter-spacing: 0.4em; text-transform: uppercase; font-size: 13px; }
+  .b-italic { font-family: var(--serif); font-style: italic; }
+  .b-mono { font-family: var(--sans); font-weight: 600; letter-spacing: -0.04em; }
+  .b-allcaps { font-family: var(--serif); text-transform: uppercase; letter-spacing: 0.15em; font-size: 14px; font-weight: 500; }
+  @media (max-width: 880px) {
+    .brand-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .brands-note {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ---------- FINAL CTA ---------- */
+  .cta-final {
+    background: var(--black);
+    color: #fff;
+    text-align: center;
+    padding: clamp(80px, 10vw, 140px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(44,124,246,0.10), transparent 70%);
+    pointer-events: none;
+  }
+  .cta-final-inner { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 var(--pad); }
+  .cta-final .eyebrow { color: rgba(255,255,255,0.55); justify-content: center; margin-bottom: 24px; }
+  .cta-final .eyebrow::after {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .cta-final h2 { color: #fff; margin-bottom: 24px; font-size: clamp(40px, 5.5vw, 72px); }
+  .cta-final h2 em {
+    font-style: italic;
+    color: #bfdbfe;
+  }
+  .cta-final p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.72);
+    max-width: 60ch;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+  .btn-primary.on-dark { background: #fff; color: var(--black); }
+  .btn-primary.on-dark:hover { background: var(--paper); }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.65);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 40px 0 32px;
+    font-size: 13px;
+  }
+  .footer-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-logo img,
+  .footer-logo object { height: 24px; }
+  .footer-logo .text-fallback {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .footer-logo .text-fallback span { color: var(--accent); }
+  .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .footer-links a:hover { color: #fff; }
+
+  /* ---------- STICKY MOBILE CTA BAR ---------- */
+  .sticky-cta {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 60;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 16px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .sticky-cta.show { transform: translateY(0); }
+  .sticky-cta-text {
+    color: #fff;
+    font-size: 13px;
+    line-height: 1.3;
+    flex: 1;
+    min-width: 0;
+  }
+  .sticky-cta-text strong {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    color: #bfdbfe;
+    margin-bottom: 1px;
+  }
+  .sticky-cta-text span {
+    color: rgba(255,255,255,0.6);
+    font-size: 11.5px;
+  }
+  .sticky-cta-btn {
+    background: #fff;
+    color: var(--black);
+    padding: 11px 18px;
+    border-radius: var(--radius);
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s ease;
+  }
+  .sticky-cta-btn:hover { background: var(--paper); }
+  @media (max-width: 980px) {
+    .sticky-cta { display: flex; }
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1, .hero-sub, .hero-body, .hero-meta, .form-card {
+    animation: fadeUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero-sub { animation-delay: 0.08s; }
+  .hero-body { animation-delay: 0.16s; }
+  .hero-meta { animation-delay: 0.24s; }
+  .form-card { animation-delay: 0.12s; animation-duration: 0.8s; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wn4zckt7se");
+</script>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo" aria-label="Acme home">
+      <object data="../assets/logo-dark.svg" type="image/svg+xml" aria-label="Acme">
+        <span class="text-fallback">Acme</span>
+      </object>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#program">Program</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#brief">Brief</a></li>
+      <li><a href="#mindset">Mindset</a></li>
+      <li><a href="#members">Members</a></li>
+    </ul>
+    <a href="#apply" class="nav-cta">Apply for a Seat</a>
+  </div>
+</nav>
+
+<!-- ========== HERO / FORM ========== -->
+<section id="apply" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow hero-eyebrow">The Pulse Council &nbsp;/&nbsp; For VPs of CX</div>
+      <h1>
+        For the leaders running <em>humans and AI agents</em> as one workforce.
+      </h1>
+      <p class="hero-sub">
+        A closed working group for VPs of Customer Experience deploying agentic AI in production at enterprise scale. Quarterly briefings, peer benchmarks, and a 60-day pilot pathway sized to your call volume.
+      </p>
+      <p class="hero-body">
+        Most AI agent pilots stall at the first call type that breaks. The Pulse Council exists for the leaders who got past that, want to compare notes between Pulse Summit events, and need a credible path to the second wave of automation. Membership is capped, structured around a working committee, and built for executives running 500+ agent operations.
+      </p>
+      <div class="hero-meta">
+        <div>
+          <span>34</span>
+          <span>Council seats</span>
+        </div>
+        <div>
+          <span>14d</span>
+          <span>Time to first AI Agent live</span>
+        </div>
+        <div>
+          <span>Q2</span>
+          <span>Next briefing window</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- FORM HANDLER                                                 -->
+    <!-- This form is STATIC. It validates with browser-native rules, -->
+    <!-- runs the honeypot, and transitions to a success state via    -->
+    <!-- setTimeout. There is no live POST.                          -->
+    <!--                                                              -->
+    <!-- To wire to a real backend (HubSpot Forms API, Marketo Munch, -->
+    <!-- (HubSpot Forms, Salesforce Web-to-Lead, or custom):        -->
+    <!--   1. Set <form action="..."> to the handler URL              -->
+    <!--   2. Replace the simulated success in the submit handler at  -->
+    <!--      the bottom of the file with a fetch() call to the URL,  -->
+    <!--      using `mode: 'no-cors'` if needed for cross-origin.     -->
+    <!--   3. Ensure the field `name` attributes match what your      -->
+    <!--      backend expects.                                        -->
+    <!-- ============================================================ -->
+    <aside class="form-card" id="councilFormCard" aria-label="Council application">
+      <div class="form-state form-state-default">
+        <div class="eyebrow form-card-eyebrow no-rule">Apply for a Seat</div>
+        <h2>Brief our team.</h2>
+        <p class="form-card-sub">Six fields. We respond within one business day.</p>
+
+        <form id="councilForm" action="#" method="post" novalidate>
+          <!-- Honeypot -->
+          <div class="honeypot" aria-hidden="true">
+            <label for="hp_field">Leave this field empty</label>
+            <input type="text" id="hp_field" name="hp_field" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="fn">First Name</label>
+              <input id="fn" name="first_name" type="text" required autocomplete="given-name" placeholder=" " />
+            </div>
+            <div class="field">
+              <label for="ln">Last Name</label>
+              <input id="ln" name="last_name" type="text" required autocomplete="family-name" placeholder=" " />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="em">Work Email</label>
+            <input id="em" name="email" type="email" required autocomplete="email" placeholder=" " />
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="co">Company</label>
+              <input id="co" name="company" type="text" required autocomplete="organization" placeholder=" " />
+            </div>
+            <div class="field">
+              <label for="jt">Job Title</label>
+              <input id="jt" name="job_title" type="text" required autocomplete="organization-title" placeholder=" " />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="ct">Industry</label>
+            <select id="ct" name="industry" required>
+              <option value="" disabled selected>Select your industry</option>
+              <option value="Banking & Financial Services">Banking &amp; Financial Services</option>
+              <option value="Healthcare Payer">Healthcare Payer</option>
+              <option value="Healthcare Provider">Healthcare Provider</option>
+              <option value="Insurance">Insurance</option>
+              <option value="Travel & Hospitality">Travel &amp; Hospitality</option>
+              <option value="Transportation & Logistics">Transportation &amp; Logistics</option>
+              <option value="Utility & Energy">Utility &amp; Energy</option>
+              <option value="Retail & E-commerce">Retail &amp; E-commerce</option>
+              <option value="Telecommunications">Telecommunications</option>
+              <option value="Technology & Software">Technology &amp; Software</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <input type="hidden" name="lead_source" value="Pulse Council Landing" />
+          <input type="hidden" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" name="utm_campaign" id="utm_campaign" value="" />
+
+          <button type="submit" class="form-submit">
+            <span class="form-submit-label">Apply for a Seat</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M2 7h10M8 3l4 4-4 4"/>
+            </svg>
+          </button>
+          <p class="form-fineprint">
+            By submitting, you agree to be contacted by the Council program team. We'll only use your information to follow up on this application.
+          </p>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div class="form-state form-state-success" role="status" aria-live="polite">
+        <div class="form-success">
+          <div class="form-success-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="4 12 10 18 20 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Brief received &mdash; we'll be in <em>touch.</em></h3>
+          <p>The program team reviews applications weekly and responds within one business day. While you wait, the Hybrid Workforce Operating Brief covers the architecture decisions every Council member ran into in their first 90 days running humans and AI agents on one platform.</p>
+          <a href="#brief" class="btn-success">
+            Read the Brief
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M2 7h10M8 3l4 4-4 4"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ========== IMPACT / STATS ========== -->
+<section id="impact" class="reach section-pad">
+  <div class="wrap">
+    <div class="reach-head reveal">
+      <div>
+        <div class="eyebrow">What members are seeing</div>
+        <h2 style="margin-top: 16px;">Numbers from contact centers running AI Agents in production.</h2>
+      </div>
+      <p class="body">
+        These aren't pilot numbers. They're the operating ranges Council members report once Voice Agents handle the top three or four call types in production, with grounding, guardrails, and audit on. Directional, drawn from member self-reports.
+      </p>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat">
+        <span class="stat-tag">Containment</span>
+        <span class="stat-number">60<sup>%+</sup></span>
+        <p class="stat-label">Of routine inbound calls fully resolved by Voice Agents, never reaching a human.</p>
+      </div>
+      <div class="stat">
+        <span class="stat-tag">Time to live</span>
+        <span class="stat-number">14<sup>d</sup></span>
+        <p class="stat-label">From kickoff to first AI Agent in production on a single call type, with policy gates on.</p>
+      </div>
+      <div class="stat">
+        <span class="stat-tag">AHT</span>
+        <span class="stat-number">31<sup>%</sup></span>
+        <p class="stat-label">Reduction in average handle time on calls augmented by Agent Copilot in real time.</p>
+      </div>
+    </div>
+    <p class="reach-source">Directional ranges, modeled from publicly reported member outcomes. Replace with your own benchmarks before any external use.</p>
+  </div>
+</section>
+
+<!-- ========== BRIEF / PLAYBOOK ========== -->
+<section id="brief" class="playbook section-pad">
+  <div class="wrap">
+    <div class="playbook-grid">
+      <div class="playbook-text reveal">
+        <div class="eyebrow">The Operating Brief</div>
+        <h2 style="margin-top: 16px;">The <em style="font-style: italic; color: var(--accent);">Hybrid Workforce</em> Operating Brief.</h2>
+        <p class="body" style="margin-top: 24px; margin-bottom: 32px;">
+          A field-tested operating brief for VPs of CX moving agentic AI from pilot to production with humans and AI agents on one platform. Covers call-type triage, the policy-gate decisions that make or break governance, and the staffing mix Council members landed on by quarter four.
+        </p>
+        <a href="#" class="btn-primary">
+          Get the Brief
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M7 2v10M3 8l4 4 4-4"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="playbook-visual reveal" aria-hidden="true">
+        <div class="pb-pages"></div>
+        <div class="pb-cover">
+          <div class="pb-cover-logo">
+            <span class="pb-mark">Acme</span>
+          </div>
+          <div class="pb-cover-rule"></div>
+          <div class="pb-cover-eyebrow">Operating Brief &middot; 2026</div>
+          <div class="pb-cover-title">The <em>Hybrid<br/>Workforce</em><br/>Brief</div>
+          <div class="pb-cover-meta">For VPs of CX &amp; Operations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MINDSET ========== -->
+<section id="mindset" class="mindset section-pad">
+  <div class="wrap">
+    <div class="mindset-head reveal">
+      <div class="eyebrow">The CX Operating Mindset</div>
+      <h2>The shift from <em>scripted</em> to grounded.</h2>
+      <p>
+        Today's CX leaders don't want another point solution. They want a way to automate the routine without losing oversight, scale execution without losing the human in the loop, and prove ROI without rebuilding their stack. That's the room the Council is built for.
+      </p>
+    </div>
+
+    <div class="cards reveal">
+      <article class="card">
+        <div class="card-num"><span>01</span> &nbsp;/ Containment</div>
+        <h3>Containment is the new metric.</h3>
+        <p>Deflection counted clicks. Containment counts outcomes. Council members track which calls AI Agents actually resolve end-to-end, not which ones they touch.</p>
+        <div class="card-stat">
+          <span class="card-stat-num">3.2<sup style="font-size: 0.5em;">x</sup></span>
+          <span class="card-stat-label">Avg. lift in true containment vs. legacy IVR</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-num"><span>02</span> &nbsp;/ Governance</div>
+        <h3>Governance ships with the agent.</h3>
+        <p>Audit trails, policy gates, and runtime monitoring aren't a Q3 add-on. They're table stakes for any AI Agent that talks to a customer about a claim, a balance, or a prescription.</p>
+        <div class="card-stat">
+          <span class="card-stat-num">100<sup style="font-size: 0.5em;">%</sup></span>
+          <span class="card-stat-label">Of conversations evaluated, not sampled</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-num"><span>03</span> &nbsp;/ Frontline</div>
+        <h3>The frontline still closes the loop.</h3>
+        <p>The AI Agent handles the routine. The copilot guides the human on the hard call. Insights flow back into coaching. Council members measure all three together, on one platform.</p>
+        <div class="card-stat">
+          <span class="card-stat-num">90<sup style="font-size: 0.5em;">s</sup></span>
+          <span class="card-stat-label">Avg. agent ramp time saved per coached call</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROGRAM IN ACTION ========== -->
+<section id="program" class="partnership section-pad">
+  <div class="wrap">
+    <div class="partnership-head reveal">
+      <div>
+        <div class="eyebrow">Program in Action</div>
+        <h2 style="margin-top: 16px;">What a Council seat actually looks like.</h2>
+      </div>
+      <p class="body">
+        Membership runs on a one-year cycle with three working components. Each one is sized to a senior CX leader's calendar, not a vendor's pipeline. No keynotes. No badge scans. Just structured working sessions and a real production pathway.
+      </p>
+    </div>
+
+    <div class="modules reveal">
+      <div class="module">
+        <div class="module-text">
+          <div class="module-num"><span>01</span> &nbsp;/ Briefings</div>
+          <h3>Quarterly working briefings.</h3>
+          <p>Closed-room sessions with eight to twelve member leaders, sized for actual exchange. Each quarter focuses on one production decision: call-type triage, policy-gate design, agent staffing, or the QA loop. Off the record, on the agenda.</p>
+        </div>
+        <div class="module-visual">
+          <span class="visual-tag">Council Briefing</span>
+          <svg viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="g1bg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#141414"/>
+                <stop offset="100%" stop-color="#1d1815"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="480" fill="url(#g1bg)"/>
+            <line x1="48" y1="64" x2="78" y2="64" stroke="#2C7CF6" stroke-width="2"/>
+            <text x="90" y="68" fill="rgba(191,219,254,0.55)" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="3">ACME PULSE COUNCIL &#183; Q2 BRIEFING</text>
+            <text x="552" y="68" fill="rgba(191,219,254,0.4)" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="2" text-anchor="end">2026</text>
+            <text x="48" y="220" fill="#bfdbfe" font-family="Instrument Serif, serif" font-size="92" font-style="italic" letter-spacing="-3">In-room.</text>
+            <text x="48" y="268" fill="rgba(191,219,254,0.7)" font-family="Instrument Serif, serif" font-size="18" font-style="italic">The decisions that don't survive a webinar.</text>
+            <line x1="48" y1="380" x2="552" y2="380" stroke="rgba(191,219,254,0.18)"/>
+            <line x1="48" y1="410" x2="552" y2="410" stroke="rgba(191,219,254,0.08)"/>
+            <text x="48" y="436" fill="rgba(191,219,254,0.5)" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="2">CLOSED ROOM &#183; CHATHAM RULE</text>
+            <text x="552" y="436" fill="rgba(191,219,254,0.5)" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="2" text-anchor="end">SF &middot; NYC &middot; LDN</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-text">
+          <div class="module-num"><span>02</span> &nbsp;/ Benchmarks</div>
+          <h3>Peer benchmarks, not survey reports.</h3>
+          <p>Members contribute anonymized operating data: containment by call type, AHT delta, escalation rate, automation drift. The benchmark is the actual median across a real cohort, not a survey of opinions about it. Updated quarterly.</p>
+        </div>
+        <div class="module-visual">
+          <span class="visual-tag">Benchmark Report</span>
+          <svg viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="480" fill="#f8f6f2"/>
+            <line x1="48" y1="48" x2="552" y2="48" stroke="#0a0a0a" stroke-width="1.5"/>
+            <text x="48" y="92" fill="#0a0a0a" font-family="DM Sans, sans-serif" font-size="13" font-weight="600" letter-spacing="-0.5">Acme</text>
+            <text x="552" y="76" fill="#6b6863" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="2" text-anchor="end">VOL. 02 &#183; Q2</text>
+            <text x="552" y="98" fill="#6b6863" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="2" text-anchor="end">2026 BENCHMARK</text>
+            <text x="48" y="240" fill="#0a0a0a" font-family="Instrument Serif, serif" font-size="44" font-style="italic" letter-spacing="-1.5">Where</text>
+            <text x="48" y="290" fill="#0a0a0a" font-family="Instrument Serif, serif" font-size="44" font-style="italic" letter-spacing="-1.5">your funnel</text>
+            <text x="48" y="340" fill="#2C7CF6" font-family="Instrument Serif, serif" font-size="44" font-style="italic" letter-spacing="-1.5">actually sits.</text>
+            <line x1="48" y1="400" x2="552" y2="400" stroke="#0a0a0a" stroke-width="1.5"/>
+            <text x="48" y="425" fill="#6b6863" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="2">PEER BENCHMARK</text>
+            <text x="552" y="425" fill="#6b6863" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="2" text-anchor="end">CONTAINMENT &middot; AHT &middot; ESC</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-text">
+          <div class="module-num"><span>03</span> &nbsp;/ Pilot pathway</div>
+          <h3>A 60-day production pathway.</h3>
+          <p>Each Council member gets a sized pilot path on the Acme platform: top-three-call-type triage, deployment of one Voice Agent and an Agent Assist module, governance review, and a fourteen-day path to first agent live. Real production, not a sandbox.</p>
+        </div>
+        <div class="module-visual">
+          <span class="visual-tag">Pilot Pathway</span>
+          <svg viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="g3bg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0f0f0f"/>
+                <stop offset="100%" stop-color="#1c1410"/>
+              </linearGradient>
+            </defs>
+            <rect width="600" height="480" fill="url(#g3bg)"/>
+            <text x="48" y="68" fill="#2C7CF6" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="3">DAY 0 &#183; KICKOFF</text>
+            <text x="552" y="68" fill="rgba(255,255,255,0.5)" font-family="DM Sans, sans-serif" font-size="11" letter-spacing="2" text-anchor="end">DAY 60 &#183; LIVE</text>
+            <line x1="48" y1="100" x2="552" y2="100" stroke="rgba(255,255,255,0.18)" stroke-dasharray="2 4"/>
+            <circle cx="48" cy="100" r="4" fill="#2C7CF6"/>
+            <circle cx="200" cy="100" r="3" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="352" cy="100" r="3" fill="rgba(255,255,255,0.5)"/>
+            <circle cx="552" cy="100" r="4" fill="#2C7CF6"/>
+            <text x="48" y="132" fill="rgba(255,255,255,0.7)" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="1">TRIAGE</text>
+            <text x="200" y="132" fill="rgba(255,255,255,0.6)" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="1">DESIGN</text>
+            <text x="352" y="132" fill="rgba(255,255,255,0.6)" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="1">GROUND</text>
+            <text x="552" y="132" fill="rgba(255,255,255,0.7)" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="1" text-anchor="end">LIVE</text>
+            <text x="48" y="280" fill="#fff" font-family="Instrument Serif, serif" font-size="56" font-style="italic" letter-spacing="-2">Pilot to</text>
+            <text x="48" y="340" fill="#bfdbfe" font-family="Instrument Serif, serif" font-size="56" font-style="italic" letter-spacing="-2">production.</text>
+            <line x1="48" y1="400" x2="552" y2="400" stroke="rgba(255,255,255,0.15)"/>
+            <text x="48" y="430" fill="rgba(255,255,255,0.55)" font-family="DM Sans, sans-serif" font-size="10" letter-spacing="2">14-DAY FIRST-AGENT-LIVE GUARANTEE</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MEMBERS / BRANDS ========== -->
+<section id="members" class="brands section-pad">
+  <div class="wrap">
+    <div class="brands-head reveal">
+      <div class="eyebrow">The Council Composition</div>
+      <h2>The room you'd want <em>in</em> the room.</h2>
+      <p>The Pulse Council draws from the partner's existing enterprise customer set: airlines, hospitality, retail, financial services, and the categories where every conversation is high-stakes.</p>
+    </div>
+
+    <div class="brand-grid reveal" aria-label="Customer industry verticals">
+      <div class="brand-cell"><span class="logo-text b-sans">Fintech</span></div>
+      <div class="brand-cell"><span class="logo-text b-serif" style="font-style: italic;">Hospitality</span></div>
+      <div class="brand-cell"><span class="logo-text b-allcaps">Auto Retail</span></div>
+      <div class="brand-cell"><span class="logo-text b-mono">Telecom</span></div>
+      <div class="brand-cell"><span class="logo-text b-thin">AIRLINES</span></div>
+      <div class="brand-cell"><span class="logo-text b-serif">Auto OEM</span></div>
+      <div class="brand-cell"><span class="logo-text b-sans">Home Services</span></div>
+      <div class="brand-cell"><span class="logo-text b-italic">Luxury Retail</span></div>
+    </div>
+    <p class="brands-note">Industry verticals representative of the partner's enterprise customer mix &mdash; not specific accounts.</p>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section id="join" class="cta-final">
+  <div class="cta-final-inner">
+    <div class="eyebrow">Ready to apply?</div>
+    <h2>From pilot to <em>production.</em></h2>
+    <p>Pulse Council seats open quarterly between Pulse Summit events. The application is short, the review is fast, and the path from yes to first AI agent live runs about two weeks.</p>
+    <a href="#apply" class="btn-primary on-dark">
+      Apply for a Seat
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M2 7h10M8 3l4 4-4 4"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="#top" class="footer-logo" aria-label="Acme home">
+      <object data="../assets/logo-dark.svg" type="image/svg+xml" aria-label="Acme">
+        <span class="text-fallback">Acme</span>
+      </object>
+    </a>
+    <div class="footer-links">
+      <a href="#program">Program</a>
+      <a href="#impact">Impact</a>
+      <a href="#brief">Brief</a>
+      <a href="#mindset">Mindset</a>
+      <a href="#members">Members</a>
+      <a href="#apply">Apply</a>
+    </div>
+    <div>&copy; 2026 Acme. All Rights Reserved.</div>
+  </div>
+</footer>
+
+<!-- ========== STICKY MOBILE CTA BAR ========== -->
+<div class="sticky-cta" id="stickyCta" aria-label="Quick apply">
+  <div class="sticky-cta-text">
+    <strong>Apply for a seat.</strong>
+    <span>Pulse Council &middot; review window open.</span>
+  </div>
+  <a href="#apply" class="sticky-cta-btn">
+    Apply
+    <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M2 7h10M8 3l4 4-4 4"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+  // Reveal-on-scroll
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // Sticky CTA: show after user scrolls past the hero, hide near final CTA
+  (function () {
+    var bar = document.getElementById('stickyCta');
+    var hero = document.getElementById('apply');
+    var finalCta = document.getElementById('join');
+    if (!bar || !hero || !finalCta) return;
+
+    function update() {
+      var heroBottom = hero.getBoundingClientRect().bottom;
+      var finalTop = finalCta.getBoundingClientRect().top;
+      var vh = window.innerHeight;
+      if (heroBottom < 0 && finalTop > vh * 0.4) {
+        bar.classList.add('show');
+      } else {
+        bar.classList.remove('show');
+      }
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+
+  // Static form handler: validates, runs honeypot, simulates success.
+  // To wire to a real backend, replace the setTimeout block below with
+  // a fetch() call. See the FORM HANDLER comment block above.
+  (function () {
+    var form = document.getElementById('councilForm');
+    var card = document.getElementById('councilFormCard');
+    if (!form || !card) return;
+
+    // UTM capture
+    try {
+      var params = new URLSearchParams(window.location.search);
+      ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (key) {
+        var el = document.getElementById(key);
+        if (el && params.get(key)) el.value = params.get(key);
+      });
+    } catch (e) { /* older browser, skip */ }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Honeypot: silently "succeed" for bots
+      var hp = form.querySelector('[name="hp_field"]');
+      if (hp && hp.value) {
+        card.classList.add('is-submitted');
+        return;
+      }
+
+      var btn = form.querySelector('.form-submit');
+      var label = form.querySelector('.form-submit-label');
+      btn.disabled = true;
+      if (label) label.textContent = 'Submitting...';
+
+      // Simulated submission. Swap with a real fetch() to wire to backend.
+      setTimeout(function () {
+        card.classList.add('is-submitted');
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', {
+            event_category: 'Pulse Council Landing',
+            event_label: 'Form Submission'
+          });
+        }
+      }, 600);
+    });
+  })();
+
+  // Logo fallback. If the SVG <object> fails (e.g., file:// preview),
+  // unhide the text wordmark fallback already inside the <object>.
+  // Modern browsers do this automatically; this is a belt-and-suspenders pass.
+  document.querySelectorAll('.nav-logo object, .footer-logo object').forEach(function (obj) {
+    obj.addEventListener('error', function () {
+      obj.style.display = 'none';
+      var fallback = obj.parentElement.querySelector('.text-fallback');
+      if (fallback) fallback.style.display = 'inline-block';
+    });
+  });
+</script>
+</body>
+</html>

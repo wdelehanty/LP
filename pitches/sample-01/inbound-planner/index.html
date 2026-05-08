@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Inbound Discovery Audit | Sample 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="../vendor/react.production.min.js"></script>
+<script src="../vendor/react-dom.production.min.js"></script>
+<script src="../vendor/babel.min.js"></script>
+<style>
+  :root {
+    --ink: #0A0A0A;
+    --red: #2C7CF6;
+    --signal: #6366F1;
+    --cream: #F8F6F2;
+    --paper: #FFFFFF;
+    --bg: #FAF8F4;
+    --rule: #E5E1DA;
+    --muted: #6B6863;
+    --gold: #C9A961;
+    --green: #00B870;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .display {
+    font-family: 'Instrument Serif', Georgia, serif;
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+  .display em {
+    font-style: italic;
+    font-weight: 400;
+  }
+  .reveal { animation: reveal 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal-fast { animation: reveal 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%, 100% { opacity: 0.35; transform: scale(0.85); } 50% { opacity: 1; transform: scale(1); } }
+  .live-dot { animation: live-dot 2s ease-in-out infinite; }
+  @keyframes live-dot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 200, 113, 0.7); }
+    50% { box-shadow: 0 0 0 6px rgba(0, 200, 113, 0); }
+  }
+  .ticker-fade { animation: tickerFade 0.5s ease both; }
+  @keyframes tickerFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .cta-pulse {
+    animation: ctaPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes ctaPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(44, 124, 246, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(44, 124, 246, 0); }
+  }
+  button { font-family: inherit; }
+  input { font-family: inherit; }
+  ::selection { background: var(--red); color: #fff; }
+
+  .brand-logo-img {
+    height: 1em;
+    vertical-align: -0.12em;
+    object-fit: contain;
+    display: inline-block;
+  }
+  .marker {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--red);
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: 0 8px;
+  }
+  hr.editorial { border: 0; border-top: 1px solid var(--ink); }
+
+  .stat-num {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .article-card:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.12); }
+  .article-card { transition: all 0.2s ease; cursor: pointer; }
+
+  .peer-logo { transition: all 0.3s; filter: grayscale(1); opacity: 0.75; }
+  .peer-logo:hover { filter: grayscale(0); opacity: 1; }
+
+  @media print {
+    @page { size: letter; margin: 0; }
+    body { background: #fff; }
+    .app-content { display: none !important; }
+    .printable-plan { display: block !important; }
+    .reveal, .reveal-fast { animation: none !important; opacity: 1 !important; transform: none !important; }
+    .pulse-dot, .live-dot { animation: none !important; }
+    a { text-decoration: none; color: inherit; }
+  }
+
+  .printable-plan { display: none; }
+  .pdf-page {
+    width: 8.5in; height: 11in;
+    padding: 0.6in 0.7in;
+    page-break-after: always;
+    page-break-inside: avoid;
+    background: #fff;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: #000;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .pdf-page:last-child { page-break-after: auto; }
+  .pdf-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 14px; border-bottom: 1px solid #000;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600;
+  }
+  .pdf-footer {
+    position: absolute; bottom: 0.4in; left: 0.7in; right: 0.7in;
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 12px; border-top: 1px solid #000;
+    font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600;
+    color: #6B6B6B;
+  }
+  .pdf-eyebrow {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.26em;
+    color: #2C7CF6; font-weight: 700; margin-bottom: 18px;
+  }
+  .pdf-h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 64px; font-weight: 400; line-height: 0.95;
+    letter-spacing: -0.025em;
+  }
+  .pdf-h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 40px; font-weight: 500; line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .pdf-h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px; font-weight: 500;
+  }
+  .pdf-quote {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px; font-weight: 300; line-height: 1.35; font-style: italic;
+  }
+  .pdf-stat-big {
+    font-family: 'Instrument Serif', serif;
+    font-size: 88px; font-weight: 300; line-height: 1; color: #2C7CF6;
+    letter-spacing: -0.04em;
+  }
+  .pdf-stat-mid {
+    font-family: 'Instrument Serif', serif;
+    font-size: 44px; font-weight: 400; line-height: 1;
+  }
+  .pdf-rule {
+    height: 1px; background: #000; margin: 24px 0;
+  }
+
+  @media (max-width: 900px) {
+    .grid-2 { grid-template-columns: 1fr !important; }
+    .grid-3 { grid-template-columns: 1fr !important; }
+    .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+    .editorial-row { grid-template-columns: 1fr !important; gap: 16px !important; }
+    .hero-grid { grid-template-columns: 1fr !important; }
+    .nav-links { display: none !important; }
+    .audience-strip-meta { display: none !important; }
+    .mix-row { grid-template-columns: 56px 1fr !important; gap: 14px !important; }
+    .mix-row-meta { grid-column: 1 / -1; padding-left: 70px; padding-top: 0 !important; margin-top: -8px; display: flex; justify-content: space-between; }
+    .mix-row-label { display: none !important; }
+    .roadmap-track { display: none !important; }
+    .roadmap-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+    .roadmap-milestone { text-align: left !important; padding-left: 38px !important; position: relative; }
+    .roadmap-dot { margin: 0 !important; position: absolute; left: 0; top: 4px; }
+    .case-study-pad { padding: 32px !important; }
+    .lead-capture-pad { padding: 36px 28px !important; }
+    .stats-band-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .calendly-day-grid { grid-template-columns: repeat(5, 1fr) !important; gap: 4px !important; }
+  }
+
+  @media (max-width: 600px) {
+    .stats-band-grid { grid-template-columns: 1fr 1fr !important; }
+    .stats-band-grid > div:last-child { grid-column: 1 / -1; }
+    .hero-headline { font-size: 44px !important; }
+    .case-study-stat { font-size: 56px !important; }
+    .total-reach-num { font-size: 56px !important; }
+  }
+
+  @media print {
+    .no-print, .cta-pulse { display: none !important; }
+    button:not(.pdf-page button) { display: none !important; }
+    header, footer { display: none !important; }
+  }
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wn4zckt7se");
+</script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useRef } = React;
+
+// ============================================================
+// ============================================================
+// ACME LOGO - styled SVG wordmark (always renders)
+// ============================================================
+function AcmeLogo({ size = 24, light = false, style = {} }) {
+  const color = light ? '#FFFFFF' : '#0A0A0A';
+  return (
+    <span style={{
+      fontFamily: "'DM Sans', sans-serif",
+      fontWeight: 700, fontSize: size, lineHeight: 1,
+      letterSpacing: '-0.025em',
+      color,
+      display: 'inline-block', verticalAlign: '-0.05em',
+      ...style,
+    }}>
+      Acme
+    </span>
+  );
+}
+
+
+// ============================================================
+// BRAND LOGO - multi-source fallback (Clearbit → Google favicon →
+// DuckDuckGo → styled text wordmark). Bulletproof for demos.
+// ============================================================
+const BRAND_COLORS = {
+  'tmobile.com': '#E20074',
+  'libertymutual.com': '#FFD000',
+  'jetblue.com': '#0033A0',
+  'wayfair.com': '#7B189F',
+  'sofi.com': '#00A0DF',
+  'verizon.com': '#CD040B',
+  'usaa.com': '#00417C',
+  'discover.com': '#FF6E1F',
+  'progressive.com': '#0046A4',
+  'allstate.com': '#011E41',
+  'capitalone.com': '#D03027',
+  'chase.com': '#117ACA',
+  'cigna.com': '#0070C0',
+  'humana.com': '#79B928',
+  'wellsfargo.com': '#D71E28',
+};
+
+function brandNameFromDomain(domain) {
+  if (!domain) return '';
+  const stem = domain.split('.')[0];
+  const overrides = {
+    'tmobile': 'T-Mobile', 'libertymutual': 'Liberty Mutual', 'jetblue': 'JetBlue',
+    'wayfair': 'Wayfair', 'sofi': 'SoFi', 'verizon': 'Verizon', 'usaa': 'USAA',
+    'discover': 'Discover', 'progressive': 'Progressive', 'allstate': 'Allstate',
+    'capitalone': 'Capital One', 'chase': 'Chase', 'cigna': 'Cigna',
+    'humana': 'Humana', 'wellsfargo': 'Wells Fargo',
+  };
+  return overrides[stem] || stem.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+function BrandLogo({ domain, name, size = 32, style = {}, mono = false, light = false, className = '' }) {
+  const [srcIdx, setSrcIdx] = useState(0);
+  const sources = [
+    `https://logo.clearbit.com/${domain}`,
+    `https://www.google.com/s2/favicons?domain=${domain}&sz=128`,
+    `https://icons.duckduckgo.com/ip3/${domain}.ico`,
+  ];
+  const displayName = name || brandNameFromDomain(domain);
+
+  if (srcIdx >= sources.length) {
+    const color = light ? '#FFFFFF' : (mono ? '#000000' : (BRAND_COLORS[domain] || '#0A0A0A'));
+    return (
+      <span className={className} style={{
+        fontFamily: "'DM Sans', sans-serif",
+        fontWeight: 700, fontSize: size * 0.6, lineHeight: 1,
+        letterSpacing: '-0.02em', color,
+        display: 'inline-flex', alignItems: 'center', height: size,
+        ...style,
+      }}>{displayName}</span>
+    );
+  }
+  return (
+    <img
+      key={srcIdx}
+      className={className}
+      src={sources[srcIdx]}
+      alt={displayName}
+      onError={() => setSrcIdx(srcIdx + 1)}
+      style={{
+        height: size, maxWidth: size * 4, objectFit: 'contain',
+        filter: mono ? 'grayscale(1) contrast(1.2)' : 'none',
+        ...style,
+      }}
+    />
+  );
+}
+
+// ============================================================
+// SAMPLE BRANDS + PRE-BAKED PLANS
+// ============================================================
+const SAMPLE_BRANDS = [
+  { domain: 'tmobile.com', name: 'T-Mobile' },
+  { domain: 'libertymutual.com', name: 'Liberty Mutual' },
+  { domain: 'jetblue.com', name: 'JetBlue' },
+  { domain: 'wayfair.com', name: 'Wayfair' },
+  { domain: 'sofi.com', name: 'SoFi' },
+];
+
+const PEER_BRANDS = ['intuit.com', 'hilton.com', 'carmax.com', 'cox.com', 'porsche.com', 'united.com'];
+
+// Note: All "Modeled" or "Directional" figures below are derived from publicly cited
+// Acme customer outcomes (containment, AHT reduction, cost-per-call deltas)
+// and reasonable industry benchmarks. No prospect-specific proprietary data.
+const PLANS = {
+  'tmobile.com': {
+    industryInferred: 'Telecommunications: Consumer Wireless',
+    matchScore: 96,
+    audienceMatch: "Inferred contact center load: ~250M annual interactions across care, billing, tech support, and retention. Roughly 35 to 45% of inbound voice maps cleanly to deterministic intents that Voice Agents resolve end-to-end. Tier 1 billing, plan changes, payment, and outage status are the highest-confidence automation surfaces.",
+    icp: { title: 'VP Customer Care / Head of Digital Channels', context: 'Owns AHT, FCR, CSAT, and cost-per-contact for a multi-site care org running across in-house and BPO. Under pressure to deflect Tier 1 volume without crashing CSAT or FCR. Almost certainly evaluating voice automation right now.' },
+    mediaMix: [
+      { channel: 'Voice Agent · Tier 1 Inbound', allocationPct: 45, rationale: 'Billing, plan changes, payment status, outage check. Deterministic intents with stable resolution paths.', estImpressions: '~9.4M calls / qtr' },
+      { channel: 'Knowledge Agent · Account Servicing', allocationPct: 25, rationale: 'Web and in-app self-serve for the same Tier 1 intents, with seamless escalation to live agent on policy gates.', estImpressions: '~5.2M sessions / qtr' },
+      { channel: 'Agent Assist · Live Assist', allocationPct: 20, rationale: 'For the calls humans still take. Real-time grounded answers, retention talk tracks, next-best-action.', estImpressions: '~3,800 agents covered' },
+      { channel: 'Conversation Intelligence · Full Coverage', allocationPct: 10, rationale: '100% conversation evaluation across automated and human channels. Compliance, churn signals, coaching loops.', estImpressions: 'all interactions' },
+    ],
+    creative: [
+      { format: 'display', headline: '"I want to check my balance and pay my bill."', subhead: 'Acme AI · resolved end-to-end · 38s' },
+      { format: 'native', headline: '"My data isn\'t working in zip 10025."', subhead: 'Acme AI · checked outage map · proactive credit applied · escalated only on policy' },
+      { format: 'newsletter', headline: '"Why is my bill higher this month?"', subhead: 'Knowledge Agent · pulled prorated charges · explained line item · resolved without transfer' },
+    ],
+    estimate: { totalImpressions: '~14.6M conversations / qtr', pipelineRange: '$28M to $46M annual run-rate savings', assumptions: 'Directional. Assumes 60% containment on automatable Tier 1, $4.20 to $6.80 cost-per-call delta vs human, 45% mix of automatable volume.' },
+    articles: [
+      { title: 'Outage cluster · NJ/NY metro · 11:42 AM', section: 'Live Signal', readers: '2,108 callers in queue', time: 'Right now' },
+      { title: 'Q3 earnings · churn ticked up 30 bps', section: 'Public Filing', readers: 'Investor priority', time: '2 weeks ago' },
+      { title: 'New CFO from Comcast · margin discipline', section: 'Trade Press', readers: 'Cost program signal', time: 'This quarter' },
+    ],
+    competitors: [
+      { name: 'Genesys Cloud CX', activity: 'Likely current platform', period: 'multi-year contract', live: 'Renewal in window' },
+      { name: 'Asapp', activity: 'Real-time agent assist', period: 'pilot stage', live: 'Limited deployment' },
+      { name: 'Google Cloud CCAI', activity: 'Bot infrastructure', period: 'partial deployment', live: 'IVR layer' },
+    ],
+    caseStudy: {
+      brand: 'Fintech leader', stat: '60%+', metric: 'containment on automatable inbound voice',
+      duration: 'first 90 days post-launch',
+      quote: "Voice Agents took the volume that didn't need a human, and gave the humans back to the calls that did.",
+      attribution: 'Anonymized customer outcome', spend: 'pilot program', return: 'rolled to production',
+    },
+    channelComparison: { observe: 0.62, linkedin: 4.20, googleDisplay: 6.80 },
+  },
+  'libertymutual.com': {
+    industryInferred: 'P&C Insurance: Personal Lines',
+    matchScore: 93,
+    audienceMatch: "Inferred call volume: ~180M annual interactions across FNOL, claims status, billing, policy servicing. Roughly 30 to 40% of inbound is deterministic policy and billing servicing that Acme AI handles end-to-end. FNOL intake is the highest-value automation surface (collect structured data fast, hand to adjuster grounded).",
+    icp: { title: 'VP Claims Operations / Head of Customer Experience', context: 'Owns NPS, FNOL cycle time, and claims handling cost across a multi-region operation. Compliance bar is high. Will not buy on hype, will buy on grounded answers, audit trails, and policy gates.' },
+    mediaMix: [
+      { channel: 'Voice Agent · FNOL Intake', allocationPct: 30, rationale: 'Structured loss notification capture. Voice agent gathers incident data, photos, witnesses; routes to adjuster with case grounded.', estImpressions: '~1.4M FNOLs / qtr' },
+      { channel: 'Voice Agent · Policy Servicing', allocationPct: 35, rationale: 'Billing inquiries, payment, ID card requests, coverage questions. Deterministic, high-volume.', estImpressions: '~6.1M calls / qtr' },
+      { channel: 'Agent Assist · Adjuster Assist', allocationPct: 20, rationale: 'Real-time policy lookup, prior claim history, next-best-action for adjusters on complex calls.', estImpressions: '~2,400 adjusters covered' },
+      { channel: 'Conversation Intelligence · Compliance Layer', allocationPct: 15, rationale: '100% evaluation for compliance language, disclosure capture, regulatory adherence. Replaces sample-based QA.', estImpressions: 'all interactions' },
+    ],
+    creative: [
+      { format: 'display', headline: '"I was just rear-ended on the Mass Pike."', subhead: 'Acme AI FNOL · captured 14 fields · case ready for adjuster · 4m 22s' },
+      { format: 'native', headline: '"Can I add my daughter to the policy?"', subhead: 'Acme AI · verified eligibility · quoted premium · escalated to bind' },
+      { format: 'newsletter', headline: '"What\'s the status of claim 4471?"', subhead: 'Acme AI · pulled live status · explained next step · resolved without queue' },
+    ],
+    estimate: { totalImpressions: '~7.5M conversations / qtr', pipelineRange: '$18M to $32M annual run-rate savings', assumptions: 'Directional. Assumes 55% containment on policy servicing, 2 minutes saved per FNOL, $4.50 to $7.20 cost-per-call delta on automated volume.' },
+    articles: [
+      { title: 'CAT event · Hurricane track · FL/GA', section: 'Live Signal', readers: 'FNOL surge expected', time: 'This week' },
+      { title: 'NAIC scrutiny on AI in claims · new disclosure rules', section: 'Regulatory', readers: 'Compliance window', time: 'Q2 2026' },
+      { title: 'Combined ratio pressure · 2025 cohort', section: 'Annual Report', readers: 'Cost program signal', time: 'Filed Mar' },
+    ],
+    competitors: [
+      { name: 'NICE CXone', activity: 'Likely current platform', period: 'enterprise contract', live: 'Stable' },
+      { name: 'Five9', activity: 'Cloud telephony layer', period: 'multi-year', live: 'In production' },
+      { name: 'Cogito', activity: 'Real-time emotion AI', period: 'pilot phase', live: 'Limited' },
+    ],
+    caseStudy: {
+      brand: 'Auto retailer', stat: '31%', metric: 'reduction in average handle time',
+      duration: '6 months on copilot',
+      quote: "Conversation Intelligence across 100% of calls changed how we coach. We stopped sampling and started seeing the whole picture.",
+      attribution: 'Anonymized customer outcome', spend: 'phased rollout', return: 'full production',
+    },
+    channelComparison: { observe: 0.78, linkedin: 4.50, googleDisplay: 7.20 },
+  },
+  'jetblue.com': {
+    industryInferred: 'Airlines: Domestic and Caribbean',
+    matchScore: 91,
+    audienceMatch: "Inferred annual volume: ~32M customer interactions across reservations, status, baggage, refunds, irregular ops. Roughly 40 to 50% is deterministic servicing Acme AI handles. Irregular ops days (weather, mechanical) drive 4 to 8x volume spikes; Acme AI scales linearly where humans can't.",
+    icp: { title: 'VP Customer Service / Director Reservations', context: 'Owns CSAT, hold times, and abandonment across a 24/7 operation. Lives or dies by IROP days. Already operating Five9 or Genesys; ready to layer voice automation on top without ripping out telephony.' },
+    mediaMix: [
+      { channel: 'Voice Agent · Reservations Servicing', allocationPct: 40, rationale: 'Flight status, change, cancel, refund eligibility. Highest-volume deterministic intents. Scales free during IROPs.', estImpressions: '~3.2M calls / qtr' },
+      { channel: 'Voice Agent · Baggage and Ancillary', allocationPct: 20, rationale: 'Baggage tracking, fee questions, seat upgrades, TrueBlue inquiries. Self-serve where it should already be.', estImpressions: '~1.8M calls / qtr' },
+      { channel: 'Agent Assist · IROP Day Support', allocationPct: 25, rationale: 'When weather hits, copilot grounds reps in real-time policy, rebook options, compensation rules. Holds CSAT in chaos.', estImpressions: '~1,600 reps covered' },
+      { channel: 'Conversation Intelligence · Full Coverage', allocationPct: 15, rationale: '100% evaluation across voice and chat. CSAT signal, compensation policy adherence, escalation patterns.', estImpressions: 'all interactions' },
+    ],
+    creative: [
+      { format: 'display', headline: '"My flight to JFK got cancelled."', subhead: 'Acme AI · checked rebook options · confirmed new seat · sent confirmation · 1m 48s' },
+      { format: 'native', headline: '"Where is my checked bag?"', subhead: 'Acme AI · pulled live tracking · estimated delivery · resolved without queue' },
+      { format: 'newsletter', headline: '"Can I use my TrueBlue points for this booking?"', subhead: 'Knowledge Agent · verified balance · applied points · processed booking' },
+    ],
+    estimate: { totalImpressions: '~5.0M conversations / qtr', pipelineRange: '$11M to $19M annual run-rate savings', assumptions: 'Directional. Assumes 50% containment on automatable volume, $5.10 to $7.80 cost-per-call delta. Excludes the IROP day ROI which is harder to model and likely larger.' },
+    articles: [
+      { title: 'Northeast weather event · 4 day disruption', section: 'Live Signal', readers: 'IROP queue surge', time: 'Active' },
+      { title: 'JetBlue Q4 earnings · cost discipline emphasis', section: 'Public Filing', readers: 'CFO priority', time: 'Last call' },
+      { title: 'Airline customer service rankings · DOT', section: 'Regulatory', readers: 'NPS pressure', time: 'Updated Mar' },
+    ],
+    competitors: [
+      { name: 'Five9', activity: 'Likely current cloud telephony', period: 'multi-year contract', live: 'In production' },
+      { name: 'Salesforce Service Cloud', activity: 'CRM and case layer', period: 'enterprise', live: 'Integrated' },
+      { name: 'IBM watsonx Assistant', activity: 'Bot infrastructure', period: 'partial', live: 'IVR replacement' },
+    ],
+    caseStudy: {
+      brand: 'Major airline', stat: 'enterprise scale', metric: 'voice automation across high-volume servicing',
+      duration: 'full production',
+      quote: "We needed automation that could handle the messy multi-turn conversations, not just the IVR ones.",
+      attribution: 'Anonymized customer outcome', spend: 'multi-year', return: 'expanded scope',
+    },
+    channelComparison: { observe: 0.71, linkedin: 5.10, googleDisplay: 7.80 },
+  },
+  'wayfair.com': {
+    industryInferred: 'E-commerce: Home Furnishings',
+    matchScore: 88,
+    audienceMatch: "Inferred annual volume: ~45M customer interactions across orders, delivery, returns, assembly support. Roughly 35 to 45% maps to deterministic order servicing automation. Returns are the painful, costly intent where Acme AI either saves the relationship or saves the unit cost depending on grounded policy.",
+    icp: { title: 'VP Customer Service / Head of Returns Operations', context: 'Owns contact deflection, return-related cost, and CSAT on a model where every return eats margin. Wants automation that knows when to give the credit and when to save the sale.' },
+    mediaMix: [
+      { channel: 'Voice Agent · Order Servicing', allocationPct: 40, rationale: 'Order status, delivery date, tracking, modify shipping. The bulk of inbound. Deterministic.', estImpressions: '~7.2M calls / qtr' },
+      { channel: 'Voice Agent · Returns and Refunds', allocationPct: 25, rationale: 'Policy-grounded return decisions. Knows when to authorize, when to escalate, when to offer concession.', estImpressions: '~2.8M calls / qtr' },
+      { channel: 'Knowledge Agent · Pre-Purchase and Assembly', allocationPct: 20, rationale: 'Product questions, assembly help, dimension lookups. Web and post-purchase chat.', estImpressions: '~4.1M sessions / qtr' },
+      { channel: 'Conversation Intelligence · CSAT Layer', allocationPct: 15, rationale: '100% evaluation for save-the-sale moments, churn signals, agent coaching opportunities.', estImpressions: 'all interactions' },
+    ],
+    creative: [
+      { format: 'display', headline: '"Where is my couch? It was supposed to arrive Tuesday."', subhead: 'Acme AI · pulled carrier tracking · scheduled redelivery · 1m 12s' },
+      { format: 'native', headline: '"This dresser came damaged."', subhead: 'Acme AI · validated photos · authorized replacement under policy · saved escalation' },
+      { format: 'newsletter', headline: '"How do I assemble the bed frame?"', subhead: 'Knowledge Agent · pulled instructions · video link · resolved without RMA' },
+    ],
+    estimate: { totalImpressions: '~14.1M conversations / qtr', pipelineRange: '$14M to $24M annual run-rate savings', assumptions: 'Directional. Assumes 55% containment on order servicing, 30% containment on returns, $3.80 to $6.20 cost-per-call delta.' },
+    articles: [
+      { title: 'Q4 holiday return surge · forecast', section: 'Live Signal', readers: 'Volume spike modeled', time: 'Forecast' },
+      { title: 'Wayfair margin commentary · last earnings', section: 'Public Filing', readers: 'CFO priority', time: 'Last call' },
+      { title: 'Big-ticket return cost trend · industry', section: 'Trade Press', readers: 'Cost program signal', time: 'Q1 report' },
+    ],
+    competitors: [
+      { name: 'Salesforce Service Cloud', activity: 'Likely CRM layer', period: 'enterprise', live: 'In production' },
+      { name: 'Zendesk', activity: 'Ticketing and chat', period: 'multi-year', live: 'Active' },
+      { name: 'LivePerson', activity: 'Conversational AI', period: 'partial deployment', live: 'Bot layer' },
+    ],
+    caseStudy: {
+      brand: 'Luxury retailer', stat: 'multi-channel', metric: 'AI deployment across voice and chat servicing',
+      duration: 'production rollout',
+      quote: "The agent doesn't just deflect. It resolves. That's the difference.",
+      attribution: 'Anonymized customer outcome', spend: 'phased', return: 'expanded',
+    },
+    channelComparison: { observe: 0.54, linkedin: 3.80, googleDisplay: 6.20 },
+  },
+  'sofi.com': {
+    industryInferred: 'Consumer Fintech: Banking, Lending, Investing',
+    matchScore: 94,
+    audienceMatch: "Inferred annual volume: ~22M customer interactions across account servicing, loan inquiries, card disputes, transfer questions. Roughly 40 to 50% is deterministic banking servicing Acme AI handles. Compliance bar is high; grounded answers and audit trails are the price of entry.",
+    icp: { title: 'Head of Member Experience / VP Customer Operations', context: 'Owns CSAT, NPS, and cost-to-serve across a digital-first member base. Members expect zero-wait. Compliance team needs evidence that every conversation was grounded, logged, and reviewable.' },
+    mediaMix: [
+      { channel: 'Voice Agent · Account Servicing', allocationPct: 40, rationale: 'Balance, transactions, transfers, account questions. Highest-volume and highest-confidence automation surface.', estImpressions: '~3.6M calls / qtr' },
+      { channel: 'Voice Agent · Card and Dispute Triage', allocationPct: 25, rationale: 'Card status, lock/unlock, dispute initiation with structured intake for fraud team.', estImpressions: '~1.9M calls / qtr' },
+      { channel: 'Agent Assist · Loan and Investing Specialist Assist', allocationPct: 25, rationale: 'For complex calls that need humans. Real-time policy grounding, compliant disclosure capture, next-best-action.', estImpressions: '~1,200 specialists' },
+      { channel: 'Conversation Intelligence · Compliance Layer', allocationPct: 10, rationale: '100% evaluation for Reg E, UDAAP language, complaint detection. Replaces sample-based QA.', estImpressions: 'all interactions' },
+    ],
+    creative: [
+      { format: 'display', headline: '"What\'s my checking balance?"', subhead: 'Acme AI · authenticated · returned balance · 22s · zero queue' },
+      { format: 'native', headline: '"I see a charge I don\'t recognize."', subhead: 'Acme AI · captured dispute fields · opened case · escalated to fraud team grounded' },
+      { format: 'newsletter', headline: '"Can I lock my card?"', subhead: 'Acme AI · verified identity · locked card · confirmed via SMS · 35s' },
+    ],
+    estimate: { totalImpressions: '~5.7M conversations / qtr', pipelineRange: '$9M to $16M annual run-rate savings', assumptions: 'Directional. Assumes 60% containment on automatable servicing, $4.80 to $7.40 cost-per-call delta. Excludes compliance audit cost reduction from full-coverage QA.' },
+    articles: [
+      { title: 'CFPB scrutiny on AI customer service · advisory', section: 'Regulatory', readers: 'Compliance priority', time: 'Q1 2026' },
+      { title: 'SoFi member growth · last earnings', section: 'Public Filing', readers: 'Volume scaling', time: 'Last call' },
+      { title: 'Digital bank cost-to-serve benchmarks', section: 'Trade Press', readers: 'Cost program signal', time: 'Industry report' },
+    ],
+    competitors: [
+      { name: 'Talkdesk Financial Services', activity: 'Likely cloud platform', period: 'multi-year', live: 'In production' },
+      { name: 'Amazon Connect', activity: 'Telephony infrastructure', period: 'enterprise', live: 'Backbone' },
+      { name: 'Kasisto', activity: 'Banking conversational AI', period: 'partial', live: 'Bot layer' },
+    ],
+    caseStudy: {
+      brand: 'Insurance carrier', stat: 'enterprise', metric: 'voice automation in regulated environment',
+      duration: 'full production',
+      quote: "Compliance teams care about audit trails. The platform ships with them, not on top of them.",
+      attribution: 'Anonymized customer outcome', spend: 'multi-year', return: 'scaled coverage',
+    },
+    channelComparison: { observe: 0.68, linkedin: 4.80, googleDisplay: 7.40 },
+  },
+};
+
+// ============================================================
+// MAIN APP
+// ============================================================
+function App() {
+  const [step, setStep] = useState('hero');
+  const [domain, setDomain] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [logoUrl, setLogoUrl] = useState('');
+  const [logoOk, setLogoOk] = useState(true);
+  const [goal, setGoal] = useState('');
+  const [budget, setBudget] = useState('');
+  const [industry, setIndustry] = useState('');
+  const [plan, setPlan] = useState(null);
+  const [email, setEmail] = useState('');
+  const [contactName, setContactName] = useState('');
+  const [unlocked, setUnlocked] = useState(false);
+
+  const cleanDomain = (d) => d.toLowerCase().trim()
+    .replace(/^https?:\/\//, '').replace(/^www\./, '')
+    .split('/')[0].replace(/\s/g, '');
+
+  const startWithBrand = (brandDomain, brandName) => {
+    const d = cleanDomain(brandDomain);
+    setDomain(d);
+    setLogoUrl(`https://logo.clearbit.com/${d}`);
+    setCompanyName(brandName || d.split('.')[0].replace(/\b\w/g, c => c.toUpperCase()));
+    setLogoOk(true);
+    setStep('questions');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDomainSubmit = () => {
+    if (!domain.trim()) return;
+    const d = cleanDomain(domain);
+    const matched = SAMPLE_BRANDS.find(b => b.domain === d);
+    setDomain(d);
+    setLogoUrl(`https://logo.clearbit.com/${d}`);
+    setCompanyName(matched ? matched.name : d.split('.')[0].split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' '));
+    setLogoOk(true);
+    setStep('questions');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const generatePlan = () => {
+    setStep('generating');
+    setTimeout(() => {
+      const matched = PLANS[domain];
+      setPlan(matched || generateTemplatedPlan(companyName, industry, goal));
+      setStep('plan');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 4500);
+  };
+
+  const reset = () => {
+    setStep('hero'); setDomain(''); setCompanyName(''); setLogoUrl('');
+    setGoal(''); setBudget(''); setIndustry(''); setPlan(null);
+    setEmail(''); setContactName(''); setUnlocked(false); setLogoOk(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <>
+      <div className="app-content" style={{ minHeight: '100vh' }}>
+        <Header reset={reset} />
+        {step === 'hero' && <Hero domain={domain} setDomain={setDomain} onSubmit={handleDomainSubmit} startWithBrand={startWithBrand} />}
+        {step === 'questions' && (
+          <Questions
+            companyName={companyName} domain={domain}
+            logoUrl={logoUrl} logoOk={logoOk} setLogoOk={setLogoOk}
+            industry={industry} setIndustry={setIndustry}
+            goal={goal} setGoal={setGoal}
+            budget={budget} setBudget={setBudget}
+            onGenerate={generatePlan}
+          />
+        )}
+        {step === 'generating' && <Generating companyName={companyName} />}
+        {step === 'plan' && plan && (
+          <PlanView
+            plan={plan} companyName={companyName} domain={domain}
+            logoUrl={logoUrl} logoOk={logoOk}
+            unlocked={unlocked} setUnlocked={setUnlocked}
+            email={email} setEmail={setEmail}
+            contactName={contactName} setContactName={setContactName}
+            reset={reset}
+          />
+        )}
+        <Footer />
+      </div>
+      {plan && (
+        <PrintablePlan plan={plan} companyName={companyName} domain={domain} logoUrl={logoUrl} contactName={contactName} />
+      )}
+    </>
+  );
+}
+
+function generateTemplatedPlan(name, industry, goal) {
+  return {
+    industryInferred: industry || 'Enterprise Customer Experience',
+    matchScore: 88,
+    audienceMatch: `Modeled call volume across ${name}'s customer base suggests 30 to 45% of inbound voice and chat maps to deterministic intents that Voice Agents resolve end-to-end. Tier 1 servicing, status checks, and account questions are the highest-confidence automation surface; complex calls get a human grounded by the Agent Assist.`,
+    icp: { title: 'VP Customer Experience or Head of Operations', context: `${name}'s buying committee likely includes the VP CX or COO, the contact center operations leader, and a compliance or security lead. Decisions move on grounded answers, audit trails, and policy gates, not on demos that fall apart at scale.` },
+    mediaMix: [
+      { channel: 'Voice Agent · Tier 1 Inbound', allocationPct: 40, rationale: `The bulk of ${name}'s inbound voice volume. Deterministic intents, stable resolution paths.`, estImpressions: 'Modeled · highest-volume intents' },
+      { channel: 'Knowledge Agent · Web and In-App', allocationPct: 25, rationale: 'Self-serve for the same intents on digital channels with seamless escalation on policy gates.', estImpressions: 'Modeled · digital deflection' },
+      { channel: 'Agent Assist · Live Assist', allocationPct: 25, rationale: 'For the complex calls humans still take. Real-time grounded answers, next-best-action, compliance language capture.', estImpressions: 'all live agents covered' },
+      { channel: 'Conversation Intelligence · Full Coverage', allocationPct: 10, rationale: '100% conversation evaluation. Replaces sample-based QA. Surfaces churn signals, coaching opportunities, compliance gaps.', estImpressions: 'all interactions' },
+    ],
+    creative: [
+      { format: 'display', headline: `"What's the status of my ${(industry || 'account').toLowerCase()}?"`, subhead: 'Acme AI · resolved end-to-end · under 60s · zero queue' },
+      { format: 'native', headline: '"I have a question about my last bill."', subhead: 'Acme AI · pulled live data · explained line item · resolved without transfer' },
+      { format: 'newsletter', headline: '"Can I make a change to my account?"', subhead: 'Acme AI · authenticated · executed change · confirmed via SMS' },
+    ],
+    estimate: { totalImpressions: 'Modeled · multi-million conversations / qtr', pipelineRange: 'Directional · 8-figure annual run-rate savings at scale', assumptions: `Directional. Assumes 50 to 60% containment on automatable Tier 1 volume, $4 to $7 cost-per-call delta vs human, with full QA coverage replacing sampled review. Tuned to ${name}'s likely operating profile.` },
+    articles: [
+      { title: 'Live volume signal · multi-region', section: 'Real-time Signal', readers: 'Active', time: 'This hour' },
+      { title: 'Cost-to-serve pressure · industry-wide', section: 'Trade Press', readers: 'Cost program signal', time: 'This quarter' },
+      { title: 'Compliance and governance trends in CX AI', section: 'Regulatory', readers: 'Buyer priority', time: 'Q1 2026' },
+    ],
+    competitors: [
+      { name: 'Five9 / Genesys / NICE CXone', activity: 'Likely current cloud platform', period: 'multi-year contract', live: 'In production' },
+      { name: 'Cogito / point solutions', activity: 'Real-time agent assist tools', period: 'pilot stage', live: 'Limited deployment' },
+      { name: 'In-house bot infrastructure', activity: 'IVR and basic chat', period: 'legacy', live: 'Stable but limited' },
+    ],
+    caseStudy: {
+      brand: 'Major airline', stat: 'enterprise scale', metric: 'voice automation across high-volume servicing',
+      duration: 'full production',
+      quote: "We needed automation that could handle the messy multi-turn conversations, not just the IVR ones.",
+      attribution: 'Anonymized customer outcome', spend: 'multi-year', return: 'expanded scope',
+    },
+    channelComparison: { observe: 0.65, linkedin: 4.50, googleDisplay: 6.80 },
+  };
+}
+
+// ============================================================
+// HEADER (with live audience pulse strip)
+// ============================================================
+function Header({ reset }) {
+  return (
+    <>
+      <LiveAudienceStrip />
+      <header style={{ borderBottom: '1px solid var(--ink)', background: 'var(--ink)', color: 'var(--cream)' }}>
+        <div style={{ maxWidth: 1320, margin: '0 auto', padding: '16px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div onClick={reset} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 16 }}>
+            <AcmeLogo size={28} light />
+            <span style={{ width: 1, height: 22, background: 'rgba(245,241,235,0.3)' }} />
+            <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', opacity: 0.7, fontWeight: 600 }}>Acme Inbound Discovery Audit</span>
+          </div>
+          <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+            <a href="#" style={{ color: 'var(--cream)', opacity: 0.65, fontSize: 13, textDecoration: 'none' }}>Platform</a>
+            <a href="#" style={{ color: 'var(--cream)', opacity: 0.65, fontSize: 13, textDecoration: 'none' }}>Industries</a>
+            <a href="#" style={{ color: 'var(--cream)', opacity: 0.65, fontSize: 13, textDecoration: 'none' }}>Customers</a>
+            <button className="cta-pulse" style={{ background: 'var(--red)', color: '#fff', border: 'none', padding: '10px 18px', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.16em', fontWeight: 600, cursor: 'pointer' }}>Book a pilot →</button>
+          </div>
+        </div>
+      </header>
+    </>
+  );
+}
+
+function LiveAudienceStrip() {
+  const messages = [
+    { count: '847,221', label: 'conversations resolved by Acme AI today' },
+    { count: '12,408', label: 'live agents on Copilot right now' },
+    { count: '94,712', label: 'auto-QA evaluations in the last hour' },
+    { count: '38,604', label: 'calls deflected from queue this hour' },
+    { count: '6,128', label: 'compliance flags surfaced this week' },
+  ];
+  const [idx, setIdx] = useState(0);
+  const [bumps, setBumps] = useState(0);
+
+  useEffect(() => {
+    const i = setInterval(() => {
+      setIdx(p => (p + 1) % messages.length);
+      setBumps(b => b + Math.floor(Math.random() * 7) + 3);
+    }, 2800);
+    return () => clearInterval(i);
+  }, []);
+
+  const baseCount = parseInt(messages[idx].count.replace(',', ''));
+  const liveCount = (baseCount + bumps).toLocaleString();
+
+  return (
+    <div style={{ background: '#0A0A0A', color: '#F8F6F2', padding: '8px 32px', fontSize: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #1A1A1A' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <span className="live-dot" style={{ width: 7, height: 7, background: 'var(--green)', borderRadius: '50%', display: 'inline-block' }} />
+        <span style={{ textTransform: 'uppercase', letterSpacing: '0.22em', fontSize: 10, opacity: 0.55, fontWeight: 600 }}>Live in production</span>
+        <span style={{ width: 1, height: 14, background: 'rgba(248,246,242,0.2)' }} />
+        <span key={idx} className="ticker-fade" style={{ fontSize: 12, opacity: 0.9 }}>
+          <strong style={{ color: '#fff' }}>{liveCount}</strong> {messages[idx].label}
+        </span>
+      </div>
+      <div className="audience-strip-meta" style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', opacity: 0.45 }}>
+        $100M+ ARR · 60%+ containment · Intuit · Hilton · CarMax · Cox
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// HERO
+// ============================================================
+function Hero({ domain, setDomain, onSubmit, startWithBrand }) {
+  return (
+    <>
+      <section className="reveal" style={{ maxWidth: 1320, margin: '0 auto', padding: '90px 32px 60px', position: 'relative' }}>
+        <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 80, alignItems: 'center' }}>
+          <div>
+            <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--red)', marginBottom: 28, fontWeight: 700 }}>
+              ◆ Acme Inbound Discovery Audit
+            </div>
+            <h1 className="display hero-headline" style={{ fontSize: 'clamp(48px, 7.5vw, 108px)', lineHeight: 0.92, fontWeight: 400, letterSpacing: '-0.035em' }}>
+              Your contact center.
+              <br />
+              <em style={{ color: 'var(--red)', fontStyle: 'italic' }}>Modeled in sixty seconds.</em>
+            </h1>
+            <p style={{ fontSize: 20, lineHeight: 1.55, marginTop: 36, maxWidth: 580, color: '#3A3A3A' }}>
+              Type your domain. We model your call volume, infer the intents that map to Acme AI, and return a phased rollout across Voice Agent, Knowledge Agent, Agent Assist, and Conversation Intelligence — with directional savings, current-stack assumptions, and the customer outcome that matches your shape.
+            </p>
+
+            <div style={{ marginTop: 44, display: 'flex', maxWidth: 560, border: '2px solid var(--ink)', background: '#fff' }}>
+              <input
+                type="text"
+                value={domain}
+                onChange={e => setDomain(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && onSubmit()}
+                placeholder="yourcompany.com"
+                style={{ flex: 1, padding: '22px 24px', border: 'none', outline: 'none', fontSize: 18, background: 'transparent' }}
+              />
+              <button
+                onClick={onSubmit}
+                style={{ padding: '0 36px', background: 'var(--ink)', color: 'var(--cream)', border: 'none', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.2em', cursor: 'pointer', fontWeight: 700 }}
+              >
+                Build my plan →
+              </button>
+            </div>
+
+            <div style={{ marginTop: 30 }}>
+              <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--muted)', marginBottom: 12, fontWeight: 600 }}>
+                Or model a sample profile:
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {SAMPLE_BRANDS.map(b => (
+                  <button key={b.domain} onClick={() => startWithBrand(b.domain, b.name)}
+                    style={{ padding: '11px 18px', background: 'transparent', border: '1px solid var(--ink)', cursor: 'pointer', fontSize: 13, fontWeight: 500, transition: 'all 0.15s' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--ink)'; e.currentTarget.style.color = 'var(--cream)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--ink)'; }}>
+                    {b.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-mocks" style={{ position: 'relative', alignSelf: 'center' }}>
+            <PowerList />
+          </div>
+        </div>
+      </section>
+
+      <AudienceStatsBand />
+      <OutcomesBand />
+      <PeerProofBand />
+
+      <section style={{ maxWidth: 1320, margin: '80px auto 100px', padding: '0 32px' }}>
+        <div style={{ paddingTop: 36, borderTop: '1px solid var(--ink)', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 56 }} className="grid-3">
+          {[
+            { num: '01', t: 'Map', d: "Your call volume mapped to deterministic intents that Voice Agents resolve end-to-end." },
+            { num: '02', t: 'Mix', d: 'A phased plan across Acme AI, Knowledge Agent, Agent Assist, and Conversation Intelligence, scoped to your shape.' },
+            { num: '03', t: 'Model', d: "Directional savings, containment estimates, and the customer outcome that matches yours." },
+          ].map(s => (
+            <div key={s.num}>
+              <div className="display" style={{ fontSize: 72, color: 'var(--red)', lineHeight: 1, fontWeight: 300 }}>{s.num}</div>
+              <div className="display" style={{ fontSize: 32, marginTop: 14, fontWeight: 500 }}>{s.t}</div>
+              <div style={{ fontSize: 15, color: '#4A4A4A', marginTop: 12, lineHeight: 1.6 }}>{s.d}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function AudienceStatsBand() {
+  const stats = [
+    { num: '$100M+', label: 'Acme ARR (Apr 2026)' },
+    { num: '60%+', label: 'Containment on automatable voice' },
+    { num: '31%', label: 'AHT reduction with Agent Assist' },
+    { num: '100%', label: 'Conversation Intelligence coverage' },
+    { num: '14d', label: 'Time to first AI agent live' },
+  ];
+  return (
+    <section style={{ background: 'var(--ink)', color: 'var(--cream)', padding: '72px 32px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: -200, right: -100, width: 500, height: 500, background: 'radial-gradient(circle, rgba(44,124,246,0.18) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div style={{ maxWidth: 1320, margin: '0 auto', position: 'relative' }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--red)', marginBottom: 18, fontWeight: 700 }}>
+          ◆ The Platform
+        </div>
+        <h2 className="display" style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 400, marginBottom: 56, maxWidth: 900 }}>
+          Acme AI built for the contact center, not <em style={{ color: 'var(--red)' }}>retrofitted</em> for it.
+        </h2>
+        <div className="grid-4 stats-band-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 32 }}>
+          {stats.map((s, i) => (
+            <div key={i} style={{ borderTop: '1px solid rgba(248,246,242,0.2)', paddingTop: 20 }}>
+              <div className="stat-num" style={{ fontSize: 'clamp(48px, 5.5vw, 72px)', color: 'var(--cream)' }}>{s.num}</div>
+              <div style={{ fontSize: 13, opacity: 0.65, marginTop: 14, lineHeight: 1.4 }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OutcomesBand() {
+  return (
+    <section style={{ background: 'var(--cream)', padding: '80px 32px', borderTop: '1px solid var(--ink)' }}>
+      <div style={{ maxWidth: 1320, margin: '0 auto' }}>
+        <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60 }}>
+          <div>
+            <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--red)', marginBottom: 14, fontWeight: 700 }}>◆ Customer Outcomes</div>
+            <h2 className="display" style={{ fontSize: 44, fontWeight: 400, lineHeight: 1.05 }}>
+              When the agent is grounded,<br/>
+              <em>the math changes.</em>
+            </h2>
+          </div>
+          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
+            {[
+              { stat: '60%+', label: 'containment on automatable inbound voice (DailyPay, public outcome)' },
+              { stat: '31%', label: 'reduction in AHT with Agent Assist (CarMax, public outcome)' },
+              { stat: '100%', label: 'of conversations evaluated by Conversation Intelligence, replacing sample-based review' },
+            ].map((d, i) => (
+              <div key={i} style={{ borderTop: '1px solid var(--ink)', paddingTop: 16 }}>
+                <div className="stat-num" style={{ fontSize: 64, color: 'var(--red)' }}>{d.stat}</div>
+                <div style={{ fontSize: 14, marginTop: 12, lineHeight: 1.5, color: '#3A3A3A' }}>{d.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PeerProofBand() {
+  return (
+    <section style={{ padding: '60px 32px', background: 'var(--bg)', borderTop: '1px solid var(--rule)' }}>
+      <div style={{ maxWidth: 1320, margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--muted)', marginBottom: 28, fontWeight: 600 }}>
+          Already running Acme AI in production
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 56 }}>
+          {PEER_BRANDS.map(d => (
+            <BrandLogo key={d} domain={d} size={32} mono className="peer-logo" />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PowerList() {
+  const listBrands = [
+    { rank: '01', domain: 'intuit.com' },
+    { rank: '02', domain: 'hilton.com' },
+    { rank: '03', domain: 'carmax.com' },
+    { rank: '04', domain: 'cox.com' },
+    { rank: '05', isYou: true },
+    { rank: '06', domain: 'porsche.com' },
+    { rank: '07', domain: 'united.com' },
+  ];
+
+  return (
+    <div style={{
+      background: 'linear-gradient(180deg, #FAFAF7 0%, #F2EDE2 100%)',
+      border: '1px solid var(--ink)',
+      padding: '28px 32px 20px',
+      boxShadow: '0 30px 70px -25px rgba(0,0,0,0.28), 0 8px 16px -8px rgba(0,0,0,0.1)',
+      position: 'relative',
+      maxWidth: 460,
+      marginLeft: 'auto',
+    }}>
+      <div style={{
+        position: 'absolute', top: -12, right: 28,
+        background: 'var(--red)', color: '#fff',
+        padding: '5px 14px', fontSize: 9, fontWeight: 700,
+        letterSpacing: '0.24em', textTransform: 'uppercase',
+      }}>
+        Live
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: 'var(--ink)' }}>
+          Cohort · Q2.2026
+        </div>
+        <div style={{ fontSize: 9, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--muted)' }}>
+          In Production
+        </div>
+      </div>
+
+      <div style={{ borderTop: '2px solid var(--ink)', borderBottom: '1px solid var(--ink)', padding: '14px 0 10px', marginBottom: 18, textAlign: 'center' }}>
+        <AcmeLogo size={32} />
+      </div>
+
+      <div className="display" style={{ fontSize: 38, lineHeight: 0.98, fontWeight: 500, letterSpacing: '-0.03em' }}>
+        AI Agents
+        <br />
+        shipping <em style={{ color: 'var(--red)' }}>now</em>.
+      </div>
+      <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 12, fontStyle: 'italic' }}>
+        Public customer outcomes · live in production
+      </div>
+
+      <div style={{ marginTop: 22, borderTop: '1px solid var(--ink)' }}>
+        {listBrands.map((b, i) => (
+          <PowerListEntry key={i} {...b} index={i} />
+        ))}
+      </div>
+
+      <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--ink)', fontSize: 10, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ textTransform: 'uppercase', letterSpacing: '0.2em', fontWeight: 700, color: 'var(--red)' }}>
+          See full cohort →
+        </span>
+        <span style={{ fontStyle: 'italic', color: 'var(--muted)' }}>350+ in prod</span>
+      </div>
+    </div>
+  );
+}
+
+function PowerListEntry({ rank, domain, isYou, index }) {
+  if (isYou) {
+    return (
+      <div className="reveal-fast" style={{
+        animationDelay: `${index * 0.08}s`,
+        display: 'grid', gridTemplateColumns: '54px 1fr 18px',
+        alignItems: 'center', gap: 14,
+        padding: '13px 10px',
+        marginLeft: -10, marginRight: -10,
+        background: 'rgba(44, 124, 246, 0.07)',
+        borderTop: '1px solid var(--rule)',
+        borderBottom: '1px solid var(--rule)',
+        borderLeft: '3px solid var(--red)',
+      }}>
+        <div className="display" style={{ fontSize: 26, color: 'var(--red)', fontWeight: 500 }}>#{rank}</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span className="pulse-dot" style={{ width: 8, height: 8, background: 'var(--red)', borderRadius: '50%', display: 'inline-block' }} />
+          <span style={{ fontSize: 14, fontWeight: 600, fontStyle: 'italic', color: 'var(--red)', letterSpacing: '-0.01em' }}>
+            Your brand here?
+          </span>
+        </div>
+        <span style={{ color: 'var(--red)', fontSize: 16, fontWeight: 700 }}>→</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="reveal-fast" style={{
+      animationDelay: `${index * 0.08}s`,
+      display: 'grid', gridTemplateColumns: '54px 1fr',
+      alignItems: 'center', gap: 14,
+      padding: '13px 0',
+      borderBottom: '1px solid var(--rule)',
+    }}>
+      <div className="display" style={{ fontSize: 26, color: 'var(--ink)', fontWeight: 500 }}>#{rank}</div>
+      <span className="display" style={{ fontSize: 19, fontWeight: 600, letterSpacing: '-0.015em', color: 'var(--ink)' }}>
+        {brandNameFromDomain(domain)}
+      </span>
+    </div>
+  );
+}
+
+// ============================================================
+// QUESTIONS
+// ============================================================
+function Questions({ companyName, domain, logoUrl, logoOk, setLogoOk, industry, setIndustry, goal, setGoal, budget, setBudget, onGenerate }) {
+  const ready = goal && budget;
+  return (
+    <section className="reveal" style={{ maxWidth: 880, margin: '0 auto', padding: '60px 32px 100px' }}>
+      <div style={{ border: '2px solid var(--ink)', background: '#fff', padding: 32, display: 'flex', alignItems: 'center', gap: 24 }}>
+        <div style={{ width: 80, height: 80, border: '1px solid var(--ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--paper)' }}>
+          <BrandLogo domain={domain} name={companyName} size={56} />
+        </div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', color: 'var(--red)', fontWeight: 700 }}>We see</div>
+          <div className="display" style={{ fontSize: 40, lineHeight: 1, marginTop: 6, fontWeight: 500 }}>{companyName}</div>
+          <div style={{ fontSize: 14, color: 'var(--muted)', marginTop: 4 }}>{domain}</div>
+        </div>
+      </div>
+
+      <div style={{ marginTop: 60 }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--red)', fontWeight: 700, marginBottom: 14 }}>◆ Three questions</div>
+        <h2 className="display" style={{ fontSize: 52, margin: 0, lineHeight: 1.04, fontWeight: 400 }}>
+          Tell us where the<br />pain lives.
+        </h2>
+      </div>
+
+      <div style={{ marginTop: 52, display: 'grid', gap: 36 }}>
+        <Field label="Industry" optional input={
+          <input type="text" value={industry} onChange={e => setIndustry(e.target.value)}
+            placeholder="We'll infer from your domain, or specify"
+            style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '1.5px solid var(--ink)', background: '#fff', outline: 'none' }} />
+        } />
+        <Field label="Primary outcome" input={
+          <Choices value={goal} setValue={setGoal} options={['Containment / Deflection', 'AHT Reduction', 'CSAT and FCR Lift', 'Compliance Coverage']} />
+        } />
+        <Field label="Annual call volume" input={
+          <Choices value={budget} setValue={setBudget} options={['Under 5M / yr', '5M to 25M / yr', '25M to 100M / yr', '100M+ / yr']} />
+        } />
+      </div>
+
+      <button onClick={onGenerate} disabled={!ready} style={{
+        marginTop: 56, width: '100%', padding: 24, border: 'none',
+        background: ready ? 'var(--ink)' : '#CCC', color: ready ? 'var(--cream)' : '#888',
+        fontSize: 14, textTransform: 'uppercase', letterSpacing: '0.22em',
+        cursor: ready ? 'pointer' : 'not-allowed', fontWeight: 700,
+      }}>
+        Generate my plan →
+      </button>
+    </section>
+  );
+}
+
+function Field({ label, optional, input }) {
+  return (
+    <div>
+      <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', marginBottom: 12, fontWeight: 700 }}>
+        {label} {optional && <span style={{ color: '#999', fontWeight: 400 }}>· optional</span>}
+      </div>
+      {input}
+    </div>
+  );
+}
+function Choices({ value, setValue, options }) {
+  return (
+    <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
+      {options.map(opt => (
+        <button key={opt} onClick={() => setValue(opt)}
+          style={{
+            padding: '18px 20px', textAlign: 'left', cursor: 'pointer',
+            background: value === opt ? 'var(--ink)' : '#fff',
+            color: value === opt ? 'var(--cream)' : 'var(--ink)',
+            border: '1.5px solid var(--ink)', fontSize: 15, fontWeight: 500,
+            transition: 'all 0.15s',
+          }}>{opt}</button>
+      ))}
+    </div>
+  );
+}
+
+// ============================================================
+// GENERATING
+// ============================================================
+function Generating({ companyName }) {
+  const [phase, setPhase] = useState(0);
+  const phases = [
+    'Reading domain signals…',
+    'Inferring contact center load and intent mix…',
+    'Modeling AI Agent rollout across voice, chat, and copilot…',
+    'Pulling matching customer outcome…',
+  ];
+  useEffect(() => {
+    const i = setInterval(() => setPhase(p => Math.min(p + 1, phases.length - 1)), 1000);
+    return () => clearInterval(i);
+  }, []);
+
+  return (
+    <section style={{ maxWidth: 880, margin: '0 auto', padding: '120px 32px', textAlign: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 10, marginBottom: 36 }}>
+        {[0, 1, 2].map(i => (
+          <div key={i} className="pulse-dot" style={{ width: 10, height: 10, background: 'var(--red)', borderRadius: '50%', animationDelay: `${i * 0.2}s` }} />
+        ))}
+      </div>
+      <h2 className="display" style={{ fontSize: 64, margin: 0, lineHeight: 1.02, fontWeight: 400 }}>
+        Building <em style={{ color: 'var(--red)' }}>{companyName}</em>'s plan.
+      </h2>
+      <div style={{ marginTop: 44, fontSize: 18, color: '#4A4A4A', minHeight: 28 }}>{phases[phase]}</div>
+    </section>
+  );
+}
+
+// ============================================================
+// PLAN VIEW
+// ============================================================
+function PlanView({ plan, companyName, domain, logoUrl, logoOk, unlocked, setUnlocked, email, setEmail, contactName, setContactName, reset }) {
+  return (
+    <section className="reveal" style={{ maxWidth: 1320, margin: '0 auto', padding: '60px 32px 80px' }}>
+      <div style={{ borderBottom: '2px solid var(--ink)', paddingBottom: 36 }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--red)', fontWeight: 700 }}>
+          ◆ The Plan · {plan.industryInferred}
+        </div>
+        <h1 className="display" style={{ fontSize: 'clamp(40px, 7vw, 96px)', lineHeight: 0.92, margin: '24px 0 0', fontWeight: 400 }}>
+          {companyName}, here's <em style={{ color: 'var(--red)' }}>your map</em>.
+        </h1>
+      </div>
+
+      <EditorialRow label="The automation fit">
+        <div className="display" style={{ fontSize: 32, lineHeight: 1.3, fontWeight: 300 }}>
+          "{plan.audienceMatch}"
+        </div>
+        <MatchScore score={plan.matchScore || 90} />
+      </EditorialRow>
+
+      {/* What your buyers from your operation */}
+      <div style={{ padding: '60px 0', borderBottom: '1px solid var(--ink)' }}>
+        <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 36 }}>
+          <div>
+            <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700, marginBottom: 6 }}>Live signals</div>
+            <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700, color: 'var(--red)' }}>
+              <span className="live-dot" style={{ width: 7, height: 7, background: 'var(--green)', borderRadius: '50%', display: 'inline-block', marginRight: 8 }} /> from your operation
+            </div>
+          </div>
+          <div className="display" style={{ fontSize: 34, fontWeight: 500 }}>
+            Your customers are <em>already calling</em> right now.
+          </div>
+        </div>
+        <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+          {plan.articles && plan.articles.map((a, i) => (
+            <ArticleCard key={i} {...a} />
+          ))}
+        </div>
+      </div>
+
+      <EditorialRow label="Primary buyer">
+        <div>
+          <div className="display" style={{ fontSize: 50, lineHeight: 1, fontWeight: 500 }}>{plan.icp.title}</div>
+          <div style={{ marginTop: 18, fontSize: 18, lineHeight: 1.55, color: '#3A3A3A' }}>{plan.icp.context}</div>
+        </div>
+      </EditorialRow>
+
+      {/* Mix */}
+      <div style={{ padding: '60px 0', borderBottom: '1px solid var(--ink)' }}>
+        <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 36 }}>
+          <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>The mix</div>
+          <div className="display" style={{ fontSize: 36, fontWeight: 500 }}>How we'd phase the rollout.</div>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60 }} className="editorial-row">
+          <div></div>
+          <div>
+            {plan.mediaMix.map((m, i) => (
+              <div key={i} className="mix-row" style={{
+                display: 'grid', gridTemplateColumns: '70px 2fr 1fr 110px', gap: 20, alignItems: 'baseline',
+                padding: '22px 0', borderBottom: i < plan.mediaMix.length - 1 ? '1px solid var(--rule)' : 'none',
+              }}>
+                <div className="display" style={{ fontSize: 40, color: 'var(--red)', fontWeight: 400 }}>
+                  {m.allocationPct}<span style={{ fontSize: 16 }}>%</span>
+                </div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 17, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+                    <ChannelLabel channel={m.channel} />
+                  </div>
+                  <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 5, lineHeight: 1.5 }}>{m.rationale}</div>
+                </div>
+                <div className="mix-row-label" style={{ fontSize: 11, color: '#999', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Estimated volume</div>
+                <div style={{ fontWeight: 600, fontSize: 16, textAlign: 'right' }}>{m.estImpressions}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Mocks */}
+      <div style={{ padding: '80px 0', borderBottom: '1px solid var(--ink)' }}>
+        <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 52 }}>
+          <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Sample conversations</div>
+          <div>
+            <div className="display" style={{ fontSize: 36, fontWeight: 500 }}>
+              What your customers <em>actually say</em>.
+            </div>
+            <div style={{ marginTop: 10, fontSize: 14, color: 'var(--muted)' }}>Conversation patterns modeled for {companyName}.</div>
+          </div>
+        </div>
+        <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+          <DisplayMock creative={plan.creative.find(c => c.format === 'display')} logoUrl={logoUrl} logoOk={logoOk} companyName={companyName} blurred={false} index={0} />
+          <NativeMock creative={plan.creative.find(c => c.format === 'native')} logoUrl={logoUrl} logoOk={logoOk} companyName={companyName} blurred={!unlocked} index={1} />
+          <NewsletterMock creative={plan.creative.find(c => c.format === 'newsletter')} logoUrl={logoUrl} logoOk={logoOk} companyName={companyName} blurred={!unlocked} index={2} />
+        </div>
+      </div>
+
+      {/* Competitor presence - FOMO close */}
+      <CompetitorPresence competitors={plan.competitors} companyName={companyName} />
+
+      {/* Estimate */}
+      <div style={{ padding: '60px 0', borderBottom: '1px solid var(--ink)' }}>
+        <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60 }}>
+          <div>
+            <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Total volume</div>
+            <AnimatedStat value={plan.estimate.totalImpressions} className="stat-num total-reach-num" style={{ fontSize: 'clamp(64px, 9vw, 112px)', color: 'var(--red)', marginTop: 14, display: 'block' }} />
+            <div style={{ fontSize: 14, color: 'var(--muted)', marginTop: 10 }}>Conversations covered per quarter</div>
+          </div>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+              <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Annual savings range</div>
+              <span style={{
+                fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.22em',
+                background: 'var(--ink)', color: 'var(--cream)',
+                padding: '3px 8px', fontWeight: 700,
+              }}>Modeled · Directional</span>
+            </div>
+            <div className="stat-num" style={{ fontSize: 'clamp(40px, 5vw, 64px)', marginTop: 14, fontWeight: 400 }}>
+              {plan.estimate.pipelineRange}
+            </div>
+            <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 14, lineHeight: 1.55, fontStyle: 'italic' }}>
+              {plan.estimate.assumptions} Final projection requires intake of {companyName}'s actual call mix and current cost-per-contact.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Channel comparison */}
+      <ChannelComparison comparison={plan.channelComparison} totalImpressions={plan.estimate.totalImpressions} />
+
+      {/* Case study */}
+      <CaseStudy caseStudy={plan.caseStudy} />
+
+      <CampaignRoadmap companyName={companyName} />
+
+      {!unlocked ? (
+        <>
+          <EditorialCalendar />
+          <LeadCapture
+            email={email} setEmail={setEmail}
+            contactName={contactName} setContactName={setContactName}
+            onUnlock={() => setUnlocked(true)}
+            companyName={companyName}
+          />
+        </>
+      ) : (
+        <BookingSection companyName={companyName} contactName={contactName} reset={reset} />
+      )}
+    </section>
+  );
+}
+
+function ChannelLabel({ channel }) {
+  return <>{channel}</>;
+}
+
+// ============================================================
+// MATCH SCORE RING - animated SVG circular progress
+// ============================================================
+function MatchScore({ score = 92 }) {
+  const [shown, setShown] = useState(0);
+
+  useEffect(() => {
+    const start = Date.now();
+    const dur = 1800;
+    let raf;
+    const tick = () => {
+      const t = Math.min((Date.now() - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setShown(Math.floor(score * eased));
+      if (t < 1) raf = requestAnimationFrame(tick);
+      else setShown(score);
+    };
+    const delay = setTimeout(() => { raf = requestAnimationFrame(tick); }, 350);
+    return () => { clearTimeout(delay); if (raf) cancelAnimationFrame(raf); };
+  }, [score]);
+
+  const r = 72;
+  const c = 2 * Math.PI * r;
+  const offset = c - (shown / 100) * c;
+
+  const tier =
+    score >= 95 ? "An exceptional fit. Top 3% we've modeled this quarter."
+    : score >= 90 ? "One of the strongest matches we've seen this quarter."
+    : score >= 85 ? "A strong, defensible audience match."
+    : "A solid foundation worth building on.";
+
+  return (
+    <div className="grid-2" style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 32, alignItems: 'center', marginTop: 36, padding: 28, border: '1px solid var(--ink)', background: '#fff' }}>
+      <div style={{ position: 'relative', width: 180, height: 180 }}>
+        <svg viewBox="0 0 180 180" style={{ width: '100%', height: '100%', transform: 'rotate(-90deg)' }}>
+          <circle cx="90" cy="90" r={r} stroke="var(--rule)" strokeWidth="6" fill="none" />
+          <circle cx="90" cy="90" r={r} stroke="var(--red)" strokeWidth="6" fill="none"
+            strokeDasharray={c} strokeDashoffset={offset}
+            strokeLinecap="round" />
+        </svg>
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <div className="display" style={{ fontSize: 56, fontWeight: 400, lineHeight: 1, letterSpacing: '-0.04em' }}>
+            {shown}<span style={{ fontSize: 22, color: 'var(--muted)', fontWeight: 300 }}>%</span>
+          </div>
+          <div style={{ fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--muted)', marginTop: 6, fontWeight: 700 }}>match</div>
+        </div>
+      </div>
+      <div>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', color: 'var(--red)', fontWeight: 700, marginBottom: 12 }}>
+          ◆ Audience match score
+        </div>
+        <div className="display" style={{ fontSize: 28, fontWeight: 500, lineHeight: 1.2, letterSpacing: '-0.015em' }}>
+          {tier}
+        </div>
+        <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 12, fontStyle: 'italic' }}>
+          Modeled on public customer outcomes and industry benchmarks · {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// ANIMATED COUNT-UP STAT
+// ============================================================
+function AnimatedStat({ value, style = {}, className = '', delay = 600 }) {
+  const match = String(value).match(/^([\d,.]+)(.*)$/);
+  const target = match ? parseFloat(match[1].replace(/,/g, '')) : 0;
+  const suffix = match ? match[2] : '';
+  const decimals = match && match[1].includes('.') ? match[1].split('.')[1].length : 0;
+
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const start = Date.now();
+    const dur = 1800;
+    let raf;
+    const tick = () => {
+      const t = Math.min((Date.now() - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setCurrent(target * eased);
+      if (t < 1) raf = requestAnimationFrame(tick);
+      else setCurrent(target);
+    };
+    const t = setTimeout(() => { raf = requestAnimationFrame(tick); }, delay);
+    return () => { clearTimeout(t); if (raf) cancelAnimationFrame(raf); };
+  }, [target, delay]);
+
+  const display = decimals > 0 ? current.toFixed(decimals) : Math.floor(current).toLocaleString();
+  return <span className={className} style={style}>{display}{suffix}</span>;
+}
+
+// ============================================================
+// CAMPAIGN ROADMAP - 90-day launch timeline
+// ============================================================
+function CampaignRoadmap({ companyName }) {
+  const milestones = [
+    { week: 'Week 1', label: 'Scoping', detail: `Workshop with ${companyName}'s CX and ops leads. Identify Tier 1 intents and current platform stack.` },
+    { week: 'Week 2', label: 'Build', detail: 'Intent library scoped. Voice Agent flows defined with policy gates and escalation paths.' },
+    { week: 'Week 3', label: 'Go Live', detail: 'First Tier 1 intents live in production. Conversation Intelligence evaluates from day one.' },
+    { week: 'Week 5', label: 'Expand', detail: 'Containment data drives next intent batch. Agent Assist rolls to live agents.' },
+    { week: 'Week 8', label: 'Mid-Flight', detail: 'Containment review, intent expansion, copilot tuning, compliance audit.' },
+    { week: 'Week 12', label: 'Wrap', detail: 'Run-rate savings report, AHT delta, plan for next phase of automation.' },
+  ];
+
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const start = Date.now();
+    const dur = 1800;
+    let raf;
+    const tick = () => {
+      const t = Math.min((Date.now() - start) / dur, 1);
+      setProgress(1 - Math.pow(1 - t, 3));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    const d = setTimeout(() => { raf = requestAnimationFrame(tick); }, 400);
+    return () => { clearTimeout(d); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+
+  return (
+    <div style={{ padding: '60px 0', borderBottom: '1px solid var(--ink)' }}>
+      <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 36 }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>What's next</div>
+        <div>
+          <div className="display" style={{ fontSize: 36, fontWeight: 500, lineHeight: 1.05 }}>
+            From signature to <em style={{ color: 'var(--red)' }}>live</em> in 21 days.
+          </div>
+          <div style={{ marginTop: 10, fontSize: 14, color: 'var(--muted)' }}>
+            Your full 90-day rollout, mapped to a phased Acme AI deployment.
+          </div>
+        </div>
+      </div>
+
+      <div style={{ position: 'relative', padding: '20px 0 0' }}>
+        {/* Timeline track */}
+        <div className="roadmap-track" style={{
+          position: 'absolute', left: '4%', right: '4%', top: 30, height: 2,
+          background: 'var(--rule)',
+        }} />
+        <div className="roadmap-track" style={{
+          position: 'absolute', left: '4%', top: 30, height: 2, background: 'var(--red)',
+          width: `${92 * progress}%`, transition: 'width 0.1s',
+        }} />
+
+        {/* Milestones */}
+        <div className="grid-3 roadmap-grid" style={{ display: 'grid', gridTemplateColumns: `repeat(${milestones.length}, 1fr)`, gap: 0, position: 'relative' }}>
+          {milestones.map((m, i) => {
+            const milestoneProgress = Math.max(0, Math.min(1, progress * milestones.length - i));
+            return (
+              <div key={i} className="roadmap-milestone" style={{ padding: '0 12px', position: 'relative' }}>
+                <div className="roadmap-dot" style={{
+                  width: 18, height: 18, borderRadius: '50%',
+                  background: milestoneProgress > 0.5 ? 'var(--red)' : '#fff',
+                  border: '2px solid var(--ink)',
+                  margin: '20px auto 0',
+                  position: 'relative', zIndex: 2,
+                  transition: 'background 0.3s',
+                }} />
+                <div style={{ marginTop: 18, textAlign: 'center' }}>
+                  <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.2em', color: 'var(--red)', fontWeight: 700, marginBottom: 6 }}>
+                    {m.week}
+                  </div>
+                  <div className="display" style={{ fontSize: 20, fontWeight: 500, marginBottom: 8 }}>
+                    {m.label}
+                  </div>
+                  <div style={{ fontSize: 12, color: 'var(--muted)', lineHeight: 1.5 }}>{m.detail}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// PRINTABLE PLAN - designed multi-page leave-behind PDF
+// Renders only when printing. Each .pdf-page = one printed page.
+// ============================================================
+function PrintablePlan({ plan, companyName, domain, logoUrl, contactName }) {
+  if (!plan) return null;
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const totalPages = 4;
+
+  const PageHeader = ({ pageNum, label }) => (
+    <div className="pdf-header">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        <AcmeLogo size={20} />
+        <span style={{ width: 1, height: 14, background: '#000' }} />
+        <span>Acme AI Pilot Plan · {label}</span>
+      </div>
+      <div>{`${String(pageNum).padStart(2, '0')} / ${String(totalPages).padStart(2, '0')}`}</div>
+    </div>
+  );
+
+  const PageFooter = () => (
+    <div className="pdf-footer">
+      <span>Acme AI Pilot Plan · Modeled for {companyName}</span>
+      <span>{today}</span>
+    </div>
+  );
+
+  return (
+    <div className="printable-plan">
+
+      {/* PAGE 1 - COVER */}
+      <div className="pdf-page" style={{ background: '#FAFAFA' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ height: 2, width: 80, background: '#2C7CF6' }} />
+          <AcmeLogo size={24} />
+        </div>
+
+        <div style={{ marginTop: '1.4in' }}>
+          <div className="pdf-eyebrow">◆ Acme AI Strategy</div>
+          <div className="pdf-h1" style={{ fontSize: 80, fontWeight: 300, color: '#000' }}>
+            Prepared for<br/>
+            <em style={{ color: '#2C7CF6', fontStyle: 'italic', fontWeight: 400 }}>{companyName}.</em>
+          </div>
+          <div style={{ marginTop: 28, fontSize: 14, color: '#6B6B6B' }}>{plan.industryInferred}</div>
+        </div>
+
+        <div style={{ marginTop: 60, display: 'flex', alignItems: 'center', gap: 36 }}>
+          <div style={{ width: 130, height: 130, position: 'relative', flexShrink: 0 }}>
+            <svg viewBox="0 0 130 130" style={{ width: '100%', height: '100%', transform: 'rotate(-90deg)' }}>
+              <circle cx="65" cy="65" r="52" stroke="#E8E2D5" strokeWidth="5" fill="none" />
+              <circle cx="65" cy="65" r="52" stroke="#2C7CF6" strokeWidth="5" fill="none"
+                strokeDasharray={2 * Math.PI * 52}
+                strokeDashoffset={(2 * Math.PI * 52) * (1 - (plan.matchScore || 90) / 100)}
+                strokeLinecap="round" />
+            </svg>
+            <div style={{
+              position: 'absolute', inset: 0,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <div className="pdf-h2" style={{ fontSize: 38, color: '#000' }}>
+                {plan.matchScore || 90}<span style={{ fontSize: 16, color: '#6B6B6B' }}>%</span>
+              </div>
+              <div style={{ fontSize: 8, textTransform: 'uppercase', letterSpacing: '0.26em', color: '#6B6B6B', fontWeight: 700, marginTop: 4 }}>match</div>
+            </div>
+          </div>
+          <div>
+            <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700, color: '#2C7CF6', marginBottom: 8 }}>Automation fit score</div>
+            <div className="pdf-h3" style={{ fontSize: 24, lineHeight: 1.3 }}>
+              {(plan.matchScore || 90) >= 95 ? 'An exceptional automation fit.' : (plan.matchScore || 90) >= 90 ? 'One of the strongest fits in this cohort.' : 'A strong, defensible automation fit.'}
+            </div>
+            <div style={{ fontSize: 12, color: '#6B6B6B', marginTop: 10, fontStyle: 'italic' }}>
+              Modeled on public customer outcomes.
+            </div>
+          </div>
+        </div>
+
+        <div style={{ position: 'absolute', bottom: '0.6in', left: '0.7in', right: '0.7in' }}>
+          <div style={{ height: 1, background: '#000', marginBottom: 14 }} />
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+            <div>
+              <div className="pdf-h3" style={{ fontSize: 18, fontWeight: 500 }}>Acme AI built for the contact center.</div>
+              <div style={{ fontSize: 11, color: '#6B6B6B', marginTop: 6 }}>350+ enterprise customers · 60%+ containment · 31% AHT reduction</div>
+            </div>
+            <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: '#6B6B6B', fontWeight: 700, textAlign: 'right' }}>
+              Modeled<br/>{today}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* PAGE 2 - THE AUDIENCE & ICP */}
+      <div className="pdf-page">
+        <PageHeader pageNum={2} label="The Fit" />
+
+        <div style={{ marginTop: 36 }}>
+          <div className="pdf-eyebrow">◆ The Automation Fit</div>
+          <div className="pdf-quote" style={{ fontSize: 24, lineHeight: 1.4 }}>
+            "{plan.audienceMatch}"
+          </div>
+        </div>
+
+        <div className="pdf-rule" style={{ margin: '40px 0' }} />
+
+        <div>
+          <div className="pdf-eyebrow">◆ Primary Buyer</div>
+          <div className="pdf-h2" style={{ fontSize: 44, marginBottom: 16 }}>{plan.icp.title}</div>
+          <div style={{ fontSize: 15, lineHeight: 1.6, color: '#3A3A3A', maxWidth: '6in' }}>
+            {plan.icp.context}
+          </div>
+        </div>
+
+        <div className="pdf-rule" style={{ margin: '40px 0' }} />
+
+        <div>
+          <div className="pdf-eyebrow">◆ Live Signals From Your Operation</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 14 }}>
+            {plan.articles && plan.articles.slice(0, 3).map((a, i) => (
+              <div key={i} style={{ paddingBottom: 14, borderBottom: i < 2 ? '1px solid #E8E2D5' : 'none' }}>
+                <div style={{ fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700, color: '#2C7CF6', marginBottom: 6 }}>
+                  {a.section}
+                </div>
+                <div className="pdf-h3" style={{ fontSize: 17, lineHeight: 1.3 }}>{a.title}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <PageFooter />
+      </div>
+
+      {/* PAGE 3 - THE MIX & CREATIVE */}
+      <div className="pdf-page">
+        <PageHeader pageNum={3} label="The Plan" />
+
+        <div style={{ marginTop: 32 }}>
+          <div className="pdf-eyebrow">◆ The Rollout</div>
+          <div>
+            {plan.mediaMix.map((m, i) => (
+              <div key={i} style={{
+                display: 'grid', gridTemplateColumns: '60px 1fr 90px', gap: 18, alignItems: 'baseline',
+                padding: '12px 0', borderBottom: i < plan.mediaMix.length - 1 ? '1px solid #E8E2D5' : 'none',
+              }}>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 28, color: '#2C7CF6', fontWeight: 400 }}>
+                  {m.allocationPct}<span style={{ fontSize: 12 }}>%</span>
+                </div>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 14 }}>
+                    {m.channel}
+                  </div>
+                  <div style={{ fontSize: 11, color: '#6B6B6B', marginTop: 3, lineHeight: 1.5 }}>{m.rationale}</div>
+                </div>
+                <div style={{ fontSize: 13, fontWeight: 600, textAlign: 'right' }}>{m.estImpressions}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginTop: 36 }}>
+          <div className="pdf-eyebrow">◆ Sample Conversations</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+            {plan.creative.map((c, i) => (
+              <div key={i} style={{ border: '1px solid #000', padding: 14, minHeight: '2.4in', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ fontSize: 8, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#2C7CF6', fontWeight: 700, marginBottom: 8 }}>
+                  {c.format === 'display' ? 'Voice' : c.format === 'native' ? 'Live Assist' : 'Chat'}
+                </div>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 14, fontWeight: 500, lineHeight: 1.2, flex: 1 }}>
+                  {c.headline}
+                </div>
+                <div style={{ fontSize: 10, color: '#6B6B6B', marginTop: 8, lineHeight: 1.4 }}>{c.subhead}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <PageFooter />
+      </div>
+
+      {/* PAGE 4 - THE MATH, PROOF & NEXT STEPS */}
+      <div className="pdf-page">
+        <PageHeader pageNum={4} label="The Math" />
+
+        <div style={{ marginTop: 32, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
+          <div>
+            <div className="pdf-eyebrow">◆ Total Volume</div>
+            <div className="pdf-stat-big" style={{ fontSize: 64 }}>{plan.estimate.totalImpressions}</div>
+            <div style={{ fontSize: 11, color: '#6B6B6B', marginTop: 6 }}>Conversations covered per quarter</div>
+          </div>
+          <div>
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 14 }}>
+              <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700, color: '#2C7CF6' }}>◆ Annual savings range</span>
+              <span style={{ fontSize: 8, background: '#000', color: '#fff', padding: '2px 6px', textTransform: 'uppercase', letterSpacing: '0.2em', fontWeight: 700 }}>Modeled</span>
+            </div>
+            <div className="pdf-stat-mid" style={{ fontSize: 36 }}>{plan.estimate.pipelineRange}</div>
+            <div style={{ fontSize: 10, color: '#6B6B6B', marginTop: 8, lineHeight: 1.5, fontStyle: 'italic' }}>
+              {plan.estimate.assumptions}
+            </div>
+          </div>
+        </div>
+
+        <div className="pdf-rule" style={{ margin: '24px 0' }} />
+
+        {plan.caseStudy && (
+          <div style={{ background: '#000', color: '#F8F6F2', padding: 24, position: 'relative' }}>
+            <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2C7CF6', fontWeight: 700, marginBottom: 10 }}>
+              ◆ Proof: When {plan.caseStudy.brand} Ran This Play
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 18, marginBottom: 12 }}>
+              <div className="pdf-stat-big" style={{ fontSize: 56, color: '#2C7CF6' }}>{plan.caseStudy.stat}</div>
+              <div style={{ fontSize: 13, lineHeight: 1.4, fontWeight: 500, flex: 1 }}>
+                {plan.caseStudy.metric}
+                <div style={{ fontSize: 9, opacity: 0.55, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700, marginTop: 4 }}>In {plan.caseStudy.duration}</div>
+              </div>
+            </div>
+            <div style={{ borderTop: '1px solid rgba(245,241,235,0.2)', paddingTop: 12, marginTop: 12 }}>
+              <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 14, fontStyle: 'italic', lineHeight: 1.4, opacity: 0.95 }}>
+                "{plan.caseStudy.quote}"
+              </div>
+              <div style={{ fontSize: 9, opacity: 0.55, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700, marginTop: 8 }}>
+                Source: {plan.caseStudy.attribution}
+              </div>
+            </div>
+            <div style={{ borderTop: '1px solid rgba(245,241,235,0.2)', paddingTop: 12, marginTop: 12, display: 'flex', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ fontSize: 9, opacity: 0.55, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Stage</div>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 18, fontWeight: 500, marginTop: 2 }}>{plan.caseStudy.spend}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 9, opacity: 0.55, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Status</div>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 18, fontWeight: 500, color: '#2C7CF6', marginTop: 2 }}>{plan.caseStudy.return}</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div style={{ marginTop: 28 }}>
+          <div className="pdf-eyebrow">◆ Next Steps</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+            {[
+              { num: '01', t: 'Discovery', d: '20-minute scoping session with an Acme solutions architect.' },
+              { num: '02', t: 'Scope', d: 'Tier 1 intent library defined. Policy gates aligned with compliance.' },
+              { num: '03', t: 'Launch', d: 'First Tier 1 Agent live in production within 14 to 21 days.' },
+            ].map(s => (
+              <div key={s.num}>
+                <div style={{ fontFamily: "'Instrument Serif', serif", fontSize: 28, color: '#2C7CF6', fontWeight: 300, lineHeight: 1 }}>{s.num}</div>
+                <div className="pdf-h3" style={{ fontSize: 16, marginTop: 8 }}>{s.t}</div>
+                <div style={{ fontSize: 11, color: '#6B6B6B', marginTop: 6, lineHeight: 1.5 }}>{s.d}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <PageFooter />
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// COMPETITOR PRESENCE - FOMO close
+// ============================================================
+function CompetitorPresence({ competitors, companyName }) {
+  if (!competitors || !competitors.length) return null;
+  const activeCount = competitors.filter(c => c.live).length;
+  return (
+    <div style={{ padding: '60px 0', borderBottom: '1px solid var(--ink)' }}>
+      <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 36 }}>
+        <div>
+          <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700, marginBottom: 6 }}>
+            While you've been here
+          </div>
+          <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', color: 'var(--red)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span className="live-dot" style={{ width: 7, height: 7, background: 'var(--red)', borderRadius: '50%', display: 'inline-block' }} />
+            {activeCount} of your peers are <em style={{ fontStyle: 'italic' }}>live in production</em>
+          </div>
+        </div>
+        <div>
+          <div className="display" style={{ fontSize: 36, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+            Your current stack is <em style={{ color: 'var(--red)' }}>already in place.</em>
+          </div>
+          <div style={{ marginTop: 12, fontSize: 15, color: 'var(--muted)', lineHeight: 1.6 }}>
+            We layer on top, not rip and replace. {companyName} keeps the telephony, the CRM, the workforce platform. The AI Agents and Copilot plug in via SIP and integrations.
+          </div>
+        </div>
+      </div>
+      <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20 }}>
+        {competitors.map((c, i) => (
+          <div key={i} className="reveal-fast article-card" style={{
+            animationDelay: `${i * 0.1}s`,
+            background: '#fff', border: '1px solid var(--ink)', padding: 24,
+            display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 200,
+          }}>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
+                <span className="display" style={{ fontSize: 22, fontWeight: 600, letterSpacing: '-0.015em' }}>{c.name}</span>
+                {c.live && (
+                  <span style={{
+                    background: 'var(--red)', color: '#fff', fontSize: 9,
+                    padding: '4px 8px', textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700,
+                    display: 'flex', alignItems: 'center', gap: 6,
+                  }}>
+                    <span className="live-dot" style={{ width: 5, height: 5, background: '#fff', borderRadius: '50%', display: 'inline-block' }} />
+                    Live
+                  </span>
+                )}
+              </div>
+              <div className="display" style={{ fontSize: 28, color: 'var(--red)', fontWeight: 400, marginBottom: 4 }}>
+                {c.activity.split(' ')[0]}
+              </div>
+              <div style={{ fontSize: 14, color: 'var(--ink)', lineHeight: 1.4 }}>
+                {c.activity.split(' ').slice(1).join(' ')}
+              </div>
+            </div>
+            <div style={{ marginTop: 18, paddingTop: 14, borderTop: '1px solid var(--rule)', fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.16em', fontWeight: 600 }}>
+              {c.period}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// CHANNEL COMPARISON - Acme AI vs Live Agent vs BPO
+// ============================================================
+function ChannelComparison({ comparison, totalImpressions }) {
+  if (!comparison) return null;
+  const max = Math.max(comparison.observe, comparison.linkedin, comparison.googleDisplay);
+  const channels = [
+    { name: 'Acme Voice AI', cost: comparison.observe, color: 'var(--red)', isWinner: true, note: 'This plan' },
+    { name: 'Live Agent (in-house)', cost: comparison.linkedin, color: '#1A1A1A', note: `${(comparison.linkedin / comparison.observe).toFixed(1)}× more` },
+    { name: 'Outsourced BPO', cost: comparison.googleDisplay, color: '#1A1A1A', note: `${(comparison.googleDisplay / comparison.observe).toFixed(1)}× more` },
+  ];
+  return (
+    <div style={{ padding: '60px 0', borderBottom: '1px solid var(--ink)' }}>
+      <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 36 }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Cost per call</div>
+        <div>
+          <div className="display" style={{ fontSize: 36, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+            The same conversation, <em style={{ color: 'var(--red)' }}>by channel.</em>
+          </div>
+          <div style={{ marginTop: 12, fontSize: 15, color: 'var(--muted)', lineHeight: 1.6 }}>
+            Cost to handle a single Tier 1 inbound call across automation and human routes. Acme AI scales without the headcount math.
+          </div>
+        </div>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60 }} className="editorial-row">
+        <div></div>
+        <div style={{ display: 'grid', gap: 18 }}>
+          {channels.map((ch, i) => {
+            const pct = (ch.cost / max) * 100;
+            return (
+              <div key={i} className="reveal-fast" style={{ animationDelay: `${i * 0.12}s` }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ fontSize: 15, fontWeight: ch.isWinner ? 700 : 500, color: 'var(--ink)' }}>{ch.name}</span>
+                    {ch.isWinner && (
+                      <span style={{ background: 'var(--red)', color: '#fff', fontSize: 9, padding: '3px 8px', textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700 }}>
+                        Best value
+                      </span>
+                    )}
+                  </div>
+                  <div style={{ fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.16em', fontWeight: 600 }}>
+                    {ch.note}
+                  </div>
+                </div>
+                <div style={{ position: 'relative', height: 44, background: 'var(--rule)' }}>
+                  <BarFill pct={pct} color={ch.color} delay={i * 200} />
+                  <div style={{
+                    position: 'absolute', right: 14, top: 0, bottom: 0,
+                    display: 'flex', alignItems: 'center',
+                    fontFamily: "'Instrument Serif', Georgia, serif",
+                    fontSize: 22, fontWeight: 500, color: 'var(--ink)',
+                    letterSpacing: '-0.02em',
+                  }}>
+                    ${ch.cost.toFixed(2)}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BarFill({ pct, color, delay = 0 }) {
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const t = setTimeout(() => setWidth(pct), delay + 200);
+    return () => clearTimeout(t);
+  }, [pct, delay]);
+  return (
+    <div style={{
+      height: '100%', width: `${width}%`, background: color,
+      transition: 'width 1.4s cubic-bezier(0.2, 0.8, 0.2, 1)',
+    }} />
+  );
+}
+
+// ============================================================
+// CASE STUDY - trust signal
+// ============================================================
+function CaseStudy({ caseStudy }) {
+  if (!caseStudy) return null;
+  return (
+    <div style={{ padding: '80px 0', borderBottom: '1px solid var(--ink)' }}>
+      <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, marginBottom: 36 }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Proof</div>
+        <div className="display" style={{ fontSize: 36, fontWeight: 500, lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+          What happened when <em style={{ color: 'var(--red)' }}>{caseStudy.brand}</em> ran this play.
+        </div>
+      </div>
+      <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60 }}>
+        <div></div>
+        <div className="case-study-pad" style={{ background: 'var(--ink)', color: 'var(--cream)', padding: 48, position: 'relative', overflow: 'hidden' }}>
+          <div style={{
+            position: 'absolute', top: -100, right: -100, width: 360, height: 360,
+            background: 'radial-gradient(circle, rgba(44,124,246,0.32) 0%, transparent 70%)', pointerEvents: 'none',
+          }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div className="display case-study-stat" style={{ fontSize: 'clamp(64px, 8vw, 96px)', fontWeight: 300, lineHeight: 1, color: 'var(--red)', letterSpacing: '-0.04em' }}>
+              {caseStudy.stat}
+            </div>
+            <div style={{ fontSize: 18, marginTop: 12, lineHeight: 1.4, fontWeight: 500, maxWidth: 480 }}>
+              {caseStudy.metric}
+            </div>
+            <div style={{ fontSize: 11, marginTop: 8, opacity: 0.55, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 600 }}>
+              In {caseStudy.duration}
+            </div>
+
+            <div style={{ marginTop: 36, paddingTop: 28, borderTop: '1px solid rgba(245,241,235,0.2)' }}>
+              <div className="display" style={{ fontSize: 22, fontWeight: 400, fontStyle: 'italic', lineHeight: 1.4, maxWidth: 600, opacity: 0.95 }}>
+                "{caseStudy.quote}"
+              </div>
+              <div style={{ fontSize: 12, marginTop: 16, opacity: 0.6, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 600 }}>
+                Source: {caseStudy.attribution}
+              </div>
+            </div>
+
+            <div style={{ marginTop: 36, paddingTop: 28, borderTop: '1px solid rgba(245,241,235,0.2)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
+              <div>
+                <div style={{ fontSize: 10, opacity: 0.55, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Stage</div>
+                <div className="display" style={{ fontSize: 32, marginTop: 6, fontWeight: 500 }}>{caseStudy.spend}</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 10, opacity: 0.55, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Status</div>
+                <div className="display" style={{ fontSize: 32, marginTop: 6, fontWeight: 500, color: 'var(--red)' }}>{caseStudy.return}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// BOOKING SECTION (post-unlock) - Calendly + PDF download
+// ============================================================
+function BookingSection({ companyName, contactName, reset }) {
+  const [pdfStatus, setPdfStatus] = useState('');
+
+  const downloadPdf = () => {
+    setPdfStatus('preparing');
+    setTimeout(() => {
+      setPdfStatus('ready');
+      window.print();
+    }, 600);
+  };
+
+  return (
+    <div className="no-print" style={{ marginTop: 60 }}>
+      <div style={{ background: 'var(--cream)', border: '2px solid var(--ink)', padding: '48px 56px', textAlign: 'center' }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--red)', fontWeight: 700 }}>◆ Plan unlocked</div>
+        <h2 className="display" style={{ fontSize: 56, margin: '24px 0 12px', lineHeight: 1.02, fontWeight: 400, letterSpacing: '-0.025em' }}>
+          You're in, {contactName ? contactName.split(' ')[0] : companyName.split(' ')[0]}.
+        </h2>
+        <p style={{ fontSize: 17, color: '#3A3A3A', maxWidth: 580, margin: '0 auto', lineHeight: 1.55 }}>
+          Pick a 20-minute slot below to walk through this with an Acme solutions architect, or take the plan with you.
+        </p>
+      </div>
+
+      {/* Calendly embed */}
+      <div style={{ marginTop: 32, background: '#fff', border: '1px solid var(--ink)', padding: 0, overflow: 'hidden' }}>
+        <div style={{ background: 'var(--ink)', color: 'var(--cream)', padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span className="live-dot" style={{ width: 8, height: 8, background: 'var(--green)', borderRadius: '50%', display: 'inline-block' }} />
+            <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>Live calendar · Book in 30 seconds</span>
+          </div>
+          <span style={{ fontSize: 11, opacity: 0.6 }}>Powered by Calendly</span>
+        </div>
+        <FauxCalendly companyName={companyName} />
+      </div>
+
+      {/* Action row */}
+      <div style={{ marginTop: 24, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }} className="grid-2">
+        <button onClick={downloadPdf} style={{
+          padding: 20, background: '#fff', color: 'var(--ink)',
+          border: '2px solid var(--ink)', fontSize: 13, textTransform: 'uppercase',
+          letterSpacing: '0.2em', fontWeight: 700, cursor: 'pointer',
+        }}>
+          {pdfStatus === 'preparing' ? 'Preparing PDF…' : '↓ Download as PDF'}
+        </button>
+        <button onClick={() => {
+          if (navigator.share) {
+            navigator.share({ title: `${companyName} Acme AI Pilot Plan`, url: window.location.href });
+          } else {
+            navigator.clipboard?.writeText(window.location.href);
+          }
+        }} style={{
+          padding: 20, background: '#fff', color: 'var(--ink)',
+          border: '2px solid var(--ink)', fontSize: 13, textTransform: 'uppercase',
+          letterSpacing: '0.2em', fontWeight: 700, cursor: 'pointer',
+        }}>
+          ⤴ Share with team
+        </button>
+      </div>
+
+      <button onClick={reset} style={{
+        marginTop: 16, width: '100%', padding: 16, background: 'transparent',
+        color: 'var(--muted)', border: 'none', fontSize: 12, textTransform: 'uppercase',
+        letterSpacing: '0.2em', cursor: 'pointer', fontWeight: 600,
+      }}>
+        Plan another brand →
+      </button>
+    </div>
+  );
+}
+
+function FauxCalendly({ companyName }) {
+  // Realistic Calendly-style picker - shows next 5 weekdays + time slots
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [confirmed, setConfirmed] = useState(false);
+
+  const days = [];
+  const today = new Date();
+  let d = new Date(today);
+  d.setDate(d.getDate() + 1);
+  while (days.length < 5) {
+    if (d.getDay() !== 0 && d.getDay() !== 6) days.push(new Date(d));
+    d.setDate(d.getDate() + 1);
+  }
+
+  const slots = [
+    ['9:00 AM', '10:30 AM', '11:00 AM'],
+    ['9:30 AM', '1:00 PM', '2:30 PM', '3:00 PM'],
+    ['10:00 AM', '11:30 AM', '2:00 PM'],
+    ['9:00 AM', '10:00 AM', '11:00 AM', '3:30 PM'],
+    ['1:30 PM', '2:00 PM', '4:00 PM'],
+  ];
+
+  if (confirmed) {
+    return (
+      <div style={{ padding: '60px 32px', textAlign: 'center', background: 'var(--cream)' }}>
+        <div style={{ fontSize: 48, marginBottom: 16 }}>✓</div>
+        <div className="display" style={{ fontSize: 32, fontWeight: 500, marginBottom: 8 }}>You're booked.</div>
+        <div style={{ fontSize: 15, color: 'var(--muted)' }}>
+          {days[selectedDay].toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })} · {slots[selectedDay][selectedSlot]}
+        </div>
+        <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 12 }}>
+          Confirmation sent. Calendar invite incoming.
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', minHeight: 360 }} className="grid-2">
+      <div style={{ borderRight: '1px solid var(--rule)', padding: 24 }}>
+        <div className="display" style={{ fontSize: 20, fontWeight: 500, marginBottom: 6 }}>Pilot Scoping Session</div>
+        <div style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.5 }}>
+          A 20-minute call with an Acme solutions architect to walk through {companyName}'s plan.
+        </div>
+        <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--rule)', fontSize: 13 }}>
+          <div style={{ marginBottom: 8 }}>⏱ <strong>20 minutes</strong></div>
+          <div style={{ marginBottom: 8 }}>📞 Google Meet</div>
+          <div>🌐 Times shown in your timezone</div>
+        </div>
+      </div>
+      <div style={{ padding: 20 }}>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700, color: 'var(--muted)', marginBottom: 14 }}>
+          Select a day
+        </div>
+        <div className="calendly-day-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8, marginBottom: 22 }}>
+          {days.map((day, i) => (
+            <button key={i} onClick={() => { setSelectedDay(i); setSelectedSlot(null); }}
+              style={{
+                padding: '10px 6px', cursor: 'pointer',
+                background: selectedDay === i ? 'var(--ink)' : '#fff',
+                color: selectedDay === i ? 'var(--cream)' : 'var(--ink)',
+                border: '1px solid var(--ink)', textAlign: 'center',
+              }}>
+              <div style={{ fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', opacity: 0.7, fontWeight: 600 }}>
+                {day.toLocaleDateString('en-US', { weekday: 'short' })}
+              </div>
+              <div className="display" style={{ fontSize: 22, fontWeight: 500, marginTop: 2 }}>{day.getDate()}</div>
+            </button>
+          ))}
+        </div>
+        <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700, color: 'var(--muted)', marginBottom: 14 }}>
+          Available times
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8, marginBottom: 16 }}>
+          {slots[selectedDay].map((slot, i) => (
+            <button key={i} onClick={() => setSelectedSlot(i)}
+              style={{
+                padding: 12, cursor: 'pointer', fontSize: 14, fontWeight: 600,
+                background: selectedSlot === i ? 'var(--red)' : '#fff',
+                color: selectedSlot === i ? '#fff' : 'var(--ink)',
+                border: selectedSlot === i ? '1px solid var(--red)' : '1px solid var(--ink)',
+              }}>
+              {slot}
+            </button>
+          ))}
+        </div>
+        {selectedSlot !== null && (
+          <button onClick={() => setConfirmed(true)} className="reveal-fast" style={{
+            width: '100%', padding: 16, background: 'var(--ink)', color: 'var(--cream)',
+            border: 'none', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.22em',
+            fontWeight: 700, cursor: 'pointer',
+          }}>
+            Confirm booking →
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// EDITORIAL CALENDAR TEASE
+// ============================================================
+function EditorialCalendar() {
+  const today = new Date();
+  const day = today.getDay();
+  const daysUntilThursday = (4 - day + 7) % 7 || 7;
+  const next = new Date(today);
+  next.setDate(today.getDate() + daysUntilThursday);
+  const formatted = next.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+  return (
+    <div style={{ marginTop: 60, padding: '32px 36px', background: 'var(--cream)', border: '1px solid var(--ink)', display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 24, alignItems: 'center' }} className="editorial-row">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <span className="live-dot" style={{ width: 9, height: 9, background: 'var(--red)', borderRadius: '50%', display: 'inline-block' }} />
+        <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.24em', color: 'var(--red)', fontWeight: 700 }}>
+          Pilot Calendar
+        </div>
+      </div>
+      <div>
+        <div className="display" style={{ fontSize: 22, fontWeight: 500, lineHeight: 1.25 }}>
+          Next pilot scoping window opens <em>{formatted} · 9am PT.</em>
+        </div>
+        <div style={{ fontSize: 13, color: 'var(--muted)', marginTop: 6 }}>
+          Q2 cohort: 7 of 12 pilot slots remaining. First Tier 1 Agent live within 14 days of scoping.
+        </div>
+      </div>
+      <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', color: 'var(--ink)', fontWeight: 700, whiteSpace: 'nowrap' }}>
+        Hold a slot →
+      </div>
+    </div>
+  );
+}
+
+function ArticleCard({ title, section, readers, time }) {
+  return (
+    <div className="article-card reveal-fast" style={{ background: '#fff', border: '1px solid var(--ink)', padding: 24, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 180 }}>
+      <div>
+        <div style={{ marginBottom: 14 }}>
+          <span style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--red)', fontWeight: 700 }}>{section}</span>
+        </div>
+        <div className="display" style={{ fontSize: 19, lineHeight: 1.2, fontWeight: 500 }}>{title}</div>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 18, paddingTop: 14, borderTop: '1px solid var(--rule)', fontSize: 11, color: 'var(--muted)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span className="live-dot" style={{ width: 6, height: 6, background: 'var(--green)', borderRadius: '50%', display: 'inline-block' }} />
+          <span style={{ textTransform: 'uppercase', letterSpacing: '0.16em', fontWeight: 600 }}>{readers} reading</span>
+        </div>
+        <div>{time}</div>
+      </div>
+    </div>
+  );
+}
+
+function EditorialRow({ label, children }) {
+  return (
+    <div className="editorial-row" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 60, padding: '60px 0', borderBottom: '1px solid var(--ink)' }}>
+      <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.22em', fontWeight: 700 }}>{label}</div>
+      <div>{children}</div>
+    </div>
+  );
+}
+
+// ============================================================
+// MOCKS
+// ============================================================
+function MockChrome({ children, blurred, index }) {
+  return (
+    <div className="reveal" style={{ animationDelay: `${index * 0.15}s`, position: 'relative' }}>
+      <div style={{ filter: blurred ? 'blur(7px) saturate(0.7)' : 'none', transition: 'filter 0.4s', pointerEvents: blurred ? 'none' : 'auto' }}>
+        {children}
+      </div>
+      {blurred && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(250, 250, 250, 0.4)' }}>
+          <div style={{ background: 'var(--ink)', color: 'var(--cream)', padding: '10px 18px', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700 }}>🔒 Unlock below</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function LogoBadge({ logoUrl, logoOk, companyName, size = 32 }) {
+  // Extract domain from logoUrl (e.g., https://logo.clearbit.com/salesforce.com)
+  const domain = logoUrl ? logoUrl.replace(/^https?:\/\/[^/]+\//, '').split('?')[0] : '';
+  return <BrandLogo domain={domain} name={companyName} size={size} />;
+}
+
+function DisplayMock({ creative, logoUrl, logoOk, companyName, blurred, index }) {
+  if (!creative) return null;
+  const domain = logoUrl ? logoUrl.replace(/^https?:\/\/[^/]+\//, '').split('?')[0] : '';
+  const brandColor = BRAND_COLORS[domain] || '#1A1A1A';
+  return (
+    <MockChrome blurred={blurred} index={index}>
+      <div style={{ background: '#fff', border: '1px solid var(--ink)', height: 440, display: 'flex', flexDirection: 'column', boxShadow: '0 12px 24px -12px rgba(0,0,0,0.15)' }}>
+        <div style={{ background: 'var(--ink)', color: 'var(--cream)', padding: '12px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <AcmeLogo size={22} light />
+          <span style={{ fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.22em', opacity: 0.55 }}>Acme AI · resolved 0:38</span>
+        </div>
+        <div style={{
+          padding: 28, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+          background: `linear-gradient(155deg, #fff 0%, #fff 55%, ${brandColor}11 100%)`,
+          position: 'relative', overflow: 'hidden',
+        }}>
+          <div style={{
+            position: 'absolute', bottom: -40, right: -40, width: 180, height: 180, borderRadius: '50%',
+            background: `radial-gradient(circle, ${brandColor}1A 0%, transparent 70%)`, pointerEvents: 'none',
+          }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <div style={{ marginBottom: 24 }}>
+              <BrandLogo domain={domain} name={companyName} size={36} />
+            </div>
+            <div className="display" style={{ fontSize: 30, lineHeight: 1.08, fontWeight: 500, letterSpacing: '-0.025em' }}>
+              {creative.headline}
+            </div>
+            <div style={{ fontSize: 13, marginTop: 14, color: '#4A4A4A', lineHeight: 1.5 }}>{creative.subhead}</div>
+          </div>
+          <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ background: brandColor, color: '#fff', padding: '12px 20px', fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.16em', fontWeight: 700 }}>
+              Learn more →
+            </div>
+            <div style={{ fontSize: 9, color: '#999', textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 600 }}>
+              Ad
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style={{ marginTop: 14, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#999', fontWeight: 600 }}>
+        Voice Agent · Inbound Call
+      </div>
+    </MockChrome>
+  );
+}
+
+function NativeMock({ creative, logoUrl, logoOk, companyName, blurred, index }) {
+  if (!creative) return null;
+  const domain = logoUrl ? logoUrl.replace(/^https?:\/\/[^/]+\//, '').split('?')[0] : '';
+  const brandColor = BRAND_COLORS[domain] || '#1A1A1A';
+  return (
+    <MockChrome blurred={blurred} index={index}>
+      <div style={{ background: '#fff', border: '1px solid var(--ink)', height: 440, display: 'flex', flexDirection: 'column', boxShadow: '0 12px 24px -12px rgba(0,0,0,0.15)' }}>
+        <div style={{ background: '#fff', borderBottom: '1px solid var(--ink)', padding: '12px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <AcmeLogo size={22} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ width: 6, height: 6, background: 'var(--red)', borderRadius: '50%' }} />
+            <span style={{ fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.22em', color: 'var(--red)', fontWeight: 700 }}>Live Assist</span>
+          </div>
+        </div>
+        <div style={{
+          height: 130, position: 'relative', overflow: 'hidden',
+          background: `linear-gradient(135deg, var(--ink) 0%, #1A1A1A 60%, ${brandColor} 130%)`,
+        }}>
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: `radial-gradient(circle at 25% 50%, ${brandColor}55 0%, transparent 65%)`,
+          }} />
+          <div style={{
+            position: 'absolute', top: 14, left: 18, fontSize: 9, color: 'rgba(255,255,255,0.7)',
+            textTransform: 'uppercase', letterSpacing: '0.2em', fontWeight: 600,
+          }}>
+            ◆ Live Call · in progress
+          </div>
+          <div style={{
+            position: 'absolute', bottom: 18, left: 18, right: 18,
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          }}>
+            <div style={{ filter: 'brightness(0) invert(1)' }}>
+              <BrandLogo domain={domain} name={companyName} size={32} light />
+            </div>
+            <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 600 }}>
+              Live · 0:42
+            </span>
+          </div>
+        </div>
+        <div style={{ padding: '20px 22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <div className="display" style={{ fontSize: 21, lineHeight: 1.2, fontWeight: 600, letterSpacing: '-0.015em', flex: 1 }}>
+            {creative.headline}
+          </div>
+          <div style={{ marginTop: 14, paddingTop: 12, borderTop: '1px solid var(--rule)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 700, color: 'var(--ink)' }}>
+              {companyName} · Agent Assist
+            </div>
+            <div style={{ fontSize: 10, color: 'var(--muted)' }}>Sponsored</div>
+          </div>
+        </div>
+      </div>
+      <div style={{ marginTop: 14, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#999', fontWeight: 600 }}>Agent Assist · Live Assist</div>
+    </MockChrome>
+  );
+}
+
+function NewsletterMock({ creative, logoUrl, logoOk, companyName, blurred, index }) {
+  if (!creative) return null;
+  const domain = logoUrl ? logoUrl.replace(/^https?:\/\/[^/]+\//, '').split('?')[0] : '';
+  const brandColor = BRAND_COLORS[domain] || 'var(--red)';
+  return (
+    <MockChrome blurred={blurred} index={index}>
+      <div style={{ background: 'var(--cream)', border: '1px solid var(--ink)', height: 440, display: 'flex', flexDirection: 'column', boxShadow: '0 12px 24px -12px rgba(0,0,0,0.15)' }}>
+        <div style={{ padding: '14px 20px', borderBottom: '1px solid var(--ink)', background: '#fff' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+            <span className="display" style={{ fontSize: 17, fontWeight: 600 }}>Knowledge Agent Session</span>
+            <span style={{ fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#888', fontWeight: 600 }}>Session · live</span>
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--muted)' }}>
+            Customer · authenticated · web channel
+          </div>
+        </div>
+        <div style={{
+          padding: '8px 20px', background: 'var(--cream)',
+          borderBottom: '1px dashed #BBB',
+          fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.22em', color: 'var(--muted)', fontWeight: 700,
+        }}>
+          ◆ Live Chat · in progress
+        </div>
+        <div style={{ padding: '20px 22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <div style={{ marginBottom: 18, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <BrandLogo domain={domain} name={companyName} size={28} />
+            <span style={{ fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.18em', color: 'var(--muted)', fontWeight: 600 }}>
+              Resolved by
+            </span>
+          </div>
+          <div className="display" style={{ fontSize: 24, lineHeight: 1.18, fontWeight: 600, letterSpacing: '-0.015em' }}>
+            {creative.headline}
+          </div>
+          <div style={{ fontSize: 13, marginTop: 12, color: '#3A3A3A', lineHeight: 1.5, flex: 1 }}>{creative.subhead}</div>
+          <div style={{
+            marginTop: 18, paddingTop: 14, borderTop: '1px solid #D8D2C4',
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          }}>
+            <span style={{ fontSize: 11, color: brandColor, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em' }}>
+              Resume conversation →
+            </span>
+            <span style={{ fontSize: 9, color: 'var(--muted)' }}>Live</span>
+          </div>
+        </div>
+      </div>
+      <div style={{ marginTop: 14, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.18em', color: '#999', fontWeight: 600 }}>Knowledge Agent · Web and Mobile</div>
+    </MockChrome>
+  );
+}
+
+// ============================================================
+// LEAD CAPTURE
+// ============================================================
+function LeadCapture({ email, setEmail, contactName, setContactName, onUnlock, companyName }) {
+  const [submitting, setSubmitting] = useState(false);
+  const ready = email.includes('@') && contactName.length > 1;
+  const submit = () => {
+    if (!ready) return;
+    setSubmitting(true);
+    setTimeout(() => onUnlock(), 700);
+  };
+  return (
+    <div className="lead-capture-pad" style={{ marginTop: 60, padding: '64px 56px', background: 'var(--ink)', color: 'var(--cream)', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', top: -120, right: -120, width: 460, height: 460, background: 'radial-gradient(circle, rgba(44,124,246,0.4) 0%, transparent 70%)', pointerEvents: 'none' }} />
+      <div className="grid-2" style={{ position: 'relative', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60 }}>
+        <div>
+          <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--red)', marginBottom: 22, fontWeight: 700 }}>◆ Unlock the full plan</div>
+          <h2 className="display" style={{ fontSize: 50, lineHeight: 1.05, margin: 0, fontWeight: 400 }}>
+            See every conversation.<br />Share with your team.<br /><em style={{ color: 'var(--red)' }}>Talk to an architect.</em>
+          </h2>
+          <p style={{ marginTop: 28, fontSize: 16, lineHeight: 1.6, opacity: 0.8, maxWidth: 440 }}>
+            Unlock the full plan, the share-ready PDF for your team, and a 20-minute scoping session with an <AcmeLogo size="0.95em" light style={{ verticalAlign: '-0.05em' }} /> solutions architect who'll tailor every detail for {companyName}.
+          </p>
+        </div>
+        <div>
+          <div style={{ display: 'grid', gap: 14 }}>
+            <input type="text" value={contactName} onChange={e => setContactName(e.target.value)} placeholder="Your name"
+              style={{ padding: '20px 22px', fontSize: 16, border: '1px solid var(--cream)', background: 'transparent', color: 'var(--cream)', outline: 'none' }} />
+            <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Work email"
+              style={{ padding: '20px 22px', fontSize: 16, border: '1px solid var(--cream)', background: 'transparent', color: 'var(--cream)', outline: 'none' }} />
+            <button onClick={submit} disabled={!ready || submitting}
+              style={{
+                padding: 24, background: ready ? 'var(--red)' : '#444',
+                color: '#fff', border: 'none', fontSize: 14, textTransform: 'uppercase',
+                letterSpacing: '0.22em', fontWeight: 700, cursor: ready ? 'pointer' : 'not-allowed',
+              }}>
+              {submitting ? 'Saving…' : 'Unlock & book a session →'}
+            </button>
+            <div style={{ fontSize: 12, opacity: 0.55, marginTop: 4 }}>
+              By continuing you agree to be contacted by our solutions team.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Unlocked({ companyName, reset }) {
+  return (
+    <div style={{ marginTop: 60, padding: 64, background: 'var(--cream)', border: '2px solid var(--ink)', textAlign: 'center' }}>
+      <div style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.26em', color: 'var(--red)', fontWeight: 700 }}>◆ Plan unlocked</div>
+      <h2 className="display" style={{ fontSize: 56, margin: '24px 0 0', lineHeight: 1, fontWeight: 400 }}>
+        We'll be in touch, {companyName.split(' ')[0]}.
+      </h2>
+      <p style={{ marginTop: 18, fontSize: 16, color: '#4A4A4A' }}>
+        An <AcmeLogo size="0.95em" /> solutions architect will reach out within one business day.
+      </p>
+      <button onClick={reset} style={{
+        marginTop: 36, padding: '14px 30px', background: 'transparent',
+        color: 'var(--ink)', border: '1.5px solid var(--ink)', fontSize: 13, textTransform: 'uppercase',
+        letterSpacing: '0.18em', cursor: 'pointer', fontWeight: 700,
+      }}>Model another company →</button>
+    </div>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={{ borderTop: '1px solid var(--ink)', marginTop: 0, padding: '40px 32px', background: 'var(--ink)', color: 'var(--cream)' }}>
+      <div style={{ maxWidth: 1320, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12, opacity: 0.7 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <AcmeLogo size={18} light />
+          <span style={{ width: 1, height: 16, background: 'rgba(248,246,242,0.3)' }} />
+          <span style={{ textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 600 }}>Acme Inbound Discovery Audit · Prototype</span>
+        </div>
+        <div style={{ textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 600 }}>
+          Modeled by Will Delehanty
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+</body>
+</html>
