@@ -172,6 +172,71 @@
     .work article:nth-child(even){padding:32px 0;border-right:none}
   }
 
+  /* ── The System (data flow) ───────────────── */
+  .system-intro{font-family:"Source Serif 4",serif;font-size:20px;line-height:1.55;color:#2C2722;max-width:62ch;margin:0 0 56px}
+  .flow{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:48px;
+    list-style:none;padding:0;margin:0;
+  }
+  .flow-step{
+    position:relative;background:var(--paper-2);border:1px solid var(--rule);
+    padding:24px 22px 26px;
+  }
+  .flow-step .step-num{
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;
+    color:var(--accent);display:block;margin-bottom:10px;
+  }
+  .flow-step h4{
+    font-family:"Source Serif 4",serif;font-weight:500;font-size:24px;letter-spacing:-.01em;
+    margin:0 0 6px;
+  }
+  .flow-step .stack-tag{
+    font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);
+    display:block;margin-bottom:12px;
+  }
+  .flow-step p{
+    margin:0;font-family:"Source Serif 4",serif;font-size:15px;line-height:1.5;color:#2C2722;
+  }
+  /* Connector: dashed flowing line + arrow, between adjacent steps */
+  .flow-step + .flow-step::before{
+    content:"";position:absolute;left:-38px;top:50%;
+    width:26px;height:1px;transform:translateY(-50%);
+    background-image:linear-gradient(90deg,var(--accent) 55%,transparent 55%);
+    background-size:8px 1px;background-repeat:repeat-x;
+    animation:dataflow 1.6s linear infinite;
+  }
+  .flow-step + .flow-step::after{
+    content:"";position:absolute;left:-12px;top:50%;
+    width:0;height:0;transform:translateY(-50%);
+    border-left:6px solid var(--accent);
+    border-top:4px solid transparent;border-bottom:4px solid transparent;
+  }
+  @keyframes dataflow{
+    from{background-position:0 0}
+    to{background-position:16px 0}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .flow-step + .flow-step::before{animation:none}
+  }
+  @media (max-width:880px){
+    .flow{grid-template-columns:1fr;gap:40px}
+    .flow-step + .flow-step::before{
+      left:50%;top:-26px;width:1px;height:18px;transform:translateX(-50%);
+      background-image:linear-gradient(180deg,var(--accent) 55%,transparent 55%);
+      background-size:1px 8px;
+      animation:dataflow-v 1.6s linear infinite;
+    }
+    .flow-step + .flow-step::after{
+      left:50%;top:-8px;transform:translateX(-50%);
+      border-left:5px solid transparent;border-right:5px solid transparent;
+      border-top:6px solid var(--accent);border-bottom:none;
+    }
+    @keyframes dataflow-v{
+      from{background-position:0 0}
+      to{background-position:0 16px}
+    }
+  }
+
   /* ── Lab / In the Wild ────────────────────── */
   .lab-intro{font-family:"Source Serif 4",serif;font-size:20px;line-height:1.55;color:#2C2722;max-width:60ch;margin:0 0 40px}
   .lab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px}
@@ -292,6 +357,7 @@
     <div class="mark">William Delehanty<span class="dot">.</span></div>
     <nav class="nav" aria-label="Primary">
       <a href="#work">Work</a>
+      <a href="#system">System</a>
       <a href="#lab">Lab</a>
       <a href="#career">Career</a>
       <a href="#about">About</a>
@@ -391,6 +457,43 @@
         <span class="tag">Audience development · Event marketing · Global</span>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ── THE SYSTEM (data flow) ─────────────────────── -->
+<section class="section" id="system">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">The System</span>
+      <h2 class="serif">Anonymous to opportunity.</h2>
+    </div>
+    <p class="system-intro reveal">The plumbing under the funnel — one profile, four systems, in motion. Behavior becomes identity, identity becomes intent, intent becomes pipeline.</p>
+    <ol class="flow reveal" aria-label="Data flow from audience to pipeline">
+      <li class="flow-step">
+        <span class="step-num">01 / Audience</span>
+        <h4 class="serif">Anonymous</h4>
+        <span class="stack-tag">Forbes network · 18M+ profiles</span>
+        <p>Behavior captured at scale across editorial, product, and event surfaces.</p>
+      </li>
+      <li class="flow-step">
+        <span class="step-num">02 / Identity</span>
+        <h4 class="serif">Resolved</h4>
+        <span class="stack-tag">BlueConic CDP</span>
+        <p>Anonymous behavior resolves into a known profile via on-site dialogue and progressive profiling.</p>
+      </li>
+      <li class="flow-step">
+        <span class="step-num">03 / Lifecycle</span>
+        <h4 class="serif">Qualified</h4>
+        <span class="stack-tag">Pardot</span>
+        <p>Segment-aware nurture, intent scoring, and a clean handoff to sales with the metadata they need.</p>
+      </li>
+      <li class="flow-step">
+        <span class="step-num">04 / Pipeline</span>
+        <h4 class="serif">Routed</h4>
+        <span class="stack-tag">Salesforce</span>
+        <p>Named-account opportunity, contact-role attribution, revenue tied back to source — conservatively tracked.</p>
+      </li>
+    </ol>
   </div>
 </section>
 
