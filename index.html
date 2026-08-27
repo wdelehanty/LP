@@ -517,6 +517,10 @@
         <div class="meta"><h4 class="serif">Enterprise GTM pitch · three artifacts</h4><p>Landing page, inbound audit, lifecycle &amp; pipeline console. White-labeled.</p></div>
       </a>
 
+      <!-- Build queue (ship as they get scrubbed, same lab-card format):
+           1. Lifecycle architecture walkthrough
+           2. Event pacing dashboard (sanitized) -->
+
     </div>
   </div>
 </section>
@@ -622,11 +626,11 @@
         </div>
         <div class="group">
           <h3>Build &amp; Production</h3>
-          <ul><li>HTML / CSS</li><li>Knak</li><li>Stripo</li><li>WordPress</li><li>Photoshop</li><li>Premiere Pro</li><li>Canva</li><li>Smartsheet</li><li>Bizzabo</li></ul>
+          <ul><li>HTML / CSS</li><li>Knak</li><li>Stripo</li><li>WordPress</li><li>Photoshop</li><li>Premiere Pro</li><li>Canva</li><li>Smartsheet</li><li>Bizzabo</li><li>Jira</li><li>DocSend</li><li>Brandfolder</li></ul>
         </div>
         <div class="group">
           <h3>AI &amp; Workflow</h3>
-          <ul><li>ChatGPT Enterprise (custom GPTs)</li><li>Bertie</li><li>Jira</li><li>DocSend</li><li>Brandfolder</li></ul>
+          <ul><li>Claude Code</li><li>n8n (production automation stacks)</li><li>MCP servers</li><li>Anthropic API</li><li>Retell (AI voice agents)</li><li>ChatGPT Enterprise (custom GPTs)</li></ul>
         </div>
       </div>
     </div>
@@ -660,6 +664,17 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
   },{rootMargin:"-40px 0px",threshold:0.05});
   document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
 </script>
 </body>
 </html>
