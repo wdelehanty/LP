@@ -12,6 +12,7 @@
 <link rel="preload" href="../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../site.css">
+<script defer src="../site.js"></script>
 </head>
 <body>
 
@@ -42,7 +43,7 @@
     <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
     <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
     <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
-    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.2.0</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.3.0</b></span>
   </div>
 </div>
 
@@ -62,17 +63,17 @@
   <div class="wrap">
     <div class="prose">
       <h3>The build</h3>
-      <p>Hand-written HTML and CSS. No framework, no CMS, no build pipeline beyond two small Python scripts: one stamps the version and deploy date into the footer so they can never be typed wrong, and one inlines the diagrams. Hosted on GitHub Pages. Pages start from a shared skeleton and get written by hand from there.</p>
+      <p>Hand-written HTML and CSS with one small script for motion. No framework, no CMS, no build pipeline beyond the Python scripts that stamp the version, inline the diagrams, and render workflow exports. Hosted on GitHub Pages. Pages start from a shared skeleton and get written by hand from there.</p>
       <p>Type is Barlow for display and body, Barlow Condensed for labels and stats, IBM Plex Mono for code and captions, all self-hosted as woff2 files totaling about 60K. The palette is a warm gunmetal with one accent, a safety yellow borrowed from workwear, because most of what this site shows is diagrams and dashboards and they read best on a dark ground.</p>
 
       <h3>The status rail</h3>
       <p>The strip at the top of every page reports real state: how many n8n workflows exist across my three systems, how many are active, and when the last one ran. An hourly workflow queries the n8n API and writes a small JSON file into this site's repository; the page reads it on load. If the file fails to load you see the values from the last deploy, never an error. It is there because the systems described on this site are running while you read about them.</p>
 
       <h3>The diagrams</h3>
-      <p>Workflow diagrams are rendered from actual n8n workflow exports into the site's own colors and type. Architecture diagrams are drawn by hand in the same language. Each carries a line saying how it was made.</p>
+      <p>Workflow diagrams are rendered from actual n8n workflow exports into the site's own colors and type. Architecture diagrams are drawn by hand in the same language. Each carries a line saying how it was made. The two photographs that are not mine are labeled as such and come from Unsplash: brushed steel by apryan widodo, the anvil by Pim de Boer. My own photos get the film grain when they land.</p>
 
       <h3>Deliberately left out</h3>
-      <p>No analytics scripts, no cookies, no consent banner because there is nothing to consent to. The one script that phones home is a visit beacon that fires only when a URL carries a code I handed out myself, and it reads nothing from your browser. No gradients, no glassmorphism, no scroll animations, no testimonial carousel, no logo strip, no stock illustration. No em-dashes either, down to the commit messages, for reasons that are between me and my drafts.</p>
+      <p>No analytics scripts, no cookies, no consent banner because there is nothing to consent to. The one script that phones home is a visit beacon that fires only when a URL carries a code I handed out myself, and it reads nothing from your browser. Motion is deliberate and light: things rise once as they enter, and everything stands still if your system asks for reduced motion. No gradients, no testimonial carousel, no logo strip, no stock illustration posing as my life. No em-dashes either, down to the commit messages, for reasons that are between me and my drafts.</p>
 
       <h3>The rules the copy follows</h3>
       <p>Every number traces to a maintained achievement inventory or does not appear. Revenue I influenced is called influenced. Things built and not yet launched say so. Companies appear by name only where they already appear on my public resume; everyone else is described generically on purpose.</p>
@@ -84,7 +85,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. 41.2565 N, 74.3576 W. <span data-stamp="version">v2.2.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. 41.2565 N, 74.3576 W. <span data-stamp="version">v2.3.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
     <span class="links mono">
       <a href="https://github.com/wdelehanty">GitHub</a>
       <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
