@@ -62,7 +62,7 @@
   <div class="wrap">
     <div class="cs-main">
       <h2>What it is</h2>
-      <p>Revenue recovery for trades businesses. Four engines: Catch answers and captures the calls that would have been missed, Chase follows up on quotes that went quiet, Keep turns finished jobs into reviews, and Revive re-engages customers who lapsed. Two-tier packaging. Deliberately positioned against the CRM category: a contractor does not want a system to manage, they want the leaks plugged.</p>
+      <p>Revenue recovery for trades businesses. Four engines: Catch answers and captures the calls that would have been missed, Chase follows up on quotes that went quiet, Keep turns finished jobs into reviews, and Revive re-engages customers who lapsed. Two-tier packaging. We stay out of the CRM category on purpose. Nobody in the trades wants another system to manage. They want the leaks plugged.</p>
       <p>The buyer is usually the office manager, or the spouse running the front of house while the owner is on a roof. Everything about the product is designed for that person, including the reports that arrive in plain English with receipts.</p>
 
       <h2>What's running</h2>
@@ -79,16 +79,16 @@
 
       <h2>Stack</h2>
       <p class="mono">n8n on a digitalocean vps / postgres / retell / twilio / anthropic api / cloudflare workers (uptime monitor) / stripe / mercury / google business profile</p>
-      <p>There is also a self-hosted voice prototype, built on ConversationRelay, in the <a href="https://github.com/wdelehanty/stedd-voice">stedd-voice repo</a>. The honest engineering decision so far: Retell stays on the live line, because the prototype is not yet better than the thing it would replace. The README explains the tradeoff.</p>
+      <p>There's also a self-hosted voice prototype, built on ConversationRelay, in the <a href="https://github.com/wdelehanty/stedd-voice">stedd-voice repo</a>. Retell stays on the live line for now because my prototype isn't better than it yet. The README explains the tradeoff.</p>
 
       <h2>What I learned</h2>
-      <p>A2P 10DLC registration will reject you for reasons that have nothing to do with what your product does, and every SMS feature you promised waits behind it. The SMS engines were built early and have sat staged for months. If I did it again, registration paperwork starts the same week as incorporation.</p>
-      <p>Early on I made a rule after watching how call handoffs actually land: the agent never presents itself as a replacement for a person the caller knows by name. It answers as the business, it books the job, and the humans stay the humans. Every prompt is written under that rule.</p>
-      <p>The outcome confirmation loop exists because dollars-saved reporting is worthless without confirmed outcomes. The system can count calls caught and quotes chased all day; until the owner confirms the job closed, it is a guess dressed as a metric. So confirmation became a product feature, and the Monday Report only claims what a client has confirmed.</p>
+      <p>A2P 10DLC registration will reject you for reasons that have nothing to do with what your product does, and every SMS feature you promised waits behind it. The SMS engines were built early and have sat staged for months. If I did it again I'd file the registration paperwork the same week as the LLC.</p>
+      <p>Early on I made a rule after watching how call handoffs actually land: the agent never presents itself as a replacement for a person the caller knows by name. It answers as the business, books the job, and never pretends to be anyone on the crew. Every prompt is written under that rule.</p>
+      <p>The outcome confirmation loop exists because dollars-saved reporting means nothing until somebody confirms the dollars. The system can count calls caught and quotes chased all day, but until the owner confirms a job actually closed, it's a guess. So confirmation is a product feature, and the Monday Report only claims what the client has confirmed.</p>
     </div>
     <aside class="cs-aside">
       <div class="note"><b>Company state</b>Stedd LLC is fully stood up: banking, billing, compliance, a production automation stack, and a paying pilot client.</div>
-      <div class="note"><b>Why trades</b>Follow-up is where service businesses leak revenue, and follow-up marketing is the thing I have done for a living for a decade.</div>
+      <div class="note"><b>Why trades</b>Service businesses leak revenue on follow-up, and follow-up marketing is what I've done for a living for a decade.</div>
     </aside>
   </div>
 </section>
@@ -98,11 +98,11 @@
     <div class="shot-pair">
       <figure class="grain">
         <img src="../assets/img/stedd-home.jpg" alt="The stedd.ai home page: the headline stop losing jobs you earned beside a live demo widget playing a transcript of the voice agent handling an after-hours fence call" width="1400" height="820" loading="lazy">
-        <figcaption class="mono made">stedd.ai, live. The demo widget on the right is the real line; the transcript plays a real call flow.</figcaption>
+        <figcaption class="mono made">stedd.ai, live. The demo widget runs the real line.</figcaption>
       </figure>
       <figure class="grain">
         <img src="../assets/img/stedd-roi.jpg" alt="The stedd.ai ROI calculator: three sliders for job value, missed calls, and cold quotes, live math showing what slips through, and a cost comparison table" width="1400" height="888" loading="lazy">
-        <figcaption class="mono made">The ROI worksheet. Sliders in, honest math out.</figcaption>
+        <figcaption class="mono made">The ROI worksheet on stedd.ai.</figcaption>
       </figure>
     </div>
     <figure class="diagram" style="margin-top:48px">
@@ -363,8 +363,9 @@
 </svg><!-- dg:outcome-loop:end -->
       <figcaption class="mono made">The outcome confirmation loop. Rendered from workflow export, 2026-08-31.</figcaption>
     </figure>
-    <figure class="diagram" style="margin-top:48px">
-      <div class="photo-slot grain"><span class="mono">slot: a scrubbed sample monday report. the demo transcript is above, playing on the live site.</span></div>
+    <figure class="diagram shot grain" style="margin-top:48px; max-width:560px">
+      <img src="../assets/img/stedd-monday-report.jpg" alt="A sample Stedd Monday Report email: recovered dollars for the week, new leads caught, estimates booked, after-hours share, quotes rescued, and Google reviews, with per-touch receipts below" width="1320" height="1240" loading="lazy">
+      <figcaption class="mono made">The Monday Report, sample edition: rendered straight from the demo generator's own template, seeded numbers and all.</figcaption>
     </figure>
   </div>
 </section>
@@ -373,7 +374,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.1</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.2</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
     <span class="links mono">
       <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
