@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How I work | William Delehanty</title>
+<meta name="description" content="Operating principles, each with the receipts.">
+<link rel="preload" href="../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../site.css">
+<script defer src="../site.js"></script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../">William Delehanty</a>
+    <ul>
+      <li><a href="../work/">Work</a></li>
+      <li><a href="../stedd/">Stedd</a></li>
+      <li><a href="../lab/">Lab</a></li>
+      <li><a href="../stack/">Stack</a></li>
+      <li><a href="../how-i-work/">How I work</a></li>
+      <li><a href="../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="System status">
+  <div class="wrap">
+    <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
+    <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
+    <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.4.0</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">How I work</span>
+      <span class="mono">METHOD / 01</span>
+    </div>
+    <h1>Operating principles</h1>
+    <p class="outcome">Seven of them, each with the receipts elsewhere on this site.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+
+    <div class="principle">
+      <h3>Build the system the campaign leaves behind.</h3>
+      <p>Campaigns end and take their learnings with them unless there is a system to catch what they taught. I judge a quarter by what got built into the machine, and the machine is what I hand to whoever comes after me.</p>
+    </div>
+
+    <div class="principle">
+      <h3>Show the source.</h3>
+      <p>Every number I report carries how it was measured, including the ones on this site. An impressive number with a vague method is a liability sitting in a QBR waiting to go off.</p>
+    </div>
+
+    <div class="principle">
+      <h3>The playbook is what scales, so write it down.</h3>
+      <p>Two people run ten or more concurrent lifecycle programs because the standards, checklists, and prompt libraries exist on paper instead of in anyone's head. Headcount asks come after the playbook is real, and they get smaller.</p>
+    </div>
+
+    <div class="principle">
+      <h3>Rails before agents.</h3>
+      <p>The prompt libraries, QA checklists, and governance existed before any AI touched production work. AI multiplies whatever process it lands in, including a bad one.</p>
+    </div>
+
+    <div class="principle">
+      <h3>Learn enough to ship it yourself.</h3>
+      <p>When design or engineering bandwidth disappeared, I taught myself HTML and CSS and shipped the pages. The same reflex later built a voice agent, an automation stack, and this site.</p>
+    </div>
+
+    <div class="principle">
+      <h3>The sales handoff is a product.</h3>
+      <p>Speed to lead, routing rules, and the one-click outreach library are features of that product, and sellers are its users. Adoption follows when the thing lives where they already work.</p>
+    </div>
+
+    <div class="principle">
+      <h3>Take it apart before you trust it.</h3>
+      <p>Cars, martech stacks, attribution models, chicken coops. Understanding what is inside is the difference between operating a thing and depending on it.</p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. 41.2565 N, 74.3576 W. <span data-stamp="version">v2.4.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="links mono">
+      <a href="https://github.com/wdelehanty">GitHub</a>
+      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('https://n8n.stedd.ai/webhook/portfolio-status', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){
+      return fetch('/status.json', {cache: 'no-store'}).then(function(r){ return r.ok ? r.json() : null; });
+    })
+    .then(function(s){
+      if (!s) return;
+      var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };
+      Object.keys(map).forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && map[id] != null) el.textContent = map[id];
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
+</script>
+</body>
+</html>

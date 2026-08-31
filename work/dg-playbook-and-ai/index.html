@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The operating playbook and AI | William Delehanty</title>
+<meta name="description" content="Lifecycle standards, prompt libraries, QA checklists, and governance that let a two-person team run the portfolio.">
+<link rel="preload" href="../../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../site.css">
+<script defer src="../../site.js"></script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../../">William Delehanty</a>
+    <ul>
+      <li><a href="../../work/">Work</a></li>
+      <li><a href="../../stedd/">Stedd</a></li>
+      <li><a href="../../lab/">Lab</a></li>
+      <li><a href="../../stack/">Stack</a></li>
+      <li><a href="../../how-i-work/">How I work</a></li>
+      <li><a href="../../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="System status">
+  <div class="wrap">
+    <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
+    <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
+    <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.4.0</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Forbes / Operations</span>
+      <span class="mono">WORK / 03</span>
+    </div>
+    <h1>The operating playbook and AI</h1>
+    <p class="outcome">Lifecycle standards, prompt libraries, QA checklists, and governance: the operating system that lets a two-person team run 10+ concurrent programs, with custom GPTs doing the trainable work.</p>
+  </div>
+</header>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>Problem</h2>
+      <p>Ten or more concurrent lifecycle programs and two people to run them. At that ratio, every unwritten standard becomes a bottleneck and every judgment call becomes a queue behind one person. AI could absorb a lot of the trainable work, but AI without rails produces confident garbage at scale, which is worse than the bottleneck.</p>
+
+      <h2>What I built</h2>
+      <ul>
+        <li>Lifecycle standards first: what a program is, what every email must contain, what launch-ready means. Written down, so quality stopped depending on memory.</li>
+        <li>Prompt libraries for the recurring work, built and versioned like any other asset.</li>
+        <li>QA checklists that gate everything before it ships, human or machine made.</li>
+        <li>Governance: what AI is allowed to touch, what needs human review, and who owns the output.</li>
+        <li>Custom ChatGPT Enterprise GPTs trained on the standards, so the trainable work runs through them.</li>
+        <li>A two-bucket contractor model separating trainable execution from specialized expertise, so outside spend goes where judgment is actually required.</li>
+        <li>Value reporting frameworks for the martech stack, tying tool spend to measurable contribution.</li>
+      </ul>
+
+      <h2>Stack</h2>
+      <p class="mono">chatgpt enterprise (custom gpts) / claude code / n8n / smartsheet / monday.com</p>
+
+      <h2>Outcome</h2>
+      <p>Campaign work modeled at 149 to 206 specialist hours has been delivered in roughly 71 to 74 hours by one AI-assisted operator: about a 60% reduction, projected to reach about 79% once the lifecycle agents launch. The modeling is against specialist-hour benchmarks, and the QA gate is why the speed does not cost quality.</p>
+    </div>
+    <aside class="cs-aside">
+      <div class="note"><b>Order of operations</b>The prompt libraries, QA checklists, and governance existed before any agent went live. Rails first, then speed.</div>
+      <div class="note"><b>In development</b>Three AI agents are in build: a lifecycle engine, a media planning assistant with a seller pilot live, and an owned concierge.</div>
+    </aside>
+  </div>
+</section>
+
+<section class="cs-visual">
+  <div class="wrap">
+    <figure class="diagram">
+      <!-- dg:playbook-structure:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 262" role="img" aria-label="The operating playbook structure: standards, prompt libraries, QA checklists, and governance feed custom GPTs that carry the trainable work, which is how a team of two runs more than ten concurrent programs.">
+<defs><marker id="ar-playbook-structure" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="10" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Standards</text>
+<path d="M117,60 L117,96" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
+<rect x="232" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="246" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Prompt libraries</text>
+<path d="M339,60 L339,96" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
+<rect x="454" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="468" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">QA checklists</text>
+<path d="M561,60 L561,96" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
+<rect x="676" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="690" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Governance</text>
+<path d="M783,60 L783,96" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
+<rect x="10" y="100" width="880" height="56" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="24" y="124" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Custom GPTs</text>
+<text x="24" y="142" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">the trainable work runs through them; specialists keep the judgment calls</text>
+<path d="M450,156 L450,192" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
+<rect x="10" y="196" width="880" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="24" y="220" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">10+ concurrent programs</text>
+<text x="24" y="238" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">run by a team of two</text>
+</svg><!-- dg:playbook-structure:end -->
+      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
+    </figure>
+    <figure class="diagram shot grain" style="margin-top:48px">
+      <img src="../../assets/img/forbes-email.jpg" alt="An email template proof with the Forbes banner and a merge tag greeting, followed by quarterly planning notes" width="1100" height="1783" loading="lazy">
+      <figcaption class="mono made">A template proof from the planning motion, merge tags and all.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="cs-next">
+  <div class="wrap">
+    <a href="../../stedd/">Next: Stedd, the founder page</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. 41.2565 N, 74.3576 W. <span data-stamp="version">v2.4.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="links mono">
+      <a href="https://github.com/wdelehanty">GitHub</a>
+      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('https://n8n.stedd.ai/webhook/portfolio-status', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){
+      return fetch('/status.json', {cache: 'no-store'}).then(function(r){ return r.ok ? r.json() : null; });
+    })
+    .then(function(s){
+      if (!s) return;
+      var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };
+      Object.keys(map).forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && map[id] != null) el.textContent = map[id];
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
+</script>
+</body>
+</html>

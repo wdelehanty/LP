@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stack | William Delehanty</title>
+<meta name="description" content="Every tool listed with what I actually built with it.">
+<link rel="preload" href="../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../site.css">
+<script defer src="../site.js"></script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../">William Delehanty</a>
+    <ul>
+      <li><a href="../work/">Work</a></li>
+      <li><a href="../stedd/">Stedd</a></li>
+      <li><a href="../lab/">Lab</a></li>
+      <li><a href="../stack/">Stack</a></li>
+      <li><a href="../how-i-work/">How I work</a></li>
+      <li><a href="../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="System status">
+  <div class="wrap">
+    <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
+    <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
+    <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.4.0</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Stack</span>
+      <span class="mono">STACK / 01</span>
+    </div>
+    <h1>Tools, and what I actually built with each</h1>
+    <p class="outcome">Nothing is listed here that I have not used to ship something. Where a line names a build, the build is real and most have a page on this site.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+
+    <div class="stack-group">
+      <h2>CRM and marketing automation</h2>
+      <ul>
+        <li><b>Salesforce:</b> the contact-role attribution model tying campaigns to influenced revenue; lead routing and speed-to-lead standards.</li>
+        <li><b>Pardot:</b> the nurture layer under the demand engine and the lifecycle portfolio.</li>
+        <li><b>Marketo:</b> marketing automation in earlier program work.</li>
+        <li><b>Knak and Stripo:</b> email build tooling, evaluated and onboarded as vendors.</li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h2>CDP and data</h2>
+      <ul>
+        <li><b>BlueConic:</b> 18M+ profile segmentation, on-site dialogues, progressive profiling, lifecycle routing.</li>
+        <li><b>BigQuery:</b> the data layer under audience and funnel reporting.</li>
+        <li><b>Bombora:</b> intent data in enterprise partner programs.</li>
+        <li><b>Zephr:</b> on-site experience and gating logic.</li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h2>Paid media</h2>
+      <ul>
+        <li><b>LinkedIn Ads, Google Ads, Meta Ads:</b> the acquisition layer of the demand engine.</li>
+        <li><b>GAM:</b> owned inventory delivery and pacing for partner programs.</li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h2>Analytics</h2>
+      <ul>
+        <li><b>Looker:</b> the Performance Console and funnel reporting.</li>
+        <li><b>GA4:</b> site behavior feeding segmentation and conversion reporting.</li>
+        <li><b>Google Optimize:</b> landing page testing.</li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h2>Content and creative</h2>
+      <ul>
+        <li><b>HTML and CSS:</b> self-taught to ship templates, landing pages, and tracking scripts when there was no one else to ship them, including this site.</li>
+        <li><b>WordPress:</b> site builds and landing pages.</li>
+        <li><b>Photoshop, Premiere Pro, Canva:</b> creative production for campaigns.</li>
+        <li><b>Jebbit:</b> quiz-format capture experiences.</li>
+        <li><b>Brandfolder:</b> asset management.</li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h2>Automation and AI</h2>
+      <ul>
+        <li><b>n8n:</b> 52 workflows across three systems (the job search machine, Stedd, and Life OS), 36 active in production. The status rail at the top of this page counts them live.</li>
+        <li><b>Claude Code:</b> the build tool behind Stedd, the job search machine, the event pacing app, and this site.</li>
+        <li><b>Anthropic API:</b> transcript QA, prompt patching, and parsing inside the Stedd stack.</li>
+        <li><b>ChatGPT Enterprise:</b> custom GPTs trained on the operating playbook standards.</li>
+        <li><b>Retell and Twilio:</b> the voice agent with live calendar booking; a self-hosted ConversationRelay prototype sits in the stedd-voice repo.</li>
+        <li><b>MCP servers:</b> tool integrations across the automation stacks.</li>
+      </ul>
+    </div>
+
+    <div class="stack-group">
+      <h2>Infrastructure and operations</h2>
+      <ul>
+        <li><b>Cloudflare Workers:</b> the wardrobe API and the Stedd uptime monitor.</li>
+        <li><b>Postgres:</b> the Stedd production database, with nightly logical backups.</li>
+        <li><b>Notion:</b> pipeline databases for the job search, Life OS, the wardrobe system, and the achievement inventory this site is fact-checked against.</li>
+        <li><b>Smartsheet and Monday.com:</b> stood up the Smartsheet marketing instance; leading the Monday.com migration.</li>
+        <li><b>Bizzabo:</b> the API under the event pacing dashboard.</li>
+        <li><b>Gong, DocSend, MediaRadar, Jira:</b> the supporting cast: call review, content tracking, competitive intel, and work management.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. 41.2565 N, 74.3576 W. <span data-stamp="version">v2.4.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="links mono">
+      <a href="https://github.com/wdelehanty">GitHub</a>
+      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('https://n8n.stedd.ai/webhook/portfolio-status', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){
+      return fetch('/status.json', {cache: 'no-store'}).then(function(r){ return r.ok ? r.json() : null; });
+    })
+    .then(function(s){
+      if (!s) return;
+      var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };
+      Object.keys(map).forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && map[id] != null) el.textContent = map[id];
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
+</script>
+</body>
+</html>

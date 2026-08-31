@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-serve advertising lifecycle | William Delehanty</title>
+<meta name="description" content="A full-funnel lifecycle for a self-serve advertising product on DanAds: 8 programs, 29 emails, and the revenue model.">
+<link rel="preload" href="../../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../site.css">
+<script defer src="../../site.js"></script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../../">William Delehanty</a>
+    <ul>
+      <li><a href="../../work/">Work</a></li>
+      <li><a href="../../stedd/">Stedd</a></li>
+      <li><a href="../../lab/">Lab</a></li>
+      <li><a href="../../stack/">Stack</a></li>
+      <li><a href="../../how-i-work/">How I work</a></li>
+      <li><a href="../../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="System status">
+  <div class="wrap">
+    <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
+    <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
+    <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.4.0</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Forbes / Self-serve</span>
+      <span class="mono">2026</span>
+    </div>
+    <h1>Self-serve advertising lifecycle</h1>
+    <p class="outcome">The full-funnel lifecycle for a self-serve advertising product on DanAds: 8 programs, 29 emails, a revenue model, and the 2027 forecast now in use for vendor contract renegotiation. Built solo. Launching with the product.</p>
+  </div>
+</header>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>Problem</h2>
+      <p>A self-serve product has no account manager. Whatever onboarding, activation, and retention a human would do for a managed account has to be built into the lifecycle before launch, or the product bleeds users it never gets a chance to win back. The whole launch kit had to exist on day one.</p>
+
+      <h2>What I built</h2>
+      <ul>
+        <li>Onboarding sequences that take a new advertiser from account creation to first live campaign.</li>
+        <li>Activation programs pushing toward the behaviors that predict a second campaign.</li>
+        <li>Retention and reengagement sequences for advertisers who stall or lapse.</li>
+        <li>In total: 8 programs and 29 emails, written, built, and wired end to end by one person.</li>
+        <li>The revenue model behind the lifecycle, including the 2027 forecast that is now being used in the vendor contract renegotiation.</li>
+      </ul>
+
+      <h2>Stack</h2>
+      <p class="mono">danads / salesforce / email automation</p>
+
+      <h2>Outcome</h2>
+      <p>Built, not yet launched, and I would rather say that plainly than imply otherwise. The programs are finished and staged; they go live with the product. What already exists either way: the launch kit, the revenue model, and a forecast solid enough that it is shaping a contract negotiation.</p>
+    </div>
+    <aside class="cs-aside">
+      <div class="note"><b>Status</b>Built, not yet launched. A finished build waiting on a product launch is still a build, and pretending it is live would break the site's own rules.</div>
+      <div class="note"><b>Why solo matters here</b>The operating playbook and the AI process work are what made a solo build of this size possible.</div>
+    </aside>
+  </div>
+</section>
+
+<section class="cs-visual">
+  <div class="wrap">
+    <figure class="diagram">
+      <!-- dg:selfserve-sequence:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 182" role="img" aria-label="The self-serve lifecycle map: onboarding, activation, and retention groups, all drawing on eight programs and twenty-nine emails staged for launch.">
+<defs><marker id="ar-selfserve-sequence" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="10" y="10" width="280" height="66" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Onboarding</text>
+<text x="24" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">signup to first live campaign</text>
+<path d="M290,43 L310,43" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-selfserve-sequence)"/>
+<rect x="310" y="10" width="280" height="66" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="324" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Activation</text>
+<text x="324" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">behaviors that predict a second</text>
+<path d="M590,43 L610,43" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-selfserve-sequence)"/>
+<rect x="610" y="10" width="280" height="66" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="624" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Retention + revive</text>
+<text x="624" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">stalled and lapsed advertisers</text>
+<rect x="10" y="120" width="880" height="50" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="24" y="144" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">8 programs / 29 emails</text>
+<text x="24" y="162" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">written, built, and wired end to end by one person; staged for launch</text>
+<path d="M150,120 L150,76" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-selfserve-sequence)"/>
+<path d="M450,120 L450,76" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-selfserve-sequence)"/>
+<path d="M750,120 L750,76" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-selfserve-sequence)"/>
+</svg><!-- dg:selfserve-sequence:end -->
+      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="cs-next">
+  <div class="wrap">
+    <a href="../enterprise-partner-programs/">Next: Enterprise partner programs</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. 41.2565 N, 74.3576 W. <span data-stamp="version">v2.4.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="links mono">
+      <a href="https://github.com/wdelehanty">GitHub</a>
+      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('https://n8n.stedd.ai/webhook/portfolio-status', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){
+      return fetch('/status.json', {cache: 'no-store'}).then(function(r){ return r.ok ? r.json() : null; });
+    })
+    .then(function(s){
+      if (!s) return;
+      var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };
+      Object.keys(map).forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && map[id] != null) el.textContent = map[id];
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
+</script>
+</body>
+</html>
