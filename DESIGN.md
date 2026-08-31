@@ -260,3 +260,34 @@ layer without touching copy or tokens:
 
 Rail source order: the live n8n endpoint (Portfolio: Status Endpoint,
 webhook /portfolio-status), then /status.json, then baked values.
+
+## 11. Trend layer, 2026-08-31 (Will: "took no design inspiration from the links")
+
+Round two adopted the 2026 trend guidance directly instead of politely.
+Will explicitly lifted three of the original bans for this: scroll-
+triggered reveals, blur on the sticky rail, and photography beyond his
+own. What shipped:
+
+1. Kinetic typography: display headlines split per word by site.js and
+   rise staggered on load. Progressive enhancement; no JS or reduced
+   motion means static text.
+2. Scroll-triggered reveals on rows, bands, notes, figures: fast (500ms,
+   16px), once, generous margins. Guarded behind the html.js class so
+   nothing is hidden without JS.
+3. Glass rail: translucent panel with backdrop blur. The one blur on the
+   site.
+4. Scroll progress thread: 2px signal bar fixed at the viewport top.
+5. Bento proof grid: areas "a b c / a d d", hard offset shadow
+   (12px 12px 0), the brutalist accent. Buttons get the same shadow on
+   hover.
+6. Photography as material: brushed steel (apryan widodo, Unsplash) at
+   low opacity behind heroes with a slow scroll drift; a blacksmith
+   anvil (Pim de Boer, Unsplash) behind the angled off-hours section,
+   captioned honestly as not-my-shop. Both credited in the colophon.
+   Will's own photos still replace the hatched voids when they land.
+7. The off-hours section top edge is cut at an angle (clip-path), the
+   single anti-grid gesture.
+
+Ban list still in force: no gradients, no purple or blue, no centered
+hero, no Inter/Geist, no emoji, no carousels, no logo strips, no
+em-dashes. The rules that moved, moved because the client said move.
