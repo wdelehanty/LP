@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forbes8 lifecycle | William Delehanty</title>
+<meta name="description" content="Owning a B2C product lifecycle end to end: activation, engagement, retention, LTV, and the feedback loop.">
+<!-- Preview build. Remove noindex at cutover. -->
+<meta name="robots" content="noindex">
+<link rel="preload" href="../../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../../">William Delehanty</a>
+    <ul>
+      <li><a href="../../work/">Work</a></li>
+      <li><a href="../../stedd/">Stedd</a></li>
+      <li><a href="../../lab/">Lab</a></li>
+      <li><a href="../../stack/">Stack</a></li>
+      <li><a href="../../how-i-work/">How I work</a></li>
+      <li><a href="../../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="System status">
+  <div class="wrap">
+    <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
+    <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
+    <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.1.0</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Forbes / B2C</span>
+      <span class="mono">2019 TO 2021</span>
+    </div>
+    <h1>Forbes8 lifecycle</h1>
+    <p class="outcome">Owned a B2C product lifecycle end to end: activation, engagement, retention, and LTV, with a feedback loop tying lifecycle sends to incremental sales.</p>
+  </div>
+</header>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>Problem</h2>
+      <p>A consumer product lives or dies on what happens after signup. Someone had to own the whole arc for Forbes8: getting a new user to their first moment of value, keeping them engaged, and knowing which messages actually moved sales instead of just getting opened.</p>
+
+      <h2>What I built</h2>
+      <ul>
+        <li>The site build itself. Design and engineering bandwidth was spoken for, so I shipped the pages with the HTML and CSS I had taught myself for the demand gen work.</li>
+        <li>The activation plan: the sequence a new user hits in their first days, aimed at the first moment of value.</li>
+        <li>Engagement and retention programs across the subscriber base, pointed at LTV.</li>
+        <li>The incremental-sales feedback loop, so lifecycle messaging was judged on sales effect and the programs could be tuned against something that mattered.</li>
+      </ul>
+
+      <h2>Stack</h2>
+      <p class="mono">html / css / email automation / funnel reporting</p>
+
+      <h2>Outcome</h2>
+      <p>The honest version: this case study has no public number attached. What it has is the shape of the work, which is the same shape as everything else on this site. Own the full arc, wire the measurement in from the start, and judge the program on sales effect. The B2B lifecycle portfolio that came later was built on what this one taught me.</p>
+    </div>
+    <aside class="cs-aside">
+      <div class="note"><b>Before this</b>I spent 2015 to 2018 as a sales planner. Knowing how media gets sold, from the inside, is why the lifecycle work always pointed at revenue.</div>
+    </aside>
+  </div>
+</section>
+
+<section class="cs-visual">
+  <div class="wrap">
+    <figure class="diagram">
+      <!-- dg:forbes8-lifecycle:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 148" role="img" aria-label="The Forbes8 lifecycle: signup to activation to engagement to retention to lifetime value, with a dashed feedback loop carrying incremental sales data back into the programs.">
+<defs><marker id="ar-forbes8-lifecycle" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="10" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Signup</text>
+<path d="M170,38 L190,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-forbes8-lifecycle)"/>
+<rect x="190" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="204" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Activation</text>
+<text x="204" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">first value</text>
+<path d="M350,38 L370,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-forbes8-lifecycle)"/>
+<rect x="370" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="384" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Engagement</text>
+<path d="M530,38 L550,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-forbes8-lifecycle)"/>
+<rect x="550" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="564" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Retention</text>
+<path d="M710,38 L730,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-forbes8-lifecycle)"/>
+<rect x="730" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="744" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">LTV</text>
+<path d="M810,66 C810,130 90,130 90,70" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-forbes8-lifecycle)"/>
+<text x="310" y="122" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">incremental-sales feedback loop: programs tuned on sales effect</text>
+</svg><!-- dg:forbes8-lifecycle:end -->
+      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="cs-next">
+  <div class="wrap">
+    <a href="../self-serve-advertising-lifecycle/">Next: Self-serve advertising lifecycle</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.1.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="links mono">
+      <a href="https://github.com/wdelehanty">GitHub</a>
+      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('/status.json', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(s){
+      if (!s) return;
+      var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };
+      Object.keys(map).forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && map[id] != null) el.textContent = map[id];
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
+</script>
+</body>
+</html>

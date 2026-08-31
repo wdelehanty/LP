@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forbes Connect on the CDP | William Delehanty</title>
+<meta name="description" content="An owned-media conversion layer on an 18M+ profile CDP, routing identified readers into lifecycle and sales systems.">
+<!-- Preview build. Remove noindex at cutover. -->
+<meta name="robots" content="noindex">
+<link rel="preload" href="../../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../../">William Delehanty</a>
+    <ul>
+      <li><a href="../" aria-current="true">Work</a></li>
+      <li><a href="../../stedd/">Stedd</a></li>
+      <li><a href="../../lab/">Lab</a></li>
+      <li><a href="../../stack/">Stack</a></li>
+      <li><a href="../../how-i-work/">How I work</a></li>
+      <li><a href="../../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="System status">
+  <div class="wrap">
+    <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
+    <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
+    <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.1.0</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Forbes / Platform</span>
+      <span class="mono">WORK / 02</span>
+    </div>
+    <h1>Forbes Connect on the CDP</h1>
+    <p class="outcome">An owned-media conversion layer on an 18M+ profile CDP: readers become identified profiles, profiles become segments, and segments route into lifecycle and sales systems.</p>
+  </div>
+</header>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>Problem</h2>
+      <p>A media site knows its audience mostly in aggregate. Pageviews tell you what got read, and almost nothing about who is in market. Moving the business from pageview-based to identity-based monetization needed a layer that could turn anonymous readers into known profiles and put those profiles to work.</p>
+
+      <h2>What I built</h2>
+      <ul>
+        <li>Launched Forbes Connect as the conversion layer on a BlueConic CDP holding 18M+ profiles.</li>
+        <li>Behavioral segmentation, so audiences are defined by what people actually read and do on site.</li>
+        <li>On-site dialogues: targeted prompts that convert anonymous readers into identified profiles at the moment their behavior signals interest.</li>
+        <li>Progressive profiling, asking for a little at a time instead of a twelve-field form nobody fills out.</li>
+        <li>Lifecycle routing into Pardot and Salesforce, so an identified profile lands in nurture or in front of a seller without manual handling.</li>
+        <li>The audience intelligence framework around it: predictive LTV, third-party enrichment, and cross-product lifecycle routing.</li>
+      </ul>
+
+      <h2>Stack</h2>
+      <p class="mono">blueconic / pardot / salesforce / ga4 / bigquery</p>
+
+      <h2>Outcome</h2>
+      <p>18M+ profiles under behavioral segmentation, feeding the lifecycle portfolio and CRM routing that the demand engine runs on. The number is the scale of the CDP, and I want to be precise about it: profiles are not leads. The value is that every downstream program starts from identity instead of a cold list.</p>
+    </div>
+    <aside class="cs-aside">
+      <div class="note"><b>What a dialogue is</b>An on-site prompt targeted by behavior. A reader three stories deep into one topic sees a different ask than a first-time visitor. That targeting is why they convert.</div>
+      <div class="note"><b>Why progressive profiling</b>One field per interaction. The profile fills in over visits, and completion holds up because nobody ever faces the long form.</div>
+    </aside>
+  </div>
+</section>
+
+<section class="cs-visual">
+  <div class="wrap">
+    <figure class="diagram">
+      <!-- dg:connect-cdp:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 244" role="img" aria-label="Forbes Connect architecture: the site's dialogues and progressive profiling feed the BlueConic CDP, enriched by third-party data, which routes profiles into Pardot for nurture and Salesforce for routing and attribution.">
+<defs><marker id="ar-connect-cdp" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="10" y="40" width="190" height="66" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="24" y="64" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Forbes.com</text>
+<text x="24" y="82" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">dialogues / profiling</text>
+<rect x="280" y="40" width="220" height="66" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="294" y="64" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">BlueConic CDP</text>
+<text x="294" y="82" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">18m+ profiles / segments / ltv</text>
+<rect x="280" y="150" width="220" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="294" y="174" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Third-party enrichment</text>
+<rect x="580" y="10" width="190" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="594" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Pardot</text>
+<text x="594" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">nurture programs</text>
+<rect x="580" y="90" width="190" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="594" y="114" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Salesforce</text>
+<text x="594" y="132" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">routing / attribution</text>
+<path d="M200,73 L280,73" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-connect-cdp)"/>
+<path d="M390,150 L390,106" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-connect-cdp)"/>
+<path d="M500,60 C540.0,60 540.0,38 580,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-connect-cdp)"/>
+<path d="M500,86 C540.0,86 540.0,118 580,118" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-connect-cdp)"/>
+<text x="10" y="232" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">anonymous readers become identified profiles on site; identified profiles route into nurture and sales</text>
+</svg><!-- dg:connect-cdp:end -->
+      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="cs-next">
+  <div class="wrap">
+    <a href="../dg-playbook-and-ai/">Next: The operating playbook and AI</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.1.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="links mono">
+      <a href="https://github.com/wdelehanty">GitHub</a>
+      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('/status.json', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(s){
+      if (!s) return;
+      var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };
+      Object.keys(map).forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && map[id] != null) el.textContent = map[id];
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
+</script>
+</body>
+</html>

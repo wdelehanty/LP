@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stedd | William Delehanty</title>
+<meta name="description" content="A revenue recovery product for trades businesses: voice agent, automation stack, and what building it taught me.">
+<!-- Preview build. Remove noindex at cutover. -->
+<meta name="robots" content="noindex">
+<link rel="preload" href="../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../">William Delehanty</a>
+    <ul>
+      <li><a href="../work/">Work</a></li>
+      <li><a href="../stedd/">Stedd</a></li>
+      <li><a href="../lab/">Lab</a></li>
+      <li><a href="../stack/">Stack</a></li>
+      <li><a href="../how-i-work/">How I work</a></li>
+      <li><a href="../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="System status">
+  <div class="wrap">
+    <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
+    <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
+    <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.1.0</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Founder / 2025 to present</span>
+      <span class="mono">STEDD / 01</span>
+    </div>
+    <h1>Stedd</h1>
+    <p class="outcome">I built a product for the trades because I understand two things most software people do not: follow-up marketing, and how a contractor's day actually goes.</p>
+  </div>
+</header>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>What it is</h2>
+      <p>Revenue recovery for trades businesses. Four engines: Catch answers and captures the calls that would have been missed, Chase follows up on quotes that went quiet, Keep turns finished jobs into reviews, and Revive re-engages customers who lapsed. Two-tier packaging. Deliberately positioned against the CRM category: a contractor does not want a system to manage, they want the leaks plugged.</p>
+      <p>The buyer is usually the office manager, or the spouse running the front of house while the owner is on a roof. Everything about the product is designed for that person, including the reports that arrive in plain English with receipts.</p>
+
+      <h2>What's running</h2>
+      <ul>
+        <li>An AI voice agent that answers the line and books jobs while the caller is still on the call, checking the real calendar live and confirming a slot before hangup.</li>
+        <li>Nightly transcript QA: every completed call is reviewed against a founder checklist, and anything flagged pages me.</li>
+        <li>The prompt patch loop: the nightly QA proposes the smallest fix, I approve or reject from my phone with a single-use token, rollback is one click, and a monthly consolidation review keeps the prompt from drifting into a patchwork.</li>
+        <li>The outcome confirmation loop: clients confirm each week which leads became jobs and which quotes closed, with a reply grammar a busy owner can answer in ten seconds.</li>
+        <li>A per-client provisioner that stands up a phone number, a voice agent, and a website chat agent from one intake.</li>
+        <li>Nightly Postgres backups emailed with row counts, error alerting on every workflow, a revenue leak audit generator for prospects, and a sample Monday Report generator for demos.</li>
+        <li>Built and staged, waiting on carrier approval: the SMS engines and the founder daily digest.</li>
+      </ul>
+      <p>The pilot is a pilot client in auto detailing, live on the voice line.</p>
+
+      <h2>Stack</h2>
+      <p class="mono">n8n on a digitalocean vps / postgres / retell / twilio / anthropic api / cloudflare workers (uptime monitor) / stripe / mercury / google business profile</p>
+      <p>There is also a self-hosted voice prototype, built on ConversationRelay, in the <a href="https://github.com/wdelehanty/stedd-voice">stedd-voice repo</a>. The honest engineering decision so far: Retell stays on the live line, because the prototype is not yet better than the thing it would replace. The README explains the tradeoff.</p>
+
+      <h2>What I learned</h2>
+      <p>A2P 10DLC registration will reject you for reasons that have nothing to do with what your product does, and every SMS feature you promised waits behind it. The SMS engines were built early and have sat staged for months. If I did it again, registration paperwork starts the same week as incorporation.</p>
+      <p>Early on I made a rule after watching how call handoffs actually land: the agent never presents itself as a replacement for a person the caller knows by name. It answers as the business, it books the job, and the humans stay the humans. Every prompt is written under that rule.</p>
+      <p>The outcome confirmation loop exists because dollars-saved reporting is worthless without confirmed outcomes. The system can count calls caught and quotes chased all day; until the owner confirms the job closed, it is a guess dressed as a metric. So confirmation became a product feature, and the Monday Report only claims what a client has confirmed.</p>
+    </div>
+    <aside class="cs-aside">
+      <div class="note"><b>Company state</b>Stedd LLC is fully stood up: banking, billing, compliance, a production automation stack, and a paying pilot client.</div>
+      <div class="note"><b>Why trades</b>Follow-up is where service businesses leak revenue, and follow-up marketing is the thing I have done for a living for a decade.</div>
+    </aside>
+  </div>
+</section>
+
+<section class="cs-visual">
+  <div class="wrap">
+    <figure class="diagram">
+      <!-- dg:live-booking:start --><div class="dg-scroll"><svg style="min-width:888px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1234 154" role="img" aria-label="Live booking workflow: a webhook receives the proposed time, the calendar is checked, the call is booked or declined, and the agent gets an answer while the caller waits.">
+<defs><marker id="arr-live-booking" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="898" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="908" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CALENDAR</text>
+<text x="908" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Create Intro Call</text>
+<rect x="898" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="908" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="908" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond Busy</text>
+<rect x="1076" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="1086" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="1086" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond Booked</text>
+<rect x="1076" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="1086" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="1086" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond Error</text>
+<rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Booking Request</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SET</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Normalize Request</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond Unauthorized</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CALENDAR</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Check Availability</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Is Slot Free?</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Booking Token OK</text>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M692,37.0 C884.0,37.0 884.0,117.0 1076,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M870,37.0 C884.0,37.0 884.0,37.0 898,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M870,37.0 C884.0,37.0 884.0,117.0 898,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M1048,37.0 C1062.0,37.0 1062.0,37.0 1076,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M1048,37.0 C1062.0,37.0 1062.0,117.0 1076,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,117.0 364,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-live-booking)"/>
+</svg></div><!-- dg:live-booking:end -->
+      <figcaption class="mono made">Live booking. Rendered from workflow export, 2026-08-31.</figcaption>
+    </figure>
+    <figure class="diagram" style="margin-top:48px">
+      <!-- dg:prompt-patch-loop:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 878 902" role="img" aria-label="The prompt patch loop in four stages: a nightly proposer drafts the smallest fix, a decision webhook applies or rejects it with a single-use token, a rollback webhook restores the previous prompt in one click, and a monthly consolidation review keeps the prompt coherent.">
+<defs><marker id="arr-prompt-patch-proposer" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-prompt-patch-decision" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-prompt-rollback" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-prompt-consolidation-review" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<g transform="translate(0,0)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Stage 1 / propose (nightly)  (trunk path shown: 15 of 17 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SCHEDULE</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Nightly 1035pm ET</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Fresh Findings</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Group By Agent</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">LOOP</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Agent Loop</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Agent Context</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Explode Finding Calls</text>
+<rect x="542" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">HTTP</text>
+<text x="552" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Fetch Call Transcript</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Assemble Context</text>
+<rect x="186" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="196" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Can Propose</text>
+<rect x="8" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CLAUDE</text>
+<text x="18" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Claude Propose Patch</text>
+<rect x="8" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="18" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Validate Proposal</text>
+<rect x="186" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Insert Proposal</text>
+<rect x="364" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Build Decision Email</text>
+<rect x="542" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="552" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Send Decision Email</text>
+<rect x="720" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Mark Findings Processed</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M720,117.0 C750,150.6 662,150.6 692,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M542,117.0 C572,150.6 484,150.6 514,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M364,117.0 C394,150.6 306,150.6 336,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M186,117.0 C216,150.6 128,150.6 158,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M83.0,146 C113.0,201.6 53.0,201.6 83.0,168" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M158,197.0 C172.0,197.0 172.0,197.0 186,197.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M336,197.0 C350.0,197.0 350.0,197.0 364,197.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M514,197.0 C528.0,197.0 528.0,197.0 542,197.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M692,197.0 C706.0,197.0 706.0,197.0 720,197.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/></g></g>
+<g transform="translate(0,292)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Stage 2 / decide (apply or reject)  (trunk path shown: 11 of 22 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Execute Patch</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Proposal</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Evaluate Decision</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SWITCH</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Decision Router</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Claim Token</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Claim Won</text>
+<rect x="542" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">HTTP</text>
+<text x="552" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Push Prompt To Retell</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Record New Version</text>
+<rect x="186" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Mark Proposal Applied</text>
+<rect x="8" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">TWILIO</text>
+<text x="18" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Confirm SMS</text>
+<rect x="8" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="18" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond Applied</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M720,117.0 C750,150.6 662,150.6 692,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M542,117.0 C572,150.6 484,150.6 514,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M364,117.0 C394,150.6 306,150.6 336,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M186,117.0 C216,150.6 128,150.6 158,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M83.0,146 C113.0,201.6 53.0,201.6 83.0,168" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/></g></g>
+<g transform="translate(0,584)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Stage 3 / rollback (one click)  (trunk path shown: 9 of 10 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Rollback Request</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Rollback Target</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Evaluate Rollback</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Can Rollback</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">HTTP</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Push Base Prompt To</text>
+<text x="730" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Retell</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Record Rollback Version</text>
+<rect x="542" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="552" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Mark Rolled Back</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">TWILIO</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Rollback SMS</text>
+<rect x="186" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="196" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond Rolled Back</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M720,117.0 C750,150.6 662,150.6 692,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M542,117.0 C572,150.6 484,150.6 514,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M364,117.0 C394,150.6 306,150.6 336,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/></g></g>
+<g transform="translate(0,796)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Stage 4 / consolidate (monthly)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SCHEDULE</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Monthly 1st 8am ET</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Prompt State</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Build Consolidation</text>
+<text x="374" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Email</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Send Consolidation</text>
+<text x="552" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Email</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-consolidation-review)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-consolidation-review)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-consolidation-review)"/></g></g>
+</svg><!-- dg:prompt-patch-loop:end -->
+      <figcaption class="mono made">The prompt patch loop, all four stages. Rendered from workflow export, 2026-08-31.</figcaption>
+    </figure>
+    <figure class="diagram" style="margin-top:48px">
+      <!-- dg:outcome-loop:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 878 318" role="img" aria-label="The outcome confirmation loop: a weekly email asks each client to confirm outcomes with a short reply grammar, and a parser applies the confirmations to leads and quotes.">
+<defs><marker id="arr-outcome-confirmation-sender" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-outcome-reply-parser" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<g transform="translate(0,0)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Send (sunday, reminder wednesday)  (trunk path shown: 6 of 8 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SCHEDULE</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Sunday 6 PM ET (22:00</text>
+<text x="18" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">UTC)</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SET</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">First Send Flag</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Fetch Open Leads and</text>
+<text x="374" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Quotes</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Build Confirmation</text>
+<text x="552" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Emails</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Send Confirmation Email</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Log Prompt Mappings</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/></g></g>
+<g transform="translate(0,212)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Parse replies  (trunk path shown: 5 of 7 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL TRIGGER</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Reply Poll</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Recent Prompts</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Parse Replies</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SWITCH</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Route by Kind</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Apply Outcome Updates</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-reply-parser)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-reply-parser)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-reply-parser)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-reply-parser)"/></g></g>
+</svg><!-- dg:outcome-loop:end -->
+      <figcaption class="mono made">The outcome confirmation loop. Rendered from workflow export, 2026-08-31.</figcaption>
+    </figure>
+    <figure class="diagram" style="margin-top:48px">
+      <div class="photo-slot grain"><span class="mono">slot: a scrubbed sample monday report and a demo sms transcript, number removed. arriving before cutover.</span></div>
+    </figure>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.1.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="links mono">
+      <a href="https://github.com/wdelehanty">GitHub</a>
+      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('/status.json', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(s){
+      if (!s) return;
+      var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };
+      Object.keys(map).forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && map[id] != null) el.textContent = map[id];
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
+</script>
+</body>
+</html>

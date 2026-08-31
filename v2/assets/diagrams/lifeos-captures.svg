@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 370" role="img" aria-label="The three Life OS capture workflows: labeled email lands in the Notion inbox, Home Assistant posts maintenance events, and a webhook writes to the knowledge base.">
+<defs><marker id="arr-capture-email-inbox" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-capture-home-maintenance" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-capture-knowledge-base" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<g transform="translate(0,0)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Email to inbox</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL TRIGGER</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Watch notion-inbox</text>
+<text x="18" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">label</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">NOTION</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Create Inbox row</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-email-inbox)"/></g></g>
+<g transform="translate(0,132)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Home maintenance (home assistant)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">HA Maintenance Webhook</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SET</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Normalize fields</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">NOTION</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Create Maintenance row</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond OK</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-home-maintenance)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-home-maintenance)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-home-maintenance)"/></g></g>
+<g transform="translate(0,264)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Knowledge base webhook</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">KB Capture Webhook</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SET</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Normalize fields</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">NOTION</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Create Knowledge Base</text>
+<text x="374" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">row</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond OK</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-knowledge-base)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-knowledge-base)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-knowledge-base)"/></g></g>
+</svg>

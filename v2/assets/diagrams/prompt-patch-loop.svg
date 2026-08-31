@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 878 902" role="img" aria-label="The prompt patch loop in four stages: a nightly proposer drafts the smallest fix, a decision webhook applies or rejects it with a single-use token, a rollback webhook restores the previous prompt in one click, and a monthly consolidation review keeps the prompt coherent.">
+<defs><marker id="arr-prompt-patch-proposer" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-prompt-patch-decision" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-prompt-rollback" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-prompt-consolidation-review" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<g transform="translate(0,0)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Stage 1 / propose (nightly)  (trunk path shown: 15 of 17 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SCHEDULE</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Nightly 1035pm ET</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Fresh Findings</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Group By Agent</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">LOOP</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Agent Loop</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Agent Context</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Explode Finding Calls</text>
+<rect x="542" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">HTTP</text>
+<text x="552" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Fetch Call Transcript</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Assemble Context</text>
+<rect x="186" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="196" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Can Propose</text>
+<rect x="8" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CLAUDE</text>
+<text x="18" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Claude Propose Patch</text>
+<rect x="8" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="18" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Validate Proposal</text>
+<rect x="186" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Insert Proposal</text>
+<rect x="364" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Build Decision Email</text>
+<rect x="542" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="552" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Send Decision Email</text>
+<rect x="720" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Mark Findings Processed</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M720,117.0 C750,150.6 662,150.6 692,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M542,117.0 C572,150.6 484,150.6 514,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M364,117.0 C394,150.6 306,150.6 336,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M186,117.0 C216,150.6 128,150.6 158,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M83.0,146 C113.0,201.6 53.0,201.6 83.0,168" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M158,197.0 C172.0,197.0 172.0,197.0 186,197.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M336,197.0 C350.0,197.0 350.0,197.0 364,197.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M514,197.0 C528.0,197.0 528.0,197.0 542,197.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/>
+<path d="M692,197.0 C706.0,197.0 706.0,197.0 720,197.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-proposer)"/></g></g>
+<g transform="translate(0,292)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Stage 2 / decide (apply or reject)  (trunk path shown: 11 of 22 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Execute Patch</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Proposal</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Evaluate Decision</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SWITCH</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Decision Router</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Claim Token</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Claim Won</text>
+<rect x="542" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">HTTP</text>
+<text x="552" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Push Prompt To Retell</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Record New Version</text>
+<rect x="186" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Mark Proposal Applied</text>
+<rect x="8" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">TWILIO</text>
+<text x="18" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Confirm SMS</text>
+<rect x="8" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="18" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond Applied</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M720,117.0 C750,150.6 662,150.6 692,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M542,117.0 C572,150.6 484,150.6 514,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M364,117.0 C394,150.6 306,150.6 336,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M186,117.0 C216,150.6 128,150.6 158,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/>
+<path d="M83.0,146 C113.0,201.6 53.0,201.6 83.0,168" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-patch-decision)"/></g></g>
+<g transform="translate(0,584)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Stage 3 / rollback (one click)  (trunk path shown: 9 of 10 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Rollback Request</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Rollback Target</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Evaluate Rollback</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Can Rollback</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">HTTP</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Push Base Prompt To</text>
+<text x="730" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Retell</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Record Rollback Version</text>
+<rect x="542" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="552" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Mark Rolled Back</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">TWILIO</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Rollback SMS</text>
+<rect x="186" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="196" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond Rolled Back</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M720,117.0 C750,150.6 662,150.6 692,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M542,117.0 C572,150.6 484,150.6 514,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/>
+<path d="M364,117.0 C394,150.6 306,150.6 336,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-rollback)"/></g></g>
+<g transform="translate(0,796)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Stage 4 / consolidate (monthly)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SCHEDULE</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Monthly 1st 8am ET</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Prompt State</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Build Consolidation</text>
+<text x="374" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Email</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Send Consolidation</text>
+<text x="552" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Email</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-consolidation-review)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-consolidation-review)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-prompt-consolidation-review)"/></g></g>
+</svg>

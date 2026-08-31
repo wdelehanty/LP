@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 878 318" role="img" aria-label="The outcome confirmation loop: a weekly email asks each client to confirm outcomes with a short reply grammar, and a parser applies the confirmations to leads and quotes.">
+<defs><marker id="arr-outcome-confirmation-sender" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-outcome-reply-parser" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<g transform="translate(0,0)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Send (sunday, reminder wednesday)  (trunk path shown: 6 of 8 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SCHEDULE</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Sunday 6 PM ET (22:00</text>
+<text x="18" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">UTC)</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SET</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">First Send Flag</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Fetch Open Leads and</text>
+<text x="374" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Quotes</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Build Confirmation</text>
+<text x="552" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Emails</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Send Confirmation Email</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Log Prompt Mappings</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-confirmation-sender)"/></g></g>
+<g transform="translate(0,212)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Parse replies  (trunk path shown: 5 of 7 nodes)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL TRIGGER</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Reply Poll</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Load Recent Prompts</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Parse Replies</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SWITCH</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Route by Kind</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">POSTGRES</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Apply Outcome Updates</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-reply-parser)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-reply-parser)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-reply-parser)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-outcome-reply-parser)"/></g></g>
+</svg>

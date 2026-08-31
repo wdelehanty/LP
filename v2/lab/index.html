@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab | William Delehanty</title>
+<meta name="description" content="Things I built because I wanted them to exist: the job search machine, Life OS, Home Assistant, and more.">
+<!-- Preview build. Remove noindex at cutover. -->
+<meta name="robots" content="noindex">
+<link rel="preload" href="../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/>
+    </marker>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../">William Delehanty</a>
+    <ul>
+      <li><a href="../work/">Work</a></li>
+      <li><a href="../stedd/">Stedd</a></li>
+      <li><a href="../lab/">Lab</a></li>
+      <li><a href="../stack/">Stack</a></li>
+      <li><a href="../how-i-work/">How I work</a></li>
+      <li><a href="../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="System status">
+  <div class="wrap">
+    <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
+    <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
+    <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.1.0</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Lab</span>
+      <span class="mono">LAB / 01</span>
+    </div>
+    <h1>Personal builds</h1>
+    <p class="outcome">Things I built because I wanted them to exist. Same habits as the work: take it apart, understand it, wire it back together better.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+
+    <article class="lab-entry">
+      <div class="grid">
+        <div>
+          <h3>The job search machine</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>A serious search is a pipeline, and running a pipeline by hand out of browser tabs wastes the hours that should go into the applications themselves.</dd>
+            <dt>Built</dt>
+            <dd>An artifact engine that runs deep research per company, scores concepts, and gates anything that should not be sent. A morning digest where each outreach draft gets a one-tap approve-and-send. A visit beacon on the work samples that alerts my phone when a prospect opens one. A Friday scorecard pulled from the pipeline database, and a notify hook so long builds can tell me they finished. Notion is the source of truth throughout.</dd>
+            <dt>Stack</dt>
+            <dd class="mono">claude code / n8n / notion / gmail</dd>
+          </dl>
+        </div>
+        <figure>
+          <!-- dg:morning-round-v2:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 878 154" role="img" aria-label="Morning round workflow: a daily schedule collects labeled Gmail drafts and follow-ups and sends one digest with approve buttons.">
+<defs><marker id="arr-morning-round-v2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SCHEDULE</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Daily 8am Trigger</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Get LinkedIn Alerts</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Get Labels</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Get Outreach Drafts</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Get Draft Details</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">NOTION</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Get Outreach Rows</text>
+<rect x="542" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="552" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Build Digest</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Send Digest</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-morning-round-v2)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-morning-round-v2)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-morning-round-v2)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-morning-round-v2)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-morning-round-v2)"/>
+<path d="M720,117.0 C750,150.6 662,150.6 692,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-morning-round-v2)"/>
+<path d="M542,117.0 C572,150.6 484,150.6 514,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-morning-round-v2)"/>
+</svg><!-- dg:morning-round-v2:end -->
+          <figcaption class="mono made">Morning round. Rendered from workflow export, 2026-08-31.</figcaption>
+          <div style="margin-top:24px"></div>
+          <!-- dg:kit-visit-alert:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 74" role="img" aria-label="Kit visit alert workflow: the beacon webhook verifies a token, throttles repeat visits, and sends an alert.">
+<defs><marker id="arr-kit-visit-alert" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Visit Webhook</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Verify And Throttle</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Email Visit Alert</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">TWILIO</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">SMS Visit Alert</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-kit-visit-alert)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-kit-visit-alert)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-kit-visit-alert)"/>
+</svg><!-- dg:kit-visit-alert:end -->
+          <figcaption class="mono made">Kit visit alert. Rendered from workflow export, 2026-08-31.</figcaption>
+        </figure>
+      </div>
+      <div class="prose" style="margin-top:22px">
+        <h3 style="font-size:17px">Watch it build (coming)</h3>
+        <p class="mono">A public demo of one full cycle goes here once a cycle has proven itself end to end. Nothing staged, so nothing to show yet.</p>
+      </div>
+    </article>
+
+    <article class="lab-entry">
+      <div class="grid">
+        <div>
+          <h3>Life OS in Notion</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>Life admin scattered across inboxes, memory, and paper means the same decisions get made twice and the maintenance gets remembered late.</dd>
+            <dt>Built</dt>
+            <dd>An operating manual, an Inbox, a Knowledge Base, a Decisions Log, Active Sprints, a Weekly Review, and a Home and Garage Maintenance database. Three capture hooks feed it without me touching Notion: email forwards land in the Inbox, a webhook writes to the Knowledge Base, and Home Assistant posts maintenance events on its own.</dd>
+            <dt>Stack</dt>
+            <dd class="mono">notion / n8n / home assistant / gmail</dd>
+          </dl>
+        </div>
+        <figure>
+          <!-- dg:lifeos-captures:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 370" role="img" aria-label="The three Life OS capture workflows: labeled email lands in the Notion inbox, Home Assistant posts maintenance events, and a webhook writes to the knowledge base.">
+<defs><marker id="arr-capture-email-inbox" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-capture-home-maintenance" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker><marker id="arr-capture-knowledge-base" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<g transform="translate(0,0)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Email to inbox</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">GMAIL TRIGGER</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Watch notion-inbox</text>
+<text x="18" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">label</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">NOTION</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Create Inbox row</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-email-inbox)"/></g></g>
+<g transform="translate(0,132)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Home maintenance (home assistant)</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">HA Maintenance Webhook</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SET</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Normalize fields</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">NOTION</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Create Maintenance row</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond OK</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-home-maintenance)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-home-maintenance)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-home-maintenance)"/></g></g>
+<g transform="translate(0,264)"><text x="8" y="14" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Knowledge base webhook</text><g transform="translate(0,24)"><rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">WEBHOOK</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">KB Capture Webhook</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SET</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Normalize fields</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">NOTION</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Create Knowledge Base</text>
+<text x="374" y="55" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">row</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">RESPOND</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Respond OK</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-knowledge-base)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-knowledge-base)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-capture-knowledge-base)"/></g></g>
+</svg><!-- dg:lifeos-captures:end -->
+          <figcaption class="mono made">The three capture workflows. Rendered from workflow export, 2026-08-31.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="lab-entry">
+      <div class="grid">
+        <div>
+          <h3>Home Assistant</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>A house full of smart devices from different eras, none of them speaking to each other, half of them running someone's cloud.</dd>
+            <dt>Built</dt>
+            <dd>Three waves of cleanup and build: naming conventions, consolidated integrations, old hardware retired, and automations that earn their keep, including a goodnight lockdown and a doorbell chime. Maintenance events post themselves to the Life OS database in Notion.</dd>
+            <dt>Stack</dt>
+            <dd class="mono">home assistant / n8n / notion</dd>
+          </dl>
+        </div>
+        <figure>
+          <div class="photo-slot grain"><span class="mono">slot: dashboard screenshot on its way.</span></div>
+        </figure>
+      </div>
+    </article>
+
+    <article class="lab-entry">
+      <div class="grid">
+        <div>
+          <h3>Wardrobe app</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>Getting dressed for the right context is a lookup problem, and nobody in the house wanted to be the lookup table.</dd>
+            <dt>Built</dt>
+            <dd>Wardrobe and Outfits databases in Notion with a standardized schema across 14 use contexts, a Cloudflare Worker API on top, AI photo cataloguing to get items in without data entry, and an iOS app in progress with TestFlight for family use.</dd>
+            <dt>Stack</dt>
+            <dd class="mono">notion / cloudflare workers / ios (testflight)</dd>
+          </dl>
+        </div>
+        <figure>
+          <div class="photo-slot grain"><span class="mono">slot: closet gallery screenshot on its way.</span></div>
+        </figure>
+      </div>
+    </article>
+
+    <article class="lab-entry">
+      <div class="grid">
+        <div>
+          <h3>Event pacing dashboard</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>An events team watching registration and revenue pacing across a portfolio should not have to assemble the picture by hand every Monday.</dd>
+            <dt>Built</dt>
+            <dd>A standalone app on the Bizzabo API for a media company's events team: registration and revenue pacing, year over year comparisons, promo attribution, Monday digests, and an AI question-and-answer layer on top of the data.</dd>
+            <dt>Stack</dt>
+            <dd class="mono">bizzabo api / ai q&amp;a layer</dd>
+          </dl>
+        </div>
+        <figure>
+          <div class="photo-slot grain"><span class="mono">slot: dashboard screenshot, numbers scrubbed, on its way.</span></div>
+        </figure>
+      </div>
+    </article>
+
+    <article class="lab-entry">
+      <div class="grid">
+        <div>
+          <h3>The fireworks show</h3>
+          <dl>
+            <dt>Problem</dt>
+            <dd>There was no problem. It is a fireworks show.</dd>
+            <dt>Built</dt>
+            <dd>An annual show programmed on an Ignite cue system and synced to music, with a 2-second delay baked into every cue to account for igniter lag. The neighbors get a show; I get a sequencing problem with a hard deadline and zero retries.</dd>
+            <dt>Stack</dt>
+            <dd class="mono">ignite / a music track / a checklist</dd>
+          </dl>
+        </div>
+        <figure>
+          <div class="photo-slot grain"><span class="mono">slot: setup photo, if one survives the setup.</span></div>
+        </figure>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.1.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="links mono">
+      <a href="https://github.com/wdelehanty">GitHub</a>
+      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('/status.json', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(s){
+      if (!s) return;
+      var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };
+      Object.keys(map).forEach(function(id){
+        var el = document.getElementById(id);
+        if (el && map[id] != null) el.textContent = map[id];
+      });
+    })
+    .catch(function(){});
+})();
+</script>
+<script>
+(function(){
+  var c = new URLSearchParams(location.search).get('c') || '';
+  if (!c || sessionStorage.getItem('b_' + c)) return;
+  sessionStorage.setItem('b_' + c, '1');
+  new Image().src = 'https://n8n.stedd.ai/webhook/kit-visit-p4n8t2'
+    + '?token=vt7r3k9w2m5x&code=' + encodeURIComponent(c)
+    + '&kit=' + encodeURIComponent(location.hostname.split('.')[0])
+    + '&path=' + encodeURIComponent(location.pathname);
+})();
+</script>
+</body>
+</html>

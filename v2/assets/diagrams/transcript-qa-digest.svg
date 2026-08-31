@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 878 260" role="img" aria-label="Nightly transcript QA workflow: every completed call is reviewed by Claude against a checklist and a digest is emailed.">
+<defs><marker id="arr-transcript-qa-digest" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="8" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="18" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">SCHEDULE</text>
+<text x="18" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Nightly 10pm ET</text>
+<rect x="186" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="196" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Compute Window</text>
+<rect x="364" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">HTTP</text>
+<text x="374" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">List Retell Calls</text>
+<rect x="542" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">HTTP</text>
+<text x="552" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">List Retell Agents</text>
+<rect x="720" y="8" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="24" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="730" y="41" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Prepare Calls</text>
+<rect x="720" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="730" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="730" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Has Calls</text>
+<rect x="542" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="552" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">LOOP</text>
+<text x="552" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">QA Loop</text>
+<rect x="364" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="374" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">CODE</text>
+<text x="374" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Build Digest</text>
+<rect x="186" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="196" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">IF</text>
+<text x="196" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Any Flag</text>
+<rect x="8" y="88" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="104" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">TWILIO</text>
+<text x="18" y="121" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Flag SMS</text>
+<rect x="8" y="168" width="150" height="58" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="18" y="184" style="font:600 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">TWILIO</text>
+<text x="18" y="201" style="font:400 12px Barlow,sans-serif" fill="#E6E4DF">Flag Voice Call</text>
+<path d="M158,37.0 C172.0,37.0 172.0,37.0 186,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M336,37.0 C350.0,37.0 350.0,37.0 364,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M514,37.0 C528.0,37.0 528.0,37.0 542,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M692,37.0 C706.0,37.0 706.0,37.0 720,37.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M795.0,66 C825.0,121.6 765.0,121.6 795.0,88" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M720,117.0 C750,150.6 662,150.6 692,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M542,117.0 C572,150.6 484,150.6 514,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M364,117.0 C394,150.6 306,150.6 336,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M186,117.0 C216,150.6 128,150.6 158,117.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<path d="M83.0,146 C113.0,201.6 53.0,201.6 83.0,168" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#arr-transcript-qa-digest)"/>
+<text x="8" y="250" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">trunk path shown: 11 of 16 nodes</text>
+</svg>
