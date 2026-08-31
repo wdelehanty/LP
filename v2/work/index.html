@@ -42,7 +42,7 @@
     <span class="item"><span class="dot"></span><b id="st-workflows">52</b>&nbsp;workflows</span>
     <span class="item"><span class="dot"></span><b id="st-active">36</b>&nbsp;active</span>
     <span class="item"><span class="dot"></span>last run&nbsp;<b id="st-lastrun">07:50 ET</b></span>
-    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.1.0</b></span>
+    <span class="item"><span class="dot"></span>site&nbsp;<b id="st-version" data-stamp="version">v2.2.0</b></span>
   </div>
 </div>
 
@@ -139,7 +139,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.1.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. 41.2565 N, 74.3576 W. <span data-stamp="version">v2.2.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
     <span class="links mono">
       <a href="https://github.com/wdelehanty">GitHub</a>
       <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
@@ -150,8 +150,11 @@
 
 <script>
 (function(){
-  fetch('/status.json', {cache: 'no-store'})
-    .then(function(r){ return r.ok ? r.json() : null; })
+  fetch('https://n8n.stedd.ai/webhook/portfolio-status', {cache: 'no-store'})
+    .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+    .catch(function(){
+      return fetch('/status.json', {cache: 'no-store'}).then(function(r){ return r.ok ? r.json() : null; });
+    })
     .then(function(s){
       if (!s) return;
       var map = { 'st-workflows': s.workflows, 'st-active': s.active, 'st-lastrun': s.last_run, 'st-version': s.site };

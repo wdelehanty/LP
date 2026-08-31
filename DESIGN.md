@@ -236,3 +236,27 @@ Checked the plan against the known AI defaults before building:
 6. Scroll-checked the copy plan for AI cadence: no aphoristic pairs, no
    "X, not Y" framing anywhere on the site, including the how-i-work page,
    whose seed lines get rewritten in prose before shipping.
+
+## 10. Design pass, 2026-08-31 (post Gate 2 feedback: "looks robotic")
+
+Reviewed against 2026 trend guidance Will supplied (kinetic type, micro-
+interactions, depth, bento asymmetry, trust cues) and rebuilt the visual
+layer without touching copy or tokens:
+
+1. Type drama. Hero at up to 64px, case titles to 66px, proof numerals in
+   Barlow Condensed up to 68px set in signal. The proof band is now the
+   loudest moment on the page, which is where loud belongs.
+2. One load-in moment per page: hero/case headers rise once on load,
+   staggered. The rail pulse stays. Nothing is scroll-triggered.
+3. Micro-interactions everywhere touchable: nav underline slides, rows get
+   full-bleed hover with an arrow that slides in, band cells lighten,
+   aside notes flip their border to signal, buttons lift.
+4. Drafting-table texture: site-wide grain at 3.5%, blueprint grid behind
+   heroes and the footer (SVG tile, not a CSS gradient), a signal
+   registration mark, hatched drafting voids for pending photos, DWG title
+   lines under diagrams, coordinates in the footer.
+5. Signal notches on section rules and h2 rules; square markers in signal.
+6. Depth: panel shadows with a 1px light top edge; no glass, no blur.
+
+Rail source order: the live n8n endpoint (Portfolio: Status Endpoint,
+webhook /portfolio-status), then /status.json, then baked values.
