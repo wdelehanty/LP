@@ -734,6 +734,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 /* 404, the one centered page */
 .err { min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 14px; }
 
+.shot-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; border-top: 1px solid var(--line-soft); padding-top: 32px; }
+.shot-pair figure { position: relative; margin: 0; }
+.shot-pair img { width: 100%; height: auto; display: block; border: 1px solid var(--line-soft); border-radius: 2px; }
+@media (max-width: 900px) { .shot-pair { grid-template-columns: 1fr; } }
+
 /* Photo frames */
 .photo-frame { margin: 0; position: relative; }
 .photo-frame img { width: 100%; height: auto; display: block; border-radius: 2px; box-shadow: 10px 10px 0 #23282D; }
