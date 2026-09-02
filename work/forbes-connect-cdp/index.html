@@ -44,6 +44,16 @@
   </div>
 </nav>
 
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+  </div>
+</div>
+
 
 <main>
 
@@ -63,22 +73,6 @@
     <div class="cs-main">
       <h2>Problem</h2>
       <p>A media site mostly knows its audience in aggregate. Pageviews tell you what got read, not who's in market. If the business was going to monetize identity instead of pageviews, something had to turn readers into known profiles and then do something with them.</p>
-
-      <h2>What I built</h2>
-      <ul>
-        <li>Launched Forbes Connect as the conversion layer on a BlueConic CDP holding 18M+ profiles.</li>
-        <li>Behavioral segmentation. Audiences built on what people read and do, on our own site.</li>
-        <li>On-site dialogues that catch a reader at the right moment and ask for the right thing.</li>
-        <li>Progressive profiling. One or two fields at a time instead of a twelve-field form nobody fills out.</li>
-        <li>Routing into Pardot and Salesforce, so a new profile lands in nurture or with a seller without anyone touching it.</li>
-        <li>Around it, the audience intelligence work: predictive LTV, third-party enrichment, cross-product routing.</li>
-      </ul>
-
-      <h2>Stack</h2>
-      <p class="mono">blueconic / pardot / salesforce / ga4 / bigquery</p>
-
-      <h2>Outcome</h2>
-      <p>18M+ profiles under behavioral segmentation, feeding the lifecycle portfolio and the CRM routing. That number is the scale of the CDP, and profiles aren't leads. What it buys you is that every downstream program starts warm.</p>
     </div>
     <aside class="cs-aside">
       <div class="note"><b>What a dialogue is</b>An on-site prompt targeted by behavior. Somebody three stories deep into a topic sees a different ask than a first-timer. That's the whole trick.</div>
@@ -87,10 +81,64 @@
   </div>
 </section>
 
-<section class="cs-visual">
+<section class="cs-built">
   <div class="wrap">
-    <figure class="diagram">
-      <!-- dg:connect-cdp:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 244" role="img" aria-label="Forbes Connect architecture: the site's dialogues and progressive profiling feed the BlueConic CDP, enriched by third-party data, which routes profiles into Pardot for nurture and Salesforce for routing and attribution.">
+    <h2>What I built</h2>
+    <div class="built side">
+      <div class="text">
+        <h3>Dialogues and segmentation</h3>
+        <p>Forbes Connect launched as the conversion layer on a BlueConic CDP holding 18M+ profiles. Audiences are built on what people read and do on our own site, and on-site dialogues catch a reader at the right moment and ask for the right thing. Somebody three stories deep into a topic sees a different ask than a first-timer.</p>
+      </div>
+      <figure class="fig">
+          <div class="frame"><!-- dg:dialogue-plate:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="On-site dialogues: a first-time reader sees one ask, somebody three stories deep into a topic sees a different one, targeted by behavior.">
+<defs><marker id="ar-dialogue-plate" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="34" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">On-site dialogues</text>
+<text x="20" y="50" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">forbes connect / targeted by behavior</text>
+<rect x="24" y="118" width="200" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">First-timer</text>
+<text x="124.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one ask</text>
+<rect x="256" y="118" width="200" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="268" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Three stories deep</text>
+<text x="356.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">a different ask</text>
+<text x="20" y="282" style="font:400 10.5px 'IBM Plex Mono',monospace" fill="#9AA0A6">an on-site prompt targeted by what the reader has read and done</text>
+</svg><!-- dg:dialogue-plate:end --></div>
+          <figcaption class="mono made">Who sees which ask.</figcaption>
+        </figure>
+    </div>
+    <div class="built side">
+      <div class="text">
+        <h3>Progressive profiling</h3>
+        <p>One or two fields per interaction instead of a twelve-field form nobody fills out. The profile fills in over a few visits, and nobody ever sees a long form.</p>
+      </div>
+      <figure class="fig">
+          <div class="frame"><!-- dg:profiling-plate:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="Progressive profiling: one field on the first visit, one more on the next, until the reader is a known profile that gets segmented and routed.">
+<defs><marker id="ar-profiling-plate" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="34" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Progressive profiling</text>
+<text x="20" y="50" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">forbes connect / one ask per visit</text>
+<rect x="18" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="30" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">First visit</text>
+<text x="84.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one field</text>
+<path d="M150,144.0 L173,144.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-profiling-plate)"/>
+<rect x="174" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="186" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Next visit</text>
+<text x="240.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one more field</text>
+<path d="M306,144.0 L329,144.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-profiling-plate)"/>
+<rect x="330" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="342" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Known profile</text>
+<text x="396.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">segmented, routed</text>
+<text x="20" y="282" style="font:400 10.5px 'IBM Plex Mono',monospace" fill="#9AA0A6">the profile fills in over a few visits</text>
+<text x="20" y="300" style="font:400 10.5px 'IBM Plex Mono',monospace" fill="#9AA0A6">nobody ever sees a long form</text>
+</svg><!-- dg:profiling-plate:end --></div>
+          <figcaption class="mono made">How a profile fills in.</figcaption>
+        </figure>
+    </div>
+    <div class="built plate">
+      <div class="text">
+        <h3>Routing into nurture and sales</h3>
+        <p>A new profile lands in Pardot for nurture or with a seller in Salesforce without anyone touching it. Around that sits the audience intelligence work: predictive LTV, third-party enrichment, and cross-product routing.</p>
+      </div>
+      <figure class="fig">
+          <!-- dg:connect-cdp:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 244" role="img" aria-label="Forbes Connect architecture: the site's dialogues and progressive profiling feed the BlueConic CDP, enriched by third-party data, which routes profiles into Pardot for nurture and Salesforce for routing and attribution.">
 <defs><marker id="ar-connect-cdp" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
 <rect x="10" y="40" width="190" height="66" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
 <text x="24" y="64" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Forbes.com</text>
@@ -112,8 +160,20 @@
 <path d="M500,86 C540.0,86 540.0,118 580,118" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-connect-cdp)"/>
 <text x="10" y="232" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">anonymous readers become identified profiles on site; identified profiles route into nurture and sales</text>
 </svg><!-- dg:connect-cdp:end -->
-      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
-    </figure>
+          <figcaption class="mono made">Forbes Connect, end to end.</figcaption>
+        </figure>
+    </div>
+  </div>
+</section>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>Stack</h2>
+      <p class="mono">blueconic / pardot / salesforce / ga4 / bigquery</p>
+      <h2>Outcome</h2>
+      <p>18M+ profiles under behavioral segmentation, feeding the lifecycle portfolio and the CRM routing. That number is the scale of the CDP, and profiles aren't leads. What it buys you is that every downstream program starts warm.</p>
+    </div>
   </div>
 </section>
 
@@ -127,9 +187,9 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.4</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
-      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
     </span>
   </div>

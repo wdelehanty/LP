@@ -44,6 +44,16 @@
   </div>
 </nav>
 
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+  </div>
+</div>
+
 
 <main>
 
@@ -63,35 +73,30 @@
     <div class="cs-main">
       <h2>Problem</h2>
       <p>Ten-plus lifecycle programs, two people. Anything that lived in someone's head became a bottleneck. AI could take a lot of the repeatable work, but not without guardrails, because it'll produce confident garbage at scale if you let it.</p>
-
-      <h2>What I built</h2>
-      <ul>
-        <li>Standards first. What a program is, what every email has to contain, what counts as launch-ready. On paper.</li>
-        <li>Prompt libraries for the recurring work, versioned like anything else we ship.</li>
-        <li>QA checklists that gate everything before it ships, human or machine made.</li>
-        <li>Governance: what AI is allowed to touch, what needs human review, and who owns the output.</li>
-        <li>Custom ChatGPT Enterprise GPTs trained on those standards. The trainable work runs through them now.</li>
-        <li>A two-bucket contractor model. Trainable execution in one bucket, real expertise in the other, and outside rates only get paid for the second.</li>
-        <li>And value reporting for the martech stack, so every tool has to show what it contributed.</li>
-      </ul>
-
-      <h2>Stack</h2>
-      <p class="mono">chatgpt enterprise (custom gpts) / claude code / n8n / smartsheet / monday.com</p>
-
-      <h2>Outcome</h2>
-      <p>Campaign work modeled at 149 to 206 specialist hours has been delivered in roughly 71 to 74 hours by one AI-assisted operator: about a 60% reduction, projected to reach about 79% once the lifecycle agents launch. The modeling is against specialist-hour benchmarks, and everything still passes the same QA gate before it ships.</p>
     </div>
-    <aside class="cs-aside">
-      <div class="note"><b>Order of operations</b>The prompt libraries, QA checklists, and governance were all in place before any agent touched production work.</div>
-      <div class="note"><b>In development</b>Three AI agents are in build: a lifecycle engine, a media planning assistant with a seller pilot live, and an owned concierge.</div>
-    </aside>
   </div>
 </section>
 
-<section class="cs-visual">
+<section class="cs-built">
   <div class="wrap">
-    <figure class="diagram">
-      <!-- dg:playbook-structure:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 262" role="img" aria-label="The operating playbook structure: standards, prompt libraries, QA checklists, and governance feed custom GPTs that carry the trainable work, which is how a team of two runs more than ten concurrent programs.">
+    <h2>What I built</h2>
+    <div class="built side">
+      <div class="text">
+        <h3>Standards and QA gates</h3>
+        <p>Standards first, on paper: what a program is, what every email has to contain, what counts as launch-ready. QA checklists gate everything before it ships, human or machine made.</p>
+      </div>
+      <figure class="fig">
+          <div class="frame top"><img src="../../assets/img/forbes-email.jpg" alt="An email template proof with the Forbes banner and a merge tag greeting, followed by quarterly planning notes" width="678" height="1100" loading="lazy"></div>
+          <figcaption class="mono made">A template proof from the planning motion, merge tags and all.</figcaption>
+        </figure>
+    </div>
+    <div class="built plate">
+      <div class="text">
+        <h3>Prompt libraries, custom GPTs, and governance</h3>
+        <p>Prompt libraries for the recurring work, versioned like anything else we ship. Governance that says what AI is allowed to touch, what needs human review, and who owns the output. Custom ChatGPT Enterprise GPTs trained on those standards, and the trainable work runs through them now.</p>
+      </div>
+      <figure class="fig">
+          <!-- dg:playbook-structure:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 262" role="img" aria-label="The operating playbook structure: standards, prompt libraries, QA checklists, and governance feed custom GPTs that carry the trainable work, which is how a team of two runs more than ten concurrent programs.">
 <defs><marker id="ar-playbook-structure" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
 <rect x="10" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
 <text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Standards</text>
@@ -113,12 +118,47 @@
 <text x="24" y="220" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">10+ concurrent programs</text>
 <text x="24" y="238" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">run by a team of two</text>
 </svg><!-- dg:playbook-structure:end -->
-      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
-    </figure>
-    <figure class="diagram shot grain" style="margin-top:48px">
-      <img src="../../assets/img/forbes-email.jpg" alt="An email template proof with the Forbes banner and a merge tag greeting, followed by quarterly planning notes" width="1100" height="1783" loading="lazy">
-      <figcaption class="mono made">A template proof from the planning motion, merge tags and all.</figcaption>
-    </figure>
+          <figcaption class="mono made">The playbook, and what runs through it.</figcaption>
+        </figure>
+    </div>
+    <div class="built side">
+      <div class="text">
+        <h3>Two buckets and value reporting</h3>
+        <p>A two-bucket contractor model: trainable execution in one bucket, real expertise in the other, and outside rates only get paid for the second. And value reporting for the martech stack, so every tool has to show what it contributed.</p>
+      </div>
+      <figure class="fig">
+          <div class="frame"><!-- dg:two-bucket:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="The two-bucket contractor model: trainable execution runs through custom GPTs and one operator, real expertise is bought at outside rates.">
+<defs><marker id="ar-two-bucket" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="34" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The two-bucket model</text>
+<text x="20" y="50" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">operating playbook / who does what</text>
+<rect x="24" y="118" width="200" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="36" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Trainable execution</text>
+<text x="124.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">custom gpts and</text>
+<text x="124.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one operator</text>
+<rect x="256" y="118" width="200" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="268" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Real expertise</text>
+<text x="356.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">outside rates,</text>
+<text x="356.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">judgment calls</text>
+<text x="20" y="282" style="font:400 10.5px 'IBM Plex Mono',monospace" fill="#9AA0A6">outside rates only get paid for the second bucket</text>
+</svg><!-- dg:two-bucket:end --></div>
+          <figcaption class="mono made">The two buckets.</figcaption>
+        </figure>
+    </div>
+  </div>
+</section>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>Stack</h2>
+      <p class="mono">chatgpt enterprise (custom gpts) / claude code / n8n / smartsheet / monday.com</p>
+      <h2>Outcome</h2>
+      <p>Campaign work modeled at 149 to 206 specialist hours has been delivered in roughly 71 to 74 hours by one AI-assisted operator: about a 60% reduction, projected to reach about 79% once the lifecycle agents launch. The modeling is against specialist-hour benchmarks, and everything still passes the same QA gate before it ships.</p>
+    </div>
+    <aside class="cs-aside">
+      <div class="note"><b>Order of operations</b>The prompt libraries, QA checklists, and governance were all in place before any agent touched production work.</div>
+      <div class="note"><b>In development</b>Three AI agents are in build: a lifecycle engine, a media planning assistant with a seller pilot live, and an owned concierge.</div>
+    </aside>
   </div>
 </section>
 
@@ -132,9 +172,9 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.4</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
-      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
     </span>
   </div>

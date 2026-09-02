@@ -44,6 +44,16 @@
   </div>
 </nav>
 
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+  </div>
+</div>
+
 
 <main>
 
@@ -65,7 +75,7 @@
       <p>Type is Barlow for display and body, Barlow Condensed for labels and stats, IBM Plex Mono for code and captions, all self-hosted as woff2 files totaling about 60K. The palette is a warm gunmetal with one accent, a safety yellow borrowed from workwear, because most of what this site shows is diagrams and dashboards and they read best on a dark ground.</p>
 
       <h3>The diagrams</h3>
-      <p>Workflow diagrams are rendered from actual n8n workflow exports into the site's own colors and type. Architecture diagrams are drawn by hand in the same language. Each carries a line saying how it was made. The photography is mine, shot on the property, except the brushed steel texture behind the headers, which is by apryan widodo on Unsplash. Internal tools show up as drawings or samples, never with real numbers in frame.</p>
+      <p>Workflow diagrams are rendered from actual n8n workflow exports into the site's own colors and type. Architecture diagrams are drawn by hand in the same language, in the site's own tokens, so they inherit the page fonts and colors. Each carries a DWG marker, and the workflow ones say which export they came from. The photography is mine, shot on the property, except the brushed steel texture behind the headers, which is by apryan widodo on Unsplash. Internal tools show up as drawings or samples, never with real numbers in frame.</p>
 
       <h3>Deliberately left out</h3>
       <p>No analytics scripts, no cookies, no consent banner because there is nothing to consent to. The one script that phones home is a visit beacon that fires only when a URL carries a code I handed out myself, and it reads nothing from your browser. Motion is deliberate and light: things rise once as they enter, and everything stands still if your system asks for reduced motion. No gradients, no testimonial carousel, no logo strip, no stock illustration posing as my life. No em-dashes either, down to the commit messages. Long story.</p>
@@ -80,9 +90,9 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.4</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
-      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
     </span>
   </div>

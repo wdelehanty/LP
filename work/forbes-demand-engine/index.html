@@ -44,6 +44,16 @@
   </div>
 </nav>
 
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+  </div>
+</div>
+
 
 <main>
 
@@ -63,21 +73,76 @@
     <div class="cs-main">
       <h2>Problem</h2>
       <p>Forbes made its money on audience and advertising. The B2B side needed real pipeline, and when I picked this up there was nothing behind it. No capture, no nurture, no routing. Nobody could say whether marketing had ever touched a dollar.</p>
+    </div>
+  </div>
+</section>
 
-      <h2>What I built</h2>
-      <ul>
-        <li>Paid media, email, landing pages, nurture, funnel reporting. Built as one system from the start.</li>
-        <li>Taught myself HTML and CSS because I got tired of waiting on the design queue. Shipped my own templates, landing pages, and tracking scripts.</li>
-        <li>Contact-role attribution in Salesforce. Conservative on purpose, and it holds up when somebody pushes on it.</li>
-        <li>Speed-to-lead standards and routing rules. Built those with sales, in the room.</li>
-        <li>A one-click outreach library for sellers. They used it because it sat where they already worked.</li>
-        <li>The Performance Console, plus the QBR and monthly reporting that tie campaign work to pipeline, accounts, and channel efficiency.</li>
-        <li>And the bigger strategy piece: moving the business from monetizing pageviews to monetizing known people.</li>
-      </ul>
+<section class="cs-built">
+  <div class="wrap">
+    <h2>What I built</h2>
+    <div class="built plate">
+      <div class="text">
+        <h3>Capture and nurture</h3>
+        <p>Paid media, email, landing pages, nurture, and funnel reporting, built as one system from the start. I taught myself HTML and CSS because I got tired of waiting on the design queue, then shipped my own templates, landing pages, and tracking scripts. Nurture runs in Pardot, from onboarding through reengagement.</p>
+      </div>
+      <div class="two-up">
+        <figure class="fig">
+          <div class="frame auto"><img src="../../assets/img/forbes-landing.jpg" alt="A Forbes partner landing page on a phone: reach the high-net-worth audiences who shape markets and culture, with audience stats beneath" width="595" height="1100" loading="lazy"></div>
+          <figcaption class="mono made">A capture page, the public side of the machine.</figcaption>
+        </figure>
+        <figure class="fig">
+          <div class="frame auto"><img src="../../assets/img/capture-form-sample.jpg" alt="A six-field capture form, sample edition: first and last name, work email, company, job title, industry, and an apply button" width="476" height="634" loading="lazy"></div>
+          <figcaption class="mono made">The capture form behind a page like it, sample edition from the pitch kit.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="built plate">
+      <div class="text">
+        <h3>Attribution and routing</h3>
+        <p>Contact-role attribution in Salesforce, conservative on purpose, so it holds up when somebody pushes on it. Speed-to-lead standards and routing rules, built with sales in the room. And a one-click outreach library for sellers, which they used because it sat where they already worked.</p>
+      </div>
+      <figure class="fig">
+          <!-- dg:funnel:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 138" role="img" aria-label="The funnel from capture through nurture and routing to the sales handoff, with what runs in each stage and a bracket marking the roughly 2.5x conversion improvement across them.">
+<defs><marker id="ar-funnel" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<rect x="10" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Capture</text>
+<text x="24" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">forms, pages, tracking</text>
+<path d="M210,38 L238,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<rect x="238" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="252" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Nurture</text>
+<text x="252" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">onboarding, reengagement</text>
+<path d="M438,38 L466,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<rect x="466" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="480" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Route</text>
+<text x="480" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">speed to lead, contact roles</text>
+<path d="M666,38 L694,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<rect x="694" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="708" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Sales handoff</text>
+<text x="708" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one-click outreach library</text>
+<path d="M10,96 L10,106 L894,106 L894,96" fill="none" stroke="#F2C230" stroke-width="1"/>
+<text x="447.0" y="126" text-anchor="middle" style="font:400 12px 'IBM Plex Mono',monospace" fill="#E6E4DF">~2.5x conversion improvement across capture, nurture, and routing</text>
+</svg><!-- dg:funnel:end -->
+          <figcaption class="mono made">The mechanism behind the ~2.5x.</figcaption>
+        </figure>
+    </div>
+    <div class="built side">
+      <div class="text">
+        <h3>Reporting and the Performance Console</h3>
+        <p>The Performance Console in Looker, plus the QBR and monthly reporting that tie campaign work to pipeline, accounts, and channel efficiency. Every stage reports into that layer, and it is where the influenced-revenue number comes from. The bigger strategy piece sat on top of it: moving the business from monetizing pageviews to monetizing known people.</p>
+      </div>
+      <figure class="fig">
+          <div class="frame r43"><img src="../../assets/img/console-heatmap.jpg" alt="The console, sample edition: phase funnel comparison by lifecycle and a channel contribution heatmap across email, LinkedIn, Google, newsletter, site personalization, BlueConic, and landing pages" width="1096" height="822" loading="lazy"></div>
+          <figcaption class="mono made">The console, sample edition: funnel drop-off and channel contribution. Live numbers stay internal.</figcaption>
+        </figure>
+    </div>
+  </div>
+</section>
 
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
       <h2>Stack</h2>
       <p class="mono">salesforce / pardot / blueconic / looker / ga4 / bigquery / linkedin ads / google ads / meta ads / gam</p>
-
       <h2>Outcome</h2>
       <p>Marketing-influenced revenue went from zero to eight figures. Influenced means a campaign touched a contact with a role on the closed opportunity in Salesforce. It's a conservative count, and it's a different claim than sourced or direct-booked.</p>
       <p>Conversion improved about 2.5x over the same stretch, mostly from tightening capture, nurture, and routing.</p>
@@ -124,30 +189,7 @@
 <text x="10" y="204" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">dashed: every stage reports into the same measurement layer, which is where the influenced-revenue number comes from</text>
 <text x="10" y="224" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">yellow outline: the parts I own</text>
 </svg><!-- dg:demand-engine-full:end -->
-      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
-    </figure>
-    <figure class="diagram shot grain" style="margin-top:48px">
-      <img src="../../assets/img/forbes-landing.jpg" alt="A Forbes partner landing page on a phone: reach the high-net-worth audiences who shape markets and culture, with audience stats beneath" width="1100" height="2033" loading="lazy">
-      <figcaption class="mono made">A capture page, the public side of the machine.</figcaption>
-    </figure>
-    <figure class="diagram" style="margin-top:48px">
-      <!-- dg:funnel:start --><div class="dg-scroll"><svg style="min-width:737px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 128" role="img" aria-label="The funnel from capture through nurture and routing to the sales handoff, with a bracket marking the roughly 2.5x conversion improvement across those stages.">
-<defs><marker id="ar-funnel" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
-<rect x="10" y="10" width="320" height="46" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Capture</text>
-<path d="M330,33 L358,33" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="358" y="10" width="260" height="46" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="372" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Nurture</text>
-<path d="M618,33 L646,33" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="646" y="10" width="200" height="46" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="660" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Route</text>
-<path d="M846,33 L874,33" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="874" y="10" width="140" height="46" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="888" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Sales handoff</text>
-<path d="M10,86 L10,96 L1014,96 L1014,86" fill="none" stroke="#F2C230" stroke-width="1"/>
-<text x="507.0" y="116" text-anchor="middle" style="font:400 12px 'IBM Plex Mono',monospace" fill="#E6E4DF">~2.5x conversion improvement across capture, nurture, and routing</text>
-</svg></div><!-- dg:funnel:end -->
-      <figcaption class="mono made">The mechanism behind the ~2.5x. Drawn in site tokens, 2026-08-31.</figcaption>
+      <figcaption class="mono made">The whole engine on one plate.</figcaption>
     </figure>
   </div>
 </section>
@@ -162,9 +204,9 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.4</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
-      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
     </span>
   </div>

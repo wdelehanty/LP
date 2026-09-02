@@ -44,6 +44,16 @@
   </div>
 </nav>
 
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+  </div>
+</div>
+
 
 <main>
 
@@ -63,31 +73,20 @@
     <div class="cs-main">
       <h2>Problem</h2>
       <p>For a consumer product, everything rides on what happens after signup. Somebody had to own that for Forbes8: getting new users to value fast, keeping them around, and figuring out which emails moved sales instead of just getting opened.</p>
-
-      <h2>What I built</h2>
-      <ul>
-        <li>The site itself. Design and engineering were booked, so I built the pages with the HTML and CSS I'd picked up doing demand gen.</li>
-        <li>The activation plan, the sequence a new user hits in their first few days.</li>
-        <li>Engagement and retention programs across the subscriber base, pointed at LTV.</li>
-        <li>And the incremental-sales feedback loop, which is what let us tune programs against sales instead of opens.</li>
-      </ul>
-
-      <h2>Stack</h2>
-      <p class="mono">html / css / email automation / funnel reporting</p>
-
-      <h2>Outcome</h2>
-      <p>No public number on this one. But it's where I learned to run lifecycle the way I still run it: own the whole thing, build the measurement in early, judge the program on sales. Everything I did later in B2B lifecycle started here.</p>
     </div>
-    <aside class="cs-aside">
-      <div class="note"><b>Before this</b>I spent 2015 to 2018 as a sales planner, so I knew how media actually got sold before I ever ran lifecycle. That's why all of it points at revenue.</div>
-    </aside>
   </div>
 </section>
 
-<section class="cs-visual">
+<section class="cs-built">
   <div class="wrap">
-    <figure class="diagram">
-      <!-- dg:forbes8-lifecycle:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 148" role="img" aria-label="The Forbes8 lifecycle: signup to activation to engagement to retention to lifetime value, with a dashed feedback loop carrying incremental sales data back into the programs.">
+    <h2>What I built</h2>
+    <div class="built plate">
+      <div class="text">
+        <h3>The site and the activation plan</h3>
+        <p>Design and engineering were booked, so I built the pages with the HTML and CSS I'd picked up doing demand gen. Then the activation plan: the sequence a new user hits in their first few days, pointed at getting them to value fast.</p>
+      </div>
+      <figure class="fig">
+          <!-- dg:forbes8-lifecycle:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 148" role="img" aria-label="The Forbes8 lifecycle: signup to activation to engagement to retention to lifetime value, with a dashed feedback loop carrying incremental sales data back into the programs.">
 <defs><marker id="ar-forbes8-lifecycle" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
 <rect x="10" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
 <text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Signup</text>
@@ -107,8 +106,51 @@
 <path d="M810,66 C810,130 90,130 90,70" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-forbes8-lifecycle)"/>
 <text x="310" y="122" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">incremental-sales feedback loop: programs tuned on sales effect</text>
 </svg><!-- dg:forbes8-lifecycle:end -->
-      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
-    </figure>
+          <figcaption class="mono made">Signup to LTV, with the loop.</figcaption>
+        </figure>
+    </div>
+    <div class="built side">
+      <div class="text">
+        <h3>Engagement, retention, and the feedback loop</h3>
+        <p>Engagement and retention programs across the subscriber base, pointed at LTV. The incremental-sales feedback loop is what let us tune programs against sales instead of opens.</p>
+      </div>
+      <figure class="fig">
+          <div class="frame"><!-- dg:feedback-loop:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="The incremental-sales feedback loop: a lifecycle send, its measured sales effect, a tuned program, and back around.">
+<defs><marker id="ar-feedback-loop" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="34" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The incremental-sales loop</text>
+<text x="20" y="50" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">forbes8 / how programs got tuned</text>
+<rect x="18" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="30" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Send</text>
+<text x="84.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">lifecycle program</text>
+<path d="M150,144.0 L173,144.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-feedback-loop)"/>
+<rect x="174" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="186" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Sales effect</text>
+<text x="240.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">incremental sales,</text>
+<text x="240.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">measured</text>
+<path d="M306,144.0 L329,144.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-feedback-loop)"/>
+<rect x="330" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="342" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Tune</text>
+<text x="396.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">adjust the program</text>
+<path d="M396.0,118 C396.0,66 84.0,66 84.0,117" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-feedback-loop)"/>
+<text x="20" y="282" style="font:400 10.5px 'IBM Plex Mono',monospace" fill="#9AA0A6">dashed: the loop that let us judge programs on sales</text>
+</svg><!-- dg:feedback-loop:end --></div>
+          <figcaption class="mono made">Programs tuned on sales effect.</figcaption>
+        </figure>
+    </div>
+  </div>
+</section>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>Stack</h2>
+      <p class="mono">html / css / email automation / funnel reporting</p>
+      <h2>Outcome</h2>
+      <p>No public number on this one. But it's where I learned to run lifecycle the way I still run it: own the whole thing, build the measurement in early, judge the program on sales. Everything I did later in B2B lifecycle started here.</p>
+    </div>
+    <aside class="cs-aside">
+      <div class="note"><b>Before this</b>I spent 2015 to 2018 as a sales planner, so I knew how media actually got sold before I ever ran lifecycle. That's why all of it points at revenue.</div>
+    </aside>
   </div>
 </section>
 
@@ -122,9 +164,9 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.4</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
-      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
     </span>
   </div>

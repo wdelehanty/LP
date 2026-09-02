@@ -1,16 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 128" role="img" aria-label="The funnel from capture through nurture and routing to the sales handoff, with a bracket marking the roughly 2.5x conversion improvement across those stages.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 138" role="img" aria-label="The funnel from capture through nurture and routing to the sales handoff, with what runs in each stage and a bracket marking the roughly 2.5x conversion improvement across them.">
 <defs><marker id="ar-funnel" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
-<rect x="10" y="10" width="320" height="46" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<rect x="10" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
 <text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Capture</text>
-<path d="M330,33 L358,33" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="358" y="10" width="260" height="46" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="372" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Nurture</text>
-<path d="M618,33 L646,33" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="646" y="10" width="200" height="46" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="660" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Route</text>
-<path d="M846,33 L874,33" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="874" y="10" width="140" height="46" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="888" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Sales handoff</text>
-<path d="M10,86 L10,96 L1014,96 L1014,86" fill="none" stroke="#F2C230" stroke-width="1"/>
-<text x="507.0" y="116" text-anchor="middle" style="font:400 12px 'IBM Plex Mono',monospace" fill="#E6E4DF">~2.5x conversion improvement across capture, nurture, and routing</text>
+<text x="24" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">forms, pages, tracking</text>
+<path d="M210,38 L238,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<rect x="238" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="252" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Nurture</text>
+<text x="252" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">onboarding, reengagement</text>
+<path d="M438,38 L466,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<rect x="466" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="480" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Route</text>
+<text x="480" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">speed to lead, contact roles</text>
+<path d="M666,38 L694,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<rect x="694" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="708" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Sales handoff</text>
+<text x="708" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one-click outreach library</text>
+<path d="M10,96 L10,106 L894,106 L894,96" fill="none" stroke="#F2C230" stroke-width="1"/>
+<text x="447.0" y="126" text-anchor="middle" style="font:400 12px 'IBM Plex Mono',monospace" fill="#E6E4DF">~2.5x conversion improvement across capture, nurture, and routing</text>
 </svg>

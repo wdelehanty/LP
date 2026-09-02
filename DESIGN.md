@@ -291,3 +291,87 @@ own. What shipped:
 Ban list still in force: no gradients, no purple or blue, no centered
 hero, no Inter/Geist, no emoji, no carousels, no logo strips, no
 em-dashes. The rules that moved, moved because the client said move.
+
+## 12. Visual pass, 2026-09-02 (CC Brief 6, target v2.6.0)
+
+Composition, imagery, density, and motion. Tokens, type, grid, and the
+site map are unchanged. Decisions that pages must follow from here:
+
+1. Frames. Every real screen and photo sits in a `.frame`: 1px `--line`
+   hairline, 4px radius (the one exception to the 2px panel rule), grain
+   at 6%, a slight inner shadow, mono caption outside and beneath.
+   Aspect modifiers: `.r43`, `.r11`, default 3:2. Pending assets ship as
+   `.frame.slot`, the hatched drafting void with a labeled SLOT tag, at
+   the final aspect ratio so layout can be approved before assets land.
+2. Photos run at full strength or they do not run. No opacity washes, no
+   background photos behind text. The off-hours section is now text left,
+   one framed photo right.
+3. Hero: "I build revenue systems." on one line, underline kept, the rest
+   of the old headline as a 24px body-weight subhead, then two paragraphs.
+   Right column is a framed Performance Console crop, 4:3.
+4. Status rail is back as a thin mono strip directly under the nav, not
+   sticky, no glass. Items: workflows active, last morning round, last
+   deploy, separated by 5px signal dots. Source is a Cloudflare Worker
+   (see /worker), deployed 2026-09-02 at wd-status.wdelehanty.workers.dev,
+   holding no secrets: it reads the n8n webhook served by "Portfolio:
+   Status Endpoint v2", which uses the n8n-side credential, and caches 15
+   minutes. That workflow needs its credential attached and activating in
+   the n8n UI (worker/README.md has the two steps); until then the Worker
+   answers 502 and the rail shows the baked values. The zone is on
+   Cloudflare but the apex record is DNS-only, so the same-origin
+   /api/status route stays commented out until the proxy is turned on.
+   Baked values in the markup are real, refreshed by scripts/bake_status.py
+   at release time. The rail never shows loading or empty. Bake on
+   2026-09-02: 35 active workflows, last Morning Round v2 run Wed 07:00 ET.
+   It is on every page, under the nav.
+5. Work cards: text 55%, framed image 40%, 5% gutter, image side
+   alternates right/left/right/left. Hover lifts the image 4px and runs
+   the signal hairline under the title to full width. The arrow slide and
+   the row background tint are gone.
+6. Photo strip between Work and Proof: five squares, full bleed, 1px
+   gaps, grayscale at rest and color on hover, color where hover does not
+   exist. One mono line beneath: "Warwick, NY. Weekends."
+7. Proof grid: five cells, "a b c / a d e". The tall left cell keeps the
+   tenure claim; "$275K direct-booked from $72K paid" fills the bottom
+   right. Numerals count up once on scroll into view, 600ms.
+8. Motion budget, site-wide and final: scroll reveal (opacity and 12px
+   rise, 400ms, once per element) on section heads, cards, figures, and
+   proof numerals; hover (image lift, hairline extend, grayscale to color,
+   200ms); ambient (rail tick on first paint and slow dot pulse). The
+   hero parallax drift and the scroll progress thread are removed.
+   `prefers-reduced-motion` disables all of it and leaves the rail's live
+   update in place.
+9. Nav under 768px hides Stack and How I work; Work, Stedd, Lab, About
+   stay. Under 480px the four sit in one row.
+10. Version and deploy date come from `scripts/release.sh vX.Y.Z`, never
+    by hand. Footer LinkedIn URL is /in/williamdelehanty/.
+11. Case studies: "What I built" is two or three subsections, each an H3,
+    a short paragraph, at most three bullets, and one figure. `.built.side`
+    puts a 3:2 frame in the right column (a screenshot, a slot, or a
+    480 by 320 plate from `draw_architecture.py`); `.built.plate` runs a
+    full-width drawing beneath the text. The demand engine keeps its full
+    system drawing as a closing plate; the funnel is redrawn with what
+    actually runs in each stage. Captions never repeat how a drawing was
+    made; the colophon says it once. Figures and the aside notes never
+    share a column, so the notes stay sticky beside Problem or Outcome.
+12. About: the studio headshot is masked onto a gunmetal gradient by
+    `scripts/mask_headshot.py` (Pillow and numpy), cropped past the
+    watermark, and shown in a 1:1 frame. Coop and shop photos are the
+    model for the rest of the site and stay as they are.
+13. Photo strip hover is grayscale to color, decided. Card 1 on the home
+    page is the horizontal demand-engine plate, decided.
+14. Assets filled on 2026-09-02 without the real internal screens: the
+    shop photo (Google Photos, square crop of the workbench), the Morning
+    Round email in Gmail (no names in frame), and renders of the repo's
+    own pitch kit standing in as samples: the lifecycle and pipeline
+    console (hero and the demand engine page) and its capture form (the
+    demand engine two-up). The Stedd card uses the sample Monday Report.
+    Every sample is captioned as a sample; live numbers stay internal.
+    The BlueConic slots became a crop of the real Forbes page with its
+    Connect with Us button (home card) and a drawn dialogue plate (Connect
+    case study). The summit page shows the 2019 Detroit late show, captioned
+    by year. No slots remain.
+
+Gate order from the brief: home comp with placeholders, Will approves
+layout; Worker live on real n8n data; assets in and home ships as v2.6.0;
+case studies and about; QA pass.

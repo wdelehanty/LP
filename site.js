@@ -1,11 +1,68 @@
 /* Steel and Signal interaction layer. Everything here is progressive
    enhancement: no JS, no motion, full content. Reduced-motion gets the
-   static site. */
+   static site, with the status rail still updating in place.
+
+   Motion budget (Brief 6): scroll reveal once per element, three hover
+   effects in CSS, and the rail tick and dot pulse as the only ambient
+   motion. Nothing else. */
 (function () {
   var doc = document.documentElement;
   doc.classList.add('js');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (still) { doc.classList.add('still'); return; }
+  if (still) doc.classList.add('still');
+
+  /* Count a number up in place. Keeps whatever sits around the digits
+     ("$", "~", "M+", "K") and the decimal precision of the original. */
+  function countUp(el, to, ms) {
+    var text = el.textContent;
+    var m = /-?\d[\d,]*(\.\d+)?/.exec(text);
+    if (!m) { return; }
+    var pre = text.slice(0, m.index);
+    var post = text.slice(m.index + m[0].length);
+    var decimals = m[1] ? m[1].length - 1 : 0;
+    if (to == null) to = parseFloat(m[0].replace(/,/g, ''));
+    if (isNaN(to)) { return; }
+    var done = pre + to.toFixed(decimals) + post;
+    if (still || !window.requestAnimationFrame) { el.textContent = done; return; }
+    var start = null;
+    el.textContent = pre + (0).toFixed(decimals) + post;
+    function frame(now) {
+      if (start === null) start = now;
+      var t = Math.min(1, (now - start) / ms);
+      var e = 1 - Math.pow(1 - t, 3);
+      el.textContent = pre + (to * e).toFixed(decimals) + post;
+      if (t < 1) requestAnimationFrame(frame); else el.textContent = done;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* Status rail: baked values are already in the markup, so the strip is
+     never empty. Numbers tick in on first paint, then the Worker at
+     data-status may replace them. Any failure leaves the baked values. */
+  var rail = document.querySelector('.rail');
+  if (rail) {
+    rail.querySelectorAll('[data-rail][data-count]').forEach(function (b) { countUp(b, null, 400); });
+    var src = rail.getAttribute('data-status');
+    if (src && window.fetch) {
+      fetch(src, { cache: 'default' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (s) {
+          if (!s) return;
+          rail.querySelectorAll('[data-rail]').forEach(function (b) {
+            var v = s[b.getAttribute('data-rail')];
+            if (v == null) return;
+            if (typeof v === 'number') {
+              if (parseFloat(b.textContent) !== v) countUp(b, v, 400);
+            } else {
+              b.textContent = String(v);
+            }
+          });
+        })
+        .catch(function () {});
+    }
+  }
+
+  if (still) return;
 
   /* Kinetic headline: split display headings into words, stagger the rise */
   document.querySelectorAll('.hero h1, .cs-header h1').forEach(function (h) {
@@ -33,19 +90,36 @@
     h.classList.add('kinetic');
   });
 
-  /* Scroll-triggered reveals, fast and once */
+  /* Scroll-triggered reveals: 12px rise, 400ms, once per element */
   var targets = document.querySelectorAll(
-    '.section-head, .row, .index-row, .band, .stack-short, .offhours .copy, ' +
-    '.cs-main > h2, .cs-aside .note, .cs-visual figure, .lab-entry, ' +
+    '.section-head, .row, .index-row, .band, .stack-short, .rows-note, ' +
+    '.strip figure, .offhours .copy, .offhours .shot, ' +
+    '.cs-main > h2, .built, .cs-aside .note, .cs-visual figure, .lab-entry, ' +
     '.principle, .stack-group, .changelog-entry, .photo-block'
   );
   targets.forEach(function (el) { el.classList.add('reveal'); });
+  document.querySelectorAll('.strip figure').forEach(function (el, i) {
+    el.style.transitionDelay = (i * 60) + 'ms';
+  });
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
   targets.forEach(function (el) { io.observe(el); });
+
+  /* Proof numerals count up once when the band comes into view */
+  var band = document.querySelector('.band');
+  if (band) {
+    var bio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        bio.unobserve(e.target);
+        e.target.querySelectorAll('.figure[data-count]').forEach(function (f) { countUp(f, null, 600); });
+      });
+    }, { threshold: 0.3 });
+    bio.observe(band);
+  }
 
   /* Safety sweep: observers and transitions can stall in throttled
      windows, and fast scrolling can leave elements unrevealed above the
@@ -67,25 +141,4 @@
     document.querySelectorAll('.reveal:not(.in)').forEach(forceIn);
     clearInterval(sweep);
   }, 6000);
-
-  /* Scroll progress, a signal thread across the top */
-  var bar = document.createElement('div');
-  bar.id = 'progress';
-  document.body.appendChild(bar);
-
-  /* Slow drift on the hero backdrop */
-  var hero = document.querySelector('.hero, .cs-header');
-  var ticking = false;
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () {
-      var max = doc.scrollHeight - window.innerHeight;
-      bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
-      if (hero) hero.style.setProperty('--drift', Math.min(window.scrollY * 0.12, 80) + 'px');
-      ticking = false;
-    });
-  }
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 })();

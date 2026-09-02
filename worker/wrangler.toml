@@ -1,0 +1,28 @@
+# Status rail Worker for williamdelehanty.com. Serves GET /api/status.
+# Reads the n8n REST API, caches for 15 minutes, returns JSON.
+#
+# No secrets: the n8n side holds its own API credential. STATUS_SOURCE_URL
+# is the public GET webhook of the "Portfolio: Status Endpoint" workflow.
+#
+# The route below needs williamdelehanty.com DNS on Cloudflare (proxied).
+# The site itself stays on GitHub Pages; Cloudflare only intercepts /api/*.
+# Until the zone is on Cloudflare, deploy to workers.dev and point the rail's
+# data-status attribute at that URL instead.
+
+name = "wd-status"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+workers_dev = true
+
+# The apex record is DNS-only today (dig returns the GitHub Pages IPs), so
+# this route would never match. Turn the proxy on for williamdelehanty.com
+# in the Cloudflare dashboard, uncomment, redeploy, and set the rail's
+# data-status back to /api/status.
+# routes = [
+#   { pattern = "williamdelehanty.com/api/status", zone_name = "williamdelehanty.com" }
+# ]
+
+[vars]
+STATUS_SOURCE_URL = "https://n8n.stedd.ai/webhook/portfolio-status"
+ALLOW_ORIGIN = "https://williamdelehanty.com"
+CACHE_SECONDS = "900"

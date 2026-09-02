@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="Two-tier product structure: one program serving two buyer depths at two price points.">
+<defs><marker id="ar-two-tier" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="34" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Two-tier product structure</text>
+<text x="20" y="50" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">pitched to a national wireless carrier</text>
+<rect x="24" y="118" width="200" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Tier one</text>
+<text x="124.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one buyer depth,</text>
+<text x="124.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one price point</text>
+<rect x="256" y="118" width="200" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="268" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Tier two</text>
+<text x="356.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">a deeper buyer,</text>
+<text x="356.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">a higher price point</text>
+<text x="20" y="282" style="font:400 10.5px 'IBM Plex Mono',monospace" fill="#9AA0A6">one program serving two buyer depths at two price points</text>
+</svg>

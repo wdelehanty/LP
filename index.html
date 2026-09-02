@@ -44,38 +44,29 @@
   </div>
 </nav>
 
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+  </div>
+</div>
 
 <header class="hero">
   <div class="wrap">
     <div>
-      <h1>I build <span class="ul">revenue systems</span>. Acquisition, lifecycle, data, and the handoff to sales, wired together and measured.</h1>
-      <p class="lede">Eleven years at Forbes, where I built the B2B demand generation function from nothing to eight figures in marketing-influenced revenue with a two-person team.</p>
+      <h1>I build <span class="ul">revenue systems</span>.</h1>
+      <p class="sub">Acquisition, lifecycle, data, and the handoff to sales, wired together and measured.</p>
+      <p class="lede">Eleven years at Forbes, where I built B2B demand generation from nothing to eight figures in marketing-influenced revenue with a team of two.</p>
       <p class="lede">Nights and weekends I keep building: a product for the trades, a house that mostly runs itself, and the pipeline behind this job search.</p>
     </div>
-    <figure>
-      <svg viewBox="0 0 340 452" role="img" aria-label="Diagram of the demand engine: acquisition feeds an 18 million plus profile CDP, which feeds lifecycle programs, then CRM routing, then sales. Every stage except sales is outlined in yellow to mark the parts I own.">
-        <rect class="dg-node dg-own" x="20" y="6" width="300" height="56" rx="2"/>
-        <text class="dg-label" x="36" y="30">Acquisition</text>
-        <text class="dg-sub" x="36" y="48">paid / content / partner programs</text>
-        <line class="dg-edge" x1="170" y1="62" x2="170" y2="92" marker-end="url(#arrow)"/>
-        <rect class="dg-node dg-own" x="20" y="96" width="300" height="56" rx="2"/>
-        <text class="dg-label" x="36" y="120">CDP</text>
-        <text class="dg-sub" x="36" y="138">18M+ profiles / segmentation</text>
-        <line class="dg-edge" x1="170" y1="152" x2="170" y2="182" marker-end="url(#arrow)"/>
-        <rect class="dg-node dg-own" x="20" y="186" width="300" height="56" rx="2"/>
-        <text class="dg-label" x="36" y="210">Lifecycle</text>
-        <text class="dg-sub" x="36" y="228">nurture / onboarding / reengagement</text>
-        <line class="dg-edge" x1="170" y1="242" x2="170" y2="272" marker-end="url(#arrow)"/>
-        <rect class="dg-node dg-own" x="20" y="276" width="300" height="56" rx="2"/>
-        <text class="dg-label" x="36" y="300">CRM routing</text>
-        <text class="dg-sub" x="36" y="318">speed to lead / attribution</text>
-        <line class="dg-edge" x1="170" y1="332" x2="170" y2="362" marker-end="url(#arrow)"/>
-        <rect class="dg-node" x="20" y="366" width="300" height="56" rx="2"/>
-        <text class="dg-label" x="36" y="390">Sales</text>
-        <text class="dg-sub" x="36" y="408">handoff / one-click outreach library</text>
-        <text class="dg-legend" x="20" y="446">yellow outline: the parts I own</text>
-      </svg>
-      <figcaption class="mono">The demand engine. The full version, with the plumbing, lives in the case study.</figcaption>
+    <figure class="shot">
+      <div class="frame r43">
+        <img src="assets/img/console-sample.jpg" alt="A lifecycle and pipeline console, VP view: four lifecycle scorecards with active prospects, new entries, phase advancements, sales-ready counts, and conversions against an eight-week baseline" width="1096" height="822" fetchpriority="high">
+      </div>
+      <figcaption class="mono">The console, sample edition. The real one runs in Looker; its numbers stay internal.</figcaption>
     </figure>
   </div>
 </header>
@@ -91,107 +82,114 @@
     <div class="rows">
 
       <article class="row">
-        <div>
+        <div class="text">
           <p class="mono kicker">FORBES / B2B</p>
           <h3><a href="work/forbes-demand-engine/">The demand engine</a></h3>
           <p>Marketing-influenced revenue is at $5.25M for 2026 so far, and $72K of paid budget has turned into $275K direct-booked. Tracked through Salesforce contact-role attribution.</p>
           <p class="mono stack">salesforce / pardot / blueconic / looker / linkedin ads / google ads</p>
         </div>
-        <figure>
-          <svg viewBox="0 0 300 74" role="img" aria-label="Excerpt of the demand engine diagram: capture flows to nurture, then to routing.">
-            <rect class="dg-node" x="4" y="14" width="84" height="44" rx="2"/>
-            <text class="dg-label" x="16" y="34">Capture</text>
-            <text class="dg-sub" x="16" y="50">forms</text>
-            <line class="dg-edge" x1="88" y1="36" x2="106" y2="36" marker-end="url(#arrow)"/>
-            <rect class="dg-node" x="108" y="14" width="84" height="44" rx="2"/>
-            <text class="dg-label" x="120" y="34">Nurture</text>
-            <text class="dg-sub" x="120" y="50">pardot</text>
-            <line class="dg-edge" x1="192" y1="36" x2="210" y2="36" marker-end="url(#arrow)"/>
-            <rect class="dg-node dg-own" x="212" y="14" width="84" height="44" rx="2"/>
-            <text class="dg-label" x="224" y="34">Routing</text>
-            <text class="dg-sub" x="224" y="50">to sales</text>
+        <div class="frame">
+          <svg viewBox="0 0 480 320" role="img" aria-label="The demand engine drawn as a plate: acquisition feeds an 18 million plus profile CDP, which feeds lifecycle programs, then CRM routing, then sales. The first four stages are outlined in yellow to mark the parts I own.">
+            <text class="dg-label" x="20" y="34">The demand engine</text>
+            <text class="dg-sub" x="20" y="50">forbes b2b / 2019 to 2026 / one system, measured end to end</text>
+
+            <rect class="dg-node dg-own" x="12" y="118" width="80" height="52" rx="2"/>
+            <text class="dg-label" x="19" y="148">Acquisition</text>
+            <line class="dg-edge" x1="92" y1="144" x2="105" y2="144" marker-end="url(#arrow)"/>
+
+            <rect class="dg-node dg-own" x="106" y="118" width="80" height="52" rx="2"/>
+            <text class="dg-label" x="113" y="148">CDP</text>
+            <line class="dg-edge" x1="186" y1="144" x2="199" y2="144" marker-end="url(#arrow)"/>
+
+            <rect class="dg-node dg-own" x="200" y="118" width="80" height="52" rx="2"/>
+            <text class="dg-label" x="207" y="148">Lifecycle</text>
+            <line class="dg-edge" x1="280" y1="144" x2="293" y2="144" marker-end="url(#arrow)"/>
+
+            <rect class="dg-node dg-own" x="294" y="118" width="80" height="52" rx="2"/>
+            <text class="dg-label" x="301" y="148">CRM routing</text>
+            <line class="dg-edge" x1="374" y1="144" x2="387" y2="144" marker-end="url(#arrow)"/>
+
+            <rect class="dg-node" x="388" y="118" width="80" height="52" rx="2"/>
+            <text class="dg-label" x="395" y="148">Sales</text>
+
+            <text class="dg-sub" x="52" y="190" text-anchor="middle">paid, content,</text>
+            <text class="dg-sub" x="52" y="204" text-anchor="middle">partner programs</text>
+            <text class="dg-sub" x="146" y="190" text-anchor="middle">18m+ profiles</text>
+            <text class="dg-sub" x="146" y="204" text-anchor="middle">segmentation</text>
+            <text class="dg-sub" x="240" y="190" text-anchor="middle">nurture and</text>
+            <text class="dg-sub" x="240" y="204" text-anchor="middle">reengagement</text>
+            <text class="dg-sub" x="334" y="190" text-anchor="middle">speed to lead</text>
+            <text class="dg-sub" x="334" y="204" text-anchor="middle">attribution</text>
+            <text class="dg-sub" x="428" y="190" text-anchor="middle">handoff and the</text>
+            <text class="dg-sub" x="428" y="204" text-anchor="middle">outreach library</text>
+
+            <text class="dg-legend" x="20" y="282">measured in salesforce contact-role attribution and looker</text>
+            <text class="dg-legend" x="20" y="300">yellow outline: the parts I own</text>
           </svg>
-        </figure>
+        </div>
       </article>
 
       <article class="row">
-        <div>
+        <div class="text">
           <p class="mono kicker">FORBES / PLATFORM</p>
           <h3><a href="work/forbes-connect-cdp/">Forbes Connect on the CDP</a></h3>
           <p>An owned-media conversion layer on an 18M+ profile CDP: behavioral segmentation, on-site dialogues, progressive profiling, and lifecycle routing into Pardot and Salesforce.</p>
           <p class="mono stack">blueconic / pardot / salesforce</p>
         </div>
-        <figure>
-          <svg viewBox="0 0 300 74" role="img" aria-label="Excerpt of the Forbes Connect architecture: the site flows into BlueConic, which routes into Pardot and Salesforce.">
-            <rect class="dg-node" x="4" y="14" width="80" height="44" rx="2"/>
-            <text class="dg-label" x="16" y="34">Site</text>
-            <text class="dg-sub" x="16" y="50">dialogues</text>
-            <line class="dg-edge" x1="84" y1="36" x2="102" y2="36" marker-end="url(#arrow)"/>
-            <rect class="dg-node dg-own" x="104" y="14" width="88" height="44" rx="2"/>
-            <text class="dg-label" x="116" y="34">BlueConic</text>
-            <text class="dg-sub" x="116" y="50">18m+</text>
-            <line class="dg-edge" x1="192" y1="28" x2="210" y2="24" marker-end="url(#arrow)"/>
-            <line class="dg-edge" x1="192" y1="44" x2="210" y2="50" marker-end="url(#arrow)"/>
-            <rect class="dg-node" x="212" y="4" width="84" height="30" rx="2"/>
-            <text class="dg-label" x="224" y="23">Pardot</text>
-            <rect class="dg-node" x="212" y="40" width="84" height="30" rx="2"/>
-            <text class="dg-label" x="224" y="59">Salesforce</text>
-          </svg>
-        </figure>
+        <div class="frame">
+          <img src="assets/img/forbes-connect-cta.jpg" alt="A Forbes partner page with the Connect with Us button in its header, the public face of Forbes Connect" width="595" height="397" loading="lazy">
+        </div>
       </article>
 
       <article class="row">
-        <div>
+        <div class="text">
           <p class="mono kicker">FOUNDER</p>
           <h3><a href="stedd/">Stedd</a></h3>
           <p>Revenue recovery for trades businesses: an AI voice agent that books jobs while the caller is still on the line, a production automation stack behind it, and a paying pilot client.</p>
           <p class="mono stack">n8n / postgres / retell / twilio / anthropic api / stripe</p>
         </div>
-        <figure>
-          <svg viewBox="0 0 300 74" role="img" aria-label="Excerpt of the Stedd system: an inbound call reaches the voice agent, which checks the calendar live and books the job.">
-            <rect class="dg-node" x="4" y="14" width="80" height="44" rx="2"/>
-            <text class="dg-label" x="16" y="34">Call</text>
-            <text class="dg-sub" x="16" y="50">inbound</text>
-            <line class="dg-edge" x1="84" y1="36" x2="102" y2="36" marker-end="url(#arrow)"/>
-            <rect class="dg-node dg-own" x="104" y="14" width="92" height="44" rx="2"/>
-            <text class="dg-label" x="116" y="34">Voice agent</text>
-            <text class="dg-sub" x="116" y="50">books live</text>
-            <line class="dg-edge" x1="196" y1="36" x2="214" y2="36" marker-end="url(#arrow)"/>
-            <rect class="dg-node" x="216" y="14" width="80" height="44" rx="2"/>
-            <text class="dg-label" x="228" y="34">Booked</text>
-            <text class="dg-sub" x="228" y="50">nightly QA</text>
-          </svg>
-        </figure>
+        <div class="frame top">
+          <img src="assets/img/stedd-monday-report-card.jpg" alt="The Stedd Monday Report, sample edition: the week's recovered dollars with numbered per-touch receipts, rendered from the real template with seeded numbers" width="1320" height="880" loading="lazy">
+        </div>
       </article>
 
       <article class="row">
-        <div>
+        <div class="text">
           <p class="mono kicker">LAB</p>
           <h3><a href="lab/">The job search machine</a></h3>
           <p>The pipeline running this search: company research and drafting, a daily digest with one-tap approve and send, visit alerts on the work samples, and a Friday scorecard.</p>
           <p class="mono stack">claude code / n8n / notion / gmail</p>
         </div>
-        <figure>
-          <svg viewBox="0 0 300 74" role="img" aria-label="Excerpt of the job search pipeline: research flows to drafting and QA, then to a one-tap approval, then the send.">
-            <rect class="dg-node" x="4" y="14" width="66" height="44" rx="2"/>
-            <text class="dg-label" x="13" y="34">Research</text>
-            <line class="dg-edge" x1="70" y1="36" x2="86" y2="36" marker-end="url(#arrow)"/>
-            <rect class="dg-node" x="88" y="14" width="66" height="44" rx="2"/>
-            <text class="dg-label" x="97" y="34">Draft</text>
-            <text class="dg-sub" x="97" y="50">QA gate</text>
-            <line class="dg-edge" x1="154" y1="36" x2="170" y2="36" marker-end="url(#arrow)"/>
-            <rect class="dg-node dg-own" x="172" y="14" width="66" height="44" rx="2"/>
-            <text class="dg-label" x="181" y="34">Approve</text>
-            <text class="dg-sub" x="181" y="50">one tap</text>
-            <line class="dg-edge" x1="238" y1="36" x2="254" y2="36" marker-end="url(#arrow)"/>
-            <rect class="dg-node" x="256" y="14" width="40" height="44" rx="2"/>
-            <text class="dg-label" x="264" y="38">Sent</text>
-          </svg>
-        </figure>
+        <div class="frame">
+          <img src="assets/img/morning-round-gmail.jpg" alt="The Morning Round digest open in Gmail: six drafts awaiting approval, each with an Approve and Send button that sends the draft as written and logs it to Outreach" width="1020" height="680" loading="lazy">
+        </div>
       </article>
 
     </div>
     <p class="mono rows-note">All seven case studies are in the <a href="work/">work index</a>.</p>
+  </div>
+</section>
+
+<section class="strip-section" id="weekends" aria-label="Weekends">
+  <div class="strip">
+    <figure class="grain">
+      <img src="assets/img/coop-build.jpg" srcset="assets/img/coop-build-800.jpg 800w, assets/img/coop-build.jpg 1400w" sizes="(max-width: 720px) 52vw, 20vw" alt="The coop frame mid-build on a workbench inside the shop, plywood walls up, tool bag resting on the deck, ladder alongside" width="1400" height="1050" loading="lazy">
+    </figure>
+    <figure class="grain">
+      <img src="assets/img/coop-finished.jpg" srcset="assets/img/coop-finished-800.jpg 800w, assets/img/coop-finished.jpg 1400w" sizes="(max-width: 720px) 52vw, 20vw" alt="The finished coop, white board-and-batten with wood double doors and a screened run, on the fence line" width="1400" height="1050" loading="lazy">
+    </figure>
+    <figure class="grain">
+      <img src="assets/img/shop.jpg" sizes="(max-width: 720px) 52vw, 20vw" alt="The shop workbench: a drill press and bench vise under the shelves, rolling tool carts, and the GM Diesel Power sign on the wall" width="800" height="800" loading="lazy">
+    </figure>
+    <figure class="grain">
+      <img src="assets/img/frozen-lake.jpg" srcset="assets/img/frozen-lake-800.jpg 800w, assets/img/frozen-lake.jpg 1400w" sizes="(max-width: 720px) 52vw, 20vw" alt="Two snowmobiles stopped on a frozen lake at sunset, riders in helmets, treeline on the horizon" width="1400" height="1050" loading="lazy">
+    </figure>
+    <figure class="grain">
+      <img src="assets/img/fireworks-setup.jpg" sizes="(max-width: 720px) 52vw, 20vw" alt="A trailer bed covered in wired firework cakes and mortar racks, cue wires running to a laptop at the edge" width="1400" height="1050" loading="lazy">
+    </figure>
+  </div>
+  <div class="wrap">
+    <p class="mono strip-note">Warwick, NY. Weekends.</p>
   </div>
 </section>
 
@@ -207,16 +205,20 @@
         <span class="src">marketing-influenced revenue, 2019 to 2026, salesforce contact-role attribution</span>
       </div>
       <div class="cell">
-        <span class="figure">~2.5x</span>
+        <span class="figure" data-count>~2.5x</span>
         <span class="src">conversion improvement from tighter capture, nurture, and routing, 2019 to 2026</span>
       </div>
       <div class="cell">
-        <span class="figure">18M+</span>
+        <span class="figure" data-count>18M+</span>
         <span class="src">profiles in the cdp behind forbes connect, live in 2026</span>
       </div>
       <div class="cell">
-        <span class="figure">10+</span>
+        <span class="figure" data-count>10+</span>
         <span class="src">concurrent lifecycle programs running in 2026, team of two</span>
+      </div>
+      <div class="cell">
+        <span class="figure" data-count>$275K</span>
+        <span class="src">direct-booked from $72K paid, 2026, salesforce attribution</span>
       </div>
     </div>
   </div>
@@ -239,8 +241,15 @@
       <span class="eyebrow">Off hours</span>
       <a class="mono id" href="#home">HOME / 04</a>
     </div>
-    <p class="copy">Home is a small hobby farm in Warwick, NY, with a shop attached. The coop got built, the fence line keeps growing, and the cars get fixed here. More of that on the <a href="about/">about page</a>.</p>
-    <p class="caption">The barn on the Fourth of July. The fireworks are in the lab section.</p>
+    <div class="grid">
+      <p class="copy">Home is a small hobby farm in Warwick, NY, with a shop attached. The coop got built, the fence line keeps growing, and the cars get fixed here. More of that on the <a href="about/">about page</a>.</p>
+      <figure class="shot">
+        <div class="frame r43">
+          <img src="assets/img/barn-night.jpg" alt="Inside the barn at night on the Fourth of July, red, white, and blue string lights along the rafters, a tractor and a mower parked at the far end, an extension cord running across the dirt floor" width="1600" height="1200" loading="lazy">
+        </div>
+        <figcaption class="caption">The barn on the Fourth of July. The fireworks are in the lab section.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -248,9 +257,9 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.4</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
-      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
     </span>
   </div>

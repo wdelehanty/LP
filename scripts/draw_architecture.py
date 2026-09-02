@@ -78,19 +78,26 @@ def demand_engine_full(out_dir):
 
 
 def funnel(out_dir):
+    """The mechanism behind the ~2.5x, with what actually sits in each stage."""
     p = []
-    stages = [("Capture", 320), ("Nurture", 260), ("Route", 200), ("Sales handoff", 140)]
+    stages = [
+        ("Capture", "forms, pages, tracking"),
+        ("Nurture", "onboarding, reengagement"),
+        ("Route", "speed to lead, contact roles"),
+        ("Sales handoff", "one-click outreach library"),
+    ]
+    gap, w = 28, 200
     x, y = 10, 10
-    for i, (l, w) in enumerate(stages):
-        p.append(box(x, y, w, 46, l))
+    for i, (l, sub) in enumerate(stages):
+        p.append(box(x, y, w, 56, l, sub))
         if i < len(stages) - 1:
-            p.append(arrow(x + w, y + 23, x + w + 28, y + 23, "MID"))
-        x += w + 28
-    total = x - 28
-    p.append(f'<path d="M10,86 L10,96 L{total},96 L{total},86" fill="none" stroke="{SIGNAL}" stroke-width="1"/>')
-    p.append(f'<text x="{total/2}" y="116" text-anchor="middle" style="font:400 12px \'IBM Plex Mono\',monospace" fill="{TEXT}">~2.5x conversion improvement across capture, nurture, and routing</text>')
-    doc("funnel", "\n".join(p), 1024, 128,
-        "The funnel from capture through nurture and routing to the sales handoff, with a bracket marking the roughly 2.5x conversion improvement across those stages.", out_dir)
+            p.append(arrow(x + w, y + 28, x + w + gap, y + 28, "MID"))
+        x += w + gap
+    total = x - gap
+    p.append(f'<path d="M10,96 L10,106 L{total},106 L{total},96" fill="none" stroke="{SIGNAL}" stroke-width="1"/>')
+    p.append(f'<text x="{total/2}" y="126" text-anchor="middle" style="font:400 12px \'IBM Plex Mono\',monospace" fill="{TEXT}">~2.5x conversion improvement across capture, nurture, and routing</text>')
+    doc("funnel", "\n".join(p), 900, 138,
+        "The funnel from capture through nurture and routing to the sales handoff, with what runs in each stage and a bracket marking the roughly 2.5x conversion improvement across them.", out_dir)
 
 
 def connect_cdp(out_dir):
@@ -158,7 +165,7 @@ def enterprise_program(out_dir):
     p.append(arrow(460, 159, 540, 159, "MID"))
     p.append(arrow(710, 79, 780, 108, "MID"))
     p.append(arrow(710, 159, 780, 130, "MID"))
-    p.append(note(10, 216, "the architecture behind the t-mobile, servicenow, and indeed programs"))
+    p.append(note(10, 216, "the architecture pitched to three enterprise advertisers; it stopped at the pitch stage"))
     doc("enterprise-program", "\n".join(p), 900, 228,
         "Enterprise partner program architecture: the partner's pipeline goal drives content, research, and retargeting channels, converging on a flagship year-end insight report and CRM-ready lead delivery into the partner's CRM and sellers.", out_dir)
 
@@ -190,6 +197,73 @@ def playbook_structure(out_dir):
         "The operating playbook structure: standards, prompt libraries, QA checklists, and governance feed custom GPTs that carry the trainable work, which is how a team of two runs more than ten concurrent programs.", out_dir)
 
 
+def plate(name, title, subtitle, boxes, notes, label, out_dir, arrows=True, loop=False):
+    """A 480 by 320 plate for the 3:2 frames: a title line, two or three
+    boxes in a row, sub-labels beneath each, notes at the foot. Type is set
+    denser than the full-width diagrams because these render small."""
+    W, H = 480, 320
+    p = [f'<text x="20" y="34" style="font:600 12px \'Barlow Condensed\',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="{TEXT}">{esc(title)}</text>']
+    if subtitle:
+        p.append(f'<text x="20" y="50" style="font:400 10px \'IBM Plex Mono\',monospace" fill="{MUTED}">{esc(subtitle)}</text>')
+    n = len(boxes)
+    w, gap = (132, 24) if n == 3 else (200, 32)
+    x0 = (W - (n * w + (n - 1) * gap)) // 2
+    y, h = 118, 52
+    for i, (lab, subs, own) in enumerate(boxes):
+        x = x0 + i * (w + gap)
+        stroke = SIGNAL if own else LINE
+        sw = 1.5 if own else 1
+        p.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="2" fill="{BG_PANEL}" stroke="{stroke}" stroke-width="{sw}"/>')
+        p.append(f'<text x="{x+12}" y="{y+31}" style="font:600 11px \'Barlow Condensed\',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="{TEXT}">{esc(lab)}</text>')
+        for j, sub in enumerate(subs or []):
+            p.append(f'<text x="{x + w/2}" y="{y+h+20+j*14}" text-anchor="middle" style="font:400 10px \'IBM Plex Mono\',monospace" fill="{MUTED}">{esc(sub)}</text>')
+        if arrows and i < n - 1:
+            p.append(arrow(x + w, y + h/2, x + w + gap - 1, y + h/2, "MID"))
+    if loop:
+        x1 = x0 + (n - 1) * (w + gap) + w/2
+        x2 = x0 + w/2
+        p.append(f'<path d="M{x1},{y} C{x1},{y-52} {x2},{y-52} {x2},{y-1}" fill="none" stroke="{LINE}" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#MID)"/>')
+    for k, t in enumerate(notes):
+        p.append(f'<text x="20" y="{282 + k*18}" style="font:400 10.5px \'IBM Plex Mono\',monospace" fill="{MUTED}">{esc(t)}</text>')
+    doc(name, "\n".join(p), W, H, label, out_dir)
+
+
+def plates(out_dir):
+    plate("profiling-plate", "Progressive profiling", "forbes connect / one ask per visit",
+          [("First visit", ["one field"], False),
+           ("Next visit", ["one more field"], False),
+           ("Known profile", ["segmented, routed"], True)],
+          ["the profile fills in over a few visits", "nobody ever sees a long form"],
+          "Progressive profiling: one field on the first visit, one more on the next, until the reader is a known profile that gets segmented and routed.", out_dir)
+    plate("dialogue-plate", "On-site dialogues", "forbes connect / targeted by behavior",
+          [("First-timer", ["one ask"], False),
+           ("Three stories deep", ["a different ask"], True)],
+          ["an on-site prompt targeted by what the reader has read and done"],
+          "On-site dialogues: a first-time reader sees one ask, somebody three stories deep into a topic sees a different one, targeted by behavior.", out_dir, arrows=False)
+    plate("two-bucket", "The two-bucket model", "operating playbook / who does what",
+          [("Trainable execution", ["custom gpts and", "one operator"], True),
+           ("Real expertise", ["outside rates,", "judgment calls"], False)],
+          ["outside rates only get paid for the second bucket"],
+          "The two-bucket contractor model: trainable execution runs through custom GPTs and one operator, real expertise is bought at outside rates.", out_dir, arrows=False)
+    plate("selfserve-onboarding", "Onboarding into activation", "self-serve / no account manager",
+          [("Account created", ["onboarding", "sequence starts"], False),
+           ("First campaign", ["the onboarding goal"], True),
+           ("Second campaign", ["activation pushes", "the behaviors", "that predict it"], False)],
+          ["what an account manager would do, built in before launch"],
+          "Self-serve onboarding: account creation starts the onboarding sequence toward a first live campaign, then activation programs push the behaviors that predict a second campaign.", out_dir)
+    plate("two-tier", "Two-tier product structure", "pitched to a national wireless carrier",
+          [("Tier one", ["one buyer depth,", "one price point"], False),
+           ("Tier two", ["a deeper buyer,", "a higher price point"], True)],
+          ["one program serving two buyer depths at two price points"],
+          "Two-tier product structure: one program serving two buyer depths at two price points.", out_dir, arrows=False)
+    plate("feedback-loop", "The incremental-sales loop", "forbes8 / how programs got tuned",
+          [("Send", ["lifecycle program"], False),
+           ("Sales effect", ["incremental sales,", "measured"], True),
+           ("Tune", ["adjust the program"], False)],
+          ["dashed: the loop that let us judge programs on sales"],
+          "The incremental-sales feedback loop: a lifecycle send, its measured sales effect, a tuned program, and back around.", out_dir, loop=True)
+
+
 def main():
     out = sys.argv[1]
     os.makedirs(out, exist_ok=True)
@@ -201,6 +275,7 @@ def main():
     enterprise_program(out)
     summit_program(out)
     playbook_structure(out)
+    plates(out)
 
 
 if __name__ == "__main__":

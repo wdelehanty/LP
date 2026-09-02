@@ -44,6 +44,16 @@
   </div>
 </nav>
 
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+  </div>
+</div>
+
 
 <main>
 
@@ -63,33 +73,49 @@
     <div class="cs-main">
       <h2>Problem</h2>
       <p>A self-serve product has no account manager. Whatever onboarding, activation, and retention a human would do for a managed account has to be built into the lifecycle before launch, or you lose users before you ever get a shot at them. The whole kit had to exist on day one.</p>
-
-      <h2>What I built</h2>
-      <ul>
-        <li>Onboarding sequences that take a new advertiser from account creation to first live campaign.</li>
-        <li>Activation programs pushing toward the behaviors that predict a second campaign.</li>
-        <li>Retention and reengagement sequences for advertisers who stall or lapse.</li>
-        <li>8 programs, 29 emails. I wrote and built all of it.</li>
-        <li>The revenue model behind the lifecycle, including the 2027 forecast that is now being used in the vendor contract renegotiation.</li>
-      </ul>
-
-      <h2>Stack</h2>
-      <p class="mono">danads / salesforce / email automation</p>
-
-      <h2>Outcome</h2>
-      <p>Built, not yet launched. The programs are finished and staged, and they go live when the product does. Meanwhile the revenue model and the 2027 forecast are already in use in the vendor renegotiation.</p>
     </div>
-    <aside class="cs-aside">
-      <div class="note"><b>Status</b>Built, not yet launched. It ships when the product does.</div>
-      <div class="note"><b>Why solo matters here</b>The operating playbook and the AI process work are what made a solo build of this size possible.</div>
-    </aside>
   </div>
 </section>
 
-<section class="cs-visual">
+<section class="cs-built">
   <div class="wrap">
-    <figure class="diagram">
-      <!-- dg:selfserve-sequence:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 182" role="img" aria-label="The self-serve lifecycle map: onboarding, activation, and retention groups, all drawing on eight programs and twenty-nine emails staged for launch.">
+    <h2>What I built</h2>
+    <div class="built side">
+      <div class="text">
+        <h3>Onboarding and activation</h3>
+        <p>Onboarding sequences take a new advertiser from account creation to first live campaign. Activation programs push toward the behaviors that predict a second one. With no account manager in the loop, all of that had to exist on day one.</p>
+      </div>
+      <figure class="fig">
+          <div class="frame"><!-- dg:selfserve-onboarding:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="Self-serve onboarding: account creation starts the onboarding sequence toward a first live campaign, then activation programs push the behaviors that predict a second campaign.">
+<defs><marker id="ar-selfserve-onboarding" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="34" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Onboarding into activation</text>
+<text x="20" y="50" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">self-serve / no account manager</text>
+<rect x="18" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="30" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Account created</text>
+<text x="84.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">onboarding</text>
+<text x="84.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">sequence starts</text>
+<path d="M150,144.0 L173,144.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-selfserve-onboarding)"/>
+<rect x="174" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="186" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">First campaign</text>
+<text x="240.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">the onboarding goal</text>
+<path d="M306,144.0 L329,144.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-selfserve-onboarding)"/>
+<rect x="330" y="118" width="132" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="342" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Second campaign</text>
+<text x="396.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">activation pushes</text>
+<text x="396.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">the behaviors</text>
+<text x="396.0" y="218" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">that predict it</text>
+<text x="20" y="282" style="font:400 10.5px 'IBM Plex Mono',monospace" fill="#9AA0A6">what an account manager would do, built in before launch</text>
+</svg><!-- dg:selfserve-onboarding:end --></div>
+          <figcaption class="mono made">Onboarding into activation.</figcaption>
+        </figure>
+    </div>
+    <div class="built plate">
+      <div class="text">
+        <h3>Retention, reengagement, and the revenue model</h3>
+        <p>Retention and reengagement sequences for advertisers who stall or lapse. Eight programs and 29 emails in all, and I wrote and built every one. Behind the lifecycle sits the revenue model, including the 2027 forecast that is now being used in the vendor contract renegotiation.</p>
+      </div>
+      <figure class="fig">
+          <!-- dg:selfserve-sequence:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 182" role="img" aria-label="The self-serve lifecycle map: onboarding, activation, and retention groups, all drawing on eight programs and twenty-nine emails staged for launch.">
 <defs><marker id="ar-selfserve-sequence" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
 <rect x="10" y="10" width="280" height="66" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
 <text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Onboarding</text>
@@ -109,8 +135,24 @@
 <path d="M450,120 L450,76" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-selfserve-sequence)"/>
 <path d="M750,120 L750,76" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-selfserve-sequence)"/>
 </svg><!-- dg:selfserve-sequence:end -->
-      <figcaption class="mono made">Drawn in site tokens, 2026-08-31.</figcaption>
-    </figure>
+          <figcaption class="mono made">The lifecycle map, staged for launch.</figcaption>
+        </figure>
+    </div>
+  </div>
+</section>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main">
+      <h2>Stack</h2>
+      <p class="mono">danads / salesforce / email automation</p>
+      <h2>Outcome</h2>
+      <p>Built, not yet launched. The programs are finished and staged, and they go live when the product does. Meanwhile the revenue model and the 2027 forecast are already in use in the vendor renegotiation.</p>
+    </div>
+    <aside class="cs-aside">
+      <div class="note"><b>Status</b>Built, not yet launched. It ships when the product does.</div>
+      <div class="note"><b>Why solo matters here</b>The operating playbook and the AI process work are what made a solo build of this size possible.</div>
+    </aside>
   </div>
 </section>
 
@@ -124,9 +166,9 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.5.4</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
-      <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
     </span>
   </div>
