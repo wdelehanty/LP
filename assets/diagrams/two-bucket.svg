@@ -1,14 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="The two-bucket contractor model: trainable execution runs through custom GPTs and one operator, real expertise is bought at outside rates.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="The two-bucket contractor model as a before and after: undifferentiated contractor work becomes trainable execution through custom GPTs and one operator, with real expertise bought at outside rates.">
 <defs><marker id="ar-two-bucket" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
-<text x="20" y="34" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The two-bucket model</text>
-<text x="20" y="50" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">operating playbook / who does what</text>
-<rect x="24" y="118" width="200" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="36" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Trainable execution</text>
-<text x="124.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">custom gpts and</text>
-<text x="124.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one operator</text>
-<rect x="256" y="118" width="200" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="268" y="149" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Real expertise</text>
-<text x="356.0" y="190" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">outside rates,</text>
-<text x="356.0" y="204" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">judgment calls</text>
-<text x="20" y="282" style="font:400 10.5px 'IBM Plex Mono',monospace" fill="#9AA0A6">outside rates only get paid for the second bucket</text>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The two-bucket model</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">operating playbook / who does what</text>
+<line x1="240" y1="80" x2="240" y2="280" stroke="#3A4046" stroke-width="1"/>
+<path d="M226,180 L253,180" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-two-bucket)"/>
+<rect x="218" y="168" width="44" height="24" fill="#1E2226"/>
+<path d="M228,180 L251,180" fill="none" stroke="#F2C230" stroke-width="1" marker-end="url(#ar-two-bucket)"/>
+<text x="24" y="102" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">One bucket</text>
+<text x="24" y="128" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">contractor work,</text>
+<text x="24" y="144" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">undifferentiated</text>
+<text x="264" y="102" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Two buckets</text>
+<text x="264" y="128" style="font:400 10px 'IBM Plex Mono',monospace" fill="#E6E4DF">trainable execution:</text>
+<text x="264" y="144" style="font:400 10px 'IBM Plex Mono',monospace" fill="#E6E4DF">custom gpts, one operator</text>
+<text x="264" y="160" style="font:400 10px 'IBM Plex Mono',monospace" fill="#E6E4DF">real expertise:</text>
+<text x="264" y="176" style="font:400 10px 'IBM Plex Mono',monospace" fill="#E6E4DF">outside rates</text>
+<text x="24" y="306" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">before</text>
+<text x="264" y="306" style="font:400 10px 'IBM Plex Mono',monospace" fill="#F2C230">after</text>
 </svg>

@@ -210,6 +210,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 /* Sections */
 .section { padding-block: 72px 80px; margin-bottom: 56px; }
 .section:last-of-type { margin-bottom: 0; }
+#work, #stack { padding-top: 40px; }
+#proof { margin-bottom: 8px; }
 .section-head {
   position: relative;
   display: flex;
@@ -235,7 +237,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 /* Hero: drafting-table backdrop, steel texture, big thesis type */
 .hero {
   position: relative;
-  padding-block: 96px 104px;
+  padding-block: 96px 72px;
   overflow: hidden;
   min-height: 70vh;
   display: flex;
@@ -304,6 +306,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   background: var(--bg-panel);
 }
 .frame.r43 { aspect-ratio: 4 / 3; }
+.frame.r45 { aspect-ratio: 4 / 5; }
 .frame.r11 { aspect-ratio: 1; }
 .frame > img, .frame > svg { width: 100%; height: 100%; display: block; object-fit: cover; }
 .frame::before {
@@ -403,7 +406,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .rows-note { margin-top: 28px; }
 
 /* Photo strip: five squares, full bleed, hairline gaps, one line beneath.
-   Grayscale at rest, color on hover; color everywhere hover does not exist. */
+   Full color at rest; the hover lifts the photo a touch. */
 .strip-section { padding-block: 0 64px; margin-bottom: 40px; }
 .strip {
   display: grid;
@@ -422,11 +425,9 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   height: 100%;
   display: block;
   object-fit: cover;
-  filter: grayscale(1);
-  transition: filter .2s ease;
+  transition: transform .2s ease;
 }
-.strip figure:hover img { filter: none; }
-@media (hover: none) { .strip img { filter: none; } }
+.strip figure:hover img { transform: translateY(-4px) scale(1.02); }
 .strip .slot { padding: 14px; }
 .strip-note { margin-top: 14px; }
 
@@ -479,7 +480,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   display: grid;
   grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
   gap: 64px;
-  align-items: center;
+  align-items: start;
 }
 .grain { position: relative; }
 .grain::after {
@@ -490,7 +491,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
   opacity: 0.06;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-.offhours .copy { max-width: 26em; font-size: clamp(1.25rem, 2.2vw, 1.5625rem); line-height: 1.6; }
+.offhours .copy { max-width: 26em; margin-top: -0.3em; font-size: clamp(1.25rem, 2.2vw, 1.5625rem); line-height: 1.6; }
 .offhours .caption { margin-top: 14px; font-size: 0.9375rem; color: var(--photo-warm); }
 
 /* Diagram language, shared by all inline SVGs */
@@ -505,9 +506,10 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 }
 .dg-sub { font: 400 10px 'IBM Plex Mono', 'Plex Mono Fallback', monospace; fill: var(--text-muted); }
 .dg-legend { font: 400 11px 'IBM Plex Mono', 'Plex Mono Fallback', monospace; fill: var(--text-muted); }
-/* Plates inside card frames render smaller, so the type is set denser */
-.frame .dg-label { font-size: 11px; letter-spacing: 0.06em; }
-.frame .dg-legend { font-size: 10.5px; }
+/* Plates inside card frames: type runs 2px up so it reads at card size */
+.frame .dg-label { font-size: 13px; letter-spacing: 0.02em; }
+.frame .dg-sub { font-size: 11px; }
+.frame .dg-legend { font-size: 12px; }
 
 /* Case studies */
 .cs-header { position: relative; padding-block: 76px 12px; overflow: hidden; }
@@ -630,6 +632,85 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .frame.auto > img { height: auto; }
 .frame.top > img { object-position: center top; }
 .two-up { display: grid; grid-template-columns: repeat(2, minmax(0, 440px)); gap: 28px; }
+
+/* Callouts: a real screenshot with numbered signal pins and a mono key */
+.callouts { max-width: 900px; }
+.callouts .photo-frame { position: relative; }
+.callouts .pin {
+  position: absolute;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--signal);
+  color: var(--signal-ink);
+  font: 600 12px/24px 'Barlow Condensed', 'Barlow Condensed Fallback', sans-serif;
+  text-align: center;
+  box-shadow: 0 0 0 2px rgba(21, 24, 27, .85);
+}
+.callouts .key { list-style: none; padding: 0; margin-top: 14px; counter-reset: pin; }
+.callouts .key li { position: relative; padding-left: 32px; margin-bottom: 6px; counter-increment: pin; }
+.callouts .key li::before {
+  content: counter(pin);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--signal);
+  color: var(--signal);
+  font: 600 11px/20px 'Barlow Condensed', 'Barlow Condensed Fallback', sans-serif;
+  text-align: center;
+}
+
+/* About carousel: scroll-snap track, square hairline buttons on the eyebrow
+   row, dot indicators. No autoplay, no library. */
+.carousel-nav { display: flex; align-items: center; gap: 10px; }
+.car-btn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--text);
+  font: 600 1.125rem/1 'Barlow Condensed', 'Barlow Condensed Fallback', sans-serif;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+.car-btn:hover { border-color: var(--signal); color: var(--signal); }
+.carousel { position: relative; margin-top: 28px; }
+.carousel .track {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.carousel .track::-webkit-scrollbar { display: none; }
+/* trailing space so the last slide can still snap to the left edge */
+.carousel .track::after { content: ""; flex: 0 0 calc(100% - (100% - 16px) / 2.3); }
+.carousel .track:focus-visible { outline: 2px solid var(--signal); outline-offset: 6px; }
+.carousel .slide { flex: 0 0 calc((100% - 16px) / 2.3); min-width: 0; margin: 0; scroll-snap-align: start; }
+.carousel figcaption { margin-top: 10px; }
+.carousel .dots { display: flex; gap: 8px; margin-top: 18px; }
+.carousel .dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  cursor: pointer;
+}
+.carousel .dots button[aria-current="true"] { background: var(--signal); border-color: var(--signal); }
+@media (max-width: 720px) {
+  .carousel .slide { flex-basis: 86%; }
+  .carousel .track::after { flex-basis: 14%; }
+}
 
 /* Drawing plate title line under every diagram */
 .made {

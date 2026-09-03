@@ -1,28 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 258" role="img" aria-label="Under 30 Summit audience program: a roughly $500K budget over six months, run by a team of three, deployed across paid media, radio and out-of-home in Nigeria and Ghana, and a startup hub, producing over ten thousand attendees.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 296" role="img" aria-label="A ledger of the 2018 Under 30 Summit audience program: roughly five hundred thousand dollars over six months, a team of three, paid media plus radio and out-of-home in Nigeria and Ghana and a startup hub, producing over ten thousand attendees.">
 <defs><marker id="ar-summit-program" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
-<rect x="10" y="88" width="180" height="66" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="24" y="112" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">~$500K / 6 months</text>
-<text x="24" y="130" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">team of three</text>
-<rect x="280" y="10" width="220" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="294" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Paid media</text>
-<path d="M190,121 C235.0,121 235.0,35 280,35" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-summit-program)"/>
-<rect x="280" y="72" width="220" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="294" y="96" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Radio</text>
-<text x="294" y="114" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">nigeria + ghana</text>
-<path d="M190,121 C235.0,121 235.0,97 280,97" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-summit-program)"/>
-<rect x="280" y="134" width="220" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="294" y="158" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Out-of-home</text>
-<text x="294" y="176" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">nigeria + ghana</text>
-<path d="M190,121 C235.0,121 235.0,159 280,159" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-summit-program)"/>
-<rect x="280" y="196" width="220" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="294" y="220" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Startup hub</text>
-<text x="294" y="238" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">built from scratch</text>
-<path d="M190,121 C235.0,121 235.0,221 280,221" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-summit-program)"/>
-<rect x="590" y="88" width="220" height="66" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="604" y="112" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">10,000+ attendees</text>
-<text x="604" y="130" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">2018 under 30 summit</text>
-<path d="M500,35 C545.0,35 545.0,121 590,121" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-summit-program)"/>
-<path d="M500,97 C545.0,97 545.0,121 590,121" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-summit-program)"/>
-<path d="M500,159 C545.0,159 545.0,121 590,121" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-summit-program)"/>
-<path d="M500,221 C545.0,221 545.0,121 590,121" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-summit-program)"/>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Under 30 Summit 2018</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">the audience program by the numbers</text>
+<text x="20" y="64" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Line</text>
+<text x="880" y="64" text-anchor="end" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Figure</text>
+<line x1="20" y1="74" x2="880" y2="74" stroke="#3A4046" stroke-width="1"/>
+<text x="20" y="106" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Budget</text>
+<text x="880" y="106" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">~$500K</text>
+<line x1="20" y1="117" x2="880" y2="117" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="138" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Duration</text>
+<text x="880" y="138" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">6 months, weekly pacing</text>
+<line x1="20" y1="149" x2="880" y2="149" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="170" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Team</text>
+<text x="880" y="170" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">3</text>
+<line x1="20" y1="181" x2="880" y2="181" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="202" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Channels</text>
+<text x="880" y="202" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">paid media, radio, out-of-home, startup hub</text>
+<line x1="20" y1="213" x2="880" y2="213" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="234" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">International markets</text>
+<text x="880" y="234" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">Nigeria, Ghana</text>
+<line x1="20" y1="245" x2="880" y2="245" stroke="#2A2F34" stroke-width="1"/>
+<line x1="20" y1="248" x2="880" y2="248" stroke="#F2C230" stroke-width="1"/>
+<text x="20" y="270" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#F2C230">Attendees</text>
+<text x="880" y="270" text-anchor="end" style="font:400 12px 'IBM Plex Mono',monospace" fill="#F2C230">10,000+</text>
 </svg>

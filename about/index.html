@@ -46,7 +46,7 @@
 
 <div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
   <div class="wrap">
-    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>41</b></span>
     <span class="dot" aria-hidden="true"></span>
     <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
     <span class="dot" aria-hidden="true"></span>
@@ -75,8 +75,8 @@
         <p>Shortest honest description of me: I like taking things apart, figuring out how they work, and building something more complicated than I probably needed.</p>
       </div>
       <figure class="about-photo">
-        <div class="frame r11">
-          <img src="../assets/img/headshot-dark.jpg" srcset="../assets/img/headshot-dark-600.jpg 600w, ../assets/img/headshot-dark.jpg 920w" sizes="(max-width: 900px) 260px, 393px" alt="Portrait of William Delehanty on a dark ground" width="920" height="920" fetchpriority="high">
+        <div class="frame r45">
+          <img src="../assets/img/headshot-dark.jpg" srcset="../assets/img/headshot-dark-600.jpg 600w, ../assets/img/headshot-dark.jpg 920w" sizes="(max-width: 900px) 260px, 393px" alt="Portrait of William Delehanty on a dark ground" width="920" height="1150" fetchpriority="high">
         </div>
         <figcaption>Warwick, NY.</figcaption>
       </figure>
@@ -122,14 +122,53 @@
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Outside</span>
-      <a class="mono id" href="#outside">ABOUT / 03</a>
+      <div class="carousel-nav">
+        <button class="car-btn" type="button" data-dir="-1" aria-label="Previous photo">&larr;</button>
+        <button class="car-btn" type="button" data-dir="1" aria-label="Next photo">&rarr;</button>
+        <a class="mono id" href="#outside">ABOUT / 03</a>
+      </div>
     </div>
-    <p class="prose">Skiing, snowmobiling, wakeboarding, dirt bikes, hiking, golf. All of it seasonal, which is most of why we live here.</p>
-    <div class="photo-block">
-      <figure class="grain photo-frame">
-        <img src="../assets/img/frozen-lake.jpg" srcset="../assets/img/frozen-lake-800.jpg 800w, ../assets/img/frozen-lake.jpg 1400w" sizes="(max-width: 900px) 260px, 1132px" alt="Two snowmobiles stopped on a frozen lake at sunset, riders in helmets, treeline on the horizon" width="1400" height="1050" loading="lazy">
-      </figure>
-      <p class="caption">Frozen lake, February.</p>
+    <p class="prose">All of it seasonal, which is most of why we live here.</p>
+    <div class="carousel" data-carousel>
+      <div class="track" tabindex="0" role="group" aria-label="Photos from outside. Arrow keys move between them.">
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/frozen-lake.jpg" srcset="../assets/img/frozen-lake-800.jpg 800w, ../assets/img/frozen-lake.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="Two snowmobiles stopped on a frozen lake at sunset, riders in helmets, treeline on the horizon" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">Frozen lake, the snowmobiles.</figcaption>
+        </figure>
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/fireworks-setup.jpg" srcset="../assets/img/fireworks-setup-800.jpg 800w, ../assets/img/fireworks-setup.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="A trailer bed covered in wired firework cakes and mortar racks, cue wires running to a laptop at the edge" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">The trailer, the fireworks rig.</figcaption>
+        </figure>
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/dog.jpg" srcset="../assets/img/dog-800.jpg 800w, ../assets/img/dog.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="A young retriever in a camo coat sitting on the shop's concrete floor, looking back over its shoulder" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">The shop floor, the dog.</figcaption>
+        </figure>
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/pond.jpg" srcset="../assets/img/pond-800.jpg 800w, ../assets/img/pond.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="The pond at dusk with a fountain running and a dog swimming a slow circle, treeline behind" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">The pond, dusk.</figcaption>
+        </figure>
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/boat-1.jpg" srcset="../assets/img/boat-1-800.jpg 800w, ../assets/img/boat-1.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="Sunset off the bow, the flag out" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">Sunset off the bow, the flag out</figcaption>
+        </figure>
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/ski-1.jpg" srcset="../assets/img/ski-1-800.jpg 800w, ../assets/img/ski-1.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="Skis on the slope, chairlift overhead" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">Skis on the slope, chairlift overhead</figcaption>
+        </figure>
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/tractor-1.jpg" srcset="../assets/img/tractor-1-800.jpg 800w, ../assets/img/tractor-1.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="The tractor with the mower on, driveway" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">The tractor with the mower on, driveway</figcaption>
+        </figure>
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/snowmobile-1.jpg" srcset="../assets/img/snowmobile-1-800.jpg 800w, ../assets/img/snowmobile-1.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="The groomed trail, blue sky" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">The groomed trail, blue sky</figcaption>
+        </figure>
+        <figure class="slide">
+          <div class="frame r43"><img src="../assets/img/dog-1.jpg" srcset="../assets/img/dog-1-800.jpg 800w, ../assets/img/dog-1.jpg 1400w" sizes="(max-width: 720px) 86vw, 500px" alt="Two dogs in the surf" width="1400" height="1050" loading="lazy"></div>
+          <figcaption class="mono">Two dogs in the surf</figcaption>
+        </figure>
+      </div>
+      <div class="dots" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -152,7 +191,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.1</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>

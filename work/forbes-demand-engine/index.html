@@ -46,7 +46,7 @@
 
 <div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
   <div class="wrap">
-    <span class="item">workflows active: <b data-rail="workflows_active" data-count>39</b></span>
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>41</b></span>
     <span class="dot" aria-hidden="true"></span>
     <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
     <span class="dot" aria-hidden="true"></span>
@@ -102,26 +102,39 @@
         <p>Contact-role attribution in Salesforce, conservative on purpose, so it holds up when somebody pushes on it. Speed-to-lead standards and routing rules, built with sales in the room. And a one-click outreach library for sellers, which they used because it sat where they already worked.</p>
       </div>
       <figure class="fig">
-          <!-- dg:funnel:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 138" role="img" aria-label="The funnel from capture through nurture and routing to the sales handoff, with what runs in each stage and a bracket marking the roughly 2.5x conversion improvement across them.">
+          <!-- dg:funnel:start --><div class="dg-scroll"><svg style="min-width:748px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 264" role="img" aria-label="The funnel as two lanes: marketing captures, nurtures, and routes; sales works the lead from the outreach library and closes; the closed opportunity's contact roles come back as attribution. About 2.5x conversion improvement across capture, nurture, and routing.">
 <defs><marker id="ar-funnel" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
-<rect x="10" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Capture</text>
-<text x="24" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">forms, pages, tracking</text>
-<path d="M210,38 L238,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="238" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="252" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Nurture</text>
-<text x="252" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">onboarding, reengagement</text>
-<path d="M438,38 L466,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="466" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="480" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Route</text>
-<text x="480" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">speed to lead, contact roles</text>
-<path d="M666,38 L694,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
-<rect x="694" y="10" width="200" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="708" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Sales handoff</text>
-<text x="708" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one-click outreach library</text>
-<path d="M10,96 L10,106 L894,106 L894,96" fill="none" stroke="#F2C230" stroke-width="1"/>
-<text x="447.0" y="126" text-anchor="middle" style="font:400 12px 'IBM Plex Mono',monospace" fill="#E6E4DF">~2.5x conversion improvement across capture, nurture, and routing</text>
-</svg><!-- dg:funnel:end -->
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The mechanism behind the ~2.5x</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">forbes b2b / who does what, in order</text>
+<rect x="20" y="56" width="1000" height="86" fill="#1E2226" stroke="#2A2F34" stroke-width="1"/>
+<text x="34" y="104.0" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Marketing</text>
+<rect x="20" y="142" width="1000" height="86" fill="#15181B" stroke="#2A2F34" stroke-width="1"/>
+<text x="34" y="190.0" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Sales</text>
+<rect x="138" y="74.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="148" y="95.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Capture</text>
+<text x="148" y="112.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">forms and pages</text>
+<rect x="290" y="74.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="300" y="95.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Nurture</text>
+<text x="300" y="112.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">onboard, reengage</text>
+<rect x="442" y="74.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="452" y="95.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Route</text>
+<text x="452" y="112.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">speed to lead</text>
+<rect x="594" y="160.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="604" y="181.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Work the lead</text>
+<text x="604" y="198.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">outreach library</text>
+<rect x="746" y="160.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="756" y="181.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Close</text>
+<text x="756" y="198.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">contact role logged</text>
+<rect x="898" y="74.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="908" y="95.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Attribute</text>
+<text x="908" y="112.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">conservative count</text>
+<path d="M260,99.0 L289,99.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<path d="M412,99.0 L441,99.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<path d="M564,99.0 C578.5,99.0 578.5,185.0 593,185.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<path d="M716,185.0 L745,185.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-funnel)"/>
+<path d="M868,185.0 C882.5,185.0 882.5,99.0 897,99.0" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-funnel)"/>
+<text x="20" y="252" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">~2.5x conversion improvement across capture, nurture, and routing; dashed: attribution reads the closed opportunity</text>
+</svg></div><!-- dg:funnel:end -->
           <figcaption class="mono made">The mechanism behind the ~2.5x.</figcaption>
         </figure>
     </div>
@@ -157,37 +170,37 @@
 <section class="cs-visual">
   <div class="wrap">
     <figure class="diagram">
-      <!-- dg:demand-engine-full:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 236" role="img" aria-label="The full demand engine: acquisition feeds the CDP, then lifecycle, then CRM routing, then sales, with a shared measurement layer of the performance console, QBR frameworks, and contact-role attribution underneath all stages.">
+      <!-- dg:demand-engine-full:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 250" role="img" aria-label="The full demand engine: acquisition feeds the CDP, then lifecycle, then CRM routing, then sales, with a shared measurement layer of the performance console, QBR frameworks, and contact-role attribution underneath all stages.">
 <defs><marker id="ar-demand-engine-full" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
-<rect x="10" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Acquisition</text>
-<text x="24" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">paid / content / partner</text>
-<path d="M170,38 L190,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-demand-engine-full)"/>
-<rect x="190" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="204" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">CDP</text>
-<text x="204" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">18m+ profiles</text>
-<path d="M350,38 L370,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-demand-engine-full)"/>
-<rect x="370" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="384" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Lifecycle</text>
-<text x="384" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">nurture / reengage</text>
-<path d="M530,38 L550,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-demand-engine-full)"/>
-<rect x="550" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="564" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">CRM routing</text>
-<text x="564" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">speed to lead</text>
-<path d="M710,38 L730,38" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-demand-engine-full)"/>
-<rect x="730" y="10" width="160" height="56" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="744" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Sales</text>
-<text x="744" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">outreach library</text>
-<rect x="10" y="120" width="880" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="24" y="144" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Measurement</text>
-<text x="24" y="162" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">performance console / qbr frameworks / contact-role attribution</text>
-<path d="M90,120 L90,66" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
-<path d="M270,120 L270,66" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
-<path d="M450,120 L450,66" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
-<path d="M630,120 L630,66" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
-<path d="M810,120 L810,66" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
-<text x="10" y="204" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">dashed: every stage reports into the same measurement layer, which is where the influenced-revenue number comes from</text>
-<text x="10" y="224" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">yellow outline: the parts I own</text>
+<rect x="10" y="10" width="160" height="60" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="24" y="36" style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Acquisition</text>
+<text x="24" y="56" style="font:400 12px 'IBM Plex Mono',monospace" fill="#9AA0A6">paid / content / partner</text>
+<path d="M170,40 L190,40" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-demand-engine-full)"/>
+<rect x="190" y="10" width="160" height="60" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="204" y="36" style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">CDP</text>
+<text x="204" y="56" style="font:400 12px 'IBM Plex Mono',monospace" fill="#9AA0A6">18m+ profiles</text>
+<path d="M350,40 L370,40" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-demand-engine-full)"/>
+<rect x="370" y="10" width="160" height="60" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="384" y="36" style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Lifecycle</text>
+<text x="384" y="56" style="font:400 12px 'IBM Plex Mono',monospace" fill="#9AA0A6">nurture / reengage</text>
+<path d="M530,40 L550,40" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-demand-engine-full)"/>
+<rect x="550" y="10" width="160" height="60" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="564" y="36" style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">CRM routing</text>
+<text x="564" y="56" style="font:400 12px 'IBM Plex Mono',monospace" fill="#9AA0A6">speed to lead</text>
+<path d="M710,40 L730,40" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-demand-engine-full)"/>
+<rect x="730" y="10" width="160" height="60" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="744" y="36" style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Sales</text>
+<text x="744" y="56" style="font:400 12px 'IBM Plex Mono',monospace" fill="#9AA0A6">outreach library</text>
+<rect x="10" y="124" width="880" height="56" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="24" y="150" style="font:600 15px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Measurement</text>
+<text x="24" y="170" style="font:400 12px 'IBM Plex Mono',monospace" fill="#9AA0A6">performance console / qbr frameworks / contact-role attribution</text>
+<path d="M90,124 L90,70" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
+<path d="M270,124 L270,70" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
+<path d="M450,124 L450,70" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
+<path d="M630,124 L630,70" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
+<path d="M810,124 L810,70" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-demand-engine-full)"/>
+<text x="10" y="214" style="font:400 13px 'IBM Plex Mono',monospace" fill="#9AA0A6">dashed: every stage reports into the same measurement layer, which is where the influenced-revenue number comes from</text>
+<text x="10" y="236" style="font:400 13px 'IBM Plex Mono',monospace" fill="#9AA0A6">yellow outline: the parts I own</text>
 </svg><!-- dg:demand-engine-full:end -->
       <figcaption class="mono made">The whole engine on one plate.</figcaption>
     </figure>
@@ -204,7 +217,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.0</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.1</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
     <span class="links mono">
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>

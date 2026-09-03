@@ -24,13 +24,16 @@
     if (isNaN(to)) { return; }
     var done = pre + to.toFixed(decimals) + post;
     if (still || !window.requestAnimationFrame) { el.textContent = done; return; }
+    /* Start at 85% of the final value so no frame ever reads as a wrong
+       number. The tilde, the plus, and the units never move. */
+    var from = to * 0.85;
     var start = null;
-    el.textContent = pre + (0).toFixed(decimals) + post;
+    el.textContent = pre + from.toFixed(decimals) + post;
     function frame(now) {
       if (start === null) start = now;
       var t = Math.min(1, (now - start) / ms);
       var e = 1 - Math.pow(1 - t, 3);
-      el.textContent = pre + (to * e).toFixed(decimals) + post;
+      el.textContent = pre + (from + (to - from) * e).toFixed(decimals) + post;
       if (t < 1) requestAnimationFrame(frame); else el.textContent = done;
     }
     requestAnimationFrame(frame);
@@ -61,6 +64,53 @@
         .catch(function () {});
     }
   }
+
+  /* About carousel: CSS does the scrolling and snapping; this adds the
+     buttons, the dots, and arrow keys. Reduced motion makes it instant. */
+  document.querySelectorAll('[data-carousel]').forEach(function (car) {
+    var track = car.querySelector('.track');
+    var slides = track.querySelectorAll('.slide');
+    var dots = car.querySelector('.dots');
+    var section = car.closest('section');
+    var buttons = section ? section.querySelectorAll('.car-btn') : [];
+    if (!slides.length) return;
+    var current = 0;
+    function step() { return slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : slides[0].offsetWidth; }
+    function index() { return Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / step()))); }
+    function go(i) {
+      current = Math.max(0, Math.min(slides.length - 1, i));
+      track.scrollTo({ left: slides[current].offsetLeft, behavior: still ? 'auto' : 'smooth' });
+      mark(current);
+    }
+    var dotEls = [];
+    slides.forEach(function (_, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Photo ' + (i + 1));
+      b.addEventListener('click', function () { go(i); });
+      dots.appendChild(b);
+      dotEls.push(b);
+    });
+    function mark(i) {
+      dotEls.forEach(function (b, j) {
+        if (j === i) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+      });
+    }
+    function sync() { current = index(); mark(current); }
+    var timer = null;
+    track.addEventListener('scroll', function () {
+      if (timer) return;
+      timer = setTimeout(function () { timer = null; sync(); }, 80);
+    }, { passive: true });
+    sync();
+    Array.prototype.forEach.call(buttons, function (b) {
+      b.addEventListener('click', function () { go(current + Number(b.getAttribute('data-dir'))); });
+    });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(current + 1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
+    });
+  });
 
   if (still) return;
 
@@ -115,7 +165,7 @@
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         bio.unobserve(e.target);
-        e.target.querySelectorAll('.figure[data-count]').forEach(function (f) { countUp(f, null, 600); });
+        e.target.querySelectorAll('.figure[data-count]').forEach(function (f) { countUp(f, null, 500); });
       });
     }, { threshold: 0.3 });
     bio.observe(band);

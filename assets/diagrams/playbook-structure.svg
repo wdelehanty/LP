@@ -1,22 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 262" role="img" aria-label="The operating playbook structure: standards, prompt libraries, QA checklists, and governance feed custom GPTs that carry the trainable work, which is how a team of two runs more than ten concurrent programs.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-label="The operating playbook as layers: ten plus concurrent programs run on custom GPTs, which run on standards, prompt libraries, QA checklists, and governance.">
 <defs><marker id="ar-playbook-structure" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
-<rect x="10" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="24" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Standards</text>
-<path d="M117,60 L117,96" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
-<rect x="232" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="246" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Prompt libraries</text>
-<path d="M339,60 L339,96" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
-<rect x="454" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="468" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">QA checklists</text>
-<path d="M561,60 L561,96" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
-<rect x="676" y="10" width="214" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="690" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Governance</text>
-<path d="M783,60 L783,96" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
-<rect x="10" y="100" width="880" height="56" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="24" y="124" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Custom GPTs</text>
-<text x="24" y="142" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">the trainable work runs through them; specialists keep the judgment calls</text>
-<path d="M450,156 L450,192" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-playbook-structure)"/>
-<rect x="10" y="196" width="880" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="24" y="220" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">10+ concurrent programs</text>
-<text x="24" y="238" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">run by a team of two</text>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The operating playbook</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">what runs on what</text>
+<rect x="20" y="56" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="87" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">10+ concurrent programs</text>
+<text x="864" y="87" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">run by a team of two</text>
+<rect x="20" y="116" width="860" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="36" y="147" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Custom GPTs</text>
+<text x="864" y="147" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">the trainable work runs through them; specialists keep the judgment calls</text>
+<rect x="20" y="176" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="207" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Standards</text>
+<text x="864" y="207" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">what a program is, what every email has to contain, what counts as launch-ready</text>
+<rect x="20" y="236" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="267" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Prompt libraries</text>
+<text x="864" y="267" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">the recurring work, versioned like anything else we ship</text>
+<rect x="20" y="296" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="327" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">QA checklists</text>
+<text x="864" y="327" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">gate everything before it ships, human or machine made</text>
+<rect x="20" y="356" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="387" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Governance</text>
+<text x="864" y="387" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">what AI may touch, what needs human review, who owns the output</text>
+<text x="20" y="428" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">yellow outline: the layer the trainable work runs through</text>
 </svg>

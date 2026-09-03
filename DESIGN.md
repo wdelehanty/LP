@@ -375,3 +375,50 @@ site map are unchanged. Decisions that pages must follow from here:
 Gate order from the brief: home comp with placeholders, Will approves
 layout; Worker live on real n8n data; assets in and home ships as v2.6.0;
 case studies and about; QA pass.
+
+## 13. Polish pass, 2026-09-02 (CC Brief 7, target v2.6.1)
+
+1. Diagram grammars. `scripts/draw_architecture.py` now draws eight ways:
+   flow (boxes and arrows, the demand engine only, type at +2px), ledger
+   (a table with a signal total row), timeline (a rule with ticks, one
+   yellow), layers (stacked bands, owned layers in signal), split (before
+   muted, after full strength), swimlanes (a human and a system taking
+   turns), bars (inventory numbers only, unused so far), and callouts (a
+   real screenshot with numbered pins, written as an HTML fragment that
+   `inline_diagrams.py` passes through). No page runs two figures of one
+   grammar back to back; `scripts/contact_sheet.py` writes qa/diagrams.html
+   to prove it. Rendered n8n exports stay for the pure automations; the
+   human-in-the-loop ones (morning round, live booking, outcome loop) are
+   swimlanes drawn by hand.
+2. Headshot: 920 by 1150, hair at 14%, shoulders off the bottom, the mask
+   eroded 2px and the rim band darkened, the watermark painted over.
+   qa/headshot.html compares old and new at 1x and 2x.
+3. Home: the strip runs in full color (grayscale read as a placeholder
+   row), the hover is a 4px lift; proof numerals count from 85% over
+   500ms so no frame reads as a wrong number; Selected Work and Stack sit
+   40px closer to what precedes them; the console crop lost its right
+   edge band; the card plate type is 2px larger; off-hours copy aligns
+   with the top of the photo. The shop tile shows the coop run until a
+   clean shop shot lands.
+4. About carousel replaces the single Outside photo: CSS scroll-snap
+   track, prev and next buttons on the eyebrow row, dots, arrow keys when
+   the track has focus, instant under reduced motion, no autoplay, any
+   number of slides. Ships with the frozen lake, the fireworks rig, the
+   dog on the shop floor, and the pond.
+5. Photo intake: `scripts/intake_photos.py scan` reads the Mac Photos
+   library through osxphotos (or a Takeout folder), keeps the last four
+   years, skips screenshots, and pre-filters on Apple's own labels so the
+   paid tagging pass sees 3,380 photos instead of 9,461. `tag` sends
+   batches of ten to Claude with a fixed JSON schema (faces, children,
+   plates, clutter, exposure, caption), cached by file hash. `sheet`
+   writes qa/intake.html; `apply` processes the ticked picks. The
+   intake/ cache is gitignored. Tagging needs an API key and costs about
+   twenty five dollars for the filtered set.
+6. Intake outcome. No API key was on the machine, so the tagging pass was
+   done by eye from contact sheets of the label-filtered subsets, and the
+   tags written into intake/tags.json by hand. Four of the six picks were
+   iCloud previews locally; osxphotos pulled the originals through
+   PhotoKit. Shipped: the wide shop shot in the strip; the boat at sunset,
+   skis on the slope, the tractor with the mower, the groomed trail, and
+   two dogs in the surf as carousel slides. Photos of the boys stayed out
+   entirely. The `tag` step still works as written when a key is present.

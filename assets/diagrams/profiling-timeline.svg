@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="Progressive profiling on a timeline: one field on the first visit, one more on the next, until the reader is a known profile that gets segmented and routed.">
+<defs><marker id="ar-profiling-timeline" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Progressive profiling</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">forbes connect / one ask per visit</text>
+<line x1="30" y1="168" x2="450" y2="168" stroke="#3A4046" stroke-width="1"/>
+<line x1="63.6" y1="158" x2="63.6" y2="178" stroke="#3A4046" stroke-width="1"/>
+<text x="70" y="132" text-anchor="middle" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">First visit</text>
+<text x="70" y="148" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one field</text>
+<line x1="240.0" y1="158" x2="240.0" y2="178" stroke="#3A4046" stroke-width="1"/>
+<text x="240.0" y="198" text-anchor="middle" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Next visit</text>
+<text x="240.0" y="214" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">one more field</text>
+<line x1="416.40000000000003" y1="158" x2="416.40000000000003" y2="178" stroke="#F2C230" stroke-width="2"/>
+<circle cx="416.40000000000003" cy="168" r="4" fill="#F2C230"/>
+<text x="410" y="132" text-anchor="middle" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#F2C230">Known profile</text>
+<text x="410" y="148" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">segmented, routed</text>
+<text x="20" y="304" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">the profile fills in over a few visits; nobody ever sees a long form</text>
+</svg>

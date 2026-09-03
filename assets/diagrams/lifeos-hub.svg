@@ -1,47 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 408" role="img" aria-label="Map of the Life OS hub in Notion: a now queue, capture inbox, weekly review, and knowledge base on the active row; money, logs, parked items, and the operating manual behind them; email, Home Assistant, and webhook capture hooks feeding in through n8n.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 392" role="img" aria-label="A ledger of the Life OS hub in Notion: a now queue, capture inbox, weekly review, knowledge base, money and direction, logs, parked items, and the operating manual, with email, Home Assistant, and webhook capture hooks feeding in through n8n.">
 <defs><marker id="ar-lifeos-hub" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
-<rect x="280" y="10" width="340" height="50" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
-<text x="294" y="34" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Life OS hub</text>
-<text x="294" y="52" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">notion, one page runs it</text>
-<rect x="10" y="100" width="214" height="62" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="24" y="124" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Now</text>
-<text x="24" y="142" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">project queue, stalest on top</text>
-<path d="M117,100 L117,64" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-lifeos-hub)"/>
-<rect x="232" y="100" width="214" height="62" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="246" y="124" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Capture inbox</text>
-<text x="246" y="142" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">title only, keep moving</text>
-<path d="M339,100 L339,64" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-lifeos-hub)"/>
-<rect x="454" y="100" width="214" height="62" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="468" y="124" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Weekly review</text>
-<text x="468" y="142" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">sundays, 15 minutes</text>
-<path d="M561,100 L561,64" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-lifeos-hub)"/>
-<rect x="676" y="100" width="214" height="62" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="690" y="124" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Knowledge base</text>
-<text x="690" y="142" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">decisions + lessons</text>
-<path d="M783,100 L783,64" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-lifeos-hub)"/>
-<rect x="10" y="190" width="214" height="62" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="24" y="214" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Money + direction</text>
-<text x="24" y="232" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">monthly, not weekly</text>
-<rect x="232" y="190" width="214" height="62" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="246" y="214" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Logs</text>
-<text x="246" y="232" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">maintenance / dog / builds</text>
-<rect x="454" y="190" width="214" height="62" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="468" y="214" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Parked</text>
-<text x="468" y="232" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">nothing gets deleted</text>
-<rect x="676" y="190" width="214" height="62" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="690" y="214" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Operating manual</text>
-<text x="690" y="232" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">read when away</text>
-<rect x="10" y="310" width="240" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="24" y="334" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Email label</text>
-<text x="24" y="352" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">to the inbox</text>
-<path d="M130,310 C234.5,310 234.5,162 339,162" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-lifeos-hub)"/>
-<rect x="330" y="310" width="240" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="344" y="334" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Home Assistant</text>
-<text x="344" y="352" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">to the maintenance log</text>
-<path d="M450,310 C394.5,310 394.5,252 339,252" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-lifeos-hub)"/>
-<rect x="650" y="310" width="240" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
-<text x="664" y="334" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Webhook</text>
-<text x="664" y="352" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">to the knowledge base</text>
-<path d="M770,310 C776.5,310 776.5,162 783,162" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-lifeos-hub)"/>
-<text x="10" y="396" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">capture hooks run through n8n; mapped from the live workspace, family surfaces left off on purpose</text>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Life OS hub</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">notion / one page runs it; family surfaces left off on purpose</text>
+<text x="20" y="64" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Surface</text>
+<text x="880" y="64" text-anchor="end" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">What it holds</text>
+<line x1="20" y1="74" x2="880" y2="74" stroke="#3A4046" stroke-width="1"/>
+<text x="20" y="106" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Now</text>
+<text x="880" y="106" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">project queue, stalest on top</text>
+<line x1="20" y1="117" x2="880" y2="117" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="138" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Capture inbox</text>
+<text x="880" y="138" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">title only, keep moving</text>
+<line x1="20" y1="149" x2="880" y2="149" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="170" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Weekly review</text>
+<text x="880" y="170" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">sundays, 15 minutes</text>
+<line x1="20" y1="181" x2="880" y2="181" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="202" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Knowledge base</text>
+<text x="880" y="202" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">decisions and lessons</text>
+<line x1="20" y1="213" x2="880" y2="213" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="234" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Money and direction</text>
+<text x="880" y="234" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">monthly, not weekly</text>
+<line x1="20" y1="245" x2="880" y2="245" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="266" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Logs</text>
+<text x="880" y="266" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">maintenance, dog, builds</text>
+<line x1="20" y1="277" x2="880" y2="277" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="298" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Parked</text>
+<text x="880" y="298" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">nothing gets deleted</text>
+<line x1="20" y1="309" x2="880" y2="309" stroke="#2A2F34" stroke-width="1"/>
+<text x="20" y="330" style="font:400 13px Barlow,sans-serif" fill="#E6E4DF">Operating manual</text>
+<text x="880" y="330" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">read when away</text>
+<line x1="20" y1="341" x2="880" y2="341" stroke="#2A2F34" stroke-width="1"/>
+<line x1="20" y1="344" x2="880" y2="344" stroke="#F2C230" stroke-width="1"/>
+<text x="20" y="366" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#F2C230">Capture hooks</text>
+<text x="880" y="366" text-anchor="end" style="font:400 12px 'IBM Plex Mono',monospace" fill="#F2C230">email label, home assistant, webhook, all through n8n</text>
 </svg>

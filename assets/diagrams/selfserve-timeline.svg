@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 228" role="img" aria-label="The self-serve advertising lifecycle as a timeline: account creation starts onboarding toward a first live campaign, activation pushes toward a second, and retention and reengagement sequences catch stalled and lapsed advertisers.">
+<defs><marker id="ar-selfserve-timeline" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Self-serve lifecycle</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">danads / no account manager, so all of it is built in</text>
+<line x1="30" y1="132" x2="870" y2="132" stroke="#3A4046" stroke-width="1"/>
+<line x1="55.2" y1="122" x2="55.2" y2="142" stroke="#3A4046" stroke-width="1"/>
+<text x="70" y="96" text-anchor="middle" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Account created</text>
+<text x="70" y="112" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">onboarding sequence starts</text>
+<line x1="265.20000000000005" y1="122" x2="265.20000000000005" y2="142" stroke="#F2C230" stroke-width="2"/>
+<circle cx="265.20000000000005" cy="132" r="4" fill="#F2C230"/>
+<text x="265.20000000000005" y="162" text-anchor="middle" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#F2C230">First live campaign</text>
+<text x="265.20000000000005" y="178" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">the onboarding goal</text>
+<line x1="466.8" y1="122" x2="466.8" y2="142" stroke="#3A4046" stroke-width="1"/>
+<text x="466.8" y="96" text-anchor="middle" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Second campaign</text>
+<text x="466.8" y="112" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">activation pushes the behaviors that predict it</text>
+<line x1="668.4" y1="122" x2="668.4" y2="142" stroke="#3A4046" stroke-width="1"/>
+<text x="668.4" y="162" text-anchor="middle" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Stalled</text>
+<text x="668.4" y="178" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">retention sequence</text>
+<line x1="844.8" y1="122" x2="844.8" y2="142" stroke="#3A4046" stroke-width="1"/>
+<text x="830" y="96" text-anchor="middle" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Lapsed</text>
+<text x="830" y="112" text-anchor="middle" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">reengagement sequence</text>
+<text x="20" y="212" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">8 programs, 29 emails, written and built by one person, staged for launch</text>
+</svg>

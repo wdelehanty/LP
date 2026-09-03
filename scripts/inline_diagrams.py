@@ -2,7 +2,8 @@
 """Inline diagram SVGs into pages at their placeholder comments.
 
 A page marks a slot with <!-- diagram:slug -->. This script replaces the
-slot with the SVG from v2/assets/diagrams/<slug>.svg, wrapped in a scroll
+slot with the SVG from assets/diagrams/<slug>.svg (or the HTML fragment
+<slug>.html for callouts figures, passed through as is), wrapped in a scroll
 container when the diagram is wider than the content column, and fenced
 with markers so re-running replaces cleanly. Fails loudly on a missing
 SVG so a page can never ship with an empty slot.
@@ -17,6 +18,10 @@ WIDE_AT = 920
 
 
 def svg_for(slug, diagrams_dir):
+    html_path = os.path.join(diagrams_dir, slug + ".html")
+    if os.path.exists(html_path):
+        # callouts figures are HTML fragments; pass them through untouched
+        return open(html_path, encoding="utf-8").read().strip()
     path = os.path.join(diagrams_dir, slug + ".svg")
     if not os.path.exists(path):
         raise SystemExit(f"missing diagram: {path}")

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" role="img" aria-label="The outcome confirmation loop as swimlanes: a Sunday email lists open leads and quotes, the client replies in a short grammar, n8n parses the reply onto the records, reminds on Wednesday, and flags anything it cannot read.">
+<defs><marker id="ar-outcome-lanes" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The outcome confirmation loop</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">stedd / a weekly reply grammar</text>
+<rect x="20" y="56" width="860" height="86" fill="#1E2226" stroke="#2A2F34" stroke-width="1"/>
+<text x="34" y="104.0" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">n8n</text>
+<rect x="20" y="142" width="860" height="86" fill="#15181B" stroke="#2A2F34" stroke-width="1"/>
+<text x="34" y="190.0" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">Client</text>
+<rect x="138" y="74.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="148" y="95.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Sunday 6pm email</text>
+<text x="148" y="112.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">open leads, quotes</text>
+<rect x="290" y="160.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="300" y="181.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Replies</text>
+<text x="300" y="198.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">won, lost, pending</text>
+<rect x="442" y="74.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="452" y="95.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Parse the reply</text>
+<text x="452" y="112.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">outcomes applied</text>
+<rect x="594" y="74.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="604" y="95.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Wednesday nudge</text>
+<text x="604" y="112.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">skips who answered</text>
+<rect x="746" y="74.0" width="122" height="50" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="756" y="95.0" style="font:600 11px 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase" fill="#E6E4DF">Flag the odd ones</text>
+<text x="756" y="112.0" style="font:400 9px 'IBM Plex Mono',monospace" fill="#9AA0A6">odd replies, to me</text>
+<path d="M260,99.0 C274.5,99.0 274.5,185.0 289,185.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-outcome-lanes)"/>
+<path d="M412,185.0 C426.5,185.0 426.5,99.0 441,99.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-outcome-lanes)"/>
+<path d="M260,99.0 L593,99.0" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-outcome-lanes)"/>
+<path d="M564,99.0 L745,99.0" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-outcome-lanes)"/>
+</svg>
