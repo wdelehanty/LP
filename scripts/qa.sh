@@ -5,9 +5,9 @@
 # JSON-LD parses, canonical present, OG images exist, sitemap URLs resolve.
 # Usage: sh scripts/qa.sh vX.Y.Z
 cd "$(dirname "$0")/.."
-v="$1"; fail=0
-if git ls-files | grep -v -E '^(raw/|intake/|assets/fonts/)' | xargs grep -l -- "—" 2>/dev/null | grep -q .; then
-  echo "FAIL em-dash:"; git ls-files | grep -v -E '^(raw/|intake/|assets/fonts/)' | xargs grep -l -- "—"; fail=1
+v="$1"; fail=0; dash=$(printf '\342\200\224')  # U+2014, kept out of this file as a literal
+if git ls-files | grep -v -E '^(raw/|intake/|assets/fonts/)' | xargs grep -l -- "$dash" 2>/dev/null | grep -q .; then
+  echo "FAIL em-dash:"; git ls-files | grep -v -E '^(raw/|intake/|assets/fonts/)' | xargs grep -l -- "$dash"; fail=1
 else echo "ok   em-dash grep"; fi
 if grep -rn -E "T-Mobile|ServiceNow|Indeed" --include="*.html" --include="*.md" --include="*.svg" . 2>/dev/null | grep -v -E "^\./(qa|pitches|archive|intake|node_modules)/" | grep -v "CC_Brief" | grep -q .; then
   echo "FAIL banned names:"; grep -rn -E "T-Mobile|ServiceNow|Indeed" --include="*.html" --include="*.md" . | grep -v -E "^\./(qa|pitches|archive|intake)/" | grep -v CC_Brief; fail=1
