@@ -518,13 +518,27 @@ case studies and about; QA pass.
     `scripts/encode_loop.sh` encodes them. The Lab page caption says
     "drawn from"; the home card carries the same words in the video's
     label. Thirteen seconds each, fade to the first frame at the end.
-11. Demo call, blocked. Getting a Retell web-call token and the Retell
-    browser SDK from this machine was refused by the tool permissions
-    (both attempts, 2026-09-03), and no other route reaches the live agent
-    without a credential, so the player ships with the placeholder and
-    the caption says so. Will records the call himself as the brief first
-    said, or grants the Retell connector; then `scripts/prep_demo_call.sh`
-    and a transcript rewrite finish it, as v2.7.1.
+11. Demo call, as shipped (v2.7.2, 2026-09-03). Will connected Retell's
+    own MCP server (an API key header, added with `claude mcp add -s user`),
+    topped up credit, and lifted the auto-mode block, so the call was made
+    from here. The demo agent, "Stedd Receptionist" (Sam, voice Tamsin), is
+    Stedd's real front line: its prompt expects testers who call as
+    homeowners and tells it to handle them exactly as it would for a client
+    shop, which is what the site shows. The caller is the Mac's Samantha
+    voice reading ten short lines; a harness page (scripts/demo-call/)
+    feeds them into a Retell web call as the microphone and picks each
+    reply from what the agent just said, waiting for the agent's transcript
+    to settle so the two do not talk over each other. Take 1 overlapped
+    and the name was lost; take 2 ran 106 s clean: job, address, name,
+    number, Saturday at 9, confirmation, goodbye, and the agent hung up.
+    Retell's word-timed transcript gives the `data-t` values; the agent's
+    think-time gaps of 3 to 6 s between turns were capped at 1.2 s (86 s
+    total) and the caption says so. Expressive tags like [curious] and the
+    agent's em-dashes were cleaned from the transcript text; the caller's
+    lines are Retell's own transcription of what was said. mp3 at 80 kbps
+    and Opus at 48 kbps to stay under 1MB. No real customer audio; the
+    call carries metadata marking it a portfolio recording and the nightly
+    QA digest will file it under the demo line.
 12. Notes, as shipped. Will delegated the drafting ("you do the notes
     drafts"), so all three pieces went out together with the shell instead
     of one at a time. Every number in them is an inventory number; the

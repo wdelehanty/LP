@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>demo call harness</title>
+<script type="module">
+  // The ESM bundle carries eventemitter3 and livekit-client; the UMD build expects them as globals.
+  try {
+    const m = await import('https://cdn.jsdelivr.net/npm/retell-client-js-sdk@2.0.8/+esm');
+    window.RetellWebClient = m.RetellWebClient || (m.default && m.default.RetellWebClient);
+  } catch (e) { console.log('HARNESS ' + JSON.stringify({ m: 'sdk import failed', e: String(e) })); }
+  window.__sdkReady = true;
+</script>
+</head><body>
+<script>
+// One web call to the Stedd demo line with a synthesized caller. The page's
+// "microphone" is an AudioContext destination; caller lines are WAV files
+// played into it, each chosen by what the agent just said.
+(async () => {
+  const cfg = window.CALL_CONFIG;  // { token, lines: {key: file}, order: [...] }
+  while (!window.__sdkReady) await new Promise(r => setTimeout(r, 50));
+  const log = (m, extra) => console.log('HARNESS ' + JSON.stringify(Object.assign({ t: Math.round(performance.now() - (window.__t0 || performance.now())), m }, extra || {})));
+  const ctx = new AudioContext({ sampleRate: 48000 });
+  const dest = ctx.createMediaStreamDestination();
+  const silence = ctx.createConstantSource(); silence.offset.value = 0; silence.connect(dest); silence.start();
+  navigator.mediaDevices.getUserMedia = async () => dest.stream;
+  navigator.mediaDevices.enumerateDevices = async () => [{ kind: 'audioinput', deviceId: 'default', label: 'harness', groupId: 'h' }];
+  const buffers = {};
+  for (const [k, f] of Object.entries(cfg.lines)) {
+    const ab = await (await fetch(f)).arrayBuffer(); buffers[k] = await ctx.decodeAudioData(ab);
+  }
+  log('lines loaded', { keys: Object.keys(buffers) });
+  const Ctor = window.RetellWebClient || Object.values(window).map(v => v && v.RetellWebClient).find(Boolean);
+  if (!Ctor) { log('sdk missing', { globals: Object.keys(window).slice(-15) }); window.__done = true; return; }
+  const client = new Ctor();
+  const used = {}, ROUTES = [
+    ['close',   /anything else|else i can|all set|that'?s all|is there anything|anything more|we'?ll (reach out|be in touch|text|confirm)|you'?re (all )?set|talk (to you )?(then|soon)/i],
+    ['confirm', /is that (right|correct)|correct\?|right\?|does that work|sound good|do i have that|just to confirm|so that'?s/i],
+    ['name',    /your name|who am i speaking|name for|get your name|may i ask who|who'?s calling|first name|what'?s your name|name\?/i],
+    ['email',   /e-?mail/i],
+    ['phone',   /phone|number|reach you|call you back|text you|callback|call back|best way to/i],
+    ['address', /address|where (are|is) (you|the|it)|located|location|what town|which town|city|area (are|is) you|neighborhood/i],
+    ['when',    /when|what day|what time|schedule|availab|works? for you|morning|afternoon|weekday|weekend|come out|swing by|get you on/i],
+    ['scope',   /siding|trim|material|how (big|many|much)|square|what kind|what type|details|tell me (a little|more)|scope|interior|exterior|stories|walk me through|what are we/i],
+    ['ai',      /\bai\b|automated|robot|assistant|demo/i],
+  ];
+  let agentTalking = false, callerBusy = false, ended = false, pending = null, lastAgent = '', closeSent = false, quiet = null, answered = '';
+  function pick() {
+    if (!used.job) return 'job';
+    if (/name/i.test(lastAgent) && /number|phone/i.test(lastAgent) && !used.namephone) return 'namephone';
+    for (const [k, re] of ROUTES) if (re.test(lastAgent) && (!used[k] || ((k === 'confirm' || k === 'name') && used[k] < 2))) return k;
+    if (/\?\s*$/.test(lastAgent) && !used.confirm) return 'confirm';
+    if (used.namephone || (used.name && used.phone)) return 'close';
+    for (const k of cfg.order) if (!used[k]) return k;
+    return null;
+  }
+  function play(k) {
+    const src = ctx.createBufferSource(); src.buffer = buffers[k]; src.connect(dest);
+    callerBusy = true; used[k] = (used[k] || 0) + 1;
+    log('caller', { line: k, dur: Math.round(buffers[k].duration * 1000) });
+    src.onended = () => { callerBusy = false; if (k === 'close') closeSent = true; };
+    src.start();
+  }
+  function settled() {  // the agent's turn is over: audio stopped, text unchanged for a beat, sentence finished
+    if (ended || agentTalking || callerBusy || closeSent) return;
+    if (lastAgent === answered) return;
+    const done = /[.?!]\s*$/.test(lastAgent);
+    clearTimeout(pending);
+    pending = setTimeout(() => {
+      if (ended || agentTalking || callerBusy || lastAgent === answered) return;
+      answered = lastAgent;
+      const k = pick(); if (k) play(k); else log('no line left');
+    }, done ? 500 : 1400);
+  }
+  function schedule() { clearTimeout(quiet); quiet = setTimeout(settled, 1300); }
+  client.on('call_started', () => { window.__t0 = performance.now(); log('call_started'); });
+  client.on('agent_start_talking', () => { agentTalking = true; clearTimeout(pending); log('agent_start'); });
+  client.on('agent_stop_talking', () => { agentTalking = false; log('agent_stop'); if (!closeSent) schedule(); });
+  client.on('update', (u) => {
+    const tr = (u && u.transcript) || [];
+    const last = tr.filter(x => x.role === 'agent').slice(-1)[0];
+    if (last && last.content !== lastAgent) { lastAgent = last.content; log('agent_said', { text: lastAgent.slice(0, 200) }); clearTimeout(pending); if (!agentTalking) schedule(); }
+  });
+  client.on('call_ended', () => { ended = true; log('call_ended'); window.__done = true; });
+  client.on('error', (e) => { log('error', { e: String(e && (e.message || e)) }); });
+  setTimeout(() => { if (!ended) { log('timeout, stopping'); try { client.stopCall(); } catch (e) {} window.__done = true; } }, 110000);
+  await ctx.resume();
+  await client.startCall({ accessToken: cfg.token, sampleRate: 48000 });
+  log('startCall returned');
+})().catch(e => { console.log('HARNESS ' + JSON.stringify({ m: 'fatal', e: String(e && (e.stack || e)) })); window.__done = true; });
+</script>
+</body></html>

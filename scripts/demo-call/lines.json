@@ -1,0 +1,13 @@
+{
+ "job": "Hi. I'm looking to get a quote on painting the outside of my house. It's two stories, maybe twenty four hundred square feet.",
+ "scope": "Siding and trim. Some of the trim needs scraping before it gets painted.",
+ "when": "Saturday morning would be best. Nine or so, if that works.",
+ "name": "It's Will. W I L L.",
+ "phone": "The number I'm calling from is fine. A text is easiest.",
+ "address": "I'm in Warwick, New York. I can text over the street address.",
+ "email": "I'd rather skip email. A text works fine.",
+ "confirm": "Yes, that's right.",
+ "ai": "Good to know. Works for me.",
+ "close": "No, that's everything. Thanks a lot. Bye.",
+ "namephone": "It's Will. And the number I'm calling from is fine, a text is easiest."
+}
