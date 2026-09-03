@@ -1047,7 +1047,7 @@ footer .links { display: flex; gap: 20px; }
   .rail .dot { display: none; }
 }
 @media (max-width: 480px) {
-  .nav ul { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; gap: 0; }
+  .nav ul { display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; gap: 0; }
   .nav ul a { display: block; text-align: center; white-space: nowrap; padding: 14px 4px; }
   .nav ul a::after { left: 50%; right: auto; width: 28px; transform: translateX(-50%) scaleX(0); }
   .nav ul a:hover::after { transform: translateX(-50%) scaleX(1); }
