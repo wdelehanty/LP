@@ -422,3 +422,21 @@ case studies and about; QA pass.
    skis on the slope, the tractor with the mower, the groomed trail, and
    two dogs in the surf as carousel slides. Photos of the boys stayed out
    entirely. The `tag` step still works as written when a key is present.
+
+## 14. The "it runs" pass, 2026-09-02 (CC Brief 8, target v2.7.0)
+
+1. Headshot, third cut. `scripts/mask_headshot.py` now uses the rembg
+   isnet-general-use matting model instead of the flood fill, despills the
+   partial-alpha fringe toward a dark hair tone, and composites onto the
+   same 920 by 1150 gunmetal ground. Will ran it outside the repo; the
+   output was copied in as v2.6.2. qa/headshot.html compares v2.6.1 and
+   v2.7.0 at 1x and at 2x on the right hair edge.
+2. About, the farm section. Four full-width photos became two rows: the
+   coops as a square two-up with a 2px gap and captions beneath (the
+   mid-build shot is a portrait, so both crop to 1:1 rather than one
+   crop to the other), then the pond at two thirds and the boys at one
+   third, aligned top. The section runs about 1600px at 1440 wide. The
+   carousel section takes the proof-grid bottom spacing (40px padding,
+   8px margin) so the gap to "Paper and links" matches the rest of the
+   page. Under 900px both rows stack.
+

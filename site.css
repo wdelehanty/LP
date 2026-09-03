@@ -852,6 +852,14 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
 .about-photo img { width: 100%; height: auto; display: block; border-radius: 0; box-shadow: var(--shadow); }
 .about-photo figcaption { margin-top: 12px; font-size: 0.9375rem; color: var(--photo-warm); }
 .about .photo-block { margin-block: 30px; }
+/* Farm and shop: a two-up, the prose, then a wide and a narrow, aligned top */
+.photo-row { display: grid; gap: 2px 24px; align-items: start; margin-block: 30px; }
+.photo-row.two { grid-template-columns: 1fr 1fr; gap: 2px; }
+.photo-row.wide-narrow { grid-template-columns: 2fr 1fr; }
+.photo-cell { margin: 0; min-width: 0; }
+.photo-cell .caption { margin-top: 12px; }
+.frame.r34 { aspect-ratio: 3 / 4; }
+#outside { padding-bottom: 40px; margin-bottom: 8px; }
 .about .photo-block.offset { margin-left: auto; width: 66%; }
 .about-links { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
 .about-links .btn {
@@ -947,6 +955,7 @@ footer .links { display: flex; gap: 20px; }
   .lab-entry .grid { grid-template-columns: 1fr; gap: 24px; }
   .about-hero .grid { grid-template-columns: 1fr; gap: 40px; }
   .about .photo-block.offset { width: 100%; }
+  .photo-row.two, .photo-row.wide-narrow { grid-template-columns: 1fr; gap: 24px; }
   .changelog-entry { grid-template-columns: 1fr; gap: 6px; }
 }
 .nav-fold { display: none; margin-top: 14px; }

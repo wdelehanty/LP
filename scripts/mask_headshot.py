@@ -1,110 +1,50 @@
 #!/usr/bin/env python3
-"""Mask the studio headshot onto the site's dark ground (Brief 7, item 4).
+"""Mask the studio headshot onto the site's dark ground (Brief 7, item 4, v2).
 
-Flood-fills the light backdrop from the top edge, erodes the subject mask
-2px and feathers it, darkens the 8px band just outside the subject to kill
-the light rim, then composites onto a 920 by 1150 gunmetal gradient with
-the top of the hair at 14% from the top and the shoulders running off the
-bottom. The studio watermark is painted over with the jacket around it.
+Replaces the flood-fill approach with a matting model (rembg, isnet) so hair
+edges come out clean, then composites onto a 920x1150 gunmetal gradient with
+headroom, despills the partial-alpha fringe toward a dark hair tone, and
+kills the watermark corner.
 
-Needs Pillow and numpy (pip install pillow numpy).
+pip install rembg onnxruntime pillow numpy
 Usage: mask_headshot.py <source.jpg> <out-dir>
 Writes headshot-dark.jpg (920x1150) and headshot-dark-600.jpg (600x750).
 """
 import sys
-
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageFilter
+from rembg import remove, new_session
 
-CANVAS_W, CANVAS_H = 920, 1150
-HAIR_TOP = 0.14
-GROUND_CENTER = (0x2A, 0x2F, 0x34)
-GROUND_EDGE = (0x15, 0x18, 0x1B)
+src_path, out_dir = sys.argv[1], sys.argv[2]
+src = Image.open(src_path).convert("RGB")
+cut = remove(src, session=new_session("isnet-general-use"))
+cn = np.asarray(cut).astype(np.float64)
+alpha = cn[..., 3]
+alpha[900:, 880:] = 0  # watermark corner on the 1000x1000 source
+alpha = np.asarray(Image.fromarray(alpha.astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.8))).astype(np.float64) / 255.0
+fg = cn[..., :3]
 
+W, H = 920, 1150
+yy, xx = np.mgrid[0:H, 0:W]
+r = np.sqrt(((xx - W * 0.5) / (W * 0.62)) ** 2 + ((yy - H * 0.32) / (H * 0.62)) ** 2)
+t = np.clip(r, 0, 1)[..., None]
+c0 = np.array([0x2A, 0x2F, 0x34], float); c1 = np.array([0x15, 0x18, 0x1B], float)
+ground = c0 * (1 - t) + c1 * t
 
-def boxmean(x, r=3):
-    p = np.pad(x, ((r + 1, r), (r + 1, r)), mode="edge")
-    c = p.cumsum(0).cumsum(1)
-    n = (2 * r + 1) ** 2
-    k = 2 * r + 1
-    return (c[k:, k:] - c[:-k, k:] - c[k:, :-k] + c[:-k, :-k]) / n
-
-
-def subject_mask(a):
-    """1.0 on the subject, 0.0 on the backdrop, from a flood fill off the top edge."""
-    H, W = a.shape[:2]
-    L = a.max(axis=2)
-    sat = a.max(axis=2) - a.min(axis=2)
-    gray = a.mean(axis=2).astype(np.float64)
-    m = boxmean(gray)
-    m2 = boxmean(gray ** 2)
-    std = np.sqrt(np.clip(m2 - m * m, 0, None))
-    seeds = [(3, 3), (W - 4, 3), (W // 2, 3), (3, H // 3), (W - 4, H // 3), (3, H // 2), (W - 4, H // 2)]
-    Lmin = min(int(L[y, x]) for x, y in seeds[:3]) - 40
-    smax = max(int(sat[y, x]) for x, y in seeds[:3]) + 10
-    cand = (L > Lmin) & (sat < smax) & (std < 8)
-    mask = Image.fromarray((cand * 255).astype(np.uint8)).copy()
-    for seed in seeds:
-        if mask.getpixel(seed) == 255:
-            ImageDraw.floodfill(mask, seed, 128, thresh=0)
-    bg = (np.asarray(mask) == 128)
-    return Image.fromarray(((~bg) * 255).astype(np.uint8)).copy()
-
-
-def erase_watermark(a, cx, cy, r):
-    H, W = a.shape[:2]
-    yy, xx = np.mgrid[0:H, 0:W]
-    d = np.sqrt((xx - cx) ** 2 + (yy - cy) ** 2)
-    ring = (d > r) & (d < r + 14)
-    fill = a[ring].mean(axis=0)
-    inside = d <= r
-    noise = np.random.default_rng(1).normal(0, 2.0, size=(int(inside.sum()), 3))
-    a[inside] = np.clip(fill + noise, 0, 255).astype(np.int16)
-
-
-def main():
-    src, out_dir = sys.argv[1], sys.argv[2]
-    im = Image.open(src).convert("RGB")
-    a = np.asarray(im).astype(np.int16)
-    H, W = a.shape[:2]
-
-    # the studio watermark sits on the jacket at the bottom right: paint it
-    # with the jacket around it before anything else looks at the pixels
-    erase_watermark(a, cx=int(W * 0.935), cy=int(H * 0.94), r=34)
-    subject = subject_mask(a)
-    # erode 2px, then feather 3px
-    eroded = subject.filter(ImageFilter.MinFilter(5))
-    soft = eroded.filter(ImageFilter.GaussianBlur(3))
-    alpha = np.asarray(soft).astype(np.float64) / 255.0
-    # the 8px band just outside the eroded subject carries the light rim: darken it
-    band = np.asarray(eroded.filter(ImageFilter.MaxFilter(17))).astype(bool) & ~np.asarray(eroded).astype(bool)
-    rgb = a.astype(np.float64)
-    rgb[band] *= 0.85
-
-    # where does the hair start
-    rows = np.where(np.asarray(eroded).astype(bool).any(axis=1))[0]
-    y_top = int(rows[0]) if len(rows) else 0
-    # scale so the hair top lands at 14% and the source bottom runs past the canvas
-    target_top = HAIR_TOP * CANVAS_H
-    s = max(CANVAS_W / W, (CANVAS_H - target_top) / (H - y_top))
-    sw, sh = int(round(W * s)), int(round(H * s))
-    subj_img = Image.fromarray(np.clip(rgb, 0, 255).astype(np.uint8)).resize((sw, sh), Image.LANCZOS)
-    alpha_img = Image.fromarray((alpha * 255).astype(np.uint8)).resize((sw, sh), Image.LANCZOS)
-    ox = (CANVAS_W - sw) // 2
-    oy = int(round(target_top - y_top * s))
-
-    # gunmetal radial ground across the whole canvas
-    yy, xx = np.mgrid[0:CANVAS_H, 0:CANVAS_W]
-    r = np.sqrt(((xx - CANVAS_W * 0.5) / (CANVAS_W * 0.62)) ** 2 + ((yy - CANVAS_H * 0.36) / (CANVAS_H * 0.62)) ** 2)
-    t = np.clip(r, 0, 1)[..., None]
-    ground = np.array(GROUND_CENTER, float) * (1 - t) + np.array(GROUND_EDGE, float) * t
-    canvas = Image.fromarray(ground.astype(np.uint8))
-    canvas.paste(subj_img, (ox, oy), alpha_img)
-
-    canvas.save(f"{out_dir}/headshot-dark.jpg", quality=88, optimize=True)
-    canvas.resize((600, 750), Image.LANCZOS).save(f"{out_dir}/headshot-dark-600.jpg", quality=86, optimize=True)
-    print(f"hair top at source row {y_top}, scale {s:.3f}, placed at ({ox}, {oy}); wrote {CANVAS_W}x{CANVAS_H} and 600x750")
-
-
-if __name__ == "__main__":
-    main()
+s = 1.02
+sub = Image.fromarray(np.dstack([fg, alpha[..., None] * 255]).astype(np.uint8)).resize((int(1000 * s), int(1000 * s)), Image.LANCZOS)
+sn = np.asarray(sub).astype(np.float64); sa = sn[..., 3:4] / 255.0; sf = sn[..., :3]
+fringe = ((sa > 0.03) & (sa < 0.97)).astype(float)
+sf = sf * (1 - 0.45 * fringe) + np.array([0x20, 0x1C, 0x18]) * (0.45 * fringe)
+sw, sh = sub.size
+ox = (W - sw) // 2
+oy = int(H * 0.13) - int(35 * s)  # hair top in the source sits at y=35
+out = ground.copy()
+y0, y1 = max(oy, 0), min(oy + sh, H); x0, x1 = max(ox, 0), min(ox + sw, W)
+sy0, sx0 = y0 - oy, x0 - ox
+al = sa[sy0:sy0 + (y1 - y0), sx0:sx0 + (x1 - x0)]
+out[y0:y1, x0:x1] = sf[sy0:sy0 + (y1 - y0), sx0:sx0 + (x1 - x0)] * al + out[y0:y1, x0:x1] * (1 - al)
+res = Image.fromarray(np.clip(out, 0, 255).astype(np.uint8))
+res.save(f"{out_dir}/headshot-dark.jpg", quality=90, optimize=True)
+res.resize((600, 750), Image.LANCZOS).save(f"{out_dir}/headshot-dark-600.jpg", quality=88, optimize=True)
+print("wrote", res.size)
