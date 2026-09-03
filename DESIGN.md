@@ -439,4 +439,97 @@ case studies and about; QA pass.
    carousel section takes the proof-grid bottom spacing (40px padding,
    8px margin) so the gap to "Paper and links" matches the rest of the
    page. Under 900px both rows stack.
+3. Proof model. The tall proof cell carries a two-line mono note, a
+   native range for the paid budget ($25K to $250K, step $5K, default
+   $72K), a two-segment toggle (before the funnel rebuild, after), and one
+   output in Barlow Condensed: direct-booked revenue = budget times 275/72
+   after, divided by 2.5 before. Both ratios are inventory numbers and the
+   note says so. A mono footnote stays visible: "Linear on 2026's ratio.
+   No diminishing returns modeled. The real console runs in Looker."
+   Influenced revenue is not modeled; it is not a function of paid spend.
+   The number tweens 150ms on input, snaps under reduced motion, and a
+   timeout settles it when frames are throttled. The slider is 2px track,
+   14px square thumb, signal on active or focus. The other four cells keep
+   the v2.6.0 count-up.
+4. Demo call. On /stedd, ahead of the screenshots: a native audio element
+   behind custom controls (40px square play button with a drawn triangle
+   and bars, 2px progress bar that seeks by click and arrow keys, mono
+   time), a transcript as an ordered list with data-t seconds per line and
+   speaker labels in Barlow Condensed. The active line goes signal with a
+   2px inset rule and the list scrolls to keep it in view; reduced motion
+   keeps the highlight and drops the scroll. Beside it, the Monday Report
+   card drawn in tokens with the sample edition's seeded numbers (Ridgeline
+   Painting, $3,360 recovered, 3 estimates booked). When the call ends the
+   booking row appends with a fade and the estimates tile ticks to 4, once,
+   and holds through replays. Until the recording lands the audio is a
+   48-second placeholder (room tone with a soft tick at each line) and the
+   transcript is a sample script; the caption says so. Caption tag is REC.
+   `scripts/prep_demo_call.sh` trims silence, normalizes to -16 LUFS, and
+   writes the mp3 (96k) and ogg (Opus 64k) under 1MB.
+5. Loops. `[data-loop="path/without/extension"]` on a frame mounts a muted,
+   looping, inline video over the still, poster set to the still, webm then
+   mp4. The script mounts nothing under reduced motion or under 768px, and
+   restores the still if neither source loads. `scripts/prep_loop.sh` crops
+   a QuickTime capture to the frame's aspect, trims to 12 to 15 seconds,
+   encodes h264 and vp9 at 1400 wide under 1.5MB, and pulls a poster still.
+   Two loops are planned: the Morning Round digest in Gmail on the home Lab
+   card, and the n8n canvas running the Morning Round on the Lab page. The
+   attributes go in when Will's recordings land; nothing mounts before.
+6. Sparkline, skipped. The inventory carries marketing-influenced revenue
+   for 2026 only ($5.25M YTD) and the tenure claim ($0 to eight figures),
+   not a per-year series for 2019 to 2026. Nothing was interpolated.
+7. Meta pass. `scripts/og.py` draws a 1200 by 630 card per page (eyebrow,
+   h1 in Barlow, the meta description in muted Barlow, a rail-style strip
+   with the site name) into assets/og/. Every page carries og:image with
+   dimensions, twitter:image, and a canonical link. JSON-LD: Person on
+   home and about (name, jobTitle, url, sameAs LinkedIn), CreativeWork on
+   each case study (name, description, datePublished 2026-08-31,
+   dateModified from git, author). `scripts/sitemap.py` writes sitemap.xml
+   from the public index pages with git lastmod and runs from release.sh.
+   robots.txt disallows /pitches/, /archive/, /qa/. The kit sample and the
+   archive pages carry noindex, nofollow.
+8. Motion budget, amended. One autoplaying muted loop per page is allowed
+   inside a photo frame; the proof model's 150ms tween; the transcript
+   highlight and its follow-scroll; the booking row's fade. Everything
+   else in section 12 item 8 stands. `prefers-reduced-motion` disables
+   all of it: still instead of loop, snap instead of tween, highlight
+   without scroll, row without fade.
+9. Reduced motion and the script. site.js returns early under
+   `prefers-reduced-motion` before the kinetic headline and the reveals.
+   The model, the player, and the loop mount sit above that return, so a
+   reduced-motion visitor still gets a working slider and player; only the
+   decoration is skipped. qa/reduced.html (gitignored) is the harness:
+   it stubs matchMedia and checks all four paths.
+10. Loops, as shipped. Will asked for the recordings to be done without
+    him, and neither could be captured as a literal screen recording from
+    here: the Gmail tap sends a real outreach email, and the n8n canvas
+    sits behind a login this machine cannot open. Both loops are therefore
+    renderings, the same way the Monday Report and the console are samples
+    rendered from their own templates. The Gmail loop is the Morning Round
+    v2 workflow's own digest HTML (the 2026-08-31 send, six drafts, no
+    previews) inside a drawn Gmail message view; the tap opens the Approve
+    and Send handler's real response text with its two variables masked,
+    then the card's button turns to a sent state. The canvas loop draws
+    the eight nodes and connections from the workflow export and lights
+    them with the node start offsets and durations of run 14483
+    (2026-09-02 07:00, 5.1s, stretched 1.55x after a 1.6s hold). Source
+    pages live in scripts/loops/, `scripts/render_loop.js` renders frames
+    through headless Chrome (puppeteer-core from the npx cache), and
+    `scripts/encode_loop.sh` encodes them. The Lab page caption says
+    "drawn from"; the home card carries the same words in the video's
+    label. Thirteen seconds each, fade to the first frame at the end.
+11. Demo call, blocked. Getting a Retell web-call token and the Retell
+    browser SDK from this machine was refused by the tool permissions
+    (both attempts, 2026-09-03), and no other route reaches the live agent
+    without a credential, so the player ships with the placeholder and
+    the caption says so. Will records the call himself as the brief first
+    said, or grants the Retell connector; then `scripts/prep_demo_call.sh`
+    and a transcript rewrite finish it, as v2.7.1.
+12. Notes, as shipped. Will delegated the drafting ("you do the notes
+    drafts"), so all three pieces went out together with the shell instead
+    of one at a time. Every number in them is an inventory number; the
+    naming rule holds; no em-dashes, no listicles, no "in this post". Each
+    carries one figure reused from the case studies (the playbook layers,
+    the two buckets) or none. `scripts/notes.py` builds the index and
+    feed; og.py discovers posts on its own.
 

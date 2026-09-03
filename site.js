@@ -87,6 +87,7 @@
       var b = document.createElement('button');
       b.type = 'button';
       b.setAttribute('aria-label', 'Photo ' + (i + 1));
+      b.tabIndex = -1;  /* the dots sit under aria-hidden; the buttons and arrow keys carry the keyboard path */
       b.addEventListener('click', function () { go(i); });
       dots.appendChild(b);
       dotEls.push(b);
@@ -111,6 +112,142 @@
       else if (e.key === 'ArrowLeft') { e.preventDefault(); go(current - 1); }
     });
   });
+
+  // Proof model. Direct-booked = budget * (275 / 72) after the funnel rebuild,
+  // divided by 2.5 before it. Both ratios are inventory numbers; nothing else.
+  var model = document.getElementById('paid-model');
+  if (model) {
+    var range = model.querySelector('input[type="range"]');
+    var budgetOut = model.querySelector('output');
+    var val = model.querySelector('.val');
+    var segs = model.querySelectorAll('.seg button');
+    var mode = 'after', shown = 0, tweenId = null, settle = null;
+    function money(n) {
+      if (n >= 1e6) return '$' + (n / 1e6).toFixed(2).replace(/\.?0+$/, '') + 'M';
+      return '$' + Math.round(n / 1000) + 'K';
+    }
+    function target() {
+      var after = Number(range.value) * 275 / 72;
+      return mode === 'after' ? after : after / 2.5;
+    }
+    function show(n) { shown = n; val.textContent = money(n); }
+    function update() {
+      var b = money(Number(range.value));
+      budgetOut.textContent = b;
+      range.setAttribute('aria-valuetext', b);
+      var to = target();
+      if (still) { show(to); return; }
+      if (tweenId) cancelAnimationFrame(tweenId);
+      clearTimeout(settle);
+      var from = shown, t0 = performance.now();
+      tweenId = requestAnimationFrame(function frame(now) {
+        var p = Math.min(1, (now - t0) / 150);
+        show(from + (to - from) * p);
+        tweenId = p < 1 ? requestAnimationFrame(frame) : null;
+      });
+      // Throttled frames (background tab) still land on the final value.
+      settle = setTimeout(function () { if (tweenId) { cancelAnimationFrame(tweenId); tweenId = null; } show(to); }, 200);
+    }
+    range.addEventListener('input', update);
+    Array.prototype.forEach.call(segs, function (b) {
+      b.addEventListener('click', function () {
+        mode = b.getAttribute('data-mode');
+        Array.prototype.forEach.call(segs, function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+        update();
+      });
+    });
+    budgetOut.textContent = money(Number(range.value));
+    show(target());
+  }
+
+  // Demo call. Native audio behind custom controls; the transcript follows
+  // currentTime, and the report card beside it gets the booking once, on end.
+  Array.prototype.forEach.call(document.querySelectorAll('[data-demo]'), function (demo) {
+    var audio = demo.querySelector('audio'), play = demo.querySelector('.play');
+    var bar = demo.querySelector('.bar'), fill = demo.querySelector('.fill');
+    var cur = demo.querySelector('.cur'), durEl = demo.querySelector('.dur');
+    var list = demo.querySelector('.transcript'), lines = list.querySelectorAll('li');
+    var rows = demo.querySelector('.rows'), booking = demo.querySelector('[data-booking]');
+    var booked = demo.querySelector('[data-booked]');
+    var active = -1, done = false;
+    if (!audio || !play) return;
+    function fmt(s) { s = Math.max(0, Math.round(s || 0)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+    function dur() { return isFinite(audio.duration) && audio.duration > 0 ? audio.duration : Number(bar.getAttribute('aria-valuemax')); }
+    function keep(li) {
+      var top = li.offsetTop, view = list.clientHeight;
+      if (top < list.scrollTop + 8 || top + li.offsetHeight > list.scrollTop + view - 8) {
+        list.scrollTo({ top: Math.max(0, top - view * 0.3), behavior: 'smooth' });
+      }
+    }
+    function paint() {
+      var d = dur(), t = audio.currentTime || 0;
+      fill.style.width = (d ? Math.min(100, t / d * 100) : 0) + '%';
+      cur.textContent = fmt(t);
+      bar.setAttribute('aria-valuenow', Math.round(t));
+      bar.setAttribute('aria-valuetext', fmt(t) + ' of ' + fmt(d));
+      var i = -1;
+      Array.prototype.forEach.call(lines, function (li, j) { if (t >= Number(li.getAttribute('data-t')) - 0.05) i = j; });
+      if (i !== active) {
+        active = i;
+        Array.prototype.forEach.call(lines, function (li, j) { li.classList.toggle('on', j === i); });
+        if (i >= 0 && !still) keep(lines[i]);
+      }
+    }
+    function state(playing) {
+      play.setAttribute('aria-pressed', String(playing));
+      play.setAttribute('aria-label', playing ? 'Pause the demo call' : 'Play the demo call');
+    }
+    function seek(t) { audio.currentTime = Math.max(0, Math.min(dur(), t)); paint(); }
+    play.addEventListener('click', function () { if (audio.paused) audio.play(); else audio.pause(); });
+    audio.addEventListener('play', function () { state(true); });
+    audio.addEventListener('pause', function () { state(false); });
+    audio.addEventListener('loadedmetadata', function () { durEl.textContent = fmt(audio.duration); bar.setAttribute('aria-valuemax', Math.round(audio.duration)); paint(); });
+    audio.addEventListener('timeupdate', paint);
+    audio.addEventListener('ended', function () {
+      state(false); paint();
+      if (done) return;
+      done = true;
+      if (rows && booking) rows.appendChild(booking.content.cloneNode(true));
+      if (booked) { booked.textContent = String(Number(booked.textContent) + 1); booked.classList.add('bump'); }
+    });
+    bar.addEventListener('click', function (e) {
+      var r = bar.getBoundingClientRect();
+      seek((e.clientX - r.left) / r.width * dur());
+    });
+    bar.addEventListener('keydown', function (e) {
+      var t = audio.currentTime || 0;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { seek(t + 5); e.preventDefault(); }
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { seek(t - 5); e.preventDefault(); }
+      else if (e.key === 'Home') { seek(0); e.preventDefault(); }
+      else if (e.key === 'End') { seek(dur()); e.preventDefault(); }
+      else if (e.key === ' ' || e.key === 'Enter') { play.click(); e.preventDefault(); }
+    });
+    paint();
+  });
+
+  // Screen-recording loops, one per page, inside a photo frame. Mounted only
+  // when motion is allowed and the viewport is at least 768 wide; the still
+  // stays put otherwise, and comes back if neither encoding loads.
+  if (!still && window.matchMedia('(min-width: 768px)').matches) {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-loop]'), function (frame) {
+      var img = frame.querySelector('img'), base = frame.getAttribute('data-loop');
+      if (!img || !base) return;
+      var v = document.createElement('video');
+      v.autoplay = true; v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'metadata';
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+      v.setAttribute('aria-label', frame.getAttribute('data-loop-label') || img.alt);
+      v.poster = img.currentSrc || img.src;
+      v.width = img.width; v.height = img.height;
+      [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (t) {
+        var src = document.createElement('source'); src.src = base + '.' + t[0]; src.type = t[1]; v.appendChild(src);
+      });
+      v.addEventListener('error', function () {
+        if (v.networkState === 3) { v.remove(); img.style.display = ''; }
+      }, true);
+      img.style.display = 'none';
+      frame.appendChild(v);
+    });
+  }
 
   if (still) return;
 

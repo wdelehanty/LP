@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /pitches/
+Disallow: /archive/
+Disallow: /qa/
+Allow: /
+
+Sitemap: https://williamdelehanty.com/sitemap.xml

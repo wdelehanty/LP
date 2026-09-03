@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What AI actually changed in the workflow, and what it didn&#x27;t | William Delehanty</title>
+<meta name="description" content="Two lists after a few years of AI in production: the drafts, the operator&#x27;s seat, and the cost of a regression changed. The approval, the judgment calls, and the handoff did not.">
+<link rel="preload" href="../../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="Notes, William Delehanty" href="/notes/feed.xml">
+<meta property="og:title" content="What AI actually changed in the workflow, and what it didn&#x27;t | William Delehanty">
+<meta property="og:description" content="Two lists after a few years of AI in production: the drafts, the operator&#x27;s seat, and the cost of a regression changed. The approval, the judgment calls, and the handoff did not.">
+<meta property="og:image" content="https://williamdelehanty.com/assets/og/notes-what-ai-changed.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://williamdelehanty.com/notes/what-ai-changed/">
+<link rel="canonical" href="https://williamdelehanty.com/notes/what-ai-changed/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://williamdelehanty.com/assets/og/notes-what-ai-changed.png">
+<link rel="stylesheet" href="../../site.css">
+<script defer src="../../site.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "What AI actually changed in the workflow, and what it didn't", "description": "Two lists after a few years of AI in production: the drafts, the operator's seat, and the cost of a regression changed. The approval, the judgment calls, and the handoff did not.", "datePublished": "2026-09-03", "url": "https://williamdelehanty.com/notes/what-ai-changed/", "author": {"@type": "Person", "name": "William Delehanty", "url": "https://williamdelehanty.com/"}}</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../../">William Delehanty</a>
+    <ul>
+      <li><a href="../../work/">Work</a></li>
+      <li><a href="../../stedd/">Stedd</a></li>
+      <li><a href="../../lab/">Lab</a></li>
+      <li><a href="../../notes/">Notes</a></li>
+      <li><a href="../../stack/">Stack</a></li>
+      <li><a href="../../how-i-work/">How I work</a></li>
+      <li><a href="../../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>42</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-03</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Notes</span>
+      <span class="mono"><time datetime="2026-09-03">September 3, 2026</time></span>
+    </div>
+    <h1>What AI actually changed in the workflow, and what it didn&#x27;t</h1>
+    <p class="outcome">Two lists after a few years of AI in production: the drafts, the operator&#x27;s seat, and the cost of a regression changed. The approval, the judgment calls, and the handoff did not.</p>
+  </div>
+</header>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main note-body">
+      <p>I keep two lists about AI in my work. One is what changed. The other is what everyone expected to change and did not. The second list has turned out to be the more useful one.</p>
+      <p>What changed first was the volume of first drafts. Custom GPTs on ChatGPT Enterprise took the trainable share of lifecycle writing: variants, subject lines, summaries, the first pass at a nurture from an approved brief. They could do it because the prompt library and the QA checklist already existed, so the GPTs were handed rules and examples instead of a blank box. The measured effect on one campaign build: work that modeled at 149 to 206 specialist hours came in at about 71 to 74 hours with one AI-assisted operator, roughly a 60% reduction. The projection is about 79% once the lifecycle agents launch. I trust the first number more than the second, because the first one happened.</p>
+      <p>What changed second was where the operator sits. Three agents are in development on the Forbes side: a lifecycle engine with a Q4 go-live, a virtual media planner with a seller pilot already live, and an owned AI concierge. On the Stedd side, the voice agent answers a trades business's phone after hours and books the estimate while the caller is still on the line. In both places my job moved from doing the step to specifying it, watching it, and deciding when it is allowed to run unattended. That is a real change in the shape of a week.</p>
+      <p>What changed third was the cost of a regression. A prompt edit can quietly break a behavior that worked yesterday. So the Stedd agent has a regression harness, a nightly transcript QA that runs every completed call against a founder checklist, and a patch loop where a proposed prompt change has to be approved, is applied with a single-use token, and can be rolled back with one tap. None of that is glamorous. It is the difference between an agent I can leave on overnight and one I cannot.</p>
+      <figure class="fig">
+        <!-- dg:two-bucket:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="The two-bucket contractor model as a before and after: undifferentiated contractor work becomes trainable execution through custom GPTs and one operator, with real expertise bought at outside rates.">
+<defs><marker id="ar-two-bucket" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The two-bucket model</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">operating playbook / who does what</text>
+<line x1="240" y1="80" x2="240" y2="280" stroke="#3A4046" stroke-width="1"/>
+<path d="M226,180 L253,180" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-two-bucket)"/>
+<rect x="218" y="168" width="44" height="24" fill="#1E2226"/>
+<path d="M228,180 L251,180" fill="none" stroke="#F2C230" stroke-width="1" marker-end="url(#ar-two-bucket)"/>
+<text x="24" y="102" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#9AA0A6">One bucket</text>
+<text x="24" y="128" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">contractor work,</text>
+<text x="24" y="144" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">undifferentiated</text>
+<text x="264" y="102" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Two buckets</text>
+<text x="264" y="128" style="font:400 10px 'IBM Plex Mono',monospace" fill="#E6E4DF">trainable execution:</text>
+<text x="264" y="144" style="font:400 10px 'IBM Plex Mono',monospace" fill="#E6E4DF">custom gpts, one operator</text>
+<text x="264" y="160" style="font:400 10px 'IBM Plex Mono',monospace" fill="#E6E4DF">real expertise:</text>
+<text x="264" y="176" style="font:400 10px 'IBM Plex Mono',monospace" fill="#E6E4DF">outside rates</text>
+<text x="24" y="306" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">before</text>
+<text x="264" y="306" style="font:400 10px 'IBM Plex Mono',monospace" fill="#F2C230">after</text>
+</svg><!-- dg:two-bucket:end -->
+        <figcaption class="mono made">The two buckets. The agents took work from the first one; the second is still two people.</figcaption>
+      </figure>
+      <p>Now the other list.</p>
+      <p>The approval did not change. The Morning Round digest that runs my outreach drafts past me with one tap each morning exists because I would not let an agent send email on my behalf unread. The AI SDR persona program at Forbes runs with a monitored inbox and live handoffs to account executives for the same reason. Where money or reputation moves, a person is still in the loop, and I do not expect that to change soon.</p>
+      <p>The judgment calls did not change. Which segment gets the nurture, what the routing rule into Salesforce should be, whether a number is clean enough to put in a quarterly review: none of that got faster, because the slow part was never the typing.</p>
+      <p>The sales handoff did not change. Speed to lead, routing, and the one-click outreach library are what sellers actually use, and they are products with users. They improve through the same unglamorous loop as any product: watching people use them and fixing what they trip on.</p>
+      <p>And the guardrails did not come from the AI. They came before it. The prompt libraries, the checklists, and the governance were written for a two-person team that could not afford a mistake. AI made that team faster. It would have made a careless team faster too, in the wrong direction. That is the whole lesson, and it fits on one line: put the guardrails in before the AI.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-next">
+  <div class="wrap">
+    <a href="../">All notes</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.7.0</span>. Last deploy <span data-stamp="date">2026-09-03</span>.</span>
+    <span class="links mono">
+      <a href="../../notes/feed.xml">RSS</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

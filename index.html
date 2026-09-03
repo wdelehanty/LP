@@ -13,12 +13,17 @@
 <meta name="theme-color" content="#15181B">
 <meta property="og:title" content="William Delehanty | Revenue Systems: Demand Gen, Lifecycle, Data">
 <meta property="og:description" content="I build revenue systems: acquisition, lifecycle, data, and the handoff to sales, wired together and measured.">
-<meta property="og:image" content="https://williamdelehanty.com/assets/img/og.png">
+<meta property="og:image" content="https://williamdelehanty.com/assets/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://williamdelehanty.com/">
+<link rel="canonical" href="https://williamdelehanty.com/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://williamdelehanty.com/assets/og/home.png">
 <link rel="stylesheet" href="site.css">
 <script defer src="site.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "William Delehanty", "jobTitle": "Executive Director, Demand Generation", "url": "https://williamdelehanty.com/", "sameAs": ["https://www.linkedin.com/in/williamdelehanty/"]}</script>
 </head>
 <body>
 
@@ -37,6 +42,7 @@
       <li><a href="work/">Work</a></li>
       <li><a href="stedd/">Stedd</a></li>
       <li><a href="lab/">Lab</a></li>
+      <li><a href="notes/">Notes</a></li>
       <li><a href="stack/">Stack</a></li>
       <li><a href="how-i-work/">How I work</a></li>
       <li><a href="about/">About</a></li>
@@ -46,11 +52,11 @@
 
 <div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
   <div class="wrap">
-    <span class="item">workflows active: <b data-rail="workflows_active" data-count>41</b></span>
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>42</b></span>
     <span class="dot" aria-hidden="true"></span>
     <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-03</b></span>
   </div>
 </div>
 
@@ -160,7 +166,7 @@
           <p>The pipeline running this search: company research and drafting, a daily digest with one-tap approve and send, visit alerts on the work samples, and a Friday scorecard.</p>
           <p class="mono stack">claude code / n8n / notion / gmail</p>
         </div>
-        <div class="frame">
+        <div class="frame" data-loop="assets/loops/morning-round-gmail" data-loop-label="The Morning Round digest in Gmail with one Approve and Send tap, rendered from the digest's own HTML and the handler's response">
           <img src="assets/img/morning-round-gmail.jpg" alt="The Morning Round digest open in Gmail: six drafts awaiting approval, each with an Approve and Send button that sends the draft as written and logs it to Outreach" width="1020" height="680" loading="lazy">
         </div>
       </article>
@@ -203,6 +209,24 @@
       <div class="cell">
         <span class="figure">$0 to eight figures</span>
         <span class="src">marketing-influenced revenue, 2019 to 2026, salesforce contact-role attribution</span>
+        <div class="model" id="paid-model">
+          <p class="mono note">Two inventory numbers and a slider: the $72K to $275K paid line from 2026, and the ~2.5x funnel improvement since 2019. Move the budget, flip the funnel.</p>
+          <div class="model-row">
+            <div class="controls">
+              <label class="mono" for="pm-budget"><span>paid budget</span><output for="pm-budget">$72K</output></label>
+              <input type="range" id="pm-budget" min="25000" max="250000" step="5000" value="72000" autocomplete="off" aria-valuetext="$72K">
+              <div class="seg" role="group" aria-label="Funnel state">
+                <button type="button" data-mode="before" aria-pressed="false">before the funnel rebuild</button>
+                <button type="button" data-mode="after" aria-pressed="true">after</button>
+              </div>
+            </div>
+            <div class="out" aria-live="polite" aria-atomic="true">
+              <span class="mono lbl">direct-booked revenue</span>
+              <span class="val">$275K</span>
+            </div>
+          </div>
+          <p class="mono foot">Linear on 2026's ratio. No diminishing returns modeled. The real console runs in Looker.</p>
+        </div>
       </div>
       <div class="cell">
         <span class="figure" data-count>~2.5x</span>
@@ -257,7 +281,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.2</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.7.0</span>. Last deploy <span data-stamp="date">2026-09-03</span>.</span>
     <span class="links mono">
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>

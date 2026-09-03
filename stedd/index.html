@@ -13,10 +13,14 @@
 <meta name="theme-color" content="#15181B">
 <meta property="og:title" content="Stedd | William Delehanty">
 <meta property="og:description" content="A revenue recovery product for trades businesses: voice agent, automation stack, and what building it taught me.">
-<meta property="og:image" content="https://williamdelehanty.com/assets/img/og.png">
+<meta property="og:image" content="https://williamdelehanty.com/assets/og/stedd.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://williamdelehanty.com/stedd/">
+<link rel="canonical" href="https://williamdelehanty.com/stedd/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://williamdelehanty.com/assets/og/stedd.png">
 <link rel="stylesheet" href="../site.css">
 <script defer src="../site.js"></script>
 </head>
@@ -37,6 +41,7 @@
       <li><a href="../work/">Work</a></li>
       <li><a href="../stedd/">Stedd</a></li>
       <li><a href="../lab/">Lab</a></li>
+      <li><a href="../notes/">Notes</a></li>
       <li><a href="../stack/">Stack</a></li>
       <li><a href="../how-i-work/">How I work</a></li>
       <li><a href="../about/">About</a></li>
@@ -46,11 +51,11 @@
 
 <div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
   <div class="wrap">
-    <span class="item">workflows active: <b data-rail="workflows_active" data-count>41</b></span>
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>42</b></span>
     <span class="dot" aria-hidden="true"></span>
     <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-03</b></span>
   </div>
 </div>
 
@@ -105,6 +110,50 @@
 
 <section class="cs-visual">
   <div class="wrap">
+    <figure class="demo-call" data-demo>
+      <div class="demo-grid">
+        <div class="player">
+          <audio preload="metadata">
+            <source src="../assets/audio/stedd-demo.mp3" type="audio/mpeg">
+            <source src="../assets/audio/stedd-demo.ogg" type="audio/ogg; codecs=opus">
+          </audio>
+          <div class="pc">
+            <button type="button" class="play" aria-label="Play the demo call" aria-pressed="false"></button>
+            <div class="bar" role="slider" tabindex="0" aria-label="Position in the call" aria-valuemin="0" aria-valuemax="48" aria-valuenow="0" aria-valuetext="0:00 of 0:48"><span class="fill"></span></div>
+            <span class="mono time"><span class="cur">0:00</span> / <span class="dur">0:48</span></span>
+          </div>
+          <ol class="transcript" aria-label="Transcript of the call">
+            <li data-t="0"><b>Stedd</b><span>Thanks for calling. The office is closed for the night, but I can get an estimate on the books for you. What's the job?</span></li>
+            <li data-t="4.5"><b>Caller</b><span>I need a quote on painting the outside of my house. Two stories, maybe 2,400 square feet.</span></li>
+            <li data-t="9"><b>Stedd</b><span>Got it, exterior, two stories. Is that siding and trim, or trim only?</span></li>
+            <li data-t="14"><b>Caller</b><span>Siding and trim. Some of the trim needs scraping first.</span></li>
+            <li data-t="19.5"><b>Stedd</b><span>Noted. The estimator can come out Saturday at nine or Tuesday at four. Which works?</span></li>
+            <li data-t="25"><b>Caller</b><span>Saturday at nine.</span></li>
+            <li data-t="30"><b>Stedd</b><span>Saturday at nine it is. Can I get a name and the best number for a text confirmation?</span></li>
+            <li data-t="35.5"><b>Caller</b><span>Will. The number I'm calling from is fine.</span></li>
+            <li data-t="40.5"><b>Stedd</b><span>Thanks, Will. You'll get a text in a minute with the time, and the estimator's name the morning of. Anything else?</span></li>
+            <li data-t="45"><b>Caller</b><span>No, that's it. Thanks.</span></li>
+          </ol>
+        </div>
+        <div class="report" aria-live="polite">
+          <div class="report-head">
+            <span class="eyebrow">Monday Report</span>
+            <span class="mono">Ridgeline Painting, sample</span>
+          </div>
+          <div class="tiles">
+            <div class="tile"><span class="big">$3,360</span><span class="mono lbl">recovered this week</span></div>
+            <div class="tile"><span class="big" data-booked>3</span><span class="mono lbl">estimates booked</span></div>
+          </div>
+          <ol class="rows mono" aria-label="Receipts">
+            <li><span class="when">Mon 8:12a</span><span class="what">Missed call, called back inside two minutes, estimate booked</span></li>
+            <li><span class="when">Tue 6:40p</span><span class="what">Cold quote chased, won back</span><span class="amt">$2,800</span></li>
+            <li><span class="when">Wed 11:05a</span><span class="what">Review asked for after the job, earned</span></li>
+          </ol>
+          <template data-booking><li class="new"><span class="when">Thu 7:41p</span><span class="what">After-hours call, exterior estimate booked for Sat 9:00a</span><span class="amt">booked</span></li></template>
+        </div>
+      </div>
+      <figcaption class="mono made">Placeholder audio and a sample transcript, so the player can be checked before the call is recorded. The demo call replaces both: Will as the caller, the agent as itself.</figcaption>
+    </figure>
     <div class="shot-pair">
       <figure class="grain">
         <img src="../assets/img/stedd-home.jpg" alt="The stedd.ai home page: the headline stop losing jobs you earned beside a live demo widget playing a transcript of the voice agent handling an after-hours fence call" width="1400" height="820" loading="lazy">
@@ -363,7 +412,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.2</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.7.0</span>. Last deploy <span data-stamp="date">2026-09-03</span>.</span>
     <span class="links mono">
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>

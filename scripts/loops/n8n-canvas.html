@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Loop source: the Morning Round on the n8n canvas</title>
+<!-- Deterministic animation of the Morning Round v2 workflow running, drawn from the workflow
+     export (node names, order, connections) and the node timings of the 2026-09-02 07:00 run.
+     render_loop.js calls window.setT(ms) per frame. -->
+<style>
+  html, body { margin: 0; width: 1400px; height: 933px; overflow: hidden; background: #2d2e3a; font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif; color: #e6e6ea; }
+  .canvas { position: absolute; inset: 0; background-color: #2d2e3a; background-image: radial-gradient(#4a4b5c 1.2px, transparent 1.3px); background-size: 20px 20px; }
+  .top { position: absolute; left: 0; right: 0; top: 0; height: 64px; background: #23242f; border-bottom: 1px solid #3a3b4a; display: flex; align-items: center; padding: 0 28px; gap: 14px; font-size: 14px; }
+  .top .name { font-weight: 600; font-size: 15px; } .top .tag { font-size: 12px; color: #9b9ca8; border: 1px solid #4a4b5c; border-radius: 4px; padding: 2px 8px; }
+  .top .active { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #c9c9d1; }
+  .sw { width: 34px; height: 18px; border-radius: 9px; background: #13ce66; position: relative; } .sw::after { content: ""; position: absolute; right: 2px; top: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; }
+  svg#edges { position: absolute; inset: 0; }
+  .node { position: absolute; width: 96px; height: 96px; border-radius: 12px; background: #3d3e4c; border: 2px solid #55566a; display: grid; place-items: center; }
+  .node.trigger { border-radius: 48px 12px 12px 48px; }
+  .node .ico { font-size: 34px; font-weight: 700; font-family: Arial, sans-serif; }
+  .node .lbl { position: absolute; top: 106px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; color: #d8d8e0; text-align: center; }
+  .node .sub { position: absolute; top: 124px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 11px; color: #8d8e9b; }
+  .node .check { position: absolute; right: -10px; top: -10px; width: 24px; height: 24px; border-radius: 50%; background: #13ce66; color: #fff; display: grid; place-items: center; font-size: 14px; font-weight: 700; opacity: 0; }
+  .node .spin { position: absolute; inset: -2px; border-radius: 12px; box-shadow: 0 0 0 4px rgba(255,109,90,.35), 0 0 22px rgba(255,109,90,.6); opacity: 0; }
+  .node.trigger .spin { border-radius: 48px 12px 12px 48px; }
+  .node.running { border-color: #ff6d5a; } .node.done { border-color: #13ce66; }
+  .count { position: absolute; font-size: 11px; color: #c9c9d1; background: #23242f; border: 1px solid #3a3b4a; border-radius: 4px; padding: 1px 6px; opacity: 0; }
+  .toast { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); background: #23242f; border: 1px solid #13ce66; color: #e6e6ea; border-radius: 8px; padding: 12px 18px; font-size: 14px; opacity: 0; display: flex; gap: 10px; align-items: center; }
+  .toast i { width: 10px; height: 10px; border-radius: 50%; background: #13ce66; display: inline-block; }
+</style></head>
+<body>
+<div class="canvas"></div>
+<div class="top"><span class="name">Job Search: Morning Round v2</span><span class="tag">Personal</span><span class="tag">Schedule trigger</span><span class="active">Active <span class="sw"></span></span></div>
+<svg id="edges"></svg>
+<div id="nodes"></div>
+<div class="toast" id="toast"><i></i>Workflow executed successfully</div>
+<script>
+  // Real run 14483 (2026-09-02 07:00): start offsets and durations in ms, in execution order.
+  const NODES = [
+    { name: 'Daily 8am Trigger', sub: 'Schedule', ico: '⏰', color: '#b1b4c9', start: 0, dur: 0, trigger: true },
+    { name: 'Get LinkedIn Alerts', sub: 'Gmail: get many', ico: 'M', color: '#ea4335', start: 1, dur: 322 },
+    { name: 'Get Labels', sub: 'Gmail: labels', ico: 'M', color: '#ea4335', start: 323, dur: 152 },
+    { name: 'Get Outreach Drafts', sub: 'Gmail: drafts', ico: 'M', color: '#ea4335', start: 476, dur: 2024 },
+    { name: 'Get Draft Details', sub: 'Gmail: draft', ico: 'M', color: '#ea4335', start: 2501, dur: 962 },
+    { name: 'Get Outreach Rows', sub: 'Notion: get many', ico: 'N', color: '#ffffff', start: 3464, dur: 1112 },
+    { name: 'Build Digest', sub: 'Code', ico: '{ }', color: '#ffb84d', start: 4577, dur: 43 },
+    { name: 'Send Digest', sub: 'Gmail: send', ico: 'M', color: '#ea4335', start: 4621, dur: 481 },
+  ];
+  const X0 = 80, GAP = 165, Y = 420, SCALE = 1.55, LEAD = 1600;  // 5.1s of run stretched to ~7.9s after a 1.6s hold
+  const wrap = document.getElementById('nodes'), svg = document.getElementById('edges');
+  const els = NODES.map((n, i) => {
+    const d = document.createElement('div'); d.className = 'node' + (n.trigger ? ' trigger' : '');
+    d.style.left = (X0 + i * GAP) + 'px'; d.style.top = Y + 'px';
+    d.innerHTML = '<span class="ico" style="color:' + n.color + '">' + n.ico + '</span><span class="lbl">' + n.name + '</span><span class="sub">' + n.sub + '</span><span class="check">✓</span><span class="spin"></span>';
+    wrap.appendChild(d); return d;
+  });
+  const counts = NODES.slice(1).map((n, i) => {
+    const c = document.createElement('span'); c.className = 'count'; c.textContent = '1 item';
+    c.style.left = (X0 + i * GAP + 108) + 'px'; c.style.top = (Y + 30) + 'px'; wrap.appendChild(c); return c;
+  });
+  let paths = '';
+  for (let i = 0; i < NODES.length - 1; i++) {
+    const x1 = X0 + i * GAP + 96, x2 = X0 + (i + 1) * GAP, y = Y + 48;
+    paths += '<path d="M' + x1 + ',' + y + ' C' + (x1 + 30) + ',' + y + ' ' + (x2 - 30) + ',' + y + ' ' + x2 + ',' + y + '" fill="none" stroke="#7c7d8f" stroke-width="2"/>';
+    paths += '<path d="M' + (x2 - 8) + ',' + (y - 5) + ' L' + x2 + ',' + y + ' L' + (x2 - 8) + ',' + (y + 5) + '" fill="none" stroke="#7c7d8f" stroke-width="2"/>';
+  }
+  svg.innerHTML = paths;
+  const toast = document.getElementById('toast');
+  window.setT = function (ms) {
+    const t = (ms - LEAD) / SCALE;  // ms on the run's own clock
+    const back = ms >= 12300 ? Math.max(0, 1 - (ms - 12300) / 700) : 1;
+    NODES.forEach((n, i) => {
+      const el = els[i], s = n.start, e = n.start + Math.max(n.dur, 260);
+      const running = t >= s && t < e, done = t >= e;
+      el.className = 'node' + (n.trigger ? ' trigger' : '') + (running && back > 0 ? ' running' : '') + (done && back > 0 ? ' done' : '');
+      el.querySelector('.check').style.opacity = done ? String(back) : '0';
+      const sp = el.querySelector('.spin'); sp.style.opacity = running ? String(0.55 + 0.45 * Math.sin(ms / 90)) : '0';
+      if (i > 0) counts[i - 1].style.opacity = done ? String(back) : '0';
+    });
+    const finished = t >= NODES[NODES.length - 1].start + 481;
+    toast.style.opacity = finished ? String(Math.min(1, (t - (NODES[NODES.length - 1].start + 481)) / 250) * back) : '0';
+  };
+  window.setT(0);
+</script>
+</body></html>

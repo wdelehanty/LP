@@ -13,10 +13,14 @@
 <meta name="theme-color" content="#15181B">
 <meta property="og:title" content="Lab | William Delehanty">
 <meta property="og:description" content="Things I built because I wanted them to exist: the job search machine, Life OS, Home Assistant, and more.">
-<meta property="og:image" content="https://williamdelehanty.com/assets/img/og.png">
+<meta property="og:image" content="https://williamdelehanty.com/assets/og/lab.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://williamdelehanty.com/lab/">
+<link rel="canonical" href="https://williamdelehanty.com/lab/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://williamdelehanty.com/assets/og/lab.png">
 <link rel="stylesheet" href="../site.css">
 <script defer src="../site.js"></script>
 </head>
@@ -37,6 +41,7 @@
       <li><a href="../work/">Work</a></li>
       <li><a href="../stedd/">Stedd</a></li>
       <li><a href="../lab/">Lab</a></li>
+      <li><a href="../notes/">Notes</a></li>
       <li><a href="../stack/">Stack</a></li>
       <li><a href="../how-i-work/">How I work</a></li>
       <li><a href="../about/">About</a></li>
@@ -46,11 +51,11 @@
 
 <div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
   <div class="wrap">
-    <span class="item">workflows active: <b data-rail="workflows_active" data-count>41</b></span>
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>42</b></span>
     <span class="dot" aria-hidden="true"></span>
     <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last deploy: <b data-stamp="date">2026-09-02</b></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-03</b></span>
   </div>
 </div>
 
@@ -139,10 +144,10 @@
 </svg><!-- dg:kit-visit-alert:end -->
           <figcaption class="mono made">Kit visit alert. Rendered from workflow export, 2026-08-31.</figcaption>
         </figure>
-      <div class="prose" style="margin-top:22px">
-        <h3 style="font-size:17px">Watch it build (coming)</h3>
-        <p class="mono">A public demo of one full cycle goes here once a real one has run end to end. Nothing to show yet.</p>
-      </div>
+      <figure class="diagram" style="margin-top:22px">
+        <div class="frame" data-loop="../assets/loops/morning-round-canvas" data-loop-label="The Morning Round running on the n8n canvas, nodes lighting in sequence, drawn from the workflow export and a real run's node timings"><img src="../assets/img/morning-round-canvas.jpg" srcset="../assets/img/morning-round-canvas-800.jpg 800w, ../assets/img/morning-round-canvas.jpg 1400w" sizes="(max-width: 900px) 100vw, 740px" alt="The Morning Round v2 workflow on the n8n canvas after a run: eight nodes from the schedule trigger to the Gmail send, each with a green check and an item count" width="1400" height="933" loading="lazy"></div>
+        <figcaption class="mono made">The Morning Round on the n8n canvas, drawn from the workflow export and the node timings of the 2026-09-02 07:00 run.</figcaption>
+      </figure>
     </article>
 
     <article class="lab-entry">
@@ -395,7 +400,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.2</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.7.0</span>. Last deploy <span data-stamp="date">2026-09-03</span>.</span>
     <span class="links mono">
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>

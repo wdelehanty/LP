@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lifecycle with a team of two | William Delehanty</title>
+<meta name="description" content="How two people run ten or more concurrent lifecycle programs: the standard, the checklist, the prompt library, and the two-bucket model, written down first.">
+<link rel="preload" href="../../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/plex-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="Notes, William Delehanty" href="/notes/feed.xml">
+<meta property="og:title" content="Lifecycle with a team of two | William Delehanty">
+<meta property="og:description" content="How two people run ten or more concurrent lifecycle programs: the standard, the checklist, the prompt library, and the two-bucket model, written down first.">
+<meta property="og:image" content="https://williamdelehanty.com/assets/og/notes-lifecycle-with-a-team-of-two.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://williamdelehanty.com/notes/lifecycle-with-a-team-of-two/">
+<link rel="canonical" href="https://williamdelehanty.com/notes/lifecycle-with-a-team-of-two/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://williamdelehanty.com/assets/og/notes-lifecycle-with-a-team-of-two.png">
+<link rel="stylesheet" href="../../site.css">
+<script defer src="../../site.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Lifecycle with a team of two", "description": "How two people run ten or more concurrent lifecycle programs: the standard, the checklist, the prompt library, and the two-bucket model, written down first.", "datePublished": "2026-09-03", "url": "https://williamdelehanty.com/notes/lifecycle-with-a-team-of-two/", "author": {"@type": "Person", "name": "William Delehanty", "url": "https://williamdelehanty.com/"}}</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap">
+    <a class="name" href="../../">William Delehanty</a>
+    <ul>
+      <li><a href="../../work/">Work</a></li>
+      <li><a href="../../stedd/">Stedd</a></li>
+      <li><a href="../../lab/">Lab</a></li>
+      <li><a href="../../notes/">Notes</a></li>
+      <li><a href="../../stack/">Stack</a></li>
+      <li><a href="../../how-i-work/">How I work</a></li>
+      <li><a href="../../about/">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
+  <div class="wrap">
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>42</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Wed 07:00</b></span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-09-03</b></span>
+  </div>
+</div>
+
+<main>
+
+<header class="cs-header">
+  <div class="wrap">
+    <div class="meta">
+      <span class="eyebrow">Notes</span>
+      <span class="mono"><time datetime="2026-09-03">September 3, 2026</time></span>
+    </div>
+    <h1>Lifecycle with a team of two</h1>
+    <p class="outcome">How two people run ten or more concurrent lifecycle programs: the standard, the checklist, the prompt library, and the two-bucket model, written down first.</p>
+  </div>
+</header>
+
+<section class="cs-body">
+  <div class="wrap">
+    <div class="cs-main note-body">
+      <p>Ten or more lifecycle programs run concurrently at Forbes on a team of two: BDM, high net worth, consumer, onboarding, reengagement, Forbes 250, and the DanAds self-serve product among them. People assume that means automation did the work. Automation did some of it. Most of it was writing things down before we needed them.</p>
+      <p>The first thing that got written down was a standard. A lifecycle program here has a defined shape: an entry trigger, a sequence with a set number of touches, a suppression rule, a routing rule for anything that turns into a sales conversation, and a reporting view that ties sends to pipeline. Once that shape existed, adding a program stopped being a design problem and became a fill-in problem. The DanAds lifecycle I built solo is eight programs and twenty-nine emails, plus a revenue model and a 2027 forecast that is now in use for a vendor contract renegotiation. One person could build it because it did not have to invent its own shape.</p>
+      <p>The second thing was a QA checklist. Every send goes through the same list: links, tokens, suppression, rendering in the clients that matter, the routing test, the seed. The checklist is boring, and it is the reason a two-person team can ship at volume without the failure that ends careers, the wrong email to the wrong list. A checklist also means the second person can cover the first. When I built leave coverage and an onboarding playbook, most of the work was already done, because the checklist was the job description.</p>
+      <figure class="fig">
+        <!-- dg:playbook-structure:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" role="img" aria-label="The operating playbook as layers: ten plus concurrent programs run on custom GPTs, which run on standards, prompt libraries, QA checklists, and governance.">
+<defs><marker id="ar-playbook-structure" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
+<text x="20" y="22" style="font:600 12px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">The operating playbook</text>
+<text x="20" y="38" style="font:400 10px 'IBM Plex Mono',monospace" fill="#9AA0A6">what runs on what</text>
+<rect x="20" y="56" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="87" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">10+ concurrent programs</text>
+<text x="864" y="87" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">run by a team of two</text>
+<rect x="20" y="116" width="860" height="52" rx="2" fill="#1E2226" stroke="#F2C230" stroke-width="1.5"/>
+<text x="36" y="147" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Custom GPTs</text>
+<text x="864" y="147" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">the trainable work runs through them; specialists keep the judgment calls</text>
+<rect x="20" y="176" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="207" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Standards</text>
+<text x="864" y="207" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">what a program is, what every email has to contain, what counts as launch-ready</text>
+<rect x="20" y="236" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="267" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Prompt libraries</text>
+<text x="864" y="267" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">the recurring work, versioned like anything else we ship</text>
+<rect x="20" y="296" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="327" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">QA checklists</text>
+<text x="864" y="327" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">gate everything before it ships, human or machine made</text>
+<rect x="20" y="356" width="860" height="52" rx="2" fill="#1E2226" stroke="#3A4046" stroke-width="1"/>
+<text x="36" y="387" style="font:600 13px 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase" fill="#E6E4DF">Governance</text>
+<text x="864" y="387" text-anchor="end" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">what AI may touch, what needs human review, who owns the output</text>
+<text x="20" y="428" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">yellow outline: the layer the trainable work runs through</text>
+</svg><!-- dg:playbook-structure:end -->
+        <figcaption class="mono made">The operating playbook, as layers. Standards at the bottom, governance on top; the AI inherited all of it.</figcaption>
+      </figure>
+      <p>The third thing was the prompt library. Before any AI touched production work, the recurring writing tasks (subject lines, variants, summaries, the first draft of a nurture) had prompts with rules and examples attached. Custom GPTs on ChatGPT Enterprise then took the trainable share of that work. The order matters: the standard, the checklist, and the prompts existed first, and the AI inherited them instead of improvising around their absence.</p>
+      <p>The fourth thing was the two-bucket contractor model. Work splits into trainable execution and specialized expertise. Trainable execution, building an email from an approved brief, loading a list, running the QA list, can go to a contractor or an agent with the playbook in hand. Specialized expertise, deliverability, the attribution model, the routing logic into Salesforce, stays with the two of us. Drawing that line on paper is what let me stop asking for headcount for the first bucket. The ask usually shrinks once the playbook exists.</p>
+      <p>That is the honest answer to how two people run ten programs. There is one more piece, and it took the longest to learn: judge a quarter by what got added to the machine rather than by what got sent. A program that runs itself next quarter is worth more than a campaign that spiked this one. The team stayed at two because the machine kept getting bigger.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cs-next">
+  <div class="wrap">
+    <a href="../">All notes</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.7.0</span>. Last deploy <span data-stamp="date">2026-09-03</span>.</span>
+    <span class="links mono">
+      <a href="../../notes/feed.xml">RSS</a>
+      <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
+      <a href="mailto:wdelehanty@gmail.com">Email</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>

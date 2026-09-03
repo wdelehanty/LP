@@ -15,3 +15,4 @@ pages="$pages ./404.html"
 
 python3 scripts/stamp.py "$1" $pages
 python3 scripts/bake_status.py $pages || echo "bake_status: endpoint unavailable, baked values kept" >&2
+python3 "$(dirname "$0")/sitemap.py" "$(dirname "$0")/.."

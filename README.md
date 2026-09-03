@@ -16,5 +16,15 @@ Python 3 with Pillow and numpy for the image work. Two scripts need more:
 pip install pillow numpy rembg onnxruntime osxphotos pillow-heif anthropic
 ```
 
-Release: `sh scripts/release.sh vX.Y.Z` stamps every page and bakes the
-status rail values. The status Worker lives in `worker/`.
+Other scripts: `scripts/og.py` draws the per-page Open Graph cards (needs
+`fonttools` and `brotli` on top of Pillow); `scripts/notes.py new|build`
+creates a note and rebuilds the Notes index and feed; `scripts/render_loop.js`
+renders a loop source page in `scripts/loops/` to frames through headless
+Chrome (`NODE_PATH` pointing at a puppeteer-core install) and
+`scripts/encode_loop.sh` encodes them; `scripts/prep_demo_call.sh` and
+`scripts/prep_loop.sh` prepare a recording for the site; `scripts/qa.sh`
+is the gate before a ship.
+
+Release: `sh scripts/release.sh vX.Y.Z` stamps every page, bakes the
+status rail values, and rewrites the sitemap. The status Worker lives in
+`worker/`.
