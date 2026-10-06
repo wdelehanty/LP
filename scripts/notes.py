@@ -38,7 +38,7 @@ NAV = """<nav class="nav" aria-label="Site">
 """
 FOOT = """<footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.6.2</span>. Last deploy <span data-stamp="date">2026-09-02</span>.</span>
+    <span class="mono">Made in Warwick, NY. <span data-stamp="version">v2.6.2</span>.</span>
     <span class="links mono">
       <a href="{root}notes/feed.xml">RSS</a>
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>

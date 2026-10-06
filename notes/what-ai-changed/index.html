@@ -44,11 +44,11 @@
 
 <div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
   <div class="wrap">
-    <span class="item">workflows active: <b data-rail="workflows_active" data-count>44</b></span>
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>55</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last morning round: <b data-rail="last_morning_round">Thu 07:00</b></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Mon 07:00</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last deploy: <b data-stamp="date">2026-09-03</b></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-10-06</b></span>
   </div>
 </div>
 
@@ -71,7 +71,7 @@
       <p>I keep two lists about AI in my work. One is what changed. The other is what everyone expected to change and did not. The second list has turned out to be the more useful one.</p>
       <p>What changed first was the volume of first drafts. Custom GPTs on ChatGPT Enterprise took the trainable share of lifecycle writing: variants, subject lines, summaries, the first pass at a nurture from an approved brief. They could do it because the prompt library and the QA checklist already existed, so the GPTs were handed rules and examples instead of a blank box. The measured effect on one campaign build: work that modeled at 149 to 206 specialist hours came in at about 71 to 74 hours with one AI-assisted operator, roughly a 60% reduction. The projection is about 79% once the lifecycle agents launch. I trust the first number more than the second, because the first one happened.</p>
       <p>What changed second was where the operator sits. Three agents are in development on the Forbes side: a lifecycle engine with a Q4 go-live, a virtual media planner with a seller pilot already live, and an owned AI concierge. On the Stedd side, the voice agent answers a trades business's phone after hours and books the estimate while the caller is still on the line. In both places my job moved from doing the step to specifying it, watching it, and deciding when it is allowed to run unattended. That is a real change in the shape of a week.</p>
-      <p>What changed third was the cost of a regression. A prompt edit can quietly break a behavior that worked yesterday. So the Stedd agent has a regression harness, a nightly transcript QA that runs every completed call against a founder checklist, and a patch loop where a proposed prompt change has to be approved, is applied with a single-use token, and can be rolled back with one tap. None of that is glamorous. It is the difference between an agent I can leave on overnight and one I cannot.</p>
+      <p>What changed third was the cost of a regression. A prompt edit can quietly break a behavior that worked yesterday. So the Stedd agent has a regression harness, a nightly transcript QA that runs every completed call against a founder checklist, and a patch loop where a proposed prompt change has to be approved, is applied with a single-use token, and can be rolled back with one tap. That is what lets me leave the agent on overnight.</p>
       <figure class="fig">
         <!-- dg:two-bucket:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img" aria-label="The two-bucket contractor model as a before and after: undifferentiated contractor work becomes trainable execution through custom GPTs and one operator, with real expertise bought at outside rates.">
 <defs><marker id="ar-two-bucket" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
@@ -98,7 +98,7 @@
       <p>The approval did not change. The Morning Round digest that runs my outreach drafts past me with one tap each morning exists because I would not let an agent send email on my behalf unread. The AI SDR persona program at Forbes runs with a monitored inbox and live handoffs to account executives for the same reason. Where money or reputation moves, a person is still in the loop, and I do not expect that to change soon.</p>
       <p>The judgment calls did not change. Which segment gets the nurture, what the routing rule into Salesforce should be, whether a number is clean enough to put in a quarterly review: none of that got faster, because the slow part was never the typing.</p>
       <p>The sales handoff did not change. Speed to lead, routing, and the one-click outreach library are what sellers actually use, and they are products with users. They improve through the same unglamorous loop as any product: watching people use them and fixing what they trip on.</p>
-      <p>And the guardrails did not come from the AI. They came before it. The prompt libraries, the checklists, and the governance were written for a two-person team that could not afford a mistake. AI made that team faster. It would have made a careless team faster too, in the wrong direction. That is the whole lesson, and it fits on one line: put the guardrails in before the AI.</p>
+      <p>And the guardrails did not come from the AI. They came before it. The prompt libraries, the checklists, and the governance were written for a two-person team that could not afford a mistake. AI made that team faster. It would have made a careless team faster too, in the wrong direction. So put the guardrails in before the AI.</p>
     </div>
   </div>
 </section>
@@ -113,7 +113,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.7.2</span>. Last deploy <span data-stamp="date">2026-09-03</span>.</span>
+    <span class="mono">Made in Warwick, NY. <span data-stamp="version">v2.7.3</span>.</span>
     <span class="links mono">
       <a href="../../notes/feed.xml">RSS</a>
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>

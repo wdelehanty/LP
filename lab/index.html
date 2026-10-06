@@ -51,11 +51,11 @@
 
 <div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
   <div class="wrap">
-    <span class="item">workflows active: <b data-rail="workflows_active" data-count>44</b></span>
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>55</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last morning round: <b data-rail="last_morning_round">Thu 07:00</b></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Mon 07:00</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last deploy: <b data-stamp="date">2026-09-03</b></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-10-06</b></span>
   </div>
 </div>
 
@@ -69,7 +69,7 @@
       <span class="mono">LAB / 01</span>
     </div>
     <h1>Personal builds</h1>
-    <p class="outcome">Things I built because I wanted them to exist. Same habits as the work, just pointed at home.</p>
+    <p class="outcome">These are things I built for myself and my family because I wanted them to exist.</p>
   </div>
 </header>
 
@@ -122,7 +122,7 @@
 <path d="M716,271.0 C730.5,271.0 730.5,99.0 745,99.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-morning-round-lanes)"/>
 <text x="20" y="338" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">fails closed if the label is missing: no label, no send button</text>
 </svg><!-- dg:morning-round-lanes:end -->
-          <figcaption class="mono made">The morning round, as turns taken.</figcaption>
+          <figcaption class="mono made">The morning round, step by step.</figcaption>
           <div style="margin-top:24px"></div>
           <!-- dg:kit-visit-alert:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 74" role="img" aria-label="Kit visit alert workflow: the beacon webhook verifies a token, throttles repeat visits, and sends an alert.">
 <defs><marker id="arr-kit-visit-alert" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0.5 L7,4 L0,7.5" fill="none" stroke="#3A4046" stroke-width="1.2"/></marker></defs>
@@ -158,7 +158,7 @@
             <dt>Problem</dt>
             <dd>Life admin scattered across inboxes, memory, and paper means the same decisions get made twice and the maintenance gets remembered late.</dd>
             <dt>Built</dt>
-            <dd>An operating manual, an Inbox, a Knowledge Base, a Decisions Log, Active Sprints, a Weekly Review, and a Home and Garage Maintenance database. Three hooks feed it so I don't have to: forwarded email lands in the Inbox, a webhook writes to the Knowledge Base, and Home Assistant logs maintenance on its own.</dd>
+            <dd>It has an operating manual, an Inbox, a Knowledge Base, a Decisions Log, Active Sprints, a Weekly Review, and a Home and Garage Maintenance database. Three hooks feed it so I don't have to: forwarded email lands in the Inbox, a webhook writes to the Knowledge Base, and Home Assistant logs maintenance on its own.</dd>
             <dt>Stack</dt>
             <dd class="mono">notion / n8n / home assistant / gmail</dd>
           </dl>
@@ -254,9 +254,9 @@
           <h3>Home Assistant</h3>
           <dl>
             <dt>Problem</dt>
-            <dd>A house full of smart devices from different eras, none of them speaking to each other, half of them running someone's cloud.</dd>
+            <dd>The house was full of smart devices from different eras. None of them talked to each other, and half of them ran on someone else's cloud.</dd>
             <dt>Built</dt>
-            <dd>Three waves of cleanup: naming conventions, consolidating integrations, retiring old hardware. Then the automations, including a goodnight lockdown and a doorbell chime. Maintenance events post themselves to the Life OS database in Notion.</dd>
+            <dd>I cleaned it up in three waves: naming conventions, consolidating integrations, and retiring old hardware. Then came the automations, including a goodnight lockdown and a doorbell chime. Maintenance events post themselves to the Life OS database in Notion.</dd>
             <dt>Stack</dt>
             <dd class="mono">home assistant / n8n / notion</dd>
           </dl>
@@ -292,7 +292,7 @@
             <dt>Problem</dt>
             <dd>Getting dressed for the right context is a lookup problem, and nobody in the house wanted to be the one answering it.</dd>
             <dt>Built</dt>
-            <dd>Wardrobe and Outfits databases in Notion with a standardized schema across 14 use contexts, a Cloudflare Worker API on top, AI photo cataloguing to get items in without data entry (289 items in so far), and an iOS app in progress with TestFlight for family use.</dd>
+            <dd>It's Wardrobe and Outfits databases in Notion with a standardized schema across 14 use contexts, a Cloudflare Worker API on top, AI photo cataloguing so items get in without data entry (289 items in so far), and an iOS app in progress on TestFlight for family use.</dd>
             <dt>Stack</dt>
             <dd class="mono">notion / cloudflare workers / ios (testflight)</dd>
           </dl>
@@ -329,7 +329,7 @@
             <dt>Problem</dt>
             <dd>An events team watching registration and revenue pacing across a portfolio should not have to assemble the picture by hand every Monday.</dd>
             <dt>Built</dt>
-            <dd>A standalone app on the Bizzabo API for a media company's events team: registration and revenue pacing, year over year comparisons, promo attribution, Monday digests, and an AI question-and-answer layer on top of the data.</dd>
+            <dd>I built a standalone app on the Bizzabo API for a media company's events team. It covers registration and revenue pacing, year over year comparisons, promo attribution, Monday digests, and an AI question-and-answer layer on top of the data.</dd>
             <dt>Stack</dt>
             <dd class="mono">bizzabo api / ai q&amp;a layer</dd>
           </dl>
@@ -381,7 +381,7 @@
             <dt>Problem</dt>
             <dd>No problem to solve here. I just like fireworks.</dd>
             <dt>Built</dt>
-            <dd>An annual show programmed on an Ignite cue system and synced to music, with a 2-second delay baked into every cue to cover igniter lag. You get one take a year.</dd>
+            <dd>It's an annual show programmed on an Ignite cue system and synced to music, with a 2-second delay baked into every cue to cover igniter lag. You get one take a year.</dd>
             <dt>Stack</dt>
             <dd class="mono">ignite / a music track / a checklist</dd>
           </dl>
@@ -400,7 +400,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.7.2</span>. Last deploy <span data-stamp="date">2026-09-03</span>.</span>
+    <span class="mono">Made in Warwick, NY. <span data-stamp="version">v2.7.3</span>.</span>
     <span class="links mono">
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>

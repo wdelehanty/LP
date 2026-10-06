@@ -64,7 +64,7 @@ TPL = """<!doctype html>
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.0.0</span>. Last deploy <span data-stamp="date">2026-08-31</span>.</span>
+    <span class="mono">Made in Warwick, NY. <span data-stamp="version">v2.0.0</span>.</span>
     <span class="links mono">
       <a href="https://github.com/wdelehanty">GitHub</a>
       <a href="https://www.linkedin.com/in/william-delehanty-18a01661">LinkedIn</a>

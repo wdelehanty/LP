@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stedd | William Delehanty</title>
-<meta name="description" content="A revenue recovery product for trades businesses: voice agent, automation stack, and what building it taught me.">
+<meta name="description" content="Stedd helps trades businesses stop losing jobs to missed calls. This page covers the voice agent, the automation stack, and what I learned building it.">
 <link rel="preload" href="../assets/fonts/barlow-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../assets/fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -12,7 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
 <meta name="theme-color" content="#15181B">
 <meta property="og:title" content="Stedd | William Delehanty">
-<meta property="og:description" content="A revenue recovery product for trades businesses: voice agent, automation stack, and what building it taught me.">
+<meta property="og:description" content="Stedd helps trades businesses stop losing jobs to missed calls. This page covers the voice agent, the automation stack, and what I learned building it.">
 <meta property="og:image" content="https://williamdelehanty.com/assets/og/stedd.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -51,11 +51,11 @@
 
 <div class="rail" role="status" aria-label="Live status" data-status="https://wd-status.wdelehanty.workers.dev/api/status">
   <div class="wrap">
-    <span class="item">workflows active: <b data-rail="workflows_active" data-count>44</b></span>
+    <span class="item">workflows active: <b data-rail="workflows_active" data-count>55</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last morning round: <b data-rail="last_morning_round">Thu 07:00</b></span>
+    <span class="item">last morning round: <b data-rail="last_morning_round">Mon 07:00</b></span>
     <span class="dot" aria-hidden="true"></span>
-    <span class="item">last deploy: <b data-stamp="date">2026-09-03</b></span>
+    <span class="item">last deploy: <b data-stamp="date">2026-10-06</b></span>
   </div>
 </div>
 
@@ -69,7 +69,7 @@
       <span class="mono">STEDD / 01</span>
     </div>
     <h1>Stedd</h1>
-    <p class="outcome">I built a product for the trades because I understand two things most software people do not: follow-up marketing, and how a contractor's day actually goes.</p>
+    <p class="outcome">I built Stedd for trades businesses because follow-up marketing is what I've done for a living, and I know how a contractor's day actually goes.</p>
   </div>
 </header>
 
@@ -77,7 +77,7 @@
   <div class="wrap">
     <div class="cs-main">
       <h2>What it is</h2>
-      <p>Revenue recovery for trades businesses. Four engines: Catch answers and captures the calls that would have been missed, Chase follows up on quotes that went quiet, Keep turns finished jobs into reviews, and Revive re-engages customers who lapsed. Two-tier packaging. We stay out of the CRM category on purpose. Nobody in the trades wants another system to manage. They want the leaks plugged.</p>
+      <p>Stedd gets trades businesses back the revenue they lose to missed calls and slow follow-up. It has four engines: Catch answers and captures the calls that would have been missed, Chase follows up on quotes that went quiet, Keep turns finished jobs into reviews, and Revive re-engages customers who lapsed. It's sold in two tiers. It's deliberately not a CRM, because nobody in the trades wants another system to manage. They just want to stop losing jobs.</p>
       <p>The buyer is usually the office manager, or the spouse running the front of house while the owner is on a roof. Everything is built for that person, down to reports in plain English with receipts attached.</p>
 
       <h2>What's running</h2>
@@ -88,9 +88,9 @@
         <li>The outcome confirmation loop: clients confirm each week which leads became jobs and which quotes closed, with a reply grammar a busy owner can answer in ten seconds.</li>
         <li>A per-client provisioner that stands up a phone number, a voice agent, and a website chat agent from one intake.</li>
         <li>Nightly Postgres backups emailed with row counts, error alerting on every workflow, a revenue leak audit generator for prospects, and a sample Monday Report generator for demos.</li>
-        <li>Built and staged, waiting on carrier approval: the SMS engines and the founder daily digest.</li>
+        <li>The SMS engines and the founder daily digest are built and staged, waiting on carrier approval.</li>
       </ul>
-      <p>The pilot is a pilot client in auto detailing, live on the voice line.</p>
+      <p>The pilot client is an auto detailing business, live on the voice line.</p>
 
       <h2>Stack</h2>
       <p class="mono">n8n on a digitalocean vps / postgres / retell / twilio / anthropic api / cloudflare workers (uptime monitor) / stripe / mercury / google business profile</p>
@@ -102,7 +102,7 @@
       <p>The outcome confirmation loop exists because dollars-saved reporting means nothing until somebody confirms the dollars. The system can count calls caught and quotes chased all day, but until the owner confirms a job actually closed, it's a guess. So confirmation is a product feature, and the Monday Report only claims what the client has confirmed.</p>
     </div>
     <aside class="cs-aside">
-      <div class="note"><b>Company state</b>Stedd LLC is fully set up: banking, billing, compliance. Production stack running, one paying pilot client.</div>
+      <div class="note"><b>Company state</b>Stedd LLC is fully set up, including banking, billing, and compliance. The production stack is running and there's one paying pilot client.</div>
       <div class="note"><b>Why trades</b>Service businesses leak revenue on follow-up, and follow-up marketing is what I've done for a living for a decade.</div>
     </aside>
   </div>
@@ -157,7 +157,7 @@
           <template data-booking><li class="new"><span class="when">Thu 7:41p</span><span class="what">After-hours call, exterior estimate booked for Sat 9:00a</span><span class="amt">booked</span></li></template>
         </div>
       </div>
-      <figcaption class="mono made">Demo call, recorded 2026-09-03. A synthesized voice reads the homeowner's lines into the live line; the agent is itself. Pauses between turns trimmed to a beat, nothing else cut.</figcaption>
+      <figcaption class="mono made">Demo call, recorded 2026-09-03. A synthesized voice reads the homeowner's lines into the live line, and the agent is the real one. I trimmed the pauses between turns and didn't cut anything else.</figcaption>
     </figure>
     <div class="shot-pair">
       <figure class="grain">
@@ -201,7 +201,7 @@
 <path d="M716,271.0 C730.5,271.0 730.5,185.0 745,185.0" fill="none" stroke="#3A4046" stroke-width="1" marker-end="url(#ar-live-booking-lanes)"/>
 <text x="20" y="338" style="font:400 11px 'IBM Plex Mono',monospace" fill="#9AA0A6">nightly transcript QA reviews every completed call against the founder checklist</text>
 </svg><!-- dg:live-booking-lanes:end -->
-      <figcaption class="mono made">Live booking, as turns taken.</figcaption>
+      <figcaption class="mono made">Live booking, step by step.</figcaption>
     </figure>
     <figure class="diagram" style="margin-top:48px">
       <!-- dg:prompt-patch-loop:start --><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 878 902" role="img" aria-label="The prompt patch loop in four stages: a nightly proposer drafts the smallest fix, a decision webhook applies or rejects it with a single-use token, a rollback webhook restores the previous prompt in one click, and a monthly consolidation review keeps the prompt coherent.">
@@ -393,7 +393,7 @@
 <path d="M260,99.0 L593,99.0" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-outcome-lanes)"/>
 <path d="M564,99.0 L745,99.0" fill="none" stroke="#3A4046" stroke-width="1" stroke-dasharray="4 4" marker-end="url(#ar-outcome-lanes)"/>
 </svg><!-- dg:outcome-lanes:end -->
-      <figcaption class="mono made">The outcome confirmation loop, as turns taken.</figcaption>
+      <figcaption class="mono made">The outcome confirmation loop, step by step.</figcaption>
     </figure>
     <figure class="diagram" style="margin-top:48px; max-width:560px">
       <!-- dg:monday-report-callouts:start --><div class="callouts">
@@ -408,7 +408,7 @@
     <li>Numbered per-touch receipts: what happened and what it was worth.</li>
   </ol>
 </div><!-- dg:monday-report-callouts:end -->
-      <figcaption class="mono made">The Monday Report, sample edition: rendered straight from the demo generator's own template, seeded numbers and all.</figcaption>
+      <figcaption class="mono made">A sample Monday Report, rendered from the demo generator's template with seeded numbers.</figcaption>
     </figure>
   </div>
 </section>
@@ -417,7 +417,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="mono">Built by hand in Warwick, NY. <span data-stamp="version">v2.7.2</span>. Last deploy <span data-stamp="date">2026-09-03</span>.</span>
+    <span class="mono">Made in Warwick, NY. <span data-stamp="version">v2.7.3</span>.</span>
     <span class="links mono">
       <a href="https://www.linkedin.com/in/williamdelehanty/">LinkedIn</a>
       <a href="mailto:wdelehanty@gmail.com">Email</a>
