@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Drawbox</title>
+<meta name="description" content="Drawbox is a built-in cooler drawer for boats. It goes under the leaning post, the console seat, or the pontoon lounge and slides out from the front. Join the waitlist.">
+<meta property="og:title" content="Drawbox: the cooler drawer for boats">
+<meta property="og:description" content="Your cooler is under a seat. The lid is not. A built-in cooler that slides out from the front. Join the waitlist.">
+<meta property="og:image" content="https://williamdelehanty.com/drawbox/img/cc-hero.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%231B262F%27/%3E%3Crect x=%2714%27 y=%2722%27 width=%2736%27 height=%2720%27 rx=%274%27 fill=%27%23F26A1B%27/%3E%3C/svg%3E">
+<style>
+  :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+</style>
+<style>
+  /* Layout: full-bleed photo hero, then alternating white/charcoal bands; 1120px content column; product photos carry the page, type stays heavy and tight */
+  :root {
+    --bg: #FFFFFF;
+    --fg: #15202A;
+    --muted: #5B6A75;
+    --panel: #EEF2F5;
+    --line: #D5DDE3;
+    --ink: #1B262F;
+    --ink-fg: #F3F6F8;
+    --ink-muted: #A7B4BE;
+    --accent: #F26A1B;
+    --accent-ink: #FFFFFF;
+    --display: "Archivo", "Arial Black", Arial, sans-serif;
+    --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #10181F; --fg: #E8EEF2; --muted: #9AABB6; --panel: #182430; --line: #2A3A47;
+      --ink: #0A1014; --ink-fg: #F3F6F8; --ink-muted: #8E9DA8; --accent: #FF7A32; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10181F; --fg: #E8EEF2; --muted: #9AABB6; --panel: #182430; --line: #2A3A47;
+    --ink: #0A1014; --ink-fg: #F3F6F8; --ink-muted: #8E9DA8; --accent: #FF7A32; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55; margin: 0; }
+  img { max-width: 100%; height: auto; display: block; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.04; letter-spacing: -0.015em; }
+  h1 { font-size: clamp(40px, 6.4vw, 76px); font-weight: 900; }
+  h2 { font-size: clamp(28px, 3.6vw, 44px); font-weight: 900; }
+  h3 { font-size: 20px; font-weight: 700; letter-spacing: 0; }
+  p { margin: 0; max-width: 62ch; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .mono { font-family: var(--mono); }
+  a { color: inherit; }
+  .btn { display: inline-block; font-family: var(--display); font-weight: 700; font-size: 16px; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 4px; padding: 15px 24px; cursor: pointer; text-decoration: none; letter-spacing: 0.01em; }
+  .btn:hover { filter: brightness(1.07); }
+  .btn.ghost { background: transparent; color: var(--ink-fg); border: 2px solid var(--ink-fg); padding: 13px 22px; }
+  .btn:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* nav */
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--ink); color: var(--ink-fg); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+  .brand { font-family: var(--display); font-weight: 900; font-size: 21px; letter-spacing: 0.04em; text-decoration: none; }
+  .brand span { color: var(--accent); }
+  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+  .nav ul a { text-decoration: none; color: var(--ink-muted); }
+  .nav ul a:hover { color: var(--ink-fg); }
+  .nav .btn { padding: 10px 16px; font-size: 14px; }
+
+  /* hero */
+  .hero { position: relative; background: var(--ink); color: var(--ink-fg); overflow: hidden; }
+  .hero img { width: 100%; height: auto; aspect-ratio: 1264 / 848; object-fit: cover; }
+  .hero .overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,16,20,0.88) 0%, rgba(10,16,20,0.62) 40%, rgba(10,16,20,0.08) 72%); }
+  .hero .copy { position: absolute; inset: 0; display: flex; align-items: center; }
+  .hero .copy .wrap { width: 100%; display: grid; gap: 22px; }
+  .hero h1 { max-width: 12ch; }
+  .hero p { font-size: 19px; color: var(--ink-muted); max-width: 44ch; }
+  .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero .tag { font-family: var(--mono); font-size: 12px; color: var(--ink-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ticker */
+  .ticker { background: var(--accent); color: var(--accent-ink); font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ticker .wrap { display: flex; gap: 32px; flex-wrap: wrap; padding-block: 12px; justify-content: space-between; }
+
+  section { padding-block: 72px; }
+  .sec-head { display: grid; gap: 12px; margin-bottom: 36px; max-width: 46ch; }
+  .sec-head p { color: var(--muted); font-size: 18px; }
+  .band { background: var(--panel); }
+  .dark { background: var(--ink); color: var(--ink-fg); }
+  .dark .sec-head p, .dark .muted { color: var(--ink-muted); }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .split .photo { border-radius: 6px; overflow: hidden; min-width: 0; }
+  .split .text { display: grid; gap: 18px; }
+  .split .text p { color: var(--muted); }
+  .dark .split .text p { color: var(--ink-muted); }
+  .checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .checks li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; }
+  .checks li::before { content: ""; width: 14px; height: 14px; margin-top: 6px; border-radius: 2px; background: var(--accent); }
+
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .cols > div { display: grid; gap: 8px; align-content: start; }
+  .cols p { color: var(--muted); font-size: 16px; }
+  .cols .tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .cols .tag.soon { color: var(--muted); }
+
+  /* designs by boat type */
+  .designs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .design { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: grid; grid-template-rows: auto auto 1fr; min-width: 0; }
+  .design .ph { aspect-ratio: 4 / 3; overflow: hidden; background: var(--panel); }
+  .design .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .design .dia { background: var(--ink); padding: 14px 16px 10px; }
+  .design .dia svg { width: 100%; height: auto; display: block; }
+  .design .body { padding: 20px 22px 22px; display: grid; gap: 12px; align-content: start; }
+  .design .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .design .pill { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 8px; border-radius: 3px; background: var(--accent); color: var(--accent-ink); white-space: nowrap; }
+  .design .pill.soon { background: var(--panel); color: var(--muted); }
+  .design .pill.vote { background: var(--fg); color: var(--bg); }
+  .design h3 { font-size: 22px; }
+  .design .sub { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.06em; }
+  .design p { color: var(--muted); font-size: 15px; }
+  .design dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 14px; }
+  .design dt { color: var(--fg); font-weight: 600; }
+  .design dd { margin: 0; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .design .fits { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+  .design .fits strong { color: var(--fg); }
+  .spec3 th, .spec3 td { padding: 10px 8px 10px 0; font-size: 15px; }
+  .spec3 thead th { font-family: var(--display); font-weight: 700; border-bottom: 2px solid var(--fg); width: auto; }
+  .spec3 thead th:first-child { width: 20%; }
+  .spec3 tbody th { width: 20%; }
+  @media (max-width: 980px) { .designs { grid-template-columns: 1fr; } }
+
+  /* how it works */
+  .how { display: grid; gap: 24px; }
+  .how-top { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; justify-content: space-between; }
+  .ctl { display: inline-flex; gap: 8px; }
+  .ctl button { font: inherit; font-family: var(--display); font-weight: 700; font-size: 14px; background: transparent; color: var(--ink-muted); border: 1px solid #3A4A56; border-radius: 4px; padding: 10px 16px; cursor: pointer; }
+  .ctl button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .stage { background: radial-gradient(120% 90% at 50% 10%, #16222C 0%, #0A1014 70%); border-radius: 8px; overflow: hidden; min-width: 0; position: relative; }
+  .stage svg { width: 100%; height: auto; display: block; }
+  .bar { height: 3px; background: #2A3A47; border-radius: 2px; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 100%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .step { display: grid; gap: 6px; padding: 16px 18px; border-radius: 6px; background: #182430; border: 1px solid transparent; transition: border-color 250ms, background 250ms; }
+  .step.on { border-color: var(--accent); background: #1E2C38; }
+  .step .n { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.1em; }
+  .step h3 { font-size: 18px; }
+  .step p { font-size: 15px; color: var(--ink-muted); }
+
+  /* specs */
+  .specs { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .specs .photo { border-radius: 6px; overflow: hidden; background: var(--panel); }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th, td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; width: 42%; color: var(--fg); }
+  td { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .specnote { font-size: 13px; color: var(--muted); margin-top: 14px; }
+  .compare { overflow-x: auto; }
+  .compare table { min-width: 640px; }
+  .compare th:first-child { width: 26%; }
+  .compare thead th { font-family: var(--display); font-weight: 700; color: var(--fg); border-bottom: 2px solid var(--fg); width: auto; }
+  .compare td.yes { color: var(--fg); font-weight: 600; }
+  .compare td.hi, .compare th.hi { color: var(--accent); font-weight: 700; }
+
+  /* faq */
+  .faq { display: grid; max-width: 760px; }
+  details { border-top: 1px solid var(--line); padding-block: 18px; }
+  details:last-child { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-family: var(--display); font-weight: 700; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--accent); font-weight: 900; }
+  details[open] summary::after { content: "\2013"; }
+  details p { color: var(--muted); margin-top: 10px; }
+
+  /* signup */
+  .signup { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; }
+  .signup .intro { display: grid; gap: 16px; align-content: start; }
+  .signup .intro ol { margin: 0; padding-left: 20px; color: var(--ink-muted); display: grid; gap: 8px; max-width: 48ch; }
+  .signup .intro ol strong { color: var(--ink-fg); }
+  .signup .intro p { color: var(--ink-muted); }
+  form { display: grid; gap: 18px; background: var(--bg); color: var(--fg); border-radius: 8px; padding: 26px; min-width: 0; }
+  .field { display: grid; gap: 6px; min-width: 0; }
+  label { font-weight: 600; font-size: 15px; }
+  input, select { font: inherit; font-size: 16px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 11px 12px; width: 100%; min-width: 0; }
+  input.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .dims { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .dims .field label { font-weight: 500; font-size: 14px; }
+  .radios { display: grid; gap: 8px; }
+  .radios label { display: flex; gap: 10px; align-items: center; font-weight: 500; }
+  .radios input { width: auto; }
+  .err { color: var(--accent); font-size: 14px; min-height: 1em; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .done { display: grid; gap: 10px; padding: 26px; background: var(--bg); color: var(--fg); border-radius: 8px; }
+  .done h3 { color: var(--accent); }
+  .note { font-size: 14px; color: var(--muted); }
+
+  footer { background: var(--ink); color: var(--ink-muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; justify-content: space-between; padding-block: 28px 44px; }
+  footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  footer nav a { text-decoration: none; color: var(--ink-muted); }
+  footer nav a:hover { color: var(--ink-fg); }
+
+  @media (max-width: 820px) {
+    .nav ul { display: none; }
+    .hero img { aspect-ratio: 4 / 5; object-position: 40% 50%; }
+    .hero .overlay { background: linear-gradient(180deg, rgba(10,16,20,0.15) 0%, rgba(10,16,20,0.72) 55%, rgba(10,16,20,0.92) 100%); }
+    .hero .copy { align-items: flex-end; }
+    .hero .copy .wrap { padding-bottom: 32px; }
+    .hero h1 { font-size: clamp(36px, 10vw, 52px); }
+    .hero p { font-size: 17px; }
+    section { padding-block: 52px; }
+    .split, .specs, .signup { grid-template-columns: 1fr; gap: 28px; }
+    .split.flip .photo { order: -1; }
+    .cols, .steps { grid-template-columns: 1fr; gap: 22px; }
+    .dims { gap: 8px; }
+    body { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">DRAW<span>BOX</span></a>
+    <ul>
+      <li><a href="#fit">Where it fits</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#specs">Specs</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn" href="#signup">Get notified</a>
+  </div>
+</nav>
+
+<div class="hero" id="top">
+  <img src="img/cc-hero.jpg" alt="A cooler drawer pulled out from under the leaning post of a center console boat, full of ice and cans" width="1264" height="848" fetchpriority="high">
+  <div class="overlay"></div>
+  <div class="copy">
+    <div class="wrap">
+      <div class="tag">Built-in cooler drawer</div>
+      <h1>Your cooler is under a seat. The lid is not.</h1>
+      <p>Under the leaning post, under the passenger console seat, under the pontoon lounge: the cooler goes where the seat sits on the lid. Drawbox is the cooler and the slide in one. Pull it out, grab what you need, push it back.</p>
+      <div class="ctas">
+        <a class="btn" href="#signup">Get notified when it ships</a>
+        <a class="btn ghost" href="#fit">Find your boat</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker">
+  <div class="wrap">
+    <span>Three sizes for three boats</span>
+    <span>25 to 45 quarts</span>
+    <span>220 lb stainless slides, lock-in and lock-out</span>
+    <span>Shipping 2027</span>
+  </div>
+</div>
+
+<section id="fit">
+  <div class="wrap">
+    <div class="split">
+      <div class="text">
+        <div class="eyebrow">The problem</div>
+        <h2>Every boat parks the cooler under a seat. Then the seat is in the way.</h2>
+        <p>On a center console it's wedged under the leaning post, so people spend $300 on a slide tray and still have to drag it out and pop the lid. On a bowrider it's in the box under the passenger console seat, so you pull the cushion or tilt the whole cooler to get a drink. On a pontoon the factory "cooler" is an uninsulated liner under a cushion someone is sitting on.</p>
+        <ul class="checks">
+          <li>The drawer is the cooler. Nothing to drag out, no lid to clear, nobody gets up</li>
+          <li>Slides all the way out, so you see everything instead of digging</li>
+          <li>Three sizes, built to the three cavities boats actually have</li>
+        </ul>
+      </div>
+      <div class="photo"><img src="img/cc-life.jpg" alt="A man reaching down to pull the Drawbox cooler drawer open under a bay boat leaning post at sunset" width="1264" height="848" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Where it goes</div>
+      <h2>Three designs. One for each place boats hide the cooler.</h2>
+      <p>Same drawer, same slides, same face. Three housings sized to the real cavities, in the order we can get them right.</p>
+    </div>
+    <div class="designs">
+
+      <div class="design">
+        <div class="ph"><img src="img/cc-hero.jpg" alt="Drawbox Post installed under a center console leaning post" loading="lazy"></div>
+        <div class="dia">
+          <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Front elevation of the Post unit: 26 inches wide, 15 inches tall, 14 inches deep">
+            <rect x="48" y="26" width="10" height="112" rx="5" fill="#8E9DA8"/><rect x="262" y="26" width="10" height="112" rx="5" fill="#8E9DA8"/>
+            <rect x="40" y="12" width="240" height="14" rx="6" fill="#E8EEF2"/>
+            <rect x="62" y="34" width="196" height="100" rx="6" fill="#243038" stroke="#3E4F5C" stroke-width="1.5"/>
+            <rect x="72" y="42" width="176" height="84" rx="5" fill="#1B262F" stroke="#3E4F5C"/>
+            <rect x="128" y="84" width="64" height="12" rx="4" fill="#F26A1B"/>
+            <rect x="226" y="52" width="10" height="16" rx="2" fill="#8E9DA8"/>
+            <g font-family="IBM Plex Mono, Menlo, monospace" font-size="10" fill="#A7B4BE">
+              <line x1="62" y1="146" x2="258" y2="146" stroke="#5B6A75"/><text x="137" y="143">26 in</text>
+              <line x1="290" y1="34" x2="290" y2="134" stroke="#5B6A75"/><text x="296" y="88">15</text>
+              <text x="4" y="88">14 deep</text>
+            </g>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="top"><h3>Post</h3><span class="pill">First run</span></div>
+          <div class="sub">Center console and bay boat leaning posts</div>
+          <p>Bolts between the legs of a single-leg or two-leg leaning post, in the spot a 45 to 72 quart cooler sits today. The housing replaces the slide tray you'd otherwise buy.</p>
+          <dl>
+            <dt>Outside</dt><dd>26 W x 14 D x 15 H in</dd>
+            <dt>Holds</dt><dd>About 45 qt, 48 cans plus ice</dd>
+            <dt>Needs</dt><dd>24 in between the legs, 17 in deck to seat</dd>
+            <dt>Mount</dt><dd>Bolts to legs and deck, no cutting</dd>
+          </dl>
+          <div class="fits"><strong>Fits:</strong> Key West, Sea Hunt, Tidewater, Robalo, Sportsman, Sea Pro, Grady-White and most 19 to 26 ft center consoles and bay boats.</div>
+        </div>
+      </div>
+
+      <div class="design">
+        <div class="ph"><img src="img/bow.jpg" alt="Drawbox Console installed in the passenger console of a bowrider, opening onto the bow walkway" loading="lazy"></div>
+        <div class="dia">
+          <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Front elevation of the Console unit: 22 inches wide, 13 inches tall, 16 inches deep">
+            <path d="M30 150 V40 Q30 14 56 14 H264 Q290 14 290 40 V150 Z" fill="#E8EEF2"/>
+            <rect x="40" y="14" width="240" height="12" rx="4" fill="#D5DEE4"/>
+            <rect x="74" y="46" width="172" height="90" rx="6" fill="#243038" stroke="#8E9DA8" stroke-width="3"/>
+            <rect x="84" y="54" width="152" height="74" rx="5" fill="#1B262F" stroke="#3E4F5C"/>
+            <rect x="132" y="92" width="56" height="12" rx="4" fill="#F26A1B"/>
+            <rect x="214" y="62" width="10" height="16" rx="2" fill="#8E9DA8"/>
+            <g font-family="IBM Plex Mono, Menlo, monospace" font-size="10" fill="#5B6A75">
+              <line x1="74" y1="144" x2="246" y2="144" stroke="#5B6A75"/><text x="143" y="141" fill="#15202A">22 in</text>
+              <line x1="300" y1="46" x2="300" y2="136" stroke="#5B6A75"/><text x="304" y="94" fill="#A7B4BE">13</text>
+              <text x="36" y="94" fill="#15202A">16 dp</text>
+            </g>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="top"><h3>Console</h3><span class="pill soon">Second run</span></div>
+          <div class="sub">Bowriders, deck boats, jet boats, console-seat boxes</div>
+          <p>Fits the hollow fiberglass box under the console seat on open-bow boats, the one you open today by popping a snap-on cushion. Opens into the bow on a center console bowrider, or toward the cockpit on a dual console, never into a 19 inch walkway. A face frame covers the cutout and a baffle stops the airflow that kills ice under these seats.</p>
+          <dl>
+            <dt>Outside</dt><dd>22 W x 16 D x 13 H in</dd>
+            <dt>Holds</dt><dd>About 32 qt, 36 cans plus ice</dd>
+            <dt>Needs</dt><dd>A hollow console box about 23 x 17 x 15 in inside</dd>
+            <dt>Mount</dt><dd>Cutout plus face frame, 8 screws</dd>
+          </dl>
+          <div class="fits"><strong>Fits:</strong> Key West 210BR and 239FS, Tidewater 230, Grady-White Fisherman 216 console seats; Robalo R207 and Yamaha AR/SX/FSH port lockers and under-seat bays. On 21 ft plus dual consoles the port console is the head, so this one goes under the bow seats or the aft utility center instead.</div>
+        </div>
+      </div>
+
+      <div class="design">
+        <div class="ph"><img src="img/pontoon.jpg" alt="Drawbox Base pulled out of a pontoon bench seat" loading="lazy"></div>
+        <div class="dia">
+          <svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Front elevation of the Base unit: 24 inches wide, 9 inches tall, 18 inches deep">
+            <rect x="30" y="22" width="260" height="22" rx="8" fill="#E8EEF2"/>
+            <rect x="36" y="44" width="248" height="94" rx="4" fill="#243038" stroke="#3E4F5C" stroke-width="1.5"/>
+            <rect x="60" y="66" width="200" height="60" rx="5" fill="#1B262F" stroke="#3E4F5C"/>
+            <rect x="130" y="102" width="60" height="11" rx="4" fill="#F26A1B"/>
+            <rect x="238" y="72" width="10" height="14" rx="2" fill="#8E9DA8"/>
+            <g font-family="IBM Plex Mono, Menlo, monospace" font-size="10" fill="#A7B4BE">
+              <line x1="60" y1="146" x2="260" y2="146" stroke="#5B6A75"/><text x="143" y="143">24 in</text>
+              <line x1="300" y1="66" x2="300" y2="126" stroke="#5B6A75"/><text x="304" y="100">9</text>
+              <text x="2" y="100">18 dp</text>
+            </g>
+          </svg>
+        </div>
+        <div class="body">
+          <div class="top"><h3>Base</h3><span class="pill vote">Needs votes</span></div>
+          <div class="sub">Pontoon and tritoon seat bases</div>
+          <p>Pontoon bases are only about 11 inches tall, so this one is a drinks drawer, not an ice chest: one layer of 48 cans standing up on a frozen gel floor. Pre-chill the cans and it holds all afternoon. Comes as a drop-in for a cutout, or as a whole replacement base with the drawer molded in.</p>
+          <dl>
+            <dt>Outside</dt><dd>24 W x 18 D x 9 H in</dd>
+            <dt>Holds</dt><dd>48 cans, single layer, gel cold floor</dd>
+            <dt>Needs</dt><dd>A 27 in or wider seat base</dd>
+            <dt>Mount</dt><dd>Cutout plus face frame, or replacement base</dd>
+          </dl>
+          <div class="fits"><strong>Fits:</strong> Bennington, Harris, Manitou, Avalon, Barletta, Sun Tracker and any pontoon with standard 27, 36 or 50 inch rotomolded bases. We build it when enough pontoon owners ask, so vote in the form.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="how">
+  <div class="wrap">
+    <div class="how">
+      <div class="how-top">
+        <div class="sec-head" style="margin-bottom:0">
+          <div class="eyebrow">How it works</div>
+          <h2>Pull. Grab. Push.</h2>
+          <p>Side view through a leaning post. Console and Base work the same way, just shorter.</p>
+        </div>
+        <div class="ctl" role="group" aria-label="Animation controls">
+          <button type="button" id="btn-play" aria-pressed="true">Playing</button>
+          <button type="button" id="btn-step">Step through</button>
+        </div>
+      </div>
+
+      <div class="stage" id="stage">
+        <svg id="scene" viewBox="-90 0 1090 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated side view: a hand pulls the cooler drawer out from under a leaning post, lifts a can out, and pushes the drawer closed">
+          <defs>
+            <radialGradient id="shadowg" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#0A1014" stop-opacity="0.75"/><stop offset="0.6" stop-color="#0A1014" stop-opacity="0.35"/><stop offset="1" stop-color="#0A1014" stop-opacity="0"/></radialGradient>
+            <linearGradient id="deckg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C9D3DA"/><stop offset="1" stop-color="#9BAAB5"/></linearGradient>
+            <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7F8F9B"/><stop offset="0.45" stop-color="#D5DEE4"/><stop offset="1" stop-color="#6F7F8B"/></linearGradient>
+            <linearGradient id="tub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7F9FA"/><stop offset="1" stop-color="#D9E2E8"/></linearGradient>
+            <linearGradient id="tubin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9C8D2"/><stop offset="0.5" stop-color="#E3EAEF"/></linearGradient>
+            <linearGradient id="face" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2A3741"/><stop offset="1" stop-color="#141C23"/></linearGradient>
+            <linearGradient id="canA" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#C9540F"/><stop offset="0.4" stop-color="#FF8A3D"/><stop offset="1" stop-color="#B84A0C"/></linearGradient>
+            <linearGradient id="canB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2E5C80"/><stop offset="0.4" stop-color="#6FA3CB"/><stop offset="1" stop-color="#28506F"/></linearGradient>
+            <linearGradient id="canW" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9AA9B4"/><stop offset="0.4" stop-color="#F3F6F8"/><stop offset="1" stop-color="#8E9DA8"/></linearGradient>
+            <radialGradient id="ice" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C6D6E0"/></radialGradient>
+            <clipPath id="housingClip"><rect x="350" y="160" width="300" height="212"/></clipPath>
+          </defs>
+
+          <!-- deck, teak planks -->
+          <rect x="-90" y="380" width="1090" height="80" fill="url(#deckg)"/>
+          <g stroke="#7F8F9B" stroke-width="1.2" opacity="0.8">
+            <line x1="-90" y1="398" x2="1000" y2="398"/><line x1="-90" y1="416" x2="1000" y2="416"/><line x1="-90" y1="434" x2="1000" y2="434"/>
+          </g>
+          <rect x="-90" y="376" width="1090" height="6" fill="#E6ECF0"/>
+
+          <!-- shadow thrown by the extended drawer -->
+          <ellipse id="shadow" cx="200" cy="384" rx="190" ry="14" fill="url(#shadowg)" opacity="0"/>
+
+          <!-- leaning post: rear leg, seat, backrest -->
+          <rect x="676" y="118" width="18" height="262" rx="9" fill="url(#steel)"/>
+          <rect x="664" y="372" width="42" height="10" rx="3" fill="#8E9DA8"/>
+          <rect x="300" y="100" width="420" height="50" rx="14" fill="#F3F6F8"/>
+          <rect x="300" y="138" width="420" height="12" fill="#D5DEE4"/>
+          <path d="M318 125 H702" stroke="#C9D3DA" stroke-width="1.5" stroke-dasharray="6 5"/>
+          <rect x="690" y="26" width="44" height="84" rx="10" fill="#F3F6F8"/>
+          <rect x="690" y="26" width="10" height="84" rx="5" fill="#D5DEE4"/>
+          <rect x="706" y="40" width="18" height="60" rx="9" fill="url(#steel)" transform="translate(-16 -18)"/>
+
+          <!-- housing between the legs -->
+          <rect x="350" y="160" width="300" height="212" rx="4" fill="#243038" stroke="#3E4F5C" stroke-width="2"/>
+          <rect x="364" y="174" width="272" height="184" fill="#0C1419"/>
+          <!-- slide outer members (fixed) -->
+          <rect x="368" y="178" width="264" height="7" rx="2" fill="#8E9DA8"/>
+          <rect x="368" y="343" width="264" height="7" rx="2" fill="#8E9DA8"/>
+          <!-- slide inner members (move at half speed) -->
+          <g id="inner">
+            <rect x="372" y="180" width="256" height="4" rx="1" fill="#D5DEE4"/>
+            <rect x="372" y="345" width="256" height="4" rx="1" fill="#D5DEE4"/>
+          </g>
+
+          <!-- drawer -->
+          <g id="drawer">
+            <!-- tub -->
+            <rect x="372" y="188" width="256" height="152" rx="8" fill="url(#tub)" stroke="#AEBEC9" stroke-width="1.5"/>
+            <rect x="384" y="200" width="232" height="128" rx="6" fill="url(#tubin)"/>
+            <!-- ice bed -->
+            <g>
+              <circle cx="404" cy="300" r="13" fill="url(#ice)"/><circle cx="432" cy="312" r="11" fill="url(#ice)"/><circle cx="458" cy="298" r="14" fill="url(#ice)"/>
+              <circle cx="486" cy="314" r="10" fill="url(#ice)"/><circle cx="512" cy="300" r="13" fill="url(#ice)"/><circle cx="540" cy="312" r="11" fill="url(#ice)"/>
+              <circle cx="566" cy="298" r="13" fill="url(#ice)"/><circle cx="592" cy="312" r="11" fill="url(#ice)"/><circle cx="608" cy="296" r="9" fill="url(#ice)"/>
+              <circle cx="420" cy="322" r="8" fill="url(#ice)"/><circle cx="500" cy="324" r="8" fill="url(#ice)"/><circle cx="580" cy="324" r="8" fill="url(#ice)"/>
+            </g>
+            <!-- cans -->
+            <g id="cans">
+              <rect x="400" y="236" width="28" height="68" rx="6" fill="url(#canA)"/><rect x="400" y="258" width="28" height="14" fill="#FFFFFF" opacity="0.5"/>
+              <rect x="436" y="236" width="28" height="68" rx="6" fill="url(#canA)"/><rect x="436" y="258" width="28" height="14" fill="#FFFFFF" opacity="0.5"/>
+              <rect id="slot" x="472" y="236" width="28" height="68" rx="6" fill="url(#canA)"/><rect id="slotband" x="472" y="258" width="28" height="14" fill="#FFFFFF" opacity="0.5"/>
+              <rect x="508" y="236" width="28" height="68" rx="6" fill="url(#canB)"/><rect x="508" y="258" width="28" height="14" fill="#FFFFFF" opacity="0.5"/>
+              <rect x="544" y="236" width="28" height="68" rx="6" fill="url(#canB)"/><rect x="544" y="258" width="28" height="14" fill="#FFFFFF" opacity="0.5"/>
+              <rect x="580" y="236" width="28" height="68" rx="6" fill="url(#canW)"/><rect x="580" y="258" width="28" height="14" fill="#F26A1B" opacity="0.8"/>
+            </g>
+            <!-- cold air that stays in the tub when open -->
+            <g id="cold" opacity="0">
+              <circle cx="410" cy="226" r="4" fill="#BFE3F5"/><circle cx="470" cy="214" r="3.5" fill="#BFE3F5"/><circle cx="530" cy="222" r="4" fill="#BFE3F5"/>
+              <circle cx="590" cy="212" r="3.5" fill="#BFE3F5"/><circle cx="440" cy="206" r="3" fill="#BFE3F5"/><circle cx="560" cy="204" r="3" fill="#BFE3F5"/>
+              <circle cx="500" cy="228" r="3" fill="#BFE3F5"/><circle cx="610" cy="226" r="3" fill="#BFE3F5"/>
+            </g>
+            <!-- compression seal and front face -->
+            <rect x="352" y="170" width="20" height="190" fill="#F26A1B" opacity="0.35"/>
+            <rect x="328" y="160" width="36" height="212" rx="6" fill="url(#face)" stroke="#3E4F5C" stroke-width="2"/>
+            <rect x="334" y="240" width="24" height="60" rx="5" fill="#0A1014"/>
+            <rect x="338" y="246" width="16" height="48" rx="4" fill="#F26A1B"/>
+            <rect id="latch" x="340" y="180" width="12" height="22" rx="2" fill="#F26A1B"/>
+          </g>
+
+          <!-- front leg of the post, drawn over the drawer face so it reads as "between the legs" -->
+          <rect x="306" y="118" width="18" height="262" rx="9" fill="url(#steel)"/>
+          <rect x="294" y="372" width="42" height="10" rx="3" fill="#8E9DA8"/>
+
+          <!-- the can that comes out -->
+          <g id="canout" opacity="0">
+            <rect x="472" y="236" width="28" height="68" rx="6" fill="url(#canA)"/><rect x="472" y="258" width="28" height="14" fill="#FFFFFF" opacity="0.5"/>
+          </g>
+
+          <!-- hand: open and gripping versions, toggled -->
+          <g id="hand" opacity="0">
+            <rect x="40" y="246" width="190" height="42" rx="21" fill="#34434F"/>
+            <rect x="214" y="250" width="22" height="34" rx="6" fill="#4B5C6A"/>
+            <g id="hopen" fill="#E8C9A8" stroke="#1B262F" stroke-width="2" stroke-linejoin="round">
+              <rect x="230" y="252" width="38" height="30" rx="12" fill="#D9B894"/>
+              <rect x="262" y="238" width="50" height="52" rx="16"/>
+              <rect x="300" y="240" width="32" height="11" rx="5.5"/>
+              <rect x="304" y="252" width="34" height="11" rx="5.5"/>
+              <rect x="302" y="264" width="32" height="11" rx="5.5"/>
+              <rect x="298" y="276" width="28" height="11" rx="5.5"/>
+              <rect x="274" y="220" width="13" height="30" rx="6.5"/>
+            </g>
+            <g id="hgrip" fill="#E8C9A8" stroke="#1B262F" stroke-width="2" stroke-linejoin="round" opacity="0">
+              <rect x="230" y="252" width="38" height="30" rx="12" fill="#D9B894"/>
+              <rect x="262" y="238" width="50" height="52" rx="16"/>
+              <rect x="300" y="242" width="22" height="12" rx="6"/>
+              <rect x="304" y="255" width="24" height="12" rx="6"/>
+              <rect x="302" y="268" width="22" height="12" rx="6"/>
+              <rect x="298" y="280" width="18" height="11" rx="5.5"/>
+              <rect x="286" y="232" width="34" height="13" rx="6.5"/>
+            </g>
+          </g>
+
+          <!-- callouts, shown at rest -->
+          <g id="callouts" font-family="IBM Plex Mono, Menlo, monospace" font-size="13" fill="#A7B4BE">
+            <line x1="760" y1="160" x2="760" y2="372" stroke="#5B6A75" stroke-width="1.5"/>
+            <line x1="752" y1="160" x2="768" y2="160" stroke="#5B6A75" stroke-width="1.5"/><line x1="752" y1="372" x2="768" y2="372" stroke="#5B6A75" stroke-width="1.5"/>
+            <text x="772" y="270">15 in tall</text>
+            <line x1="350" y1="60" x2="650" y2="60" stroke="#5B6A75" stroke-width="1.5"/>
+            <line x1="350" y1="52" x2="350" y2="68" stroke="#5B6A75" stroke-width="1.5"/><line x1="650" y1="52" x2="650" y2="68" stroke="#5B6A75" stroke-width="1.5"/>
+            <text x="446" y="48">14 in deep</text>
+            <text x="810" y="330">seat stays put</text>
+            <text x="-60" y="450">deck</text>
+          </g>
+          <g id="openlabel" font-family="IBM Plex Mono, Menlo, monospace" font-size="13" fill="#A7B4BE" opacity="0">
+            <text x="-60" y="112">full extension, locks open</text>
+            <text x="-60" y="132">cold air stays in the tub</text>
+          </g>
+        </svg>
+      </div>
+      <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+
+      <div class="steps" id="steps">
+        <button type="button" class="step on" data-t="0.22"><div class="n">01</div><h3>Pull</h3><p>Grab the recessed handle and pull. The latch releases with the pull, and the slides lock open so it stays put while the boat rocks.</p></button>
+        <button type="button" class="step" data-t="0.50"><div class="n">02</div><h3>Grab</h3><p>The whole tub is in front of you. Nothing to dig for, nobody has to get up.</p></button>
+        <button type="button" class="step" data-t="0.80"><div class="n">03</div><h3>Push</h3><p>Push it home and the latch catches. Cold air stays low in the tub the whole time, same as a chest cooler.</p></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split flip">
+      <div class="photo"><img src="img/studio.jpg" alt="Studio view of the Drawbox unit with the drawer pulled out a few inches" width="1152" height="928" loading="lazy"></div>
+      <div class="text">
+        <div class="eyebrow">How it installs</div>
+        <h2>Bolt it in, or cut one rectangle.</h2>
+        <p>Post bolts to the leaning post legs and the deck, the same way a slide tray does. Console and Base go into a rectangular cutout, and the face frame covers the edge so the cut doesn't have to be pretty. Ice melt stays in a sealed tub with a plug in the floor, so you dump it over the side instead of plumbing a drain or letting it find the bilge.</p>
+        <ul class="checks">
+          <li>Drill, jigsaw for the cutout versions, and an afternoon</li>
+          <li>Tub lifts out for cleaning or to swap in a dry box</li>
+          <li>Check what's behind the panel first. Fuel tanks and wiring hide under decks and in consoles</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Compared</div>
+      <h2>What people do today, and what it costs.</h2>
+    </div>
+    <div class="compare">
+      <table>
+        <thead>
+          <tr><th>Option</th><th>Open it in place</th><th>See everything</th><th>Needs power</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Cooler under the post, no slide</th><td>No, drag it out first</td><td>Once it's out</td><td>No</td><td>$60 to $325 for the cooler</td></tr>
+          <tr><th>Cooler on a slide tray</th><td>Slide out, then open the lid</td><td>Once the lid's up</td><td>No</td><td>$300 slide plus the cooler</td></tr>
+          <tr><th>Drawer fridge</th><td>Yes</td><td>Yes</td><td>Yes, 12V</td><td>$600 to $3,600</td></tr>
+          <tr><th class="hi">Drawbox</th><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">No</td><td class="hi">$349 to $449 target</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="specs">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Target specs</div>
+      <h2>Same drawer. Three housings.</h2>
+      <p>Everything below the line is shared. The housing and the tub size change with the boat.</p>
+    </div>
+    <div class="compare">
+      <table class="spec3">
+        <thead><tr><th></th><th>Post</th><th>Console</th><th>Base</th></tr></thead>
+        <tbody>
+          <tr><th>Goes in</th><td>Under a leaning post</td><td>Passenger console seat box</td><td>Pontoon seat base</td></tr>
+          <tr><th>Outside size</th><td>26 W x 14 D x 15 H in</td><td>22 W x 16 D x 13 H in</td><td>24 W x 18 D x 9 H in</td></tr>
+          <tr><th>Capacity</th><td>About 45 qt, 48 cans plus ice</td><td>About 32 qt, 36 cans plus ice</td><td>48 cans, single layer</td></tr>
+          <tr><th>Cold source</th><td>Loose ice</td><td>Loose ice</td><td>Frozen gel floor, pre-chilled cans</td></tr>
+          <tr><th>Mount</th><td>Bolts to legs and deck</td><td>Cutout plus face frame</td><td>Cutout plus face frame, or replacement base</td></tr>
+          <tr><th>Weight empty</th><td>About 24 lb</td><td>About 19 lb</td><td>About 14 lb</td></tr>
+          <tr><th>Expected price</th><td class="hi">$349 to $449</td><td class="hi">$299 to $399</td><td class="hi">$249 to $329</td></tr>
+          <tr><th>Slides</th><td colspan="3">Full-extension stainless, 220 lb rated, lock-in and lock-out</td></tr>
+          <tr><th>Tub</th><td colspan="3">Removable sealed insulated tub, 1 in walls, floor plug. Dump it over the side, no plumbing</td></tr>
+          <tr><th>Face</th><td colspan="3">UV-stable molded front with compression seal, recessed pull, stainless latch</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="specnote">Targets for the first production run. The vertical numbers are the ones we're least sure of, which is why the form asks for yours.</p>
+  </div>
+</section>
+
+<section id="faq" class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Questions</div>
+      <h2>The things people ask first.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Won't the cold fall out every time I open it?</summary>
+        <p>Cold air sinks, so a drawer keeps it in the tub the same way a chest cooler does. A side-opening door is the one that dumps it. We're testing ice loss per opening against a regular top-loader and will publish the numbers before we take a dollar.</p>
+      </details>
+      <details>
+        <summary>Why not a tilt-out, like a kitchen bin?</summary>
+        <p>We prototyped it. Tipping a tub with an inch of meltwater in it pours the water toward the lip, and the cheap hinges that make tip-outs cheap are rated for sponges, not 40 pounds of ice. Slide-out keeps the tub level.</p>
+      </details>
+      <details>
+        <summary>Will it fit my boat?</summary>
+        <p>Post needs a leaning post with 24 inches between the legs and 17 inches from deck to seat bottom. Console needs a hollow console seat box around 23 by 14 by 17 inches inside. Base needs a 27 inch or wider pontoon seat base. Send the measurements below and we'll tell you.</p>
+      </details>
+      <details>
+        <summary>Can I install it myself?</summary>
+        <p>Yes. Post bolts to the post legs and deck the same way a slide tray does. Console and Base need a rectangular cutout with a jigsaw. Check what's behind the panel before you cut; some boats have the fuel tank a few inches under the deck and consoles are full of wiring.</p>
+      </details>
+      <details>
+        <summary>My cooler is under the passenger console. Is that the Console version?</summary>
+        <p>If it's a hollow box under the seat you reach from the bow walkway, yes. On bigger dual consoles the port console is usually the head, with a toilet in it, and that's not a cooler bay. Measure the opening and send it; we'll tell you which one fits or if neither does.</p>
+      </details>
+      <details>
+        <summary>Why is the pontoon one so shallow?</summary>
+        <p>Standard pontoon seat bases are 11 inches tall. After the floor rails and the drawer body, there's about 7 inches inside. That holds a full layer of cans standing up, but not cans and a bag of ice. So Base uses a frozen gel floor and pre-chilled cans instead, which is how a bar fridge drawer works. If you want a real ice chest on a pontoon, it needs a taller lounge base or an in-floor spot, and we'd rather tell you that than sell you something that doesn't work.</p>
+      </details>
+      <details>
+        <summary>Is this a fridge?</summary>
+        <p>No. It's an ice cooler. No wiring, no battery drain, nothing to break. If you want a powered drawer, Dometic and Isotherm make good ones at two to eight times the price.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<div class="dark" id="signup">
+  <div class="wrap">
+    <section>
+    <div class="signup">
+      <div class="intro">
+        <div class="eyebrow">Get notified</div>
+        <h2>Tell us about your boat. We'll tell you when it's ready.</h2>
+        <p>Measurements are optional but they're the most useful thing you can give us. They decide the first sizes, and your vote decides which housing gets built next.</p>
+        <ol>
+          <li><strong>Width</strong> of the space: between the post legs, or across the front of the console box or seat base.</li>
+          <li><strong>Height</strong> from the deck (or the bottom of the box) to the underside of the seat.</li>
+          <li><strong>Depth</strong> from the front face straight back until you hit something.</li>
+        </ol>
+        <p class="muted">Measure the opening, not the whole cavity. Inches are fine.</p>
+      </div>
+
+      <form id="f" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+          <div class="err" id="email-err"></div>
+        </div>
+
+        <div class="field">
+          <label for="boat">What do you run?</label>
+          <select id="boat" name="boat">
+            <option value="">Pick one</option>
+            <option>Center console</option>
+            <option>Bay boat or flats boat</option>
+            <option>Dual console</option>
+            <option>Pontoon or tritoon</option>
+            <option>Bowrider or deck boat</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Where would it go?</label>
+          <div class="radios">
+            <label><input type="radio" name="spot" value="post" checked> Under the leaning post</label>
+            <label><input type="radio" name="spot" value="console"> Under the passenger console seat</label>
+            <label><input type="radio" name="spot" value="pontoon"> Pontoon seat base (vote for Base)</label>
+            <label><input type="radio" name="spot" value="other"> Somewhere else</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Opening size, inches (optional)</label>
+          <div class="dims">
+            <div class="field"><label for="w">Width</label><input id="w" name="w" class="mono" type="number" inputmode="decimal" min="4" max="60" step="0.25" placeholder="28"></div>
+            <div class="field"><label for="h">Height</label><input id="h" name="h" class="mono" type="number" inputmode="decimal" min="4" max="40" step="0.25" placeholder="19"></div>
+            <div class="field"><label for="d">Depth</label><input id="d" name="d" class="mono" type="number" inputmode="decimal" min="4" max="48" step="0.25" placeholder="18"></div>
+          </div>
+          <div class="err" id="dims-err"></div>
+        </div>
+
+        <div class="field">
+          <label for="model">Boat make and model (optional)</label>
+          <input id="model" name="model" type="text" placeholder="Key West 203FS, Sea Hunt BX 22, Bennington 22 SSX">
+        </div>
+
+        <div class="hp" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn" type="submit" id="submit">Notify me</button>
+        <div class="err" id="form-err"></div>
+        <p class="note">One email when it ships. No list selling, no weekly updates.</p>
+      </form>
+
+      <div class="done" id="done" hidden>
+        <h3>You're on the list.</h3>
+        <p>We'll email you once when there's something to buy.</p>
+        <p class="note" id="done-note"></p>
+      </div>
+    </div>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand" style="font-size:18px;color:var(--ink-fg)">DRAW<span>BOX</span></div>
+      <div style="margin-top:8px">Drawbox is a working name. Not for sale yet. Product photos are renders of the design, not a shipping unit.</div>
+    </div>
+    <nav>
+      <a href="#fit">Where it fits</a>
+      <a href="#how">How it works</a>
+      <a href="#specs">Specs</a>
+      <a href="#faq">FAQ</a>
+      <a href="#signup">Get notified</a>
+    </nav>
+    <div class="mono">keith.delehanty3@gmail.com</div>
+  </div>
+</footer>
+
+<script>
+  // Where sign-ups go. Empty = preview mode (shows the entry back, saves nothing).
+  // Swap in the n8n webhook URL (or Formspark, Tally, etc.) when the page is on its own domain.
+  var ENDPOINT = "https://n8n.stedd.ai/webhook/drawbox-signup";
+
+  var form = document.getElementById("f");
+  var done = document.getElementById("done");
+  var emailEl = document.getElementById("email");
+  var emailErr = document.getElementById("email-err");
+  var dimsErr = document.getElementById("dims-err");
+  var formErr = document.getElementById("form-err");
+  var submitBtn = document.getElementById("submit");
+  var startedAt = Date.now();
+
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    emailErr.textContent = ""; dimsErr.textContent = ""; formErr.textContent = "";
+
+    var email = val("email");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      emailErr.textContent = "Enter a working email so we can reach you.";
+      emailEl.focus();
+      return;
+    }
+    var w = val("w"), h = val("h"), d = val("d");
+    var dims = [w, h, d].filter(Boolean);
+    if (dims.length > 0 && dims.length < 3) {
+      dimsErr.textContent = "Give all three measurements, or leave them all blank.";
+      return;
+    }
+    // Honeypot and speed check: bots fill hidden fields and submit instantly.
+    if (val("company") || Date.now() - startedAt < 2500) {
+      showDone("");
+      return;
+    }
+
+    var spotEl = form.querySelector('input[name="spot"]:checked');
+    var payload = {
+      email: email,
+      boat: val("boat"),
+      spot: spotEl ? spotEl.value : "",
+      model: val("model"),
+      width_in: w ? Number(w) : null,
+      height_in: h ? Number(h) : null,
+      depth_in: d ? Number(d) : null,
+      source: location.hostname,
+      submitted_at: new Date().toISOString()
+    };
+
+    if (!ENDPOINT) {
+      showDone("Preview mode: nothing was saved. The live page will.");
+      return;
+    }
+
+    submitBtn.disabled = true; submitBtn.textContent = "Sending";
+    fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+      .then(function (r) { if (!r.ok) throw new Error("bad status"); showDone(""); })
+      .catch(function () {
+        formErr.textContent = "That didn't go through. Check your connection and try again.";
+        submitBtn.disabled = false; submitBtn.textContent = "Notify me";
+      });
+  });
+
+  function showDone(note) {
+    form.hidden = true;
+    document.getElementById("done-note").textContent = note;
+    done.hidden = false;
+    done.scrollIntoView({ block: "nearest" });
+  }
+
+  // ---------- How it works: one JS timeline drives every part of the scene ----------
+  (function () {
+    var $ = function (id) { return document.getElementById(id); };
+    var drawer = $("drawer"), inner = $("inner"), hand = $("hand"), hopen = $("hopen"), hgrip = $("hgrip");
+    var canout = $("canout"), slot = $("slot"), slotband = $("slotband"), latch = $("latch"), shadow = $("shadow");
+    var cold = $("cold"), callouts = $("callouts"), openlabel = $("openlabel"), bar = $("bar");
+    var stepEls = document.querySelectorAll("#steps .step");
+    var btnPlay = $("btn-play"), btnStep = $("btn-step");
+    var DUR = 8000, TRAVEL = 300;
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // easing
+    function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+    function seg(t, a, b) { return clamp((t - a) / (b - a)); }
+    function ioCubic(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+    function outBack(x) { var c = 1.4; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); }
+    function outCubic(x) { return 1 - Math.pow(1 - x, 3); }
+    function lerp(a, b, x) { return a + (b - a) * x; }
+
+    // drawer opening, 0 closed to 1 fully out
+    function openAmt(t) {
+      if (t < 0.14) return 0;
+      if (t < 0.32) return outBack(seg(t, 0.14, 0.32));
+      if (t < 0.72) return 1;
+      if (t < 0.88) return 1 - ioCubic(seg(t, 0.72, 0.88));
+      return 0;
+    }
+
+    // hand path: [time, dx, dy, grip, opacity]; interpolated with ease between keys
+    var HK = [
+      [0.00, -420, -70, 0, 0],
+      [0.05, -420, -70, 0, 0],
+      [0.13,    0,   0, 0, 1],
+      [0.14,    0,   0, 1, 1],
+      [0.32, -TRAVEL, 0, 1, 1],   // rides with the drawer during open
+      [0.35, -TRAVEL, 0, 0, 1],
+      [0.43, -150, -118, 0, 1],   // over the can
+      [0.49, -150,  -26, 0, 1],   // down onto it
+      [0.50, -150,  -26, 1, 1],
+      [0.59, -150, -190, 1, 1],   // lift
+      [0.66, -290, -235, 1, 1],   // carry away
+      [0.68, -290, -235, 0, 0.6],
+      [0.72, -TRAVEL, 0, 1, 1],   // back on the handle
+      [0.88,    0,   0, 1, 1],    // rides with the drawer during close
+      [0.91,    0,   0, 0, 1],
+      [0.97, -420, -70, 0, 0],
+      [1.00, -420, -70, 0, 0]
+    ];
+    function handAt(t) {
+      var i = 0;
+      while (i < HK.length - 2 && t >= HK[i + 1][0]) i++;
+      var a = HK[i], b = HK[i + 1];
+      var x = ioCubic(seg(t, a[0], b[0]));
+      var dx = lerp(a[1], b[1], x), dy = lerp(a[2], b[2], x);
+      // while holding the handle the hand follows the drawer exactly
+      if (t >= 0.14 && t < 0.32) dx = -TRAVEL * openAmt(t);
+      if (t >= 0.72 && t < 0.88) dx = -TRAVEL * openAmt(t);
+      return { x: dx, y: dy, grip: b[3], op: lerp(a[4], b[4], x) };
+    }
+
+    function render(t) {
+      var o = openAmt(t);
+      var dx = -TRAVEL * o;
+      drawer.setAttribute("transform", "translate(" + dx + " 0)");
+      inner.setAttribute("transform", "translate(" + (dx / 2) + " 0)");
+      shadow.setAttribute("opacity", clamp(o).toFixed(3));
+      shadow.setAttribute("transform", "translate(" + (lerp(160, 0, o)) + " 0) scale(" + lerp(0.1, 1, o) + " 1)");
+      latch.setAttribute("fill", o > 0.02 ? "#8E9DA8" : "#F26A1B");
+      cold.setAttribute("opacity", clamp(seg(t, 0.30, 0.38)) * (1 - clamp(seg(t, 0.70, 0.76))));
+      cold.setAttribute("transform", "translate(0 " + (Math.sin(t * Math.PI * 6) * 3).toFixed(2) + ")");
+      var rest = 1 - clamp(seg(t, 0.06, 0.14)) + clamp(seg(t, 0.90, 0.97));
+      callouts.setAttribute("opacity", clamp(rest).toFixed(3));
+      openlabel.setAttribute("opacity", (clamp(seg(t, 0.33, 0.38)) * (1 - clamp(seg(t, 0.68, 0.72)))).toFixed(3));
+
+      var h = handAt(t);
+      hand.setAttribute("transform", "translate(" + h.x.toFixed(1) + " " + h.y.toFixed(1) + ")");
+      hand.setAttribute("opacity", h.op.toFixed(3));
+      hopen.setAttribute("opacity", h.grip ? 0 : 1);
+      hgrip.setAttribute("opacity", h.grip ? 1 : 0);
+
+      // the can leaves its slot at 0.50 and travels with the hand
+      var carrying = t >= 0.50 && t < 0.68;
+      slot.setAttribute("opacity", carrying || (t >= 0.68 && t < 0.97) ? 0.18 : 1);
+      slotband.setAttribute("opacity", carrying || (t >= 0.68 && t < 0.97) ? 0 : 0.5);
+      if (carrying) {
+        var cx = dx + (h.x + 150), cy = (h.y + 26);
+        var rot = -lerp(0, 10, clamp(seg(t, 0.52, 0.66)));
+        canout.setAttribute("transform", "translate(" + cx.toFixed(1) + " " + cy.toFixed(1) + ") rotate(" + rot.toFixed(1) + " 486 270)");
+        canout.setAttribute("opacity", (1 - clamp(seg(t, 0.655, 0.68))).toFixed(3));
+      } else {
+        canout.setAttribute("opacity", 0);
+      }
+
+      bar.style.transform = "scaleX(" + t.toFixed(4) + ")";
+      var idx = t < 0.05 ? -1 : t < 0.34 ? 0 : t < 0.69 ? 1 : t < 0.94 ? 2 : -1;
+      for (var i = 0; i < stepEls.length; i++) stepEls[i].classList.toggle("on", i === idx);
+    }
+
+    var playing = !reduced, t0 = performance.now(), frozenT = 0.5;
+    function loop(now) {
+      if (playing) render(((now - t0) % DUR) / DUR);
+      requestAnimationFrame(loop);
+    }
+    function setPlaying(p) {
+      playing = p;
+      btnPlay.setAttribute("aria-pressed", p ? "true" : "false");
+      btnPlay.textContent = p ? "Playing" : "Paused";
+    }
+    btnPlay.addEventListener("click", function () {
+      if (!playing) { t0 = performance.now() - frozenT * DUR; }
+      setPlaying(!playing);
+    });
+    btnStep.addEventListener("click", function () {
+      var seqT = [0.22, 0.50, 0.80];
+      var cur = -1;
+      for (var i = 0; i < stepEls.length; i++) if (stepEls[i].classList.contains("on")) cur = i;
+      frozenT = seqT[(cur + 1) % 3];
+      setPlaying(false); render(frozenT);
+    });
+    for (var i = 0; i < stepEls.length; i++) {
+      stepEls[i].addEventListener("click", function () {
+        frozenT = Number(this.getAttribute("data-t"));
+        setPlaying(false); render(frozenT);
+      });
+    }
+    if (reduced) { render(0.5); setPlaying(false); }
+    requestAnimationFrame(loop);
+  })();
+</script>
+
+</body>
+</html>
