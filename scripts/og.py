@@ -24,7 +24,6 @@ PAGES = [  # (path, slug, fallback eyebrow)
     ("work/forbes-demand-engine/index.html", "work-forbes-demand-engine", "Case study"),
     ("work/forbes-connect-cdp/index.html", "work-forbes-connect-cdp", "Case study"),
     ("work/dg-playbook-and-ai/index.html", "work-dg-playbook-and-ai", "Case study"),
-    ("work/self-serve-advertising-lifecycle/index.html", "work-self-serve-advertising-lifecycle", "Case study"),
     ("work/enterprise-partner-programs/index.html", "work-enterprise-partner-programs", "Case study"),
     ("work/under-30-summit-2018/index.html", "work-under-30-summit-2018", "Case study"),
     ("work/forbes8-lifecycle/index.html", "work-forbes8-lifecycle", "Case study"),
