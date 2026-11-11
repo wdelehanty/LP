@@ -21,12 +21,6 @@ PAGES = [  # (path, slug, fallback eyebrow)
     ("about/index.html", "about", "About"),
     ("work/index.html", "work", "Work"),
     ("stedd/index.html", "stedd", "Stedd"),
-    ("lab/index.html", "lab", "Lab"),
-    ("stack/index.html", "stack", "Stack"),
-    ("how-i-work/index.html", "how-i-work", "How I work"),
-    ("changelog/index.html", "changelog", "Changelog"),
-    ("colophon/index.html", "colophon", "Colophon"),
-    ("notes/index.html", "notes", "Notes"),
     ("work/forbes-demand-engine/index.html", "work-forbes-demand-engine", "Case study"),
     ("work/forbes-connect-cdp/index.html", "work-forbes-connect-cdp", "Case study"),
     ("work/dg-playbook-and-ai/index.html", "work-dg-playbook-and-ai", "Case study"),
@@ -93,8 +87,6 @@ def card(eyebrow, title, desc, out, fonts):
     d.rectangle([(0, H - 78), (W, H)], fill=PANEL)
     d.line([(0, H - 78), (W, H - 78)], fill=LINE, width=1)
     d.text((72, H - 52), "williamdelehanty.com", font=fonts["mono"], fill=MUTED)
-    d.ellipse([(340, H - 44), (348, H - 36)], fill=SIGNAL)
-    d.text((364, H - 52), "revenue systems, built by hand", font=fonts["mono"], fill=MUTED)
     name = "WILLIAM DELEHANTY"
     d.text((W - 72 - d.textlength(name, font=fonts["name"]), H - 54), name, font=fonts["name"], fill=TEXT)
     im.save(out, optimize=True)
